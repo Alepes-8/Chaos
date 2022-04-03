@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 
 
 	GameEngine::Log::Init();
-	GameEngine::Log::GetCoreLogger()->warn("life is bad");
+	GameEngine::Log::GetCoreLogger()->warn("The code making this should be shortend with define in log.h");
 
 
 	auto game = GameEngine::CreateApplication();
