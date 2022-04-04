@@ -7,8 +7,11 @@
 
 #pragma once
 
+#include <memory>
+
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 
 
