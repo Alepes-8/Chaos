@@ -6,6 +6,7 @@ extern GameEngine::Application* GameEngine::CreateApplication();
 
 int main(int argc, char** argv)
 {
+	
 	printf("Starting GameEngine Hejsan\n");
 
 
@@ -16,6 +17,8 @@ int main(int argc, char** argv)
 	auto game = GameEngine::CreateApplication();
 	game->Run();
 	delete game;
+	
+
 }
 
 #endif // HZ_PLATFORM_WINDOWS
