@@ -12,9 +12,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "GameEngine"
     location "GameEngine"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    
+    cppdialect "C++17"
+    staticruntime "on"
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -26,36 +28,33 @@ project "GameEngine"
 
     includedirs
     {
+        "%{prj.name}/library/filament",
         "%{prj.name}/src",
         "%{prj.name}/library/spdlog/include"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "on"
         systemversion "latest"
 
         defines
         {
-            "HZ_PLATFORM_WINDOWS",
-            "GE_BUILD_DLL"
-        }
-
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Game")
+            --"HZ_PLATFORM_WINDOWS",
+            --"GE_BUILD_DLL"
         }
 
     filter "configurations:Debug"
         defines "GE_DEBUG"
+        runtime "Debug"
         symbols "on"
 
     filter "configurations:Release"
-        defines "GE_DEBUG"
+        defines "GE_RELEASE"
+        runtime "Release"
         optimize "on"
 
     filter "configurations:Dist"
-        defines "GE_DEBUG"
+        defines "GE_DIST"
+        runtime "Release"
         optimize "on"
 
 
@@ -65,6 +64,8 @@ project "Game"
     location "Game"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -77,6 +78,7 @@ project "Game"
 
     includedirs
     {
+        "GameEngine/library/filament",
         "GameEngine/library/spdlog/include",
         "GameEngine/src"
     }
@@ -86,23 +88,24 @@ project "Game"
         "GameEngine"
     }
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "on"
         systemversion "latest"
 
         defines
         {
-            "HZ_PLATFORM_WINDOWS"
+            --"HZ_PLATFORM_WINDOWS"
         }
 
     filter "configurations:Debug"
         defines "GE_DEBUG"
+        runtime "Debug"
         symbols "on"
 
     filter "configurations:Release"
-        defines "GE_DEBUG"
+        defines "GE_RELEASE"
+        runtime "Release"
         optimize "on"
 
     filter "configurations:Dist"
-        defines "GE_DEBUG"
+        defines "GE_DIST"
+        runtime "Release"
         optimize "on"

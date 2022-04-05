@@ -13,7 +13,7 @@
     <ClInclude Include="src\GameEngine\Application.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Core.h">
+    <ClInclude Include="src\GameEngine\Build.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\EntryPoint.h">

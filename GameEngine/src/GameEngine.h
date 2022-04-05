@@ -6,7 +6,7 @@
 
 #include <iostream>
 /*-------EntryPoint---------*/
-#include "GameEngine/EntryPoint.h"
+//#include "GameEngine/EntryPoint.h"
 /*--------------------------*/
 
 
