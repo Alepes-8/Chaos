@@ -11,7 +11,7 @@ namespace GameEngine {
 	* 
 	* ToString:		Get the x and y position of the cursor.
 	*/
-	class GE_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -33,7 +33,7 @@ namespace GameEngine {
 		float m_MouseX, m_MouseY;
 	};
 
-	class GE_API MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -64,7 +64,7 @@ namespace GameEngine {
 	* 
 	* The MouseButtonEvent (int button) can only be used by inharitance
 	*/
-	class GE_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -80,7 +80,7 @@ namespace GameEngine {
 	/*
 	* An event for pressing a mouse button down
 	*/
-	class GE_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -99,7 +99,7 @@ namespace GameEngine {
 	/*
 	* An event for releasing a mouse button
 	*/
-	class GE_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

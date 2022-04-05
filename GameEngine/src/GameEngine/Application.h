@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "Core.h"
 #include "InputEvents/EventMain.h"
 #include "GameEngine/InputEvents/WindowEvents.h"
 #include "GameEngine/InputEvents/MouseEvents.h"
@@ -10,7 +9,7 @@
 
 namespace GameEngine
 {
-	class GE_API Application
+	class Application
 	{
 	public:
 		Application();

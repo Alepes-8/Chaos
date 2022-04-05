@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameEngine/Core.h"
+#include "GameEngine/Build.h"
 
 #include <string>
 #include <functional>
@@ -53,7 +53,7 @@ namespace GameEngine {
 	* m_Handled:  is to keep track if an event has occured or not
 	*/
 
-	class GE_API Event	
+	class Event	
 	{
 		friend class EventDispatcher;
 	public:

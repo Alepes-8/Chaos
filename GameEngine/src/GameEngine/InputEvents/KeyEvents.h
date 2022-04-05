@@ -11,7 +11,7 @@ namespace GameEngine {
 	* This is the base key event that all other key events will 
 	* be inherenting from.
 	*/
-	class GE_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput) // Places it into the two catagorys that it is relevent to
@@ -35,7 +35,7 @@ namespace GameEngine {
 	* m_RepeatCount:	How much have we printed from holding a key down
 	* 
 	*/
-	class GE_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -63,7 +63,7 @@ namespace GameEngine {
 	/* -KeyEvent when Released the key-
 	*
 	*/
-	class GE_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)

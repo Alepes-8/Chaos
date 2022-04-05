@@ -9,14 +9,13 @@
 
 #include <memory>
 
-#include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
 
 
 namespace GameEngine {
-	class GE_API Log
+	class Log
 	{
 	public: 
 		static void Init();
