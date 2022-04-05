@@ -5,9 +5,6 @@
 #include "GameEngine/Log.h"
 
 #include <iostream>
-/*-------EntryPoint---------*/
-//#include "GameEngine/EntryPoint.h"
-/*--------------------------*/
 
 
 
