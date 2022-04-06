@@ -34,6 +34,8 @@ namespace GameEngine {
 	* eventCatagoryMouse instead of  MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled.
 	* 
 	*/
+	#define BIT(x) (1<<x)
+	
 	enum EventCategory
 	{
 		None = 0,
