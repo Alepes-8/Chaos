@@ -1,7 +1,5 @@
 #pragma once
 
-#include "GameEngine/Build.h"
-
 #include <string>
 #include <functional>
 

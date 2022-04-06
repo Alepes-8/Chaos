@@ -13,9 +13,6 @@
     <ClInclude Include="src\GameEngine\Application.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Build.h">
-      <Filter>GameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\InputEvents\EventMain.h">
       <Filter>GameEngine\InputEvents</Filter>
     </ClInclude>
