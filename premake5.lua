@@ -19,6 +19,7 @@ project "GameEngine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    libdirs {"%{prj.name}/library/filament/lib/x86_64/mtd/"}
 
     files
     {
@@ -28,9 +29,43 @@ project "GameEngine"
 
     includedirs
     {
-        "%{prj.name}/library/filament",
+        "%{prj.name}/library/filament/include",
         "%{prj.name}/src",
-        "%{prj.name}/library/spdlog/include"
+        "%{prj.name}/library/spdlog/include",
+
+    }
+
+    links
+    {
+        "backend",
+        "bluegl",
+        "bluevk",
+        "camutils",
+        "civetweb",
+        "dracodec",
+        "filabridge",
+        "filaflat",
+        "filamat",
+        "filamat_lite",
+        "filament-iblprefilter",
+        "filament",
+        "filameshio",
+        "geometry",
+        "gltfio",
+        "gltfio_core",
+        "gltfio_resources",
+        "gltfio_resources_lite",
+        "ibl-lite",
+        "ibl",
+        "image",
+        "matdbg",
+        "meshoptimizer",
+        "shaders",
+        "smol-v",
+        "utils",
+        "viewer",
+        "vkshaders",
+        "opengl32"
     }
 
     filter "system:windows"
@@ -69,6 +104,7 @@ project "Game"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    libdirs {"bin/Debug-windows-x86_64/GameEngine"}
 
     files
     {
@@ -78,15 +114,17 @@ project "Game"
 
     includedirs
     {
-        "GameEngine/library/filament",
+        "GameEngine/library/filament/include",
         "GameEngine/library/spdlog/include",
         "GameEngine/src"
     }
 
     links
     {
-        "GameEngine"
+        "GameEngine",
+        "bin/Debug-windows-x86_64/GameEngine/GameEngine"
     }
+
     filter "system:windows"
         systemversion "latest"
 

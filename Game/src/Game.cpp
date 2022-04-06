@@ -16,6 +16,8 @@ public:
 int main(int argc, char** argv)
 {
 
+	filament::Engine* engine = filament::Engine::create();
+	engine->destroy(&engine);
 
 	printf("Starting GameEngine Hejsan\n");
 
