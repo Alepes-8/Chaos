@@ -84,6 +84,8 @@ project "Game"
         "GameEngine/library/filament",
         "GameEngine/library/spdlog/include",
         "GameEngine/src",
+		"GameEngine/library/recastnavigation/DebugUtils/include",
+		"GameEngine/library/recastnavigation/Recast/include",
 		"GameEngine/library/recastnavigation/Detour/include"
     }
 
