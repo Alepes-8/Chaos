@@ -2,7 +2,9 @@
 .vs/
 bin/
 bin-int/
-#GameEngine/library/filament/*
+GameEngine/library/filament/
 
 #Files
 *.user
+GameEngine/library/filament/LICENSE
+GameEngine/library/filament/README.md
