@@ -30,7 +30,10 @@ project "GameEngine"
     {
         "%{prj.name}/library/filament",
         "%{prj.name}/src",
-        "%{prj.name}/library/spdlog/include"
+        "%{prj.name}/library/spdlog/include",
+		"%{prj.name}/library/recastnavigation/DebugUtils/include",
+		"%{prj.name}/library/recastnavigation/Recast/include",
+		"%{prj.name}/library/recastnavigation/Detour/include"
     }
 
     filter "system:windows"
@@ -80,7 +83,8 @@ project "Game"
     {
         "GameEngine/library/filament",
         "GameEngine/library/spdlog/include",
-        "GameEngine/src"
+        "GameEngine/src",
+		"GameEngine/library/recastnavigation/Detour/include"
     }
 
     links
