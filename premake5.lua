@@ -65,7 +65,10 @@ project "GameEngine"
         "utils",
         "viewer",
         "vkshaders",
-        "opengl32"
+        "opengl32",
+		"%{prj.name}/library/recastnavigation/DebugUtils/include",
+		"%{prj.name}/library/recastnavigation/Recast/include",
+		"%{prj.name}/library/recastnavigation/Detour/include"
     }
 
     filter "system:windows"
@@ -116,7 +119,10 @@ project "Game"
     {
         "GameEngine/library/filament/include",
         "GameEngine/library/spdlog/include",
-        "GameEngine/src"
+        "GameEngine/src",
+		"GameEngine/library/recastnavigation/DebugUtils/include",
+		"GameEngine/library/recastnavigation/Recast/include",
+		"GameEngine/library/recastnavigation/Detour/include"
     }
 
     links
