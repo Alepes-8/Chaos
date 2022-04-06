@@ -3,6 +3,7 @@
 bin/
 bin-int/
 GameEngine/library/filament/
+GameEngine/library/recastnavigation/
 
 #Files
 *.user
