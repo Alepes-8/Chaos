@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -91,13 +91,16 @@
       <AdditionalDependencies>..\bin\Debug-windows-x86_64\GameEngine\GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -113,13 +116,16 @@
       <AdditionalDependencies>..\bin\Debug-windows-x86_64\GameEngine\GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\library\filament\include;..\GameEngine\library\spdlog\include;..\GameEngine\src;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -135,6 +141,9 @@
       <AdditionalDependencies>..\bin\Debug-windows-x86_64\GameEngine\GameEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
