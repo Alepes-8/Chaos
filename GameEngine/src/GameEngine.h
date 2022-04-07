@@ -10,8 +10,14 @@
 /*--------Filament----------*/
 #include <filament/FilamentAPI.h>
 #include <filament/Engine.h>
+#include <filament/View.h>
+#include <filament/RenderableManager.h>
+#include <filament/Renderer.h>
+
 #include <camutils/Manipulator.h>
 
 #include "SDL.h"
 #include <SDL_syswm.h>
 #include <utils/Panic.h>
+#include <utils/EntityManager.h>
+
