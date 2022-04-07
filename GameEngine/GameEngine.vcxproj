@@ -87,7 +87,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;ibl.lib;image.lib;matdbg.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -111,7 +111,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;ibl.lib;image.lib;matdbg.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -135,15 +135,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;ibl.lib;image.lib;matdbg.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
-    <ClInclude Include="src\GameEngine\Build.h" />
-    <ClInclude Include="src\GameEngine\EntryPoint.h" />
     <ClInclude Include="src\GameEngine\InputEvents\EventMain.h" />
     <ClInclude Include="src\GameEngine\InputEvents\KeyEvents.h" />
     <ClInclude Include="src\GameEngine\InputEvents\MouseEvents.h" />

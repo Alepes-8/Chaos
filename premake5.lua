@@ -31,7 +31,7 @@ project "GameEngine"
     {
         "%{prj.name}/library/filament/include",
         "%{prj.name}/src",
-        "%{prj.name}/library/spdlog/include",
+        "%{prj.name}/library/spdlog/include"
 
     }
 
@@ -45,7 +45,7 @@ project "GameEngine"
         "dracodec",
         "filabridge",
         "filaflat",
-        "filamat",
+        --"filamat",
         "filamat_lite",
         "filament-iblprefilter",
         "filament",
@@ -56,9 +56,9 @@ project "GameEngine"
         "gltfio_resources",
         "gltfio_resources_lite",
         "ibl-lite",
-        "ibl",
+        --"ibl",
         "image",
-        "matdbg",
+        --"matdbg",
         "meshoptimizer",
         "shaders",
         "smol-v",
