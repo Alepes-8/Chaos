@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "GameEngine/Log.h"
+#include "Init.cpp"
 
 
 namespace GameEngine
@@ -13,11 +13,16 @@ namespace GameEngine
 	}
 
 	void Application::Run() {
+		StartInit();
+		
+		
 		WindowResizeEvent e(12800, 720);
 		WindowCloseEvent c;
 
 		EventDispatcher test(e);
 		//HZ_TRACE(e);
+		GameEngine::Log::GetCoreLogger()->warn("The code making this should be shortend with define in log.h");
+
 		GameEngine::Log::GetCoreLogger()->warn(e.GetCategoryFlags());		
 		GameEngine::Log::GetCoreLogger()->warn(e.GetWidth());
 		GameEngine::Log::GetCoreLogger()->warn(e.GetHeight());
