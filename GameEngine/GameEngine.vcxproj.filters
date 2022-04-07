@@ -33,9 +33,11 @@
     <ClCompile Include="src\GameEngine\Application.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\Init.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\Init.cpp" />
   </ItemGroup>
 </Project>
