@@ -4,6 +4,7 @@ bin/
 bin-int/
 GameEngine/library/filament/
 GameEngine/library/recastnavigation/
+GameEngine/library/sdl2/
 
 #Files
 *.user
