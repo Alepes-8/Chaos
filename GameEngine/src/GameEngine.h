@@ -10,6 +10,8 @@
 /*--------Filament----------*/
 #include <filament/FilamentAPI.h>
 #include <filament/Engine.h>
+#include <camutils/Manipulator.h>
 
-
-
+#include "SDL.h"
+#include <SDL_syswm.h>
+#include <utils/Panic.h>

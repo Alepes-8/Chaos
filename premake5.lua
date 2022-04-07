@@ -19,7 +19,7 @@ project "GameEngine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    libdirs {"%{prj.name}/library/filament/lib/x86_64/mtd/"}
+    libdirs {"%{prj.name}/library/filament/lib/x86_64/mtd/", "%{prj.name}/library/sdl2/lib/x64/"}
 
     files
     {
@@ -65,7 +65,10 @@ project "GameEngine"
         "utils",
         "viewer",
         "vkshaders",
-        "opengl32"
+        "opengl32",
+        "SDL2",
+        "SDL2main",
+        "SDL2test"
     }
 
     filter "system:windows"
@@ -116,6 +119,7 @@ project "Game"
     {
         "GameEngine/library/filament/include",
         "GameEngine/library/spdlog/include",
+        "GameEngine/library/sdl2/include",
         "GameEngine/src"
     }
 
