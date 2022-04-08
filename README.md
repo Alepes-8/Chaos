@@ -29,4 +29,5 @@ Raphaël Dupont: @github/Quittqick
  
 I will give credit to youtubers such as:
 [ The Cherno ](https://www.youtube.com/channel/UCQ-W1KE9EYfdxhL6S4twUNw) and his GameEngine [Hazel](https://github.com/TheCherno/Hazel)
-[Ather Omar](https://www.youtube.com/channel/UCCKlrE0p4IZxqBpq98KFBmw) 
+
+As well as [Ather Omar](https://www.youtube.com/channel/UCCKlrE0p4IZxqBpq98KFBmw) 
