@@ -1,5 +1,5 @@
 #pragma once
-#include "Log.h"
+#include "GameEngine/Log.h"
 #include "SDL.h"
 #include <stdio.h>
 namespace GameEngine {
@@ -17,7 +17,7 @@ namespace GameEngine {
 		static bool m_sInitialized;
 
 	public:
-		static Graphics* Create();
+		static Graphics* CreateInstance();
 		static void Terminate();
 		static bool GetInitialize();
 		void Render();
