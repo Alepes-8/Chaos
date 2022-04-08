@@ -148,6 +148,7 @@
     <ClInclude Include="src\GameEngine\InputEvents\MouseEvents.h" />
     <ClInclude Include="src\GameEngine\InputEvents\WindowEvents.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
+    <ClInclude Include="src\GameEngine\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />

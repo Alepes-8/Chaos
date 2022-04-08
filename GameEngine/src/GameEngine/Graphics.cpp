@@ -1,9 +1,9 @@
 #include "Graphics.h"
 
 GameEngine::Graphics* GameEngine::Graphics::m_sInstance = NULL;
-bool GameEngine::Graphics::m_sInitialize = false;
+bool GameEngine::Graphics::m_sInitialized = false;
 
-GameEngine::Graphics* GameEngine::Graphics::Instance()
+GameEngine::Graphics* GameEngine::Graphics::Create()
 {
 	if (m_sInstance == NULL) {
 		m_sInstance = new GameEngine::Graphics();
@@ -11,22 +11,22 @@ GameEngine::Graphics* GameEngine::Graphics::Instance()
 	return m_sInstance;
 }
 
-void GameEngine::Graphics::Release()
+void GameEngine::Graphics::Terminate()
 {
 	delete m_sInstance;
 	m_sInstance = NULL;
 	
-	m_sInitialize = false;
+	m_sInitialized = false;
 }
 
 bool GameEngine::Graphics::GetInitialize()
 {
-	return m_sInitialize;
+	return m_sInitialized;
 }
 
 GameEngine::Graphics::Graphics() {
 	m_BackBuffer = NULL;
-	m_sInitialize = Init();
+	m_sInitialized = Init();
 }
 
 GameEngine::Graphics::~Graphics() {

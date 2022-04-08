@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 {
 	auto game = GameEngine::CreateApplication();
 	game->Run();
-	GameEngine::Application::Release();
+	GameEngine::Application::Terminate();
 	game = NULL;
 	return 0;
 }

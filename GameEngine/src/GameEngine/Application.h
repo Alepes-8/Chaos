@@ -18,7 +18,7 @@ namespace GameEngine
 		SDL_Event m_Events;
 	public: 
 		static Application* sInstance;
-		static void Release();
+		static void Terminate();
 
 		Application();
 		virtual ~Application();

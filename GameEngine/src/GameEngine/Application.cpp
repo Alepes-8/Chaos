@@ -6,7 +6,7 @@ namespace GameEngine
 {
 	GameEngine::Application* GameEngine::Application::sInstance = NULL;
 
-	void GameEngine::Application::Release()
+	void GameEngine::Application::Terminate()
 	{
 		delete sInstance;
 		sInstance = NULL;
@@ -14,8 +14,7 @@ namespace GameEngine
 
 	Application::Application() {
 		mQuit = false;
-		m_Graphics = GameEngine::Graphics::Instance();
-
+		m_Graphics = GameEngine::Graphics::Create();
 		if (!GameEngine::Graphics::GetInitialize())
 		{
 			mQuit = true;
@@ -23,7 +22,7 @@ namespace GameEngine
 	}
 
 	Application::~Application() {
-		GameEngine::Graphics::Release();
+		GameEngine::Graphics::Terminate();
 		m_Graphics = NULL;
 	}
 
