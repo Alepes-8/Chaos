@@ -1,0 +1,12 @@
+#Directories
+.vs/
+bin/
+bin-int/
+GameEngine/library/filament/
+GameEngine/library/SDL/
+GameEngine/library/recastnavigation/
+
+#Files
+*.user
+GameEngine/library/filament/LICENSE
+GameEngine/library/filament/README.md
