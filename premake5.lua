@@ -19,7 +19,11 @@ project "GameEngine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    libdirs {"%{prj.name}/library/filament/lib/x86_64/mtd/"}
+    libdirs 
+    {
+        "%{prj.name}/library/filament/lib/x86_64/mtd/",
+        "%{prj.name}/library/SDL2/lib/x64"
+    }
 
     files
     {
@@ -31,7 +35,11 @@ project "GameEngine"
     {
         "%{prj.name}/library/filament/include",
         "%{prj.name}/src",
-        "%{prj.name}/library/spdlog/include"
+        "%{prj.name}/library/spdlog/include",
+        "%{prj.name}/library/sdl2/include",
+        "%{prj.name}/library/recastnavigation/DebugUtils/include",
+		"%{prj.name}/library/recastnavigation/Recast/include",
+		"%{prj.name}/library/recastnavigation/Detour/include"
 
     }
 
@@ -66,9 +74,9 @@ project "GameEngine"
         "viewer",
         "vkshaders",
         "opengl32",
-		"%{prj.name}/library/recastnavigation/DebugUtils/include",
-		"%{prj.name}/library/recastnavigation/Recast/include",
-		"%{prj.name}/library/recastnavigation/Detour/include"
+        "SDL2",
+        "SDL2main",
+        "SDL2test",
     }
 
     filter "system:windows"
@@ -105,6 +113,7 @@ project "Game"
     cppdialect "C++17"
     staticruntime "on"
 
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     libdirs {"bin/Debug-windows-x86_64/GameEngine"}
@@ -122,7 +131,8 @@ project "Game"
         "GameEngine/src",
 		"GameEngine/library/recastnavigation/DebugUtils/include",
 		"GameEngine/library/recastnavigation/Recast/include",
-		"GameEngine/library/recastnavigation/Detour/include"
+		"GameEngine/library/recastnavigation/Detour/include",
+        "GameEngine/library/sdl2/include"
     }
 
     links
@@ -137,6 +147,11 @@ project "Game"
         defines
         {
             --"HZ_PLATFORM_WINDOWS"
+        }
+
+        postbuildcommands 
+        {
+            "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2.dll ../bin/" .. outputdir .. "/Game"
         }
 
     filter "configurations:Debug"
