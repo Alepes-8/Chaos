@@ -15,7 +15,6 @@ namespace GameEngine
 	private:
 		bool mQuit;
 		GameEngine::Graphics* m_Graphics;
-
 		SDL_Event m_Events;
 	public: 
 		static Application* sInstance;

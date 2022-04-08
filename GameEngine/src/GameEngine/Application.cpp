@@ -30,8 +30,6 @@ namespace GameEngine
 	void Application::Run() {
 		StartInit();
 		
-
-
 		WindowResizeEvent e(12800, 720);
 		WindowCloseEvent c;
 

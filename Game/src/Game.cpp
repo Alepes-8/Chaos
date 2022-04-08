@@ -16,7 +16,6 @@ public:
 
 int main(int argc, char** argv)
 {
-
 	auto game = GameEngine::CreateApplication();
 	game->Run();
 	GameEngine::Application::Release();
@@ -26,10 +25,9 @@ int main(int argc, char** argv)
 
 GameEngine::Application* GameEngine::CreateApplication()
 {
-	if (GameEngine::Application::sInstance == NULL)
+	if (GameEngine::Application::sInstance == NULL) 
 	{
 		GameEngine::Application::sInstance = new Game;
 	}
-	
 	return GameEngine::Application::sInstance;
 }
