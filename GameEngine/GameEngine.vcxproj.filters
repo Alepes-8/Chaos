@@ -28,6 +28,9 @@
     <ClInclude Include="src\GameEngine\Log.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\Graphics.h">
+      <Filter>GameEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -39,5 +42,6 @@
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\Graphics.cpp" />
   </ItemGroup>
 </Project>

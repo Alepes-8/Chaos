@@ -4,18 +4,34 @@
 
 namespace GameEngine
 {
-	Application::Application() {
+	GameEngine::Application* GameEngine::Application::sInstance = NULL;
 
+	void GameEngine::Application::Release()
+	{
+		delete sInstance;
+		sInstance = NULL;
+	}
+
+	Application::Application() {
+		mQuit = false;
+		m_Graphics = GameEngine::Graphics::Instance();
+
+		if (!GameEngine::Graphics::GetInitialize())
+		{
+			mQuit = true;
+		}
 	}
 
 	Application::~Application() {
-
+		GameEngine::Graphics::Release();
+		m_Graphics = NULL;
 	}
 
 	void Application::Run() {
 		StartInit();
 		
-		
+
+
 		WindowResizeEvent e(12800, 720);
 		WindowCloseEvent c;
 
@@ -35,7 +51,14 @@ namespace GameEngine
 			GameEngine::Log::GetCoreLogger()->info("Yes it is inside the application.");
 		}
 
-		while (true);
+		while (!mQuit) {
+			while (SDL_PollEvent(&m_Events) != 0) {
+				if (m_Events.type == SDL_QUIT) {
+					mQuit = true;
+				}
+				m_Graphics->Render();
+			}
+		}
 		
 	}
 }

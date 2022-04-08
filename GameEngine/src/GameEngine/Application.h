@@ -1,5 +1,6 @@
 #pragma once
 
+#include "GameEngine/Graphics.h"
 #include "InputEvents/EventMain.h"
 #include "GameEngine/InputEvents/WindowEvents.h"
 #include "GameEngine/InputEvents/MouseEvents.h"
@@ -11,7 +12,15 @@ namespace GameEngine
 {
 	class Application
 	{
-	public:
+	private:
+		bool mQuit;
+		GameEngine::Graphics* m_Graphics;
+
+		SDL_Event m_Events;
+	public: 
+		static Application* sInstance;
+		static void Release();
+
 		Application();
 		virtual ~Application();
 
