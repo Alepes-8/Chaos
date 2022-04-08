@@ -7,6 +7,9 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\objects">
+      <UniqueIdentifier>{8fe860b5-81c9-4968-9f6c-ed769ed659dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
@@ -28,6 +31,12 @@
     <ClInclude Include="src\GameEngine\Log.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
+    <ClInclude Include="ObjParser.h">
+      <Filter>GameEngine\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>GameEngine\objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -38,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>GameEngine\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjParser.cpp">
+      <Filter>GameEngine\objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
