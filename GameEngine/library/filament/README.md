@@ -1,181 +1,466 @@
-# Filament
+# spdlog
 
-This package contains several executables and libraries you can use to build applications using
-Filament. Latest versions are available on the [project page](https://github.com/google/filament).
+Very fast, header-only/compiled, C++ logging library. [![Build Status](https://app.travis-ci.com/gabime/spdlog.svg?branch=v1.x)](https://app.travis-ci.com/gabime/spdlog)&nbsp; [![Build status](https://ci.appveyor.com/api/projects/status/d2jnxclg20vd0o50?svg=true&branch=v1.x)](https://ci.appveyor.com/project/gabime/spdlog) [![Release](https://img.shields.io/github/release/gabime/spdlog.svg)](https://github.com/gabime/spdlog/releases/latest)
 
-## Binaries
+## Install 
+#### Header only version
+Copy the include [folder](https://github.com/gabime/spdlog/tree/v1.x/include/spdlog) to your build tree and use a C++11 compiler.
 
-- `cmgen`, Image-based lighting asset generator
-- `filamesh`, Mesh converter
-- `glslminifier`, Tool to minify GLSL shaders
-- `gltf_viewer`, glTF 2.0 viewer that lets you explore many features of Filament
-- `matc`, Material compiler
-- `material_sandbox`, simple mesh viewer that lets you explore material and lighting features
-- `matinfo`, Displays information about materials compiled with `matc`
-- `mipgen`, Generates a series of miplevels from a source image.
-- `normal-blending`, Tool to blend normal maps
-- `resgen`, Tool to convert files into binary resources to be embedded at compie time
-- `roughness-prefilter`, Pre-filters a roughness map from a normal map to reduce aliasing
-- `specular-color`, Computes the specular color of conductors based on spectral data
+#### Static lib version (recommended - much faster compile times)
+```console
+$ git clone https://github.com/gabime/spdlog.git
+$ cd spdlog && mkdir build && cd build
+$ cmake .. && make -j
+```
+      
+   see example [CMakeLists.txt](https://github.com/gabime/spdlog/blob/v1.x/example/CMakeLists.txt) on how to use.
 
-You can refer to the individual documentation files in `docs/` for more information.
+## Platforms
+ * Linux, FreeBSD, OpenBSD, Solaris, AIX
+ * Windows (msvc 2013+, cygwin)
+ * macOS (clang 3.5+)
+ * Android
 
-## Libraries
+## Package managers:
+* Debian: `sudo apt install libspdlog-dev`
+* Homebrew: `brew install spdlog`
+* MacPorts: `sudo port install spdlog`
+* FreeBSD:  `pkg install spdlog`
+* Fedora: `dnf install spdlog`
+* Gentoo: `emerge dev-libs/spdlog`
+* Arch Linux: `pacman -S spdlog`
+* vcpkg: `vcpkg install spdlog`
+* conan: `spdlog/[>=1.4.1]`
+* conda: `conda install -c conda-forge spdlog`
+* build2: ```depends: spdlog ^1.8.2```
 
-Filament is distributed as a set of static libraries you must link against:
 
-- `backend`, Required, implements all backends
-- `bluegl`, Required to render with OpenGL or OpenGL ES
-- `bluevk`, Required to render with Vulkan
-- `filabridge`, Support library for Filament
-- `filaflat`, Support library for Filament
-- `filament`, Main Filament library
-- `backend`, Filament render backend library
-- `ibl`, Image-based lighting support library
-- `utils`, Support library for Filament
-- `geometry`, Geometry helper library for Filament
-- `smol-v`, SPIR-V compression library, used only with Vulkan support
+## Features
+* Very fast (see [benchmarks](#benchmarks) below).
+* Headers only or compiled
+* Feature rich formatting, using the excellent [fmt](https://github.com/fmtlib/fmt) library.
+* Asynchronous mode (optional)
+* [Custom](https://github.com/gabime/spdlog/wiki/3.-Custom-formatting) formatting.
+* Multi/Single threaded loggers.
+* Various log targets:
+    * Rotating log files.
+    * Daily log files.
+    * Console logging (colors supported).
+    * syslog.
+    * Windows event log.
+    * Windows debugger (```OutputDebugString(..)```).
+    * Easily [extendable](https://github.com/gabime/spdlog/wiki/4.-Sinks#implementing-your-own-sink) with custom log targets.
+* Log filtering - log levels can be modified in runtime as well as in compile time.
+* Support for loading log levels from argv or from environment var.
+* [Backtrace](#backtrace-support) support - store debug messages in a ring buffer and display later on demand.
+ 
+## Usage samples
 
-To use Filament from Java you must use the following two libraries instead:
-- `filament-java.jar`, Contains Filament's Java classes
-- `filament-jni`, Filament's JNI bindings
+#### Basic usage
+```c++
+#include "spdlog/spdlog.h"
 
-To link against debug builds of Filament, you must also link against:
-
-- `matdbg`, Support library that adds an interactive web-based debugger to Filament
-
-To use the Vulkan backend on macOS you must also make the following libraries available at runtime:
-- `MoltenVK_icd.json`
-- `libMoltenVK.dylib`
-- `libvulkan.1.dylib`
-
-## Linking against Filament
-
-This walkthrough will get you successfully compiling and linking native code
-against Filament with minimum dependencies.
-
-To start, download Filament's [latest binary release](https://github.com/google/filament/releases)
-and extract into a directory of your choosing. Binary releases are suffixed
-with the platform name, for example, `filament-20181009-linux.tgz`.
-
-Create a file, `main.cpp`, in the same directory with the following contents:
+int main() 
+{
+    spdlog::info("Welcome to spdlog!");
+    spdlog::error("Some error message with arg: {}", 1);
+    
+    spdlog::warn("Easy padding in numbers like {:08d}", 12);
+    spdlog::critical("Support for int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}", 42);
+    spdlog::info("Support for floats {:03.2f}", 1.23456);
+    spdlog::info("Positional args are {1} {0}..", "too", "supported");
+    spdlog::info("{:<30}", "left aligned");
+    
+    spdlog::set_level(spdlog::level::debug); // Set global log level to debug
+    spdlog::debug("This message should be displayed..");    
+    
+    // change log pattern
+    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
+    
+    // Compile time log levels
+    // define SPDLOG_ACTIVE_LEVEL to desired level
+    SPDLOG_TRACE("Some trace message with param {}", 42);
+    SPDLOG_DEBUG("Some debug message");
+}
 
 ```
-#include <filament/FilamentAPI.h>
-#include <filament/Engine.h>
-
-using namespace filament;
-
-int main(int argc, char** argv)
+---
+#### Create stdout/stderr logger object
+```c++
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+void stdout_example()
 {
-    Engine *engine = Engine::create();
-    engine->destroy(&engine);
-    return 0;
+    // create color multi threaded logger
+    auto console = spdlog::stdout_color_mt("console");    
+    auto err_logger = spdlog::stderr_color_mt("stderr");    
+    spdlog::get("console")->info("loggers can be retrieved from a global registry using the spdlog::get(logger_name)");
 }
 ```
 
-The directory should look like:
-
+---
+#### Basic file logger
+```c++
+#include "spdlog/sinks/basic_file_sink.h"
+void basic_logfile_example()
+{
+    try 
+    {
+        auto logger = spdlog::basic_logger_mt("basic_logger", "logs/basic-log.txt");
+    }
+    catch (const spdlog::spdlog_ex &ex)
+    {
+        std::cout << "Log init failed: " << ex.what() << std::endl;
+    }
+}
 ```
-|-- README.md
-|-- bin
-|-- docs
-|-- include
-|-- lib
-|-- main.cpp
-```
-
-We'll use a platform-specific Makefile to compile and link `main.cpp` with Filament's libraries.
-Copy your platform's Makefile below into a `Makefile` inside the same directory.
-
-### Linux
-
-```
-FILAMENT_LIBS=-lfilament -lbackend -lbluegl -lbluevk -lfilabridge -lfilaflat -lutils -lgeometry -lsmol-v -lvkshaders -libl
-CC=clang++
-
-main: main.o
-	$(CC) -Llib/x86_64/ main.o $(FILAMENT_LIBS) -lpthread -lc++ -ldl -o main
-
-main.o: main.cpp
-	$(CC) -Iinclude/ -std=c++17 -pthread -c main.cpp
-
-clean:
-	rm -f main main.o
-
-.PHONY: clean
+---
+#### Rotating files
+```c++
+#include "spdlog/sinks/rotating_file_sink.h"
+void rotating_example()
+{
+    // Create a file rotating logger with 5mb size max and 3 rotated files
+    auto max_size = 1048576 * 5;
+    auto max_files = 3;
+    auto logger = spdlog::rotating_logger_mt("some_logger_name", "logs/rotating.txt", max_size, max_files);
+}
 ```
 
-### macOS
+---
+#### Daily files
+```c++
+
+#include "spdlog/sinks/daily_file_sink.h"
+void daily_example()
+{
+    // Create a daily logger - a new file is created every day on 2:30am
+    auto logger = spdlog::daily_logger_mt("daily_logger", "logs/daily.txt", 2, 30);
+}
 
 ```
-FILAMENT_LIBS=-lfilament -lbackend -lbluegl -lbluevk -lfilabridge -lfilaflat -lutils -lgeometry -lsmol-v -lvkshaders -libl
-FRAMEWORKS=-framework Cocoa -framework Metal -framework CoreVideo
-CC=clang++
 
-main: main.o
-	$(CC) -Llib/x86_64/ main.o $(FILAMENT_LIBS) $(FRAMEWORKS) -o main
+---
+#### Backtrace support
+```c++
+// Debug messages can be stored in a ring buffer instead of being logged immediately.
+// This is useful in order to display debug logs only when really needed (e.g. when error happens).
+// When needed, call dump_backtrace() to see them.
 
-main.o: main.cpp
-	$(CC) -Iinclude/ -std=c++17 -c main.cpp
+spdlog::enable_backtrace(32); // Store the latest 32 messages in a buffer. Older messages will be dropped.
+// or my_logger->enable_backtrace(32)..
+for(int i = 0; i < 100; i++)
+{
+  spdlog::debug("Backtrace message {}", i); // not logged yet..
+}
+// e.g. if some error happened:
+spdlog::dump_backtrace(); // log them now! show the last 32 messages
 
-clean:
-	rm -f main main.o
-
-.PHONY: clean
+// or my_logger->dump_backtrace(32)..
 ```
 
-### Windows
-
-Note that the static libraries distributed for Windows include several
-variants: mt, md, mtd, mdd. These correspond to the [run-time library
-flags](https://docs.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library?view=vs-2017)
-`/MT`, `/MD`, `/MTd`, and `/MDd`, respectively. Here we use the mt variant. For the debug variants,
-be sure to also include `matdbg.lib` in `FILAMENT_LIBS`.
-
-When building Filament from source, the `USE_STATIC_CRT` CMake option can be
-used to change the run-time library version.
+---
+#### Periodic flush
+```c++
+// periodically flush all *registered* loggers every 3 seconds:
+// warning: only use if all your loggers are thread safe ("_mt" loggers)
+spdlog::flush_every(std::chrono::seconds(3));
 
 ```
-FILAMENT_LIBS=filament.lib backend.lib bluegl.lib bluevk.lib filabridge.lib filaflat.lib \
-              utils.lib geometry.lib smol-v.lib ibl.lib vkshaders.lib
-CC=cl.exe
 
-main.exe: main.obj
-	$(CC) main.obj /link /libpath:"lib\\x86_64\\mt\\" $(FILAMENT_LIBS) \
-	gdi32.lib user32.lib opengl32.lib
-
-main.obj: main.cpp
-	$(CC) /MT /Iinclude\\ /std:c++17 /c main.cpp
-
-clean:
-	del main.exe main.obj
-
-.PHONY: clean
-```
-
-### Compiling
-
-You should be able to invoke `make` and run the executable successfully:
+---
+#### Stopwatch
+```c++
+// Stopwatch support for spdlog
+#include "spdlog/stopwatch.h"
+void stopwatch_example()
+{
+    spdlog::stopwatch sw;    
+    spdlog::debug("Elapsed {}", sw);
+    spdlog::debug("Elapsed {:.3}", sw);       
+}
 
 ```
-$ make
-$ ./main
-FEngine (64 bits) created at 0x106471000 (threading is enabled)
+
+---
+#### Log binary data in hex
+```c++
+// many types of std::container<char> types can be used.
+// ranges are supported too.
+// format flags:
+// {:X} - print in uppercase.
+// {:s} - don't separate each byte with space.
+// {:p} - don't print the position on each line start.
+// {:n} - don't split the output to lines.
+// {:a} - show ASCII if :n is not set.
+
+#include "spdlog/fmt/bin_to_hex.h"
+
+void binary_example()
+{
+    auto console = spdlog::get("console");
+    std::array<char, 80> buf;
+    console->info("Binary example: {}", spdlog::to_hex(buf));
+    console->info("Another binary example:{:n}", spdlog::to_hex(std::begin(buf), std::begin(buf) + 10));
+    // more examples:
+    // logger->info("uppercase: {:X}", spdlog::to_hex(buf));
+    // logger->info("uppercase, no delimiters: {:Xs}", spdlog::to_hex(buf));
+    // logger->info("uppercase, no delimiters, no position info: {:Xsp}", spdlog::to_hex(buf));
+}
+
 ```
 
-On Windows, you'll need to open up a Visual Studio Native Tools Command Prompt
-and invoke `nmake` instead of `make`.
+---
+#### Logger with multi sinks - each with different format and log level
+```c++
 
+// create logger with 2 targets with different log levels and formats.
+// the console will show only warnings or errors, while the file will log all.
+void multi_sink_example()
+{
+    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+    console_sink->set_level(spdlog::level::warn);
+    console_sink->set_pattern("[multi_sink_example] [%^%l%$] %v");
 
-### Generating C++ documentation
+    auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/multisink.txt", true);
+    file_sink->set_level(spdlog::level::trace);
 
-To generate the documentation you must first install `doxygen` and `graphviz`, then run the 
-following commands:
+    spdlog::logger logger("multi_sink", {console_sink, file_sink});
+    logger.set_level(spdlog::level::debug);
+    logger.warn("this should appear in both console and file");
+    logger.info("this message should not appear in the console, only in the file");
+}
+```
+
+---
+#### Asynchronous logging
+```c++
+#include "spdlog/async.h"
+#include "spdlog/sinks/basic_file_sink.h"
+void async_example()
+{
+    // default thread pool settings can be modified *before* creating the async logger:
+    // spdlog::init_thread_pool(8192, 1); // queue with 8k items and 1 backing thread.
+    auto async_file = spdlog::basic_logger_mt<spdlog::async_factory>("async_file_logger", "logs/async_log.txt");
+    // alternatively:
+    // auto async_file = spdlog::create_async<spdlog::sinks::basic_file_sink_mt>("async_file_logger", "logs/async_log.txt");   
+}
 
 ```
-$ cd filament/filament
-$ doxygen docs/doxygen/filament.doxygen
+
+---
+#### Asynchronous logger with multi sinks  
+```c++
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/sinks/rotating_file_sink.h"
+
+void multi_sink_example2()
+{
+    spdlog::init_thread_pool(8192, 1);
+    auto stdout_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt >();
+    auto rotating_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt>("mylog.txt", 1024*1024*10, 3);
+    std::vector<spdlog::sink_ptr> sinks {stdout_sink, rotating_sink};
+    auto logger = std::make_shared<spdlog::async_logger>("loggername", sinks.begin(), sinks.end(), spdlog::thread_pool(), spdlog::async_overflow_policy::block);
+    spdlog::register_logger(logger);
+}
+```
+ 
+---
+#### User defined types
+```c++
+// user defined types logging by implementing operator<<
+#include "spdlog/fmt/ostr.h" // must be included
+struct my_type
+{
+    int i;
+    template<typename OStream>
+    friend OStream &operator<<(OStream &os, const my_type &c)
+    {
+        return os << "[my_type i=" << c.i << "]";
+    }
+};
+
+void user_defined_example()
+{
+    spdlog::get("console")->info("user defined type: {}", my_type{14});
+}
+
 ```
 
-Finally simply open `docs/html/index.html` in your web browser.
+---
+#### User defined flags in the log pattern
+```c++ 
+// Log patterns can contain custom flags.
+// the following example will add new flag '%*' - which will be bound to a <my_formatter_flag> instance.
+#include "spdlog/pattern_formatter.h"
+class my_formatter_flag : public spdlog::custom_flag_formatter
+{
+public:
+    void format(const spdlog::details::log_msg &, const std::tm &, spdlog::memory_buf_t &dest) override
+    {
+        std::string some_txt = "custom-flag";
+        dest.append(some_txt.data(), some_txt.data() + some_txt.size());
+    }
+
+    std::unique_ptr<custom_flag_formatter> clone() const override
+    {
+        return spdlog::details::make_unique<my_formatter_flag>();
+    }
+};
+
+void custom_flags_example()
+{    
+    auto formatter = std::make_unique<spdlog::pattern_formatter>();
+    formatter->add_flag<my_formatter_flag>('*').set_pattern("[%n] [%*] [%^%l%$] %v");
+    spdlog::set_formatter(std::move(formatter));
+}
+
+```
+
+---
+#### Custom error handler
+```c++
+void err_handler_example()
+{
+    // can be set globally or per logger(logger->set_error_handler(..))
+    spdlog::set_error_handler([](const std::string &msg) { spdlog::get("console")->error("*** LOGGER ERROR ***: {}", msg); });
+    spdlog::get("console")->info("some invalid message to trigger an error {}{}{}{}", 3);
+}
+
+```
+
+---
+#### syslog 
+```c++
+#include "spdlog/sinks/syslog_sink.h"
+void syslog_example()
+{
+    std::string ident = "spdlog-example";
+    auto syslog_logger = spdlog::syslog_logger_mt("syslog", ident, LOG_PID);
+    syslog_logger->warn("This is warning that will end up in syslog.");
+}
+```
+---
+#### Android example 
+```c++
+#include "spdlog/sinks/android_sink.h"
+void android_example()
+{
+    std::string tag = "spdlog-android";
+    auto android_logger = spdlog::android_logger_mt("android", tag);
+    android_logger->critical("Use \"adb shell logcat\" to view this message.");
+}
+```
+
+---
+#### Load log levels from env variable or from argv
+
+```c++
+#include "spdlog/cfg/env.h"
+int main (int argc, char *argv[])
+{
+    spdlog::cfg::load_env_levels();
+    // or from command line:
+    // ./example SPDLOG_LEVEL=info,mylogger=trace
+    // #include "spdlog/cfg/argv.h" // for loading levels from argv
+    // spdlog::cfg::load_argv_levels(argc, argv);
+}
+```
+So then you can:
+
+```console
+$ export SPDLOG_LEVEL=info,mylogger=trace
+$ ./example
+```
+
+
+---
+#### Log file open/close event handlers
+```c++
+// You can get callbacks from spdlog before/after log file has been opened or closed. 
+// This is useful for cleanup procedures or for adding someting the start/end of the log files.
+void file_events_example()
+{
+    // pass the spdlog::file_event_handlers to file sinks for open/close log file notifications
+    spdlog::file_event_handlers handlers;
+    handlers.before_open = [](spdlog::filename_t filename) { spdlog::info("Before opening {}", filename); };
+    handlers.after_open = [](spdlog::filename_t filename, std::FILE *fstream) { fputs("After opening\n", fstream); };
+    handlers.before_close = [](spdlog::filename_t filename, std::FILE *fstream) { fputs("Before closing\n", fstream); };
+    handlers.after_close = [](spdlog::filename_t filename) { spdlog::info("After closing {}", filename); };
+    auto my_logger = spdlog::basic_logger_st("some_logger", "logs/events-sample.txt", true, handlers);        
+}
+```
+
+---
+#### Replace the Default Logger
+```c++
+void replace_default_logger_example()
+{
+    auto new_logger = spdlog::basic_logger_mt("new_default_logger", "logs/new-default-log.txt", true);
+    spdlog::set_default_logger(new_logger);
+    spdlog::info("new logger log message");
+}
+```
+
+---
+## Benchmarks
+
+Below are some [benchmarks](https://github.com/gabime/spdlog/blob/v1.x/bench/bench.cpp) done in Ubuntu 64 bit, Intel i7-4770 CPU @ 3.40GHz
+
+#### Synchronous mode
+```
+[info] **************************************************************
+[info] Single thread, 1,000,000 iterations
+[info] **************************************************************
+[info] basic_st         Elapsed: 0.17 secs        5,777,626/sec
+[info] rotating_st      Elapsed: 0.18 secs        5,475,894/sec
+[info] daily_st         Elapsed: 0.20 secs        5,062,659/sec
+[info] empty_logger     Elapsed: 0.07 secs       14,127,300/sec
+[info] **************************************************************
+[info] C-string (400 bytes). Single thread, 1,000,000 iterations
+[info] **************************************************************
+[info] basic_st         Elapsed: 0.41 secs        2,412,483/sec
+[info] rotating_st      Elapsed: 0.72 secs        1,389,196/sec
+[info] daily_st         Elapsed: 0.42 secs        2,393,298/sec
+[info] null_st          Elapsed: 0.04 secs       27,446,957/sec
+[info] **************************************************************
+[info] 10 threads, competing over the same logger object, 1,000,000 iterations
+[info] **************************************************************
+[info] basic_mt         Elapsed: 0.60 secs        1,659,613/sec
+[info] rotating_mt      Elapsed: 0.62 secs        1,612,493/sec
+[info] daily_mt         Elapsed: 0.61 secs        1,638,305/sec
+[info] null_mt          Elapsed: 0.16 secs        6,272,758/sec
+```
+#### Asynchronous mode
+```
+[info] -------------------------------------------------
+[info] Messages     : 1,000,000
+[info] Threads      : 10
+[info] Queue        : 8,192 slots
+[info] Queue memory : 8,192 x 272 = 2,176 KB 
+[info] -------------------------------------------------
+[info] 
+[info] *********************************
+[info] Queue Overflow Policy: block
+[info] *********************************
+[info] Elapsed: 1.70784 secs     585,535/sec
+[info] Elapsed: 1.69805 secs     588,910/sec
+[info] Elapsed: 1.7026 secs      587,337/sec
+[info] 
+[info] *********************************
+[info] Queue Overflow Policy: overrun
+[info] *********************************
+[info] Elapsed: 0.372816 secs    2,682,285/sec
+[info] Elapsed: 0.379758 secs    2,633,255/sec
+[info] Elapsed: 0.373532 secs    2,677,147/sec
+
+```
+
+## Documentation
+Documentation can be found in the [wiki](https://github.com/gabime/spdlog/wiki/1.-QuickStart) pages.
+
+---
+
+Thanks to [JetBrains](https://www.jetbrains.com/?from=spdlog) for donating product licenses to help develop **spdlog** <a href="https://www.jetbrains.com/?from=spdlog"><img src="logos/jetbrains-variant-4.svg" width="94" align="center" /></a>
+
+

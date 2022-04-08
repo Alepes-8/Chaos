@@ -3,6 +3,7 @@
 bin/
 bin-int/
 GameEngine/library/filament/
+GameEngine/library/SDL/
 GameEngine/library/recastnavigation/
 
 #Files

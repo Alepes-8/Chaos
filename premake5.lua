@@ -19,7 +19,11 @@ project "GameEngine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    libdirs {"%{prj.name}/library/filament/lib/x86_64/mtd/"}
+    libdirs 
+    {
+        "%{prj.name}/library/filament/lib/x86_64/mtd/",
+        "%{prj.name}/library/SDL2/lib/x64"
+    }
 
     files
     {
@@ -31,7 +35,8 @@ project "GameEngine"
     {
         "%{prj.name}/library/filament/include",
         "%{prj.name}/src",
-        "%{prj.name}/library/spdlog/include"
+        "%{prj.name}/library/spdlog/include",
+        "%{prj.name}/library/sdl2/include"
 
     }
 
@@ -65,7 +70,10 @@ project "GameEngine"
         "utils",
         "viewer",
         "vkshaders",
-        "opengl32"
+        "opengl32",
+        "SDL2",
+        "SDL2main",
+        "SDL2test",
     }
 
     filter "system:windows"
@@ -102,6 +110,7 @@ project "Game"
     cppdialect "C++17"
     staticruntime "on"
 
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     libdirs {"bin/Debug-windows-x86_64/GameEngine"}
@@ -116,7 +125,8 @@ project "Game"
     {
         "GameEngine/library/filament/include",
         "GameEngine/library/spdlog/include",
-        "GameEngine/src"
+        "GameEngine/src",
+        "GameEngine/library/sdl2/include"
     }
 
     links
@@ -131,6 +141,11 @@ project "Game"
         defines
         {
             --"HZ_PLATFORM_WINDOWS"
+        }
+
+        postbuildcommands 
+        {
+            "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2.dll ../bin/" .. outputdir .. "/Game"
         }
 
     filter "configurations:Debug"
