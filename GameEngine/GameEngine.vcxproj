@@ -140,7 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameEngine\Graphics.h" />
+    <ClInclude Include="src\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
     <ClInclude Include="src\GameEngine\InputEvents\EventMain.h" />
@@ -148,12 +148,14 @@
     <ClInclude Include="src\GameEngine\InputEvents\MouseEvents.h" />
     <ClInclude Include="src\GameEngine\InputEvents\WindowEvents.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
+    <ClInclude Include="src\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
-    <ClCompile Include="src\GameEngine\Graphics.cpp" />
+    <ClCompile Include="src\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Init.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
+    <ClCompile Include="src\Window\Timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

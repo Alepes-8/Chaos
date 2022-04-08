@@ -1,11 +1,11 @@
 #pragma once
 
-#include "GameEngine/Graphics.h"
+#include "Window/Timer.h"
+#include "Window/Graphics.h"
 #include "InputEvents/EventMain.h"
 #include "GameEngine/InputEvents/WindowEvents.h"
 #include "GameEngine/InputEvents/MouseEvents.h"
 #include "GameEngine/InputEvents/KeyEvents.h"
-
 
 
 namespace GameEngine
@@ -13,12 +13,16 @@ namespace GameEngine
 	class Application
 	{
 	private:
+		const int frameRate = 60;
 		bool mQuit;
-		GameEngine::Graphics* m_Graphics;
 		SDL_Event m_Events;
+
+		GameEngine::Graphics* m_Graphics;
+		GameEngine::Timer* m_Timer;
+
 	public: 
 		static Application* sInstance;
-		static void Release();
+		static void Terminate();
 
 		Application();
 		virtual ~Application();
