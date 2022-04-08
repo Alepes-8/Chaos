@@ -28,10 +28,10 @@
     <ClInclude Include="src\GameEngine\Log.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Window\Graphics.h">
+    <ClInclude Include="src\GameEngine\Window\Graphics.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Window\Timer.h" />
+    <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -43,7 +43,7 @@
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\Window\Graphics.cpp" />
-    <ClCompile Include="src\Window\Timer.cpp" />
+    <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
+    <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>
 </Project>
