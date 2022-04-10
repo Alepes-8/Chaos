@@ -153,7 +153,6 @@
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
-    <ClCompile Include="src\GameEngine\Init.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>

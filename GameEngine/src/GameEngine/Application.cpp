@@ -1,5 +1,4 @@
 #include "Application.h"
-#include "Init.cpp"
 
 
 namespace GameEngine
@@ -13,6 +12,8 @@ namespace GameEngine
 	}
 
 	Application::Application() {
+		GameEngine::Log::Init();
+
 		mQuit = false;
 		m_Timer = GameEngine::Timer::CreateInstance();
 
@@ -30,7 +31,7 @@ namespace GameEngine
 	}
 
 	void Application::Run() {
-		StartInit();
+		
 		
 		WindowResizeEvent e(12800, 720);
 		WindowCloseEvent c;
