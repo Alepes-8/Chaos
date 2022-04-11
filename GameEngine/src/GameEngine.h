@@ -13,6 +13,12 @@
 #include <filament/View.h>
 #include <filament/RenderableManager.h>
 #include <filament/Renderer.h>
+#include <filament/MaterialInstance.h>
+#include <filament/VertexBuffer.h>
+#include <filamat/MaterialBuilder.h>
+#include <filament/IndexBuffer.h>
+#include <math/norm.h>
+
 
 #include <camutils/Manipulator.h>
 
