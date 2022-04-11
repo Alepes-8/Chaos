@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 #include <iostream>
+#include <filamat/MaterialBuilder.h>
 
 class Game : public GameEngine::Application
 {
@@ -34,32 +35,55 @@ struct Config {
     bool headless = false;
 };
 
-static constexpr uint8_t BAKED_MATERIAL_PACKAGE[] = {
-#include "materials/aiDefaultMat.inc"
-};
+//static constexpr uint8_t BAKED_MATERIAL_PACKAGE[] = {
+//#include "materials/aiDefaultMat.inc"
+//};
+
+filamat::Package buildMaterial() {
+    // Must be called before any materials can be built.
+    filamat::MaterialBuilder::init();
+
+    filamat::MaterialBuilder builder;
+    builder
+        .name("My material")
+        .material("void material (inout MaterialInputs material) {"
+            "  prepareMaterial(material);"
+            "  material.baseColor.rgb = float3(1.0, 0.0, 0.0);"
+            "}")
+        .shading(filamat::MaterialBuilder::Shading::LIT)
+        .targetApi(filamat::MaterialBuilder::TargetApi::ALL)
+        .platform(filamat::MaterialBuilder::Platform::ALL);
+
+    filamat::Package package = builder.build();
+    if (package.isValid()) {
+        std::cout << "Success!" << std::endl;
+    }
+
+    // Call when finished building all materials to release internal MaterialBuilder resources.
+    filamat::MaterialBuilder::shutdown();
+    return package;
+}
 
 int main(int argc, char** argv)
 {
-
-
     const static uint32_t indices[] = {
     0, 1, 2, 2, 3, 0 };
 
-    const static math::float3 vertices[] = {
+    const static filament::math::float3 vertices[] = {
         {-10, 0, -10},
         {-10, 0, 10},
         {10, 0, 10},
         {10, 0, -10},
     };
 
-    short4 tbn = math::packSnorm16(
-        mat3f::packTangentFrame(
-            math::mat3f{
-                float3{1.0f, 0.0f, 0.0f}, float3{0.0f, 0.0f, 1.0f},
-                float3{0.0f, 1.0f, 0.0f} })
+    filament::math::short4 tbn = filament::math::packSnorm16(
+        filament::math::mat3f::packTangentFrame(
+            filament::math::mat3f{
+                filament::math::float3{1.0f, 0.0f, 0.0f}, filament::math::float3{0.0f, 0.0f, 1.0f},
+                filament::math::float3{0.0f, 1.0f, 0.0f} })
                 .xyzw);
 
-    const static math::short4 normals[]{ tbn, tbn, tbn, tbn };
+    const static filament::math::short4 normals[]{ tbn, tbn, tbn, tbn };
 
 
     Config config;
@@ -105,9 +129,11 @@ int main(int argc, char** argv)
     indexBuffer->setBuffer(*engine, filament::IndexBuffer::BufferDescriptor(
         indices, indexBuffer->getIndexCount() * sizeof(uint32_t)));
 
+    filamat::Package package = buildMaterial();
 
     filament::Material* material = filament::Material::Builder()
-        .package((void*)BAKED_MATERIAL_PACKAGE, sizeof(BAKED_MATERIAL_PACKAGE))
+        //.package((void*)BAKED_MATERIAL_PACKAGE, sizeof(BAKED_MATERIAL_PACKAGE))
+        .package(package.getData(), package.getSize())
         .build(*engine);
     filament::MaterialInstance* materialInstance = material->createInstance();
 
@@ -121,9 +147,23 @@ int main(int argc, char** argv)
         .geometry(0, filament::RenderableManager::PrimitiveType::TRIANGLES, vertexBuffer, indexBuffer, 0, 6)
         .culling(false)
         .build(*engine, renderable);
-
-
     scene->addEntity(renderable);
+
+    while (1)
+    {
+        // beginFrame() returns false if we need to skip a frame
+        if (renderer->beginFrame(swapChain))
+        {
+            // for each View
+            renderer->render(view);
+            renderer->endFrame();
+        }
+        SDL_Delay(16);
+        // std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+
+    //engine->destroy(camera);
+
 
 	printf("Starting GameEngine Hejsan\n");
 
@@ -135,7 +175,7 @@ int main(int argc, char** argv)
 	auto game = GameEngine::CreateApplication();
 	game->Run();
 	delete game;
-
+    return 0;
 }
 
 

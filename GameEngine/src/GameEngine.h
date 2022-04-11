@@ -15,8 +15,10 @@
 #include <filament/Renderer.h>
 #include <filament/MaterialInstance.h>
 #include <filament/VertexBuffer.h>
-#include <filamat/MaterialBuilder.h>
+#include <filament/Material.h>
+#include <filament/MaterialInstance.h>
 #include <filament/IndexBuffer.h>
+#include <filament/Scene.h>
 #include <math/norm.h>
 
 
