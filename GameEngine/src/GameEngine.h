@@ -6,6 +6,3 @@
 
 #include <iostream>
 
-#include <filament/FilamentAPI.h>
-#include <filament/Engine.h>
-

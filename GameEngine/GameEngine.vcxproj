@@ -76,7 +76,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>library\filament\include;src;library\spdlog\include;library\sdl2\include;library\recastnavigation\DebugUtils\include;library\recastnavigation\Recast\include;library\recastnavigation\Detour\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -87,8 +87,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>library\filament\include;src;library\spdlog\include;library\sdl2\include;library\recastnavigation\DebugUtils\include;library\recastnavigation\Recast\include;library\recastnavigation\Detour\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -111,8 +111,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -120,7 +120,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>library\filament\include;src;library\spdlog\include;library\sdl2\include;library\recastnavigation\DebugUtils\include;library\recastnavigation\Recast\include;library\recastnavigation\Detour\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -135,25 +135,24 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>backend.lib;bluegl.lib;bluevk.lib;camutils.lib;civetweb.lib;dracodec.lib;filabridge.lib;filaflat.lib;filamat_lite.lib;filament-iblprefilter.lib;filament.lib;filameshio.lib;geometry.lib;gltfio.lib;gltfio_core.lib;gltfio_resources.lib;gltfio_resources_lite.lib;ibl-lite.lib;image.lib;meshoptimizer.lib;shaders.lib;smol-v.lib;utils.lib;viewer.lib;vkshaders.lib;opengl32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>library\filament\lib\x86_64\mtd;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
-    <ClInclude Include="src\GameEngine\InputEvents\EventMain.h" />
-    <ClInclude Include="src\GameEngine\InputEvents\KeyEvents.h" />
-    <ClInclude Include="src\GameEngine\InputEvents\MouseEvents.h" />
-    <ClInclude Include="src\GameEngine\InputEvents\WindowEvents.h" />
+    <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
+    <ClInclude Include="src\GameEngine\MathHelper.h" />
+    <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
-    <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
+    <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
+    <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,11 +2,12 @@
 
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
-#include "InputEvents/EventMain.h"
-#include "GameEngine/InputEvents/WindowEvents.h"
-#include "GameEngine/InputEvents/MouseEvents.h"
-#include "GameEngine/InputEvents/KeyEvents.h"
+#include "InputEvents/InputManager.h"
 
+#include <SDL.h>
+#include <SDL_syswm.h>
+#include <bgfx/bgfx.h>
+#include <bgfx/platform.h>
 
 namespace GameEngine
 {
@@ -19,14 +20,19 @@ namespace GameEngine
 
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
+		GameEngine::InputManager* m_InputManager;
 
-	public: 
+	public:
 		static Application* sInstance;
 		static void Terminate();
 
 		Application();
 		virtual ~Application();
 
+		void EarlyUpdate();
+		void Update();
+		void LateUpdate();
+		void Render();
 		void Run();
 	};
 

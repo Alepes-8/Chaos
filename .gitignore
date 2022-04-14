@@ -5,6 +5,10 @@ bin-int/
 GameEngine/library/filament/
 GameEngine/library/SDL/
 GameEngine/library/recastnavigation/
+GameEngine/library/bgfx/
+GameEngine/library/bx/
+GameEngine/library/glfw/
+GameEngine/library/bimg/
 
 #Files
 *.user

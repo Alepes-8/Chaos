@@ -13,7 +13,7 @@ namespace GameEngine
 		float m_DelataTime;
 		float m_TimeScale;
 
-	public: 
+	public:
 
 		void setTimeScale(float t);
 		float getTimesScale();
