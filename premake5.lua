@@ -21,7 +21,7 @@ project "GameEngine"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     libdirs 
     {
-        "%{prj.name}/library/filament/lib/x86_64/mtd/",
+        "%{prj.name}/library/bgfx/.build/win64_vs2017/bin",
         "%{prj.name}/library/SDL2/lib/x64"
     }
 
@@ -33,50 +33,31 @@ project "GameEngine"
 
     includedirs
     {
-        "%{prj.name}/library/filament/include",
         "%{prj.name}/src",
         "%{prj.name}/library/spdlog/include",
-        "%{prj.name}/library/sdl2/include",
-        "%{prj.name}/library/recastnavigation/DebugUtils/include",
-		"%{prj.name}/library/recastnavigation/Recast/include",
-		"%{prj.name}/library/recastnavigation/Detour/include"
+        "%{prj.name}/library/bgfx/include",
+        "%{prj.name}/library/bx/include",
+        "%{prj.name}/library/bgfx/examples/common",
+        "%{prj.name}/library/bimg/include",
+        "%{prj.name}/library/bgfx/3rdparty",
+        "%{prj.name}/library/bx/include/compat/msvc",
+        "%{prj.name}/library/sdl2/include"
 
     }
 
     links
     {
-        "backend",
-        "bluegl",
-        "bluevk",
-        "camutils",
-        "civetweb",
-        "dracodec",
-        "filabridge",
-        "filaflat",
-        --"filamat",
-        "filamat_lite",
-        "filament-iblprefilter",
-        "filament",
-        "filameshio",
-        "geometry",
-        "gltfio",
-        "gltfio_core",
-        "gltfio_resources",
-        "gltfio_resources_lite",
-        "ibl-lite",
-        --"ibl",
-        "image",
-        --"matdbg",
-        "meshoptimizer",
-        "shaders",
-        "smol-v",
-        "utils",
-        "viewer",
-        "vkshaders",
-        "opengl32",
         "SDL2",
         "SDL2main",
         "SDL2test",
+        "bgfxDebug",
+        "bimgDebug",
+        "bimg_decodeDebug",
+        "bxDebug",
+        "example-14-shadowvolumesDebug",
+        "example-commonDebug",
+        "example-glueDebug",
+
     }
 
     filter "system:windows"
@@ -84,8 +65,8 @@ project "GameEngine"
 
         defines
         {
-            --"HZ_PLATFORM_WINDOWS",
-            --"GE_BUILD_DLL"
+
+
         }
 
     filter "configurations:Debug"
@@ -126,19 +107,20 @@ project "Game"
 
     includedirs
     {
-        "GameEngine/library/filament/include",
-        "GameEngine/library/spdlog/include",
         "GameEngine/src",
-		"GameEngine/library/recastnavigation/DebugUtils/include",
-		"GameEngine/library/recastnavigation/Recast/include",
-		"GameEngine/library/recastnavigation/Detour/include",
+        "GameEngine/library/spdlog/include",
+        "GameEngine/library/bgfx/include",
+        "GameEngine/library/bx/include",
+        "GameEngine/library/bgfx/examples/common",
+        "GameEngine/library/bimg/include",
+        "GameEngine/library/bgfx/3rdparty",
+        "GameEngine/library/bx/include/compat/msvc",
         "GameEngine/library/sdl2/include"
     }
 
     links
     {
         "GameEngine",
-        "bin/Debug-windows-x86_64/GameEngine/GameEngine"
     }
 
     filter "system:windows"
@@ -147,6 +129,7 @@ project "Game"
         defines
         {
             --"HZ_PLATFORM_WINDOWS"
+
         }
 
         postbuildcommands 

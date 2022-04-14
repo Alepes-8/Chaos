@@ -7,40 +7,46 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Window">
+      <UniqueIdentifier>{1C9B5CAD-88B1-5A43-D128-E6643D7E2BCB}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\InputEvents\EventMain.h">
-      <Filter>GameEngine\InputEvents</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\InputEvents\KeyEvents.h">
-      <Filter>GameEngine\InputEvents</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\InputEvents\MouseEvents.h">
-      <Filter>GameEngine\InputEvents</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\InputEvents\WindowEvents.h">
+    <ClInclude Include="src\GameEngine\InputEvents\InputManager.h">
       <Filter>GameEngine\InputEvents</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\Log.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Window\Graphics.h">
+    <ClInclude Include="src\GameEngine\MathHelper.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Window\Timer.h" />
+    <ClInclude Include="src\GameEngine\Window\Graphics.h">
+      <Filter>GameEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\Window\Timer.h">
+      <Filter>GameEngine\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp">
+      <Filter>GameEngine\InputEvents</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
-    <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
+    <ClCompile Include="src\GameEngine\Window\Graphics.cpp">
+      <Filter>GameEngine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\Window\Timer.cpp">
+      <Filter>GameEngine\Window</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
