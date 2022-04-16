@@ -3,11 +3,15 @@
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"
+#include "Renderable/CubeRenderable.h"
+#include "Shaders/Shader.h"
 
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
+#include <bx/math.h>
+#include <bx/bx.h>
 
 namespace GameEngine
 {

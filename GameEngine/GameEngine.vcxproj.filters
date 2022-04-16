@@ -7,6 +7,12 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Renderable">
+      <UniqueIdentifier>{98FE8EF4-046B-4AEF-CD5E-E24C398A6C57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Shaders">
+      <UniqueIdentifier>{AE79C621-9A5D-8777-03BE-81CAEFC071F9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameEngine\Window">
       <UniqueIdentifier>{1C9B5CAD-88B1-5A43-D128-E6643D7E2BCB}</UniqueIdentifier>
     </Filter>
@@ -25,11 +31,20 @@
     <ClInclude Include="src\GameEngine\MathHelper.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\Shaders\Shader.h">
+      <Filter>GameEngine\Shaders</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameEngine\Window\Graphics.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h">
+      <Filter>GameEngine\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\Renderable\Renderable.h">
+      <Filter>GameEngine\Renderable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,11 +57,20 @@
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\Shaders\Shader.cpp">
+      <Filter>GameEngine\Shaders</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp">
+      <Filter>GameEngine\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\Renderable\Renderable.cpp">
+      <Filter>GameEngine\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

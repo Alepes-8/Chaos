@@ -75,7 +75,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -95,7 +95,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -119,7 +119,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;library\spdlog\include;library\bgfx\include;library\bx\include;library\bgfx\examples\common;library\bimg\include;library\bgfx\3rdparty;library\bx\include\compat\msvc;library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -145,6 +145,9 @@
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
     <ClInclude Include="src\GameEngine\MathHelper.h" />
+    <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h" />
+    <ClInclude Include="src\GameEngine\Renderable\Renderable.h" />
+    <ClInclude Include="src\GameEngine\Shaders\Shader.h" />
     <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
@@ -152,6 +155,9 @@
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
+    <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp" />
+    <ClCompile Include="src\GameEngine\Renderable\Renderable.cpp" />
+    <ClCompile Include="src\GameEngine\Shaders\Shader.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>

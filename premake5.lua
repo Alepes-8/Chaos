@@ -65,7 +65,7 @@ project "GameEngine"
 
         defines
         {
-
+			"BX_CONFIG_DEBUG"
 
         }
 
@@ -129,7 +129,7 @@ project "Game"
         defines
         {
             --"HZ_PLATFORM_WINDOWS"
-
+			"BX_CONFIG_DEBUG"
         }
 
         postbuildcommands 

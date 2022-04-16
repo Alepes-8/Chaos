@@ -1,5 +1,7 @@
 #include "Application.h" 
 
+
+
 namespace GameEngine
 {
 	GameEngine::Application* GameEngine::Application::sInstance = NULL;
@@ -110,6 +112,16 @@ namespace GameEngine
         // Initialize bgfx
         bgfx::init();
 
+        //Shader
+        Shader shader = Shader("D:/4INFO/Lulea/VirtualEnv/GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin",
+            "D:/4INFO/Lulea/VirtualEnv/GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+
+        //Render a cube
+        CubeRenderable cube;
+        cube.setShader(shader);
+        cube.init();
+        
+        
         // Reset window
         bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
 
@@ -130,30 +142,54 @@ namespace GameEngine
         // Poll for events and wait till user closes window
 
         while (!mQuit) {
-            m_Timer->Update();
-
             while (SDL_PollEvent(&m_Events) != 0) {
                 if (m_Events.type == SDL_QUIT) {
                     mQuit = true;
                 }
-                if (m_Events.type == SDL_MOUSEMOTION) {
-                    GameEngine::Log::GetCoreLogger()->warn("x then y");
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
-                }
-                /*else {
-                    PrintKeyInfo(&m_Events.key);
-                }*/
-                
-            }
-            if (m_Timer->getDeltaTime() >= 1.0f / frameRate) { 
-                
-                EarlyUpdate();
-                Update();
-                LateUpdate();
-                Render(); 
-            }
 
+                const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+                const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+
+                // Set view and projection matrix for view 0.
+                float view[16];
+                bx::mtxLookAt(view, eye, at);
+
+                float proj[16];
+                bx::mtxProj(proj,
+                    60.0f,
+                    float(GameEngine::Graphics::Screen_Width) / float(GameEngine::Graphics::Screen_Hight),
+                    0.1f, 100.0f,
+                    bgfx::getCaps()->homogeneousDepth);
+
+                bgfx::setViewTransform(0, view, proj);
+
+                // Set view 0 default viewport.
+                bgfx::setViewRect(0, 0, 0,
+                    GameEngine::Graphics::Screen_Width,
+                    GameEngine::Graphics::Screen_Hight);
+
+                bgfx::touch(0);
+
+
+                float mtx[16];
+                bx::mtxRotateY(mtx, 0.0f);
+
+                // position x,y,z
+                mtx[12] = 0.0f;
+                mtx[13] = 0.0f;
+                mtx[14] = 0.0f;
+
+                // Set model matrix for rendering.
+                bgfx::setTransform(mtx);
+
+                // Set vertex and index buffer.
+                cube.render();
+
+                // Set render states.
+                bgfx::setState(BGFX_STATE_DEFAULT);
+
+                bgfx::frame();
+            }
         }
         // Free up window
         SDL_DestroyWindow(window);
