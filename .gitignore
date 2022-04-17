@@ -9,6 +9,7 @@ GameEngine/library/bgfx/
 GameEngine/library/bx/
 GameEngine/library/glfw/
 GameEngine/library/bimg/
+GameEngine/library/soloud/
 
 #Files
 *.user
