@@ -3,6 +3,8 @@
 
 namespace GameEngine {
 	class DynamicBody : BaseComponent{
-
+		void Update() override {
+			std::cout << "dynamic body test" << std::endl;
+		}
 	};
 }
