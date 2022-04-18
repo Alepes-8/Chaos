@@ -15,6 +15,7 @@ GameEngine::Transform::Transform(
 	this->coordinates = coordinates;
 	this->rotation = rotation;
 	if (!isScaleValid(scale)) {
+		this->scale = (1, 1, 1);
 		GameEngine::Log::GetCoreLogger()->warn("Scale has to be postive or null, Scale set up to (1,1,1)");
 	}
 	else {
