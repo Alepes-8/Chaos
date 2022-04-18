@@ -3,8 +3,8 @@
 namespace GameEngine {
 	class Collider : public BaseComponent {
 	public:
-		virtual bool areColliding(const Collider& c);
-		virtual void update();
+		virtual bool areColliding(Collider& c);
+		virtual void Update() override = 0;
 	};
 
 }

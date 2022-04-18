@@ -14,12 +14,18 @@ GameEngine::SphereCollider::SphereCollider(
 	}
 }
 
-bool GameEngine::SphereCollider::areColliding(const Collider& c) {
-	//TODO
+bool GameEngine::SphereCollider::areColliding(Collider& c) {
+	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
+		float distance = (sc->getOrigine() - this->getOrigine()).MagnitudeSqr() - sc->getRadius() - this->getRadius();
+		if (distance < 0) return true;
+	}
+	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
+		
+	}
 	return false;
 }
 
-void GameEngine::SphereCollider::update() {
+void GameEngine::SphereCollider::Update() {
 	std::cout << "Sphere Collider test" << std::endl;
 	//TODO
 }

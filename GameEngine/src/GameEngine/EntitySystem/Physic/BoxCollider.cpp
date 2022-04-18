@@ -15,12 +15,17 @@ GameEngine::BoxCollider::BoxCollider(
 
 }
 
-bool GameEngine::BoxCollider::areColliding(const Collider& c){
-	//TODO
+bool GameEngine::BoxCollider::areColliding(Collider& c){
+	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
+		
+	}
+	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
+
+	}
 	return false;
 }
 
-void GameEngine::BoxCollider::update() {
+void GameEngine::BoxCollider::Update(){
 	std::cout << "Box Collider test" << std::endl;
 	//TODO
 }

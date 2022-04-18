@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/EntitySystem/Physic/Colider.h>
+#include <GameEngine/EntitySystem/Physic/SphereCollider.h>
 #include <GameEngine/MathHelper.h>
 #include <GameEngine/Log.h>
 
@@ -11,10 +12,13 @@ namespace GameEngine {
 
 	public:
 		BoxCollider(Vector3 origine, Vector3 scale);
-		bool areColliding(const Collider& c) override;
-		void update() override;
+		bool areColliding(Collider& c) override;
+		void Update() override;
 
-		bool isScaleValide(Vector3 scale)
+		//getters
+		Vector3 getOrigine() { return origine; }
+		Vector3 getScale() { return scale; }
+
+		bool isScaleValide(Vector3 scale);
 	};
-
 }
