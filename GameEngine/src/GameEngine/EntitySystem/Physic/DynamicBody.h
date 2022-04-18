@@ -1,4 +1,8 @@
 #pragma once
-namespace GameEngine {
+#include "../BaseComponent.h"
 
+namespace GameEngine {
+	class DynamicBody : BaseComponent{
+
+	};
 }
