@@ -1,4 +1,5 @@
 #include "Application.h" 
+#include "GameEngine/EntitySystem/GameObject.h"
 
 namespace GameEngine
 {
@@ -128,6 +129,7 @@ namespace GameEngine
         bgfx::touch(0);
 
         // Poll for events and wait till user closes window
+
 
         while (!mQuit) {
             m_Timer->Update();
