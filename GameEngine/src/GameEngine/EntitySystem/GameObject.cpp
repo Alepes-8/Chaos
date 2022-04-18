@@ -5,7 +5,7 @@ void GameEngine::GameObject::EarlyUpdate() {
 }
 
 void GameEngine::GameObject::Update() {
-	for (auto component : componetsList) {
+	for (auto component : componentsList) {
 		component->Update();
 	}
 }

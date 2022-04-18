@@ -7,7 +7,7 @@ namespace GameEngine {
 	class GameObject {
 	public:
 		int ID;
-		std::vector<BaseComponent*> componetsList;
+		std::vector<BaseComponent*> componentsList;
 
 
 		void EarlyUpdate();
