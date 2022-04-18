@@ -2,7 +2,7 @@
 #include <math.h>
 #define PI 3.14159265
 #define DEG_TO_RAD PI /180.0f
-namespace GameEngine{
+namespace GameEngine {
 
 	struct Vector2 {
 		float x;
@@ -46,7 +46,7 @@ namespace GameEngine{
 		}
 
 		float Magnitude() {
-			return (float)sqrt( MagnitudeSqr() );
+			return (float)sqrt(MagnitudeSqr());
 		}
 
 		Vector3 Normalized() {
@@ -75,7 +75,7 @@ namespace GameEngine{
 		return lhs * coef;
 	}
 
-	struct rotationMatrix{
+	struct rotationMatrix {
 		float x00, x01, x02;
 		float x10, x11, x12;
 		float x20, x21, x22;
@@ -91,7 +91,7 @@ namespace GameEngine{
 			float z = unit_axis.z;
 
 			//formula -> https://en.wikipedia.org/wiki/Rotation_matrix
-			x00 = x * x * (1 - c) + c; 
+			x00 = x * x * (1 - c) + c;
 			x01 = x * y * (1 - c) - z * s;
 			x02 = x * z * (1 - c) + y * s;
 			x10 = x * y * (1 - c) + z * s;
@@ -101,7 +101,7 @@ namespace GameEngine{
 			x21 = y * z * (1 - c) + x * s;
 			x22 = z * z * (1 - c) + c;
 		}
-		
+
 		inline Vector3 rotate(const rotationMatrix& rm, const Vector3& v) {
 			return Vector3(
 				x00 * v.x + x01 * v.y + x02 * v.z,
@@ -109,5 +109,5 @@ namespace GameEngine{
 				x20 * v.x + x21 * v.y + x22 * v.z
 			);
 		}
-	}
+	};
 }
