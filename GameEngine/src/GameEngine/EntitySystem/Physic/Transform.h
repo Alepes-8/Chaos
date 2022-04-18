@@ -5,7 +5,7 @@
 
 namespace GameEngine {
 	
-	class Transform : GameEngine::BaseComponent {
+	class Transform : public GameEngine::BaseComponent {
 	private:
 		//coordinates
 		Vector3 coordinates, rotation, scale;
