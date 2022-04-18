@@ -54,7 +54,7 @@ bool GameEngine::Transform::isScaleValid(Vector3 scale) { return scale.x >= 0 &&
 
 
 
-void GameEngine::Transform::update() {
+void GameEngine::Transform::Update() {
 	std::cout << "transform test" << std::endl;
 	//TODO
 }

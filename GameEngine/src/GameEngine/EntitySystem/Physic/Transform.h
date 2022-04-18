@@ -28,7 +28,7 @@ namespace GameEngine {
 
 		bool isScaleValid(Vector3 scale);
 
-		virtual void update() override;
+		virtual void Update() override;
 	};
 
 }
