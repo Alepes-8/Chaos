@@ -142,7 +142,6 @@
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\AI\Leader.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitDamage.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitMovement.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h" />

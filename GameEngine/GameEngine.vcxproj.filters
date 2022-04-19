@@ -46,7 +46,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\AI\Leader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
