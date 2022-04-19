@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include <vector>
+#include "../Log.h"
 
 
 namespace GameEngine {
@@ -8,7 +9,7 @@ namespace GameEngine {
 	public:
 		int ID;
 		std::vector<BaseComponent*> componentsList;
-
+		GameObject* entity;
 
 		void EarlyUpdate();
 		void Update();
