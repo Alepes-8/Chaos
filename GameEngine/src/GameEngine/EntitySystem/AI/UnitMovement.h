@@ -1,4 +1,13 @@
 #pragma once
-namespace GameEngine {
+#include "../BaseComponent.h"
 
+namespace GameEngine {
+	class UnitMovement : public BaseComponent {
+	private:
+		float movement;
+	public:
+		UnitMovement();
+		~UnitMovement();
+		float GetMovement();
+	};
 }
