@@ -34,20 +34,19 @@
     <ClInclude Include="src\GameEngine\EntitySystem\BaseComponent.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\AI\Attack.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\AI\Move.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitDamage.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitMovement.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Visual\Spite.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Visual\Shader.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Visual\Light.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Light.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Sound.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Animation.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\AI\Unit.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Visual\Renderable.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\Leader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
