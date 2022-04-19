@@ -65,5 +65,7 @@
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
   </ItemGroup>
 </Project>

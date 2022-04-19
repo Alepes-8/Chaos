@@ -1,12 +1,16 @@
 #pragma once
+#include "../BaseComponent.h"
 
 namespace GameEngine {
-	class Unit {
+	class UnitHealth : public BaseComponent {
 	private:
-		float Health;
-		float Damage;
+		float health;
 	public:	
-		void TakeDamage();
+		UnitHealth();
+		~UnitHealth();
+		float GetHealth();
+		void EditHealth(float change);
+		
 
 	};
 }
