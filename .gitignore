@@ -10,6 +10,7 @@ GameEngine/library/bx/
 GameEngine/library/glfw/
 GameEngine/library/bimg/
 GameEngine/library/soloud/
+GameEngine/library/jsoncpp/
 
 #Files
 *.user
