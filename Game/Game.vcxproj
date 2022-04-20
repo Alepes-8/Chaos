@@ -78,7 +78,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -98,7 +98,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -122,7 +122,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
