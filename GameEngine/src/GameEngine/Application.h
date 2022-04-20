@@ -5,6 +5,8 @@
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 
+#include <fstream>
+#include <string>
 #include <vector>
 #include <SDL.h>
 #include <SDL_syswm.h>

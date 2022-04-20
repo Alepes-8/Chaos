@@ -133,8 +133,34 @@ namespace GameEngine
       
         GameEngine::Log::GetCoreLogger()->info("---Test Entity start---");
 
-       
+        std::fstream myFiles;
+        myFiles.open("Data/test.txt", std::ios::out);//open and create new file with this name.
+        if (myFiles.is_open()) {
+            GameEngine::Log::GetClientLogger()->warn("we opened the file and added hello");
+            myFiles << "Hellodasdas\n";
+            myFiles << "This is the secound line of text";
+            myFiles.close(); //close
+        }
 
+        myFiles.open("Data/test.txt", std::ios::app);//openned and append the ionformation so tha u can write more info more data
+        if (myFiles.is_open()) {
+            GameEngine::Log::GetClientLogger()->warn("we opened the file and added hello");
+            myFiles << "Hello2\n";
+            myFiles << "This is the secound line of text";
+            myFiles.close(); //close
+        }
+
+        myFiles.open("Data/test.txt", std::ios::in);//read the file
+        if (myFiles.is_open()) {
+            std::string line;
+
+            while(std::getline(myFiles,line)){
+                GameEngine::Log::GetClientLogger()->warn(line);
+            }
+
+            myFiles.close(); //close
+        }
+        
         GameEngine::Log::GetCoreLogger()->info("---Test Entity stop---");
 
 

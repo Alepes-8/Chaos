@@ -41,7 +41,8 @@ project "GameEngine"
         "%{prj.name}/library/bimg/include",
         "%{prj.name}/library/bgfx/3rdparty",
         "%{prj.name}/library/bx/include/compat/msvc",
-        "%{prj.name}/library/sdl2/include"
+        "%{prj.name}/library/sdl2/include",
+        "data"
 
     }
 

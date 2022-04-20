@@ -1,7 +1,7 @@
 #include "Sound.h"
-#include "soloud.h"
-#include "soloud_wav.h"
+//#include "soloud.h"
+//#include "soloud_wav.h"
 
 
-static SoLoud::SoLoud* soloud;
+//static SoLoud::SoLoud* soloud;
 
