@@ -30,14 +30,16 @@ namespace GameEngine {
 	class Renderable {
 	protected:
 		PosColorVertex* vertices;
+        unsigned int v_len;
 		uint16_t* indices;
+        unsigned int i_len;
 
         //buffer to pass values to the shader 
         bgfx::VertexBufferHandle m_vbh;
         bgfx::IndexBufferHandle m_ibh;
 
         //matrix that define position of the renderable
-        float* mtx;
+        float mtx[16];
 		
 	public:
         static void init();

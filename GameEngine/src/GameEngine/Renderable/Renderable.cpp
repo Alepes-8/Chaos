@@ -11,20 +11,24 @@ void GameEngine::Renderable::createBuffers()
 {
     this->m_vbh = bgfx::createVertexBuffer(
         // Static data can be passed with bgfx::makeRef
-        bgfx::makeRef(vertices, sizeof(vertices)),
+        bgfx::makeRef(vertices, sizeof(PosColorVertex) * v_len),
+        //bgfx::makeRef(vertices, sizeof(vertices)),
         PosColorVertex::ms_decl
     );
 
     this->m_ibh = bgfx::createIndexBuffer(
         // Static data can be passed with bgfx::makeRef
-        bgfx::makeRef(indices, sizeof(indices))
+        bgfx::makeRef(indices, sizeof(uint16_t) * i_len)
+        //bgfx::makeRef(indices, sizeof(indices))
     );
 }
 
 
 void GameEngine::Renderable::setMtx(float* m)
 {
-    mtx = m;
+    for (int i = 0; i < 16; i++) {
+        mtx[i] = m[i];
+    }
 }
 
 void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog)

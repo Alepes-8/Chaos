@@ -2,6 +2,7 @@
 
 GameEngine::CubeRenderable::CubeRenderable()
 {
+    v_len = 8;
     vertices = new PosColorVertex[]{
     {-1.0f,  1.0f,  1.0f, 0xff000000 },
     { 1.0f,  1.0f,  1.0f, 0xff0000ff },
@@ -13,6 +14,7 @@ GameEngine::CubeRenderable::CubeRenderable()
     { 1.0f, -1.0f, -1.0f, 0xffffffff },
     };
 
+    i_len = 36;
     indices = new uint16_t[]{
         0, 1, 2,
         1, 3, 2,
