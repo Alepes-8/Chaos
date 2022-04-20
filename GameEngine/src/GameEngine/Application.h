@@ -3,8 +3,10 @@
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"
-#include "Renderable/CubeRenderable.h"
-#include "Shaders/Shader.h"
+#include "GameEngine/Renderable/Renderable.h"
+#include "GameEngine/Renderable/CubeRenderable.h"
+#include "GameEngine/Shaders/Shader.h"
+
 
 #include <SDL.h>
 #include <SDL_syswm.h>

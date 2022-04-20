@@ -1,16 +1,9 @@
 #pragma once
+#include <cstdint>
 #include <bgfx/bgfx.h>
-#include <bgfx/platform.h>
-#include <GameEngine/Shaders/Shader.h>
-namespace GameEngine {
-	class Renderable {
-    public:
-		virtual ~Renderable(){};
-        virtual void setShader(Shader s) {};
-        virtual void init(){};
-        virtual void render(){};
-	};
+#include <vector>
 
+namespace GameEngine {
     struct PosColorVertex {
         // 3d space position
         float m_x;
@@ -32,4 +25,24 @@ namespace GameEngine {
 
         static bgfx::VertexLayout ms_decl;
     };
+
+
+	class Renderable {
+	protected:
+		PosColorVertex* vertices;
+		uint16_t* indices;
+
+        //buffer to pass values to the shader 
+        bgfx::VertexBufferHandle m_vbh;
+        bgfx::IndexBufferHandle m_ibh;
+
+        //matrix that define position of the renderable
+        float* mtx;
+		
+	public:
+        static void init();
+        void createBuffers();
+        void setMtx(float m[]);
+        void submit(bgfx::ViewId view, bgfx::ProgramHandle prog);
+	};
 }
