@@ -5,8 +5,10 @@
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 
-#include <fstream>
-#include <string>
+#include <fstream>	//can probably be deleted. Ask Alex(test txt files)
+#include <string>	//can probably be deleted. Ask Alex(test txt files)
+#include "json.h"	//can probably be deleted. Ask Alex(test txt files)
+#include "value.h"	//can probably be deleted. Ask Alex(test txt files)
 #include <vector>
 #include <SDL.h>
 #include <SDL_syswm.h>

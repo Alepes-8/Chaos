@@ -22,7 +22,8 @@ project "GameEngine"
     libdirs 
     {
         "%{prj.name}/library/bgfx/.build/win64_vs2017/bin",
-        "%{prj.name}/library/SDL2/lib/x64"
+        "%{prj.name}/library/SDL2/lib/x64",
+        "%{prj.name}/library/jsoncpp/.Build/lib/Debug"
     }
 
     files
@@ -42,6 +43,7 @@ project "GameEngine"
         "%{prj.name}/library/bgfx/3rdparty",
         "%{prj.name}/library/bx/include/compat/msvc",
         "%{prj.name}/library/sdl2/include",
+        "%{prj.name}/library/jsoncpp/include/json",
         "data"
 
     }
@@ -58,7 +60,8 @@ project "GameEngine"
         "example-14-shadowvolumesDebug",
         "example-commonDebug",
         "example-glueDebug",
-
+        "jsoncpp",
+        "jsoncpp_static",
     }
 
     filter "system:windows"
@@ -116,7 +119,9 @@ project "Game"
         "GameEngine/library/bimg/include",
         "GameEngine/library/bgfx/3rdparty",
         "GameEngine/library/bx/include/compat/msvc",
-        "GameEngine/library/sdl2/include"
+        "GameEngine/library/sdl2/include",
+        "GameEngine/library/jsoncpp/include/json",
+
     }
 
     links

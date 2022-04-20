@@ -130,7 +130,11 @@ namespace GameEngine
         bgfx::touch(0);
 
         // Poll for events and wait till user closes window
-      
+
+
+        /*-----------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------*/
         GameEngine::Log::GetCoreLogger()->info("---Test Entity start---");
 
         std::fstream myFiles;
@@ -162,6 +166,71 @@ namespace GameEngine
         }
         
         GameEngine::Log::GetCoreLogger()->info("---Test Entity stop---");
+
+        GameEngine::Log::GetCoreLogger()->info("------");
+        GameEngine::Log::GetCoreLogger()->info("------");
+
+        GameEngine::Log::GetCoreLogger()->info("---Test object creation through txt document---");
+        std::fstream peasent;
+
+        peasent.open("Data/peasant.txt", std::ios::in);//read the file
+        if (peasent.is_open()) {
+            std::string line;
+
+            while (std::getline(peasent, line)) {
+                GameEngine::Log::GetClientLogger()->warn(line);
+            }
+
+            peasent.close(); //close
+        }
+
+        std::ifstream peasentCreation("Data/peasentCreation.txt");
+        std::string file, action;
+        int value;
+        int total = 0;
+        if (peasentCreation.is_open()) {
+            while (peasentCreation >> file >> action >> value) {
+                std::cout << "File        action      Data " << std::endl;
+                std::cout << file << "   " << action << "   " << value << std::endl;
+                total += value;
+            }
+            peasentCreation.close(); //close
+        }
+        GameEngine::Log::GetCoreLogger()->warn(total);
+        GameEngine::Log::GetCoreLogger()->info("---Test object creation through txt document---");
+
+        GameEngine::Log::GetCoreLogger()->info("------");
+        GameEngine::Log::GetCoreLogger()->info("------");
+
+        GameEngine::Log::GetCoreLogger()->info("---Test json file---");
+
+
+    
+        std::ifstream testData("testData.json");
+        Json::Value actualJson;
+        Json::Reader reader;
+
+
+        // using the reader we parse the json 
+        reader.parse(testData, actualJson);
+
+        //now the acualJson will have json data
+        std::cout <<  actualJson << std::endl;
+
+        //acceesssing the specific data parts
+
+        std::cout << "ID:" << actualJson["ID"] << std::endl;
+        std::cout << "Name:" << actualJson["Name"] << std::endl;
+        std::cout << "Health:" << actualJson["Health"] << std::endl;
+        std::cout << "Damage:" << actualJson["Damage"] << std::endl;
+        std::cout << "MoveSpeed:" << actualJson["MoveSpeed"] << std::endl;
+
+
+
+        GameEngine::Log::GetCoreLogger()->info("---Test json file---");
+        /*-----------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------*/
 
 
 
