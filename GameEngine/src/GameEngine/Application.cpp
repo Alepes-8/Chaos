@@ -4,34 +4,34 @@
 
 namespace GameEngine
 {
-	GameEngine::Application* GameEngine::Application::sInstance = NULL;
+    GameEngine::Application* GameEngine::Application::sInstance = NULL;
 
-	void GameEngine::Application::Terminate()
-	{
-		delete sInstance;
-		sInstance = NULL;
-	}
+    void GameEngine::Application::Terminate()
+    {
+        delete sInstance;
+        sInstance = NULL;
+    }
 
-	Application::Application() {
-		GameEngine::Log::Init();
+    Application::Application() {
+        GameEngine::Log::Init();
 
         m_InputManager = GameEngine::InputManager::CreateInstance();
 
-		mQuit = false;
-		m_Timer = GameEngine::Timer::CreateInstance();
+        mQuit = false;
+        m_Timer = GameEngine::Timer::CreateInstance();
 
-		m_Graphics = GameEngine::Graphics::CreateInstance();
-		if (!GameEngine::Graphics::GetInitialize()) { mQuit = true; }
-	}
+        m_Graphics = GameEngine::Graphics::CreateInstance();
+        if (!GameEngine::Graphics::GetInitialize()) { mQuit = true; }
+    }
 
-	Application::~Application() {
+    Application::~Application() {
         GameEngine::InputManager::Terminate();
-		GameEngine::Timer::Terminate();
-		GameEngine::Graphics::Terminate();
+        GameEngine::Timer::Terminate();
+        GameEngine::Graphics::Terminate();
         m_InputManager = NULL;
         m_Timer = NULL;
-		m_Graphics = NULL;
-	}
+        m_Graphics = NULL;
+    }
 
 
 
@@ -40,7 +40,7 @@ namespace GameEngine
     }
 
     void Application::Update() {
-        if (m_InputManager->Keydown(SDL_SCANCODE_ESCAPE)){
+        if (m_InputManager->Keydown(SDL_SCANCODE_ESCAPE)) {
             mQuit = true;
         }
         if (m_InputManager->Keydown(SDL_SCANCODE_W)) {
@@ -73,11 +73,209 @@ namespace GameEngine
         m_Timer->Reset();
     }
 
-    void Application::Run() {
+    //void Application::Run() {
 
-        /* Enable Unicode translation */
-        int SDL_EnableUNICODE(1);
-        SDL_Window* window = NULL;
+    //    /* Enable Unicode translation */
+    //    int SDL_EnableUNICODE(1);
+    //    SDL_Window* window = NULL;
+
+    //    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    //        printf("SDL could not initialize! SDL_Error: %s\n",
+    //            SDL_GetError());
+    //    }
+    //    else {
+    //        //Create a window
+    //        window = m_Graphics->window;
+    //        if (window == NULL) {
+    //            printf("Window could not be created! SDL_Error: %s\n",
+    //                SDL_GetError());
+    //        }
+    //    }
+
+    //    // Collect information about the window from SDL
+    //    SDL_SysWMinfo wmi;
+    //    SDL_VERSION(&wmi.version);
+    //    if (!SDL_GetWindowWMInfo(window, &wmi)) {
+
+    //    }
+
+    //    bgfx::PlatformData pd;
+    //    // and give the pointer to the window to pd
+    //    pd.nwh = (void*)(uintptr_t)wmi.info.win.window;
+
+    //    // Tell bgfx about the platform and window
+    //    bgfx::setPlatformData(pd);
+
+    //    // Render an empty frame
+    //    bgfx::renderFrame();
+
+    //    // Initialize bgfx
+
+    //    bgfx::Init init;
+    //    init.type = bgfx::RendererType::OpenGL;
+    //    bgfx::init(init);
+
+    //    //Shader
+    //    Shader shader = Shader("../../GameEngine/GameEngine/src/GameEngine/Shaders/v_simple.bin",
+    //        "../../GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+
+    //    //Render a cube
+    //    CubeRenderable cube;
+    //    cube.setShader(shader);
+    //    cube.init();
+    //    
+    //    
+    //    // Reset window
+    //    bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
+
+    //    // Enable debug text.
+    //    bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);
+
+    //    // Set view rectangle for 0th view
+    //    bgfx::setViewRect(0, 0, 0, uint16_t(m_Graphics->Screen_Width), uint16_t(m_Graphics->Screen_Hight));
+
+    //    // Clear the view rect
+    //    bgfx::setViewClear(0,
+    //        BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
+    //        0x443355FF, 1.0f, 0);
+
+    //    // Set empty primitive on screen
+    //    bgfx::touch(0);
+
+    //    // Poll for events and wait till user closes window
+
+    //    while (!mQuit) {
+    //        m_Timer->Update();
+
+
+    //        while (SDL_PollEvent(&m_Events) != 0) {
+
+    //            if (m_Events.type == SDL_QUIT) {
+    //                mQuit = true;
+    //            }
+
+    //            if (m_Events.type == SDL_MOUSEMOTION) {
+    //                GameEngine::Log::GetCoreLogger()->warn("x then y");
+    //                GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
+    //                GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
+    //            }
+    //            /*else {
+    //                PrintKeyInfo(&m_Events.key);
+    //            }*/
+
+    //            const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+    //            const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+
+    //            // Set view and projection matrix for view 0.
+    //            float view[16];
+    //            bx::mtxLookAt(view, eye, at);
+
+    //            float proj[16];
+    //            bx::mtxProj(proj,
+    //                60.0f,
+    //                float(GameEngine::Graphics::Screen_Width) / float(GameEngine::Graphics::Screen_Hight),
+    //                0.1f, 100.0f,
+    //                bgfx::getCaps()->homogeneousDepth);
+
+    //            bgfx::setViewTransform(0, view, proj);
+
+    //            // Set view 0 default viewport.
+    //            bgfx::setViewRect(0, 0, 0,
+    //                GameEngine::Graphics::Screen_Width,
+    //                GameEngine::Graphics::Screen_Hight);
+
+    //            bgfx::touch(0);
+
+
+    //            float mtx[16];
+    //            bx::mtxRotateY(mtx, 0.0f);
+
+    //            // position x,y,z
+    //            mtx[12] = 0.0f;
+    //            mtx[13] = 0.0f;
+    //            mtx[14] = 0.0f;
+
+    //            // Set model matrix for rendering.
+    //            bgfx::setTransform(mtx);
+
+    //            // Set vertex and index buffer.
+    //            cube.render();
+
+    //            // Set render states.
+    //            bgfx::setState(BGFX_STATE_DEFAULT);
+
+    //            bgfx::frame();
+    //        }
+
+    //        if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
+
+    //            EarlyUpdate();
+    //            Update();
+    //            LateUpdate();
+    //            Render();
+    //        }
+
+    //    }
+    //    // Free up window
+    //    SDL_DestroyWindow(window);
+
+    //    bgfx::shutdown();
+    //    // Shutdown SDL
+    //    SDL_Quit();
+
+    //}
+
+    //void PrintKeyInfo(SDL_KeyboardEvent* key) {
+    //    /* Is it a release or a press? */
+    //    GameEngine::Log::GetCoreLogger()->info(SDL_GetKeyName(key->keysym.sym));
+
+
+    //}
+
+    SDL_Window* window = NULL;
+    const int WIDTH = 640;
+    const int HEIGHT = 480;
+
+    bgfx::ShaderHandle loadShader(const char* _name) {
+        char* data = new char[2048];
+        std::ifstream file;
+        size_t fileSize;
+        file.open(_name);
+        if (file.is_open()) {
+            file.seekg(0, std::ios::end);
+            fileSize = file.tellg();
+            file.seekg(0, std::ios::beg);
+            file.read(data, fileSize);
+            file.close();
+        }
+        const bgfx::Memory* mem = bgfx::copy(data, fileSize + 1);
+        mem->data[mem->size - 1] = '\0';
+        bgfx::ShaderHandle handle = bgfx::createShader(mem);
+        bgfx::setName(handle, _name);
+        return handle;
+    }
+
+
+    static PosColorVertex s_cubeVertices[] =
+    {
+     {  0.5f,  0.5f, 0.0f, 0xff0000ff },
+     {  0.5f, -0.5f, 0.0f, 0xff0000ff },
+     { -0.5f, -0.5f, 0.0f, 0xff00ff00 },
+     { -0.5f,  0.5f, 0.0f, 0xff00ff00 }
+    };
+
+
+    static const uint16_t s_cubeTriList[] =
+    {
+     0,1,3,
+     1,2,3
+    };
+
+    bgfx::VertexBufferHandle m_vbh;
+    bgfx::IndexBufferHandle m_ibh;
+    bgfx::ProgramHandle m_program;
+
+    void GameEngine::Application::Run() {
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
             printf("SDL could not initialize! SDL_Error: %s\n",
@@ -110,58 +308,55 @@ namespace GameEngine
         bgfx::renderFrame();
 
         // Initialize bgfx
-
         bgfx::Init init;
         init.type = bgfx::RendererType::OpenGL;
         bgfx::init(init);
 
-        //Shader
-        Shader shader = Shader("../../GameEngine/GameEngine/src/GameEngine/Shaders/v_simple.bin",
-            "../../GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+        PosColorVertex::init();
+        m_vbh = bgfx::createVertexBuffer(
+            // Static data can be passed with bgfx::makeRef
+            bgfx::makeRef(s_cubeVertices, sizeof(s_cubeVertices)),
+            PosColorVertex::ms_decl
+        );
 
-        //Render a cube
-        CubeRenderable cube;
-        cube.setShader(shader);
-        cube.init();
-        
-        
+        m_ibh = bgfx::createIndexBuffer(
+            // Static data can be passed with bgfx::makeRef
+            bgfx::makeRef(s_cubeTriList, sizeof(s_cubeTriList))
+        );
+
+        bgfx::ShaderHandle vsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/v_simple.bin");
+        bgfx::ShaderHandle fsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+
+        m_program = bgfx::createProgram(vsh, fsh, true);
+
+
+
         // Reset window
-        bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
+        bgfx::reset(WIDTH, HEIGHT, BGFX_RESET_VSYNC);
 
         // Enable debug text.
         bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);
 
         // Set view rectangle for 0th view
-        bgfx::setViewRect(0, 0, 0, uint16_t(m_Graphics->Screen_Width), uint16_t(m_Graphics->Screen_Hight));
+        bgfx::setViewRect(0, 0, 0, uint16_t(WIDTH), uint16_t(HEIGHT));
 
         // Clear the view rect
         bgfx::setViewClear(0,
             BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
             0x443355FF, 1.0f, 0);
 
+
         // Set empty primitive on screen
         bgfx::touch(0);
 
         // Poll for events and wait till user closes window
-
-        while (!mQuit) {
-            m_Timer->Update();
-
-
-            while (SDL_PollEvent(&m_Events) != 0) {
-
-                if (m_Events.type == SDL_QUIT) {
-                    mQuit = true;
+        bool quit = false;
+        SDL_Event currentEvent;
+        while (!quit) {
+            while (SDL_PollEvent(&currentEvent) != 0) {
+                if (currentEvent.type == SDL_QUIT) {
+                    quit = true;
                 }
-
-                if (m_Events.type == SDL_MOUSEMOTION) {
-                    GameEngine::Log::GetCoreLogger()->warn("x then y");
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
-                }
-                /*else {
-                    PrintKeyInfo(&m_Events.key);
-                }*/
 
                 const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
                 const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
@@ -173,7 +368,7 @@ namespace GameEngine
                 float proj[16];
                 bx::mtxProj(proj,
                     60.0f,
-                    float(GameEngine::Graphics::Screen_Width) / float(GameEngine::Graphics::Screen_Hight),
+                    float(WIDTH) / float(HEIGHT),
                     0.1f, 100.0f,
                     bgfx::getCaps()->homogeneousDepth);
 
@@ -181,8 +376,8 @@ namespace GameEngine
 
                 // Set view 0 default viewport.
                 bgfx::setViewRect(0, 0, 0,
-                    GameEngine::Graphics::Screen_Width,
-                    GameEngine::Graphics::Screen_Hight);
+                    WIDTH,
+                    HEIGHT);
 
                 bgfx::touch(0);
 
@@ -199,37 +394,23 @@ namespace GameEngine
                 bgfx::setTransform(mtx);
 
                 // Set vertex and index buffer.
-                cube.render();
+                bgfx::setVertexBuffer(0, m_vbh);
+                bgfx::setIndexBuffer(m_ibh);
 
                 // Set render states.
                 bgfx::setState(BGFX_STATE_DEFAULT);
 
+                // Submit primitive for rendering to view 0.
+                bgfx::submit(0, m_program);
+
                 bgfx::frame();
             }
-
-            if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-
-                EarlyUpdate();
-                Update();
-                LateUpdate();
-                Render();
-            }
-
         }
-        // Free up window
-        SDL_DestroyWindow(window);
 
         bgfx::shutdown();
+        // Free up window
+        SDL_DestroyWindow(window);
         // Shutdown SDL
         SDL_Quit();
-
     }
-
-    void PrintKeyInfo(SDL_KeyboardEvent* key) {
-        /* Is it a release or a press? */
-        GameEngine::Log::GetCoreLogger()->info(SDL_GetKeyName(key->keysym.sym));
-
-
-    }
-
 }
