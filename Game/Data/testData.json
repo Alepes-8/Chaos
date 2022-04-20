@@ -1,13 +1,24 @@
-{"Peasent" :  [
+{
+    "Unit" :  
     {
-        "Name" : "Peasant",
-        "ID" : "0001",
-        "Health" : 8,
-        "Damage" : 1.2,
-        "MoveSpeed" : 2
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Type" : {
+            "Peasant" : {
+                "Health" : 4.8,
+                "Damage" : 0.96,
+                "MoveSpeed" : 2
+            },
+            "Leader" : {
+                "Health" : 8,
+                "Damage" : 1.6,
+                "MoveSpeed" : 2
+            }
+        }
     }
 
-]
-   
-     
 }

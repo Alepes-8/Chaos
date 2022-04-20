@@ -206,7 +206,7 @@ namespace GameEngine
 
 
     
-        std::ifstream testData("testData.json");
+        std::ifstream testData("Data/testData.json");
         Json::Value actualJson;
         Json::Reader reader;
 
@@ -215,16 +215,19 @@ namespace GameEngine
         reader.parse(testData, actualJson);
 
         //now the acualJson will have json data
-        std::cout <<  actualJson << std::endl;
-
+        //std::cout <<  actualJson << std::endl;
+        char* types = "Leader";
         //acceesssing the specific data parts
+        std::cout << "The " << types <<" entity has the following components:" << std::endl;
 
-        std::cout << "ID:" << actualJson["ID"] << std::endl;
-        std::cout << "Name:" << actualJson["Name"] << std::endl;
-        std::cout << "Health:" << actualJson["Health"] << std::endl;
-        std::cout << "Damage:" << actualJson["Damage"] << std::endl;
-        std::cout << "MoveSpeed:" << actualJson["MoveSpeed"] << std::endl;
+        for (Json::Value::const_iterator itr = actualJson["Unit"]["Components"].begin(); itr != actualJson["Unit"]["Components"].end(); itr++) {
+            std::cout << "  -" << itr->asCString() << std::endl;
+        }
+        std::cout << "\n Then the following stats:"<< std::endl;
 
+        for (Json::Value::const_iterator itr = actualJson["Unit"]["Type"]["Peasant"].begin(); itr != actualJson["Unit"]["Type"]["Peasant"].end(); itr++) {
+            std::cout << "  -" << itr.key() <<  ": " << itr->asInt() << std::endl;
+        }
 
 
         GameEngine::Log::GetCoreLogger()->info("---Test json file---");
