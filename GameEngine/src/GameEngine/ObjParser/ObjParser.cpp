@@ -1,4 +1,4 @@
-#include "ObjParser.h"
+#include "GameEngine/ObjParser/ObjParser.h"
 
 
 /// <summary>
@@ -6,11 +6,10 @@
 /// </summary>
 /// <param name="filename"> The path to the .obj file</param>
 /// <returns> A Renderable object corresponding to the .obj file</returns>
-Renderable parseObj(string filename)
+GameEngine::Renderable parseObj(char* filename)
 {
     //Renderable to return
-    Renderable result = Renderable();
-
+    GameEngine::Renderable result = GameEngine::Renderable();
 
     //open the file
     std::ifstream in(filename, std::ios::in);
@@ -22,14 +21,14 @@ Renderable parseObj(string filename)
     }
 
     //parse the file
-    string line;
-    regex v("v (-?\\d+\.\\d+) (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
-    regex vt("vt (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
-    regex vn("vn (-?\\d+\.\\d+) (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
-    regex f("f (\\d+)/(\\d+)/(\\d+) (\\d+)/(\\d+)/(\\d+) (\\d+)/(\\d+)/(\\d+).*$");
+    std::string line;
+    std::regex v("v (-?\\d+\.\\d+) (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
+    std::regex vt("vt (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
+    std::regex vn("vn (-?\\d+\.\\d+) (-?\\d+\.\\d+) (-?\\d+\.\\d+).*$");
+    std::regex f("f (\\d+)/(\\d+)/(\\d+) (\\d+)/(\\d+)/(\\d+) (\\d+)/(\\d+)/(\\d+).*$");
 
     while (getline(in, line)) {
-        smatch match;
+        std::smatch match;
 
         //check for vertices
         regex_match(line, match, v);
@@ -39,11 +38,12 @@ Renderable parseObj(string filename)
                 exit(1);
             }
 
-            string x = match[1].str();
-            string y = match[2].str();
-            string z = match[3].str();
-
-            result.addVertex(math::float3(stof(x), stof(y), stof(z)));
+            std::string x = match[1].str();
+            std::string y = match[2].str();
+            std::string z = match[3].str();
+            
+            //TODO implement vertices
+            //result.addVertex(GameEngine::Vector3(stof(x), stof(y), stof(z)));
         }
 
         //check for texture
@@ -53,10 +53,11 @@ Renderable parseObj(string filename)
                 exit(1);
             }
 
-            string x = match[1].str();
-            string y = match[2].str();
+            std::string x = match[1].str();
+            std::string y = match[2].str();
 
-            result.addTexture(math::float2(stof(x), stof(y)));
+            //TODO implement tetures
+            //result.addTexture(math::float2(stof(x), stof(y)));
         }
 
         //check for normales
@@ -66,11 +67,12 @@ Renderable parseObj(string filename)
                 exit(1);
             }
 
-            string x = match[1].str();
-            string y = match[2].str();
-            string z = match[2].str();
+            std::string x = match[1].str();
+            std::string y = match[2].str();
+            std::string z = match[2].str();
 
-            result.addNormal(math::float3(stof(x), stof(y), stof(z)));
+            //TODO implement normals
+            //result.addNormal(math::float3(stof(x), stof(y), stof(z)));
         }
 
 
@@ -82,28 +84,31 @@ Renderable parseObj(string filename)
             }
 
             //vertex indices for the corresponding triangle
-            string v1 = match[1].str();
-            string v2 = match[4].str();
-            string v3 = match[7].str();
-            result.addVertexIndices(stoi(v1));
-            result.addVertexIndices(stoi(v2));
-            result.addVertexIndices(stoi(v3));
+            std::string v1 = match[1].str();
+            std::string v2 = match[4].str();
+            std::string v3 = match[7].str();
+            //TODO implement vertices index
+            /*result.addIndex(stoi(v1));
+            result.addIndex(stoi(v2));
+            result.addIndex(stoi(v3));*/
 
             //textures indices for the corresponding triangle
-            string t1 = match[2].str();
-            string t2 = match[5].str();
-            string t3 = match[8].str();
-            result.addTextureIndices(stoi(t1));
-            result.addTextureIndices(stoi(t2));
-            result.addTextureIndices(stoi(t3));
+            std::string t1 = match[2].str();
+            std::string t2 = match[5].str();
+            std::string t3 = match[8].str();
+            //TODO implements textures index
+            /*result.addIndex(stoi(t1));
+            result.addIndex(stoi(t2));
+            result.addIndex(stoi(t3));*/
 
             //normals indices for the corresponding triangle
-            string n1 = match[3].str();
-            string n2 = match[6].str();
-            string n3 = match[9].str();
-            result.addNormalsIndices(stoi(n1));
-            result.addNormalsIndices(stoi(n2));
-            result.addNormalsIndices(stoi(n3));
+            std::string n1 = match[3].str();
+            std::string n2 = match[6].str();
+            std::string n3 = match[9].str();
+            //TODO implements normals index
+           /* result.addIndex(stoi(n1));
+            result.addIndex(stoi(n2));
+            result.addIndex(stoi(n3));*/
         }
     }
 

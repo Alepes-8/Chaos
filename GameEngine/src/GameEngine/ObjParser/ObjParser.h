@@ -1,8 +1,10 @@
 #pragma once
-#include "GameEngine/Renderable.h"
+#include "GameEngine/Renderable/Renderable.h"
+#include "GameEngine/MathHelper.h"
 #include <fstream>
 #include <iostream>
 #include <regex>
 #include <GameEngine/Log.h>
+#include <stdio.h>
 
-Renderable parseOb(string filename);
+GameEngine::Renderable parseOb(char* filename);
