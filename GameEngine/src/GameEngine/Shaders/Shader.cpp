@@ -13,6 +13,10 @@ bgfx::ShaderHandle GameEngine::loadShader(const char* _name) {
             file.read(data, fileSize);
             file.close();
         }
+        else {
+            std::cerr << printf("Shader not found.") << std::endl;
+            exit(1);
+        }
         const bgfx::Memory* mem = bgfx::copy(data, fileSize + 1);
         mem->data[mem->size - 1] = '\0';
         bgfx::ShaderHandle handle = bgfx::createShader(mem);

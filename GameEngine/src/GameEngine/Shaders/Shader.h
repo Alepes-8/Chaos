@@ -1,6 +1,7 @@
 #pragma once
 #include <bgfx/bgfx.h>
 #include <fstream>
+#include <iostream>
 namespace GameEngine {
     bgfx::ShaderHandle loadShader(const char* _name);
 

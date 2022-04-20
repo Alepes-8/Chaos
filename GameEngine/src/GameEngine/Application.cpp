@@ -136,8 +136,8 @@ namespace GameEngine
        //-----------------SHADERS--------------------//
         //Create shader
         Shader shader = Shader();
-        shader.loadFragmentShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/fs_cubes.bin");
-        shader.loadVertexShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
+        shader.loadFragmentShader("./src/Shaders/BIN/f_simple.bin");
+        shader.loadVertexShader("./src/Shaders/BIN/v_simple.bin");
         //Create a program so we can pass value to the sahder
         bgfx::ProgramHandle m_program = shader.createProgram();
         //-------------------------------------------//
@@ -155,6 +155,10 @@ namespace GameEngine
         cube2.createBuffers();
         //-------------------------------------------//
 
+        //------------------MESH---------------------//
+        Mesh* vampire /*= meshLoad("3DModels/BIN format/vampire.bin")*/;
+        //--------------------------------------------//
+
         
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
@@ -163,7 +167,7 @@ namespace GameEngine
         unsigned int counter = 0;
         while (!quit) {
             m_Timer->Update();
-
+            
             if (SDL_PollEvent(&currentEvent) != 0) {
                 if (currentEvent.type == SDL_QUIT) {
                     quit = true;
@@ -225,6 +229,11 @@ namespace GameEngine
                 cube2.setMtx(mtx2);
                 cube2.submit(0, m_program);
                 //--------------------------------------//
+
+                //-----------VAMPIRE----------------//
+                float mtx_vampire[16];
+                bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
+                /*meshSubmit(vampire, 0, m_program, mtx_vampire);*/
 
 
                 bgfx::frame();

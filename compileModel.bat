@@ -1,0 +1,1 @@
+CALL "GameEngine\library\bgfx\.build\win64_vs2017\bin\geometrycDebug.exe" -f "Game\src\3DModels\OBJ format\vampire.obj" -o "Game\src\3DModels\BIN format\vampire.bin"

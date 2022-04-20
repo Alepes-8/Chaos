@@ -12,6 +12,9 @@
 #include <SDL_syswm.h>
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
+#include <bgfx_utils.h>
+#include <imgui/imgui.h>
+#include <common.h>
 #include <bx/math.h>
 #include <bx/bx.h>
 
