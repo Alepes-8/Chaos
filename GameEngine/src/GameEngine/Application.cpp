@@ -110,11 +110,14 @@ namespace GameEngine
         bgfx::renderFrame();
 
         // Initialize bgfx
-        bgfx::init();
+
+        bgfx::Init init;
+        init.type = bgfx::RendererType::OpenGL;
+        bgfx::init(init);
 
         //Shader
-        Shader shader = Shader("D:/4INFO/Lulea/VirtualEnv/GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin",
-            "D:/4INFO/Lulea/VirtualEnv/GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+        Shader shader = Shader("../../GameEngine/GameEngine/src/GameEngine/Shaders/v_simple.bin",
+            "../../GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
 
         //Render a cube
         CubeRenderable cube;
@@ -184,6 +187,19 @@ namespace GameEngine
 
                 // Set vertex and index buffer.
                 cube.render();
+
+
+                switch (bgfx::getRendererType()) {
+                    case bgfx::RendererType::Noop:
+                    case bgfx::RendererType::Direct3D9:  std::printf("dx9 used");   break;
+                    case bgfx::RendererType::Direct3D11:
+                    case bgfx::RendererType::Direct3D12: std::printf("dx11 used");  break;
+                    case bgfx::RendererType::Gnm:        std::printf("pssl used");  break;
+                    case bgfx::RendererType::Metal:      std::printf("metal used"); break;
+                    case bgfx::RendererType::OpenGL:     std::printf("glsl used");  break;
+                    case bgfx::RendererType::OpenGLES:   std::printf("essl used");  break;
+                    case bgfx::RendererType::Vulkan:     std::printf("spirv used"); break;
+                }
 
                 // Set render states.
                 bgfx::setState(BGFX_STATE_DEFAULT);
