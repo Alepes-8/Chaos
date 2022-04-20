@@ -46,6 +46,7 @@
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\EntityManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -67,6 +68,7 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
   </ItemGroup>
 </Project>

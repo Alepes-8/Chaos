@@ -3,7 +3,9 @@
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"
+#include "EntitySystem/EntityManager.h"
 
+#include <vector>
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <bgfx/bgfx.h>
@@ -18,6 +20,7 @@ namespace GameEngine
 		bool mQuit;
 		SDL_Event m_Events;
 
+		GameEngine::EntityManager* m_EntityManager;
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;

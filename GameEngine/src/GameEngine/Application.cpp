@@ -1,5 +1,4 @@
 #include "Application.h" 
-#include "GameEngine/EntitySystem/GameObject.h"
 
 namespace GameEngine
 {
@@ -21,6 +20,8 @@ namespace GameEngine
 
 		m_Graphics = GameEngine::Graphics::CreateInstance();
 		if (!GameEngine::Graphics::GetInitialize()) { mQuit = true; }
+
+        m_EntityManager = GameEngine::EntityManager::CreateInstance();
 	}
 
 	Application::~Application() {
@@ -129,6 +130,13 @@ namespace GameEngine
         bgfx::touch(0);
 
         // Poll for events and wait till user closes window
+      
+        GameEngine::Log::GetCoreLogger()->info("---Test Entity start---");
+
+       
+
+        GameEngine::Log::GetCoreLogger()->info("---Test Entity stop---");
+
 
 
         while (!mQuit) {
@@ -138,12 +146,12 @@ namespace GameEngine
                 if (m_Events.type == SDL_QUIT) {
                     mQuit = true;
                 }
-                if (m_Events.type == SDL_MOUSEMOTION) {
+      /*          if (m_Events.type == SDL_MOUSEMOTION) {
                     GameEngine::Log::GetCoreLogger()->warn("x then y");
                     GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
                     GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
                 }
-                /*else {
+                else {
                     PrintKeyInfo(&m_Events.key);
                 }*/
                 

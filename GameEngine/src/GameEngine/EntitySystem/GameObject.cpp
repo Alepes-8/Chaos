@@ -13,3 +13,12 @@ void GameEngine::GameObject::Update() {
 void GameEngine::GameObject::LateUpdate() {
 
 }
+
+GameEngine::GameObject::GameObject() {
+	GameEngine::Log::GetCoreLogger()->info("create the GameObject Class");
+}
+
+GameEngine::GameObject::~GameObject() {
+	GameEngine::Log::GetCoreLogger()->info("Destroy the GameObject Class");
+}
+
