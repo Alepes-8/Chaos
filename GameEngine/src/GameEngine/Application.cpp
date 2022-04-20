@@ -22,7 +22,10 @@ namespace GameEngine
 
         m_Graphics = GameEngine::Graphics::CreateInstance();
         if (!GameEngine::Graphics::GetInitialize()) { mQuit = true; }
+
+        m_EntityManager = GameEngine::EntityManager::CreateInstance();
     }
+
 
     Application::~Application() {
         GameEngine::InputManager::Terminate();
@@ -74,7 +77,7 @@ namespace GameEngine
     }
 
     SDL_Window* window = NULL;
-  
+
 
     void GameEngine::Application::Run() {
 
@@ -108,7 +111,7 @@ namespace GameEngine
 
         // Render an empty frame
         bgfx::renderFrame();
-       
+
         //innit bgfx
         bgfx::Init init;
         init.type = bgfx::RendererType::OpenGL;
@@ -155,89 +158,96 @@ namespace GameEngine
         cube2.createBuffers();
         //-------------------------------------------//
 
-        
+
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
-        bool quit = false;
-        SDL_Event currentEvent;
-        unsigned int counter = 0;
-        while (!quit) {
-            m_Timer->Update();
 
-            if (SDL_PollEvent(&currentEvent) != 0) {
-                if (currentEvent.type == SDL_QUIT) {
-                    quit = true;
+
+        while (!mQuit) {
+
+            bool quit = false;
+            SDL_Event currentEvent;
+            unsigned int counter = 0;
+            while (!quit) {
+
+                m_Timer->Update();
+
+                if (SDL_PollEvent(&currentEvent) != 0) {
+                    if (currentEvent.type == SDL_QUIT) {
+                        quit = true;
+                    }
+
+                    /*if (m_Events.type == SDL_MOUSEMOTION) {
+                        GameEngine::Log::GetCoreLogger()->warn("x then y");
+                        GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
+                        GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
+                    }
+                    else {
+                        PrintKeyInfo(&m_Events.key);
+                    }*/
                 }
-               /* if (m_Events.type == SDL_MOUSEMOTION) {
-                    GameEngine::Log::GetCoreLogger()->warn("x then y");
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
-                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
-                }*/
-                /*else {
-                    PrintKeyInfo(&m_Events.key);
-                }*/
+
+                if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
+                    EarlyUpdate();
+                    Update();
+
+                    const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+                    const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+
+                    // Set view and projection matrix for view 0.
+                    float view[16];
+                    bx::mtxLookAt(view, eye, at);
+
+                    float proj[16];
+                    bx::mtxProj(proj,
+                        60.0f,
+                        float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
+                        0.1f, 100.0f,
+                        bgfx::getCaps()->homogeneousDepth);
+
+                    bgfx::setViewTransform(0, view, proj);
+
+                    // Set view 0 default viewport.
+                    bgfx::setViewRect(0, 0, 0,
+                        m_Graphics->Screen_Width,
+                        m_Graphics->Screen_Hight);
+
+                    bgfx::touch(0);
+
+
+                    //-----------CUBE 1--------------------//
+                    float mtx[16];
+                    bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+                    counter++;
+
+                    // Set model matrix for rendering.
+                    cube.setMtx(mtx);
+
+                    //submit cube values to the program
+                    cube.submit(0, m_program);
+                    //--------------------------------------//
+
+                     //----------------CUBE 2-----------------//
+                    float mtx2[16];
+                    bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
+                    mtx2[12] = counter * 0.01f;
+                    cube2.setMtx(mtx2);
+                    cube2.submit(0, m_program);
+                    //--------------------------------------//
+
+
+                    bgfx::frame();
+
+                    LateUpdate();
+                    Render();
+                }
             }
 
-            if (m_Timer->getDeltaTime() >= 1.0f / frameRate){
-                EarlyUpdate();
-                Update();
-
-                const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-                const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
-
-                // Set view and projection matrix for view 0.
-                float view[16];
-                bx::mtxLookAt(view, eye, at);
-
-                float proj[16];
-                bx::mtxProj(proj,
-                    60.0f,
-                    float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
-                    0.1f, 100.0f,
-                    bgfx::getCaps()->homogeneousDepth);
-
-                bgfx::setViewTransform(0, view, proj);
-
-                // Set view 0 default viewport.
-                bgfx::setViewRect(0, 0, 0,
-                    m_Graphics->Screen_Width,
-                    m_Graphics->Screen_Hight);
-
-                bgfx::touch(0);
-
-                
-                //-----------CUBE 1--------------------//
-                float mtx[16];
-                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-                counter++;
-
-                // Set model matrix for rendering.
-                cube.setMtx(mtx);
-
-                //submit cube values to the program
-                cube.submit(0, m_program);
-                //--------------------------------------//
-
-                 //----------------CUBE 2-----------------//
-                float mtx2[16];
-                bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
-                mtx2[12] = counter * 0.01f;
-                cube2.setMtx(mtx2);
-                cube2.submit(0, m_program);
-                //--------------------------------------//
-
-
-                bgfx::frame();
-
-                LateUpdate();
-                Render();
-            }
+            bgfx::shutdown();
+            // Free up window
+            SDL_DestroyWindow(window);
+            // Shutdown SDL
+            SDL_Quit();
         }
-
-        bgfx::shutdown();
-        // Free up window
-        SDL_DestroyWindow(window);
-        // Shutdown SDL
-        SDL_Quit();
     }
 }
