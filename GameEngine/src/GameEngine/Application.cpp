@@ -271,6 +271,34 @@ namespace GameEngine
      1,2,3
     };
 
+    static PosColorVertex cubeVertices[] =
+    {
+        {-1.0f,  1.0f,  1.0f, 0xff000000 },
+        { 1.0f,  1.0f,  1.0f, 0xff0000ff },
+        {-1.0f, -1.0f,  1.0f, 0xff00ff00 },
+        { 1.0f, -1.0f,  1.0f, 0xff00ffff },
+        {-1.0f,  1.0f, -1.0f, 0xffff0000 },
+        { 1.0f,  1.0f, -1.0f, 0xffff00ff },
+        {-1.0f, -1.0f, -1.0f, 0xffffff00 },
+        { 1.0f, -1.0f, -1.0f, 0xffffffff },
+    };
+
+    static const uint16_t cubeTriList[] =
+    {
+        0, 1, 2,
+        1, 3, 2,
+        4, 6, 5,
+        5, 6, 7,
+        0, 2, 4,
+        4, 2, 6,
+        1, 5, 3,
+        5, 7, 3,
+        0, 4, 1,
+        4, 5, 1,
+        2, 3, 6,
+        6, 3, 7,
+    };
+
     bgfx::VertexBufferHandle m_vbh;
     bgfx::IndexBufferHandle m_ibh;
     bgfx::ProgramHandle m_program;
@@ -315,17 +343,17 @@ namespace GameEngine
         PosColorVertex::init();
         m_vbh = bgfx::createVertexBuffer(
             // Static data can be passed with bgfx::makeRef
-            bgfx::makeRef(s_cubeVertices, sizeof(s_cubeVertices)),
+            bgfx::makeRef(cubeVertices, sizeof(cubeVertices)),
             PosColorVertex::ms_decl
         );
 
         m_ibh = bgfx::createIndexBuffer(
             // Static data can be passed with bgfx::makeRef
-            bgfx::makeRef(s_cubeTriList, sizeof(s_cubeTriList))
+            bgfx::makeRef(cubeTriList, sizeof(cubeTriList))
         );
 
-        bgfx::ShaderHandle vsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/v_simple.bin");
-        bgfx::ShaderHandle fsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/f_simple.bin");
+        bgfx::ShaderHandle vsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
+        bgfx::ShaderHandle fsh = loadShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/fs_cubes.bin");
 
         m_program = bgfx::createProgram(vsh, fsh, true);
 
@@ -352,11 +380,27 @@ namespace GameEngine
         // Poll for events and wait till user closes window
         bool quit = false;
         SDL_Event currentEvent;
+        unsigned int counter = 0;
         while (!quit) {
+            m_Timer->Update();
+
             while (SDL_PollEvent(&currentEvent) != 0) {
                 if (currentEvent.type == SDL_QUIT) {
                     quit = true;
                 }
+               /* if (m_Events.type == SDL_MOUSEMOTION) {
+                    GameEngine::Log::GetCoreLogger()->warn("x then y");
+                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
+                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
+                }*/
+                /*else {
+                    PrintKeyInfo(&m_Events.key);
+                }*/
+            }
+
+            if (m_Timer->getDeltaTime() >= 1.0f / frameRate){
+                EarlyUpdate();
+                Update();
 
                 const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
                 const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
@@ -383,12 +427,14 @@ namespace GameEngine
 
 
                 float mtx[16];
-                bx::mtxRotateY(mtx, 0.0f);
+                //bx::mtxRotateY(mtx, 0.0f);
 
-                // position x,y,z
-                mtx[12] = 0.0f;
-                mtx[13] = 0.0f;
-                mtx[14] = 0.0f;
+                //// position x,y,z
+                //mtx[12] = 0.0f;
+                //mtx[13] = 0.0f;
+                //mtx[14] = 0.0f;
+                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+                counter++;
 
                 // Set model matrix for rendering.
                 bgfx::setTransform(mtx);
@@ -404,6 +450,10 @@ namespace GameEngine
                 bgfx::submit(0, m_program);
 
                 bgfx::frame();
+
+
+                LateUpdate();
+                Render();
             }
         }
 
