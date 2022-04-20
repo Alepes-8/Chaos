@@ -168,6 +168,7 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />

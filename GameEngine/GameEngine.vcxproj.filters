@@ -67,5 +67,6 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
   </ItemGroup>
 </Project>
