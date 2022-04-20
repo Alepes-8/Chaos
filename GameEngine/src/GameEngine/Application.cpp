@@ -145,10 +145,23 @@ namespace GameEngine
         // Poll for events and wait till user closes window
 
         while (!mQuit) {
+            m_Timer->Update();
+
+
             while (SDL_PollEvent(&m_Events) != 0) {
+
                 if (m_Events.type == SDL_QUIT) {
                     mQuit = true;
                 }
+
+                if (m_Events.type == SDL_MOUSEMOTION) {
+                    GameEngine::Log::GetCoreLogger()->warn("x then y");
+                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
+                    GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
+                }
+                /*else {
+                    PrintKeyInfo(&m_Events.key);
+                }*/
 
                 const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
                 const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
@@ -188,24 +201,20 @@ namespace GameEngine
                 // Set vertex and index buffer.
                 cube.render();
 
-
-                switch (bgfx::getRendererType()) {
-                    case bgfx::RendererType::Noop:
-                    case bgfx::RendererType::Direct3D9:  std::printf("dx9 used");   break;
-                    case bgfx::RendererType::Direct3D11:
-                    case bgfx::RendererType::Direct3D12: std::printf("dx11 used");  break;
-                    case bgfx::RendererType::Gnm:        std::printf("pssl used");  break;
-                    case bgfx::RendererType::Metal:      std::printf("metal used"); break;
-                    case bgfx::RendererType::OpenGL:     std::printf("glsl used");  break;
-                    case bgfx::RendererType::OpenGLES:   std::printf("essl used");  break;
-                    case bgfx::RendererType::Vulkan:     std::printf("spirv used"); break;
-                }
-
                 // Set render states.
                 bgfx::setState(BGFX_STATE_DEFAULT);
 
                 bgfx::frame();
             }
+
+            if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
+
+                EarlyUpdate();
+                Update();
+                LateUpdate();
+                Render();
+            }
+
         }
         // Free up window
         SDL_DestroyWindow(window);
