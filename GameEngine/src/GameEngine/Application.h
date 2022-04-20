@@ -22,7 +22,7 @@ namespace GameEngine
 	class Application
 	{
 	private:
-		const int frameRate = 60;
+		const int frameRate = 600;
 		bool mQuit;
 		SDL_Event m_Events;
 

@@ -12,7 +12,7 @@ namespace GameEngine
         sInstance = NULL;
     }
 
-    Application::Application() {
+    GameEngine::Application::Application() {
         GameEngine::Log::Init();
 
         m_InputManager = GameEngine::InputManager::CreateInstance();
@@ -27,7 +27,7 @@ namespace GameEngine
     }
 
 
-    Application::~Application() {
+    GameEngine::Application::~Application() {
         GameEngine::InputManager::Terminate();
         GameEngine::Timer::Terminate();
         GameEngine::Graphics::Terminate();
@@ -37,12 +37,11 @@ namespace GameEngine
     }
 
 
-
-    void Application::EarlyUpdate() {
+    void GameEngine::Application::EarlyUpdate() {
         m_InputManager->Update();
     }
 
-    void Application::Update() {
+    void GameEngine::Application::Update() {
         if (m_InputManager->Keydown(SDL_SCANCODE_ESCAPE)) {
             mQuit = true;
         }
@@ -66,12 +65,12 @@ namespace GameEngine
         }
     }
 
-    void Application::Render() {
+    void GameEngine::Application::Render() {
         bgfx::frame(); //Advance to next frame. When using multithreaded renderer,
         m_Graphics->Render();
     }
 
-    void Application::LateUpdate() {
+    void GameEngine::Application::LateUpdate() {
         m_InputManager->UpdatePrevInput();
         m_Timer->Reset();
     }
@@ -80,56 +79,34 @@ namespace GameEngine
 
 
     void GameEngine::Application::Run() {
-
-        //------------------WINDOW------------------//
-        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-            printf("SDL could not initialize! SDL_Error: %s\n",
-                SDL_GetError());
-        }
-        else {
-            //Create a window
-            window = m_Graphics->window;
-            if (window == NULL) {
-                printf("Window could not be created! SDL_Error: %s\n",
-                    SDL_GetError());
-            }
-        }
+        window = m_Graphics->window;
 
         // Collect information about the window from SDL
         SDL_SysWMinfo wmi;
         SDL_VERSION(&wmi.version);
-        if (!SDL_GetWindowWMInfo(window, &wmi)) {
-
-        }
+        SDL_GetWindowWMInfo(window, &wmi);
 
         bgfx::PlatformData pd;
-        // and give the pointer to the window to pd
-        pd.nwh = (void*)(uintptr_t)wmi.info.win.window;
+        pd.nwh = (void*)(uintptr_t)wmi.info.win.window; // and give the pointer to the window to pd
+        bgfx::setPlatformData(pd);// Tell bgfx about the platform and window
+        bgfx::renderFrame();// Render an empty frame
 
-        // Tell bgfx about the platform and window
-        bgfx::setPlatformData(pd);
-
-        // Render an empty frame
-        bgfx::renderFrame();
-
-        //innit bgfx
-        bgfx::Init init;
+        
+        bgfx::Init init;//innit bgfx
         init.type = bgfx::RendererType::OpenGL;
         bgfx::init(init);
 
-        // Reset window
-        bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
+        
+        bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);// Reset window
+        bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);// Enable debug text.
 
-        // Enable debug text.
-        bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);
+       
+        bgfx::setViewRect(0, 0, 0, uint16_t(m_Graphics->Screen_Width),
+            uint16_t(m_Graphics->Screen_Hight)); // Set view rectangle for 0th view
 
-        // Set view rectangle for 0th view
-        bgfx::setViewRect(0, 0, 0, uint16_t(m_Graphics->Screen_Width), uint16_t(m_Graphics->Screen_Hight));
-
-        // Clear the view rect
-        bgfx::setViewClear(0,
-            BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
-            0x443355FF, 1.0f, 0);
+        
+        bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
+            0x443355FF, 1.0f, 0);// Clear the view rect
 
         // Set empty primitive on screen
         bgfx::touch(0);
@@ -139,8 +116,9 @@ namespace GameEngine
        //-----------------SHADERS--------------------//
         //Create shader
         Shader shader = Shader();
-        shader.loadFragmentShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/fs_cubes.bin");
-        shader.loadVertexShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
+        shader.loadFragmentShader("../GameEngine/src/GameEngine/Shaders/fs_cubes.bin");
+        shader.loadVertexShader("../GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
+        
         //Create a program so we can pass value to the sahder
         bgfx::ProgramHandle m_program = shader.createProgram();
         //-------------------------------------------//
@@ -148,106 +126,84 @@ namespace GameEngine
         //-----------------RENDERABLES-----------------//
         //Init Renderables so bgfx knows the format of our renderable data
         Renderable::init();
-
-        //create a cube
-        Renderable cube = CubeRenderable();
-        //init vertices and indices buffers
-        cube.createBuffers();
-
+        
+        Renderable cube = CubeRenderable();//create a cube
         Renderable cube2 = CubeRenderable();
+
+        cube.createBuffers();//init vertices and indices buffers
         cube2.createBuffers();
         //-------------------------------------------//
 
 
-        //--------------------LOOP---------------------//
-        // Poll for events and wait till user closes window
-
+        SDL_Event currentEvent;
+        unsigned int counter = 0;
 
         while (!mQuit) {
 
-            bool quit = false;
-            SDL_Event currentEvent;
-            unsigned int counter = 0;
-            while (!quit) {
+            m_Timer->Update();
 
-                m_Timer->Update();
-
-                if (SDL_PollEvent(&currentEvent) != 0) {
-                    if (currentEvent.type == SDL_QUIT) {
-                        quit = true;
-                    }
-
-                    /*if (m_Events.type == SDL_MOUSEMOTION) {
-                        GameEngine::Log::GetCoreLogger()->warn("x then y");
-                        GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).x);
-                        GameEngine::Log::GetCoreLogger()->warn((m_InputManager->MousePos()).y);
-                    }
-                    else {
-                        PrintKeyInfo(&m_Events.key);
-                    }*/
-                }
-
-                if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                    EarlyUpdate();
-                    Update();
-
-                    const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-                    const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
-
-                    // Set view and projection matrix for view 0.
-                    float view[16];
-                    bx::mtxLookAt(view, eye, at);
-
-                    float proj[16];
-                    bx::mtxProj(proj,
-                        60.0f,
-                        float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
-                        0.1f, 100.0f,
-                        bgfx::getCaps()->homogeneousDepth);
-
-                    bgfx::setViewTransform(0, view, proj);
-
-                    // Set view 0 default viewport.
-                    bgfx::setViewRect(0, 0, 0,
-                        m_Graphics->Screen_Width,
-                        m_Graphics->Screen_Hight);
-
-                    bgfx::touch(0);
-
-
-                    //-----------CUBE 1--------------------//
-                    float mtx[16];
-                    bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-                    counter++;
-
-                    // Set model matrix for rendering.
-                    cube.setMtx(mtx);
-
-                    //submit cube values to the program
-                    cube.submit(0, m_program);
-                    //--------------------------------------//
-
-                     //----------------CUBE 2-----------------//
-                    float mtx2[16];
-                    bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
-                    mtx2[12] = counter * 0.01f;
-                    cube2.setMtx(mtx2);
-                    cube2.submit(0, m_program);
-                    //--------------------------------------//
-
-
-                    bgfx::frame();
-
-                    LateUpdate();
-                    Render();
+            if (SDL_PollEvent(&currentEvent) != 0) {
+                if (currentEvent.type == SDL_QUIT) {
+                    mQuit = true;
                 }
             }
 
-            bgfx::shutdown();
-            // Free up window
-            SDL_DestroyWindow(window);
-            // Shutdown SDL
-            SDL_Quit();
+            if (m_Timer->getDeltaTime() >= 1.0f / frameRate) { //this is not the couse of the black blinking bug
+                EarlyUpdate();
+                Update();
+
+                const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+                const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+
+                // Set view and projection matrix for view 0.
+                float view[16];
+                bx::mtxLookAt(view, eye, at);
+
+                float proj[16];
+                bx::mtxProj(proj,
+                    60.0f,
+                    float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
+                    0.1f, 100.0f,
+                    bgfx::getCaps()->homogeneousDepth);
+
+                bgfx::setViewTransform(0, view, proj);
+
+                // Set view 0 default viewport.
+                bgfx::setViewRect(0, 0, 0,
+                    m_Graphics->Screen_Width,
+                    m_Graphics->Screen_Hight);
+
+                bgfx::touch(0);
+
+
+                //-----------CUBE 1--------------------//
+                float mtx[16];
+                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+
+                cube.setMtx(mtx);// Set model matrix for rendering.
+                cube.submit(0, m_program);//submit cube values to the program
+                //--------------------------------------//
+
+                //----------------CUBE 2-----------------//
+                float mtx2[16];
+                bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
+                mtx2[12] = counter * 0.01f;
+                cube2.setMtx(mtx2);
+                cube2.submit(0, m_program);
+                //--------------------------------------//
+
+                LateUpdate();
+                Render();
+                counter++;
+            }
+            
+
+         
         }
+        bgfx::shutdown();
+        // Free up window
+        SDL_DestroyWindow(window);
+        // Shutdown SDL
+        SDL_Quit();
     }
 }
