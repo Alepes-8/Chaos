@@ -1,8 +1,13 @@
-{
-    "Name" : "Peasant",
-    "ID" : "0001",
-    "Health" : 8,
-    "Damage" : 1.2,
-    "MoveSpeed" : 2
+{"Peasent" :  [
+    {
+        "Name" : "Peasant",
+        "ID" : "0001",
+        "Health" : 8,
+        "Damage" : 1.2,
+        "MoveSpeed" : 2
+    }
+
+]
+   
      
 }
