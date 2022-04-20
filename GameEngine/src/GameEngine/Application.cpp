@@ -74,10 +74,6 @@ namespace GameEngine
     }
 
     SDL_Window* window = NULL;
-    const int WIDTH = 640;
-    const int HEIGHT = 480;
-
-
   
 
     void GameEngine::Application::Run() {
@@ -119,13 +115,13 @@ namespace GameEngine
         bgfx::init(init);
 
         // Reset window
-        bgfx::reset(WIDTH, HEIGHT, BGFX_RESET_VSYNC);
+        bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
 
         // Enable debug text.
         bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);
 
         // Set view rectangle for 0th view
-        bgfx::setViewRect(0, 0, 0, uint16_t(WIDTH), uint16_t(HEIGHT));
+        bgfx::setViewRect(0, 0, 0, uint16_t(m_Graphics->Screen_Width), uint16_t(m_Graphics->Screen_Hight));
 
         // Clear the view rect
         bgfx::setViewClear(0,
@@ -154,6 +150,9 @@ namespace GameEngine
         Renderable cube = CubeRenderable();
         //init vertices and indices buffers
         cube.createBuffers();
+
+        Renderable cube2 = CubeRenderable();
+        cube2.createBuffers();
         //-------------------------------------------//
 
         
@@ -193,7 +192,7 @@ namespace GameEngine
                 float proj[16];
                 bx::mtxProj(proj,
                     60.0f,
-                    float(WIDTH) / float(HEIGHT),
+                    float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
                     0.1f, 100.0f,
                     bgfx::getCaps()->homogeneousDepth);
 
@@ -201,29 +200,32 @@ namespace GameEngine
 
                 // Set view 0 default viewport.
                 bgfx::setViewRect(0, 0, 0,
-                    WIDTH,
-                    HEIGHT);
+                    m_Graphics->Screen_Width,
+                    m_Graphics->Screen_Hight);
 
                 bgfx::touch(0);
 
                 
+                //-----------CUBE 1--------------------//
                 float mtx[16];
-                
-                //bx::mtxRotateY(mtx, 0.0f);
-
-                //// position x,y,z
-                //mtx[12] = 0.0f;
-                //mtx[13] = 0.0f;
-                //mtx[14] = 0.0f;
                 bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
                 counter++;
 
                 // Set model matrix for rendering.
                 cube.setMtx(mtx);
-                
 
                 //submit cube values to the program
                 cube.submit(0, m_program);
+                //--------------------------------------//
+
+                 //----------------CUBE 2-----------------//
+                float mtx2[16];
+                bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
+                mtx2[12] = counter * 0.01f;
+                cube2.setMtx(mtx2);
+                cube2.submit(0, m_program);
+                //--------------------------------------//
+
 
                 bgfx::frame();
 
