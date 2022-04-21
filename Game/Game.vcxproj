@@ -91,7 +91,8 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -115,7 +116,8 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Release-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -139,7 +141,8 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -139,7 +139,9 @@ project "Game"
 
         postbuildcommands 
         {
-            "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2.dll ../bin/" .. outputdir .. "/Game"
+            "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2.dll ../bin/" .. outputdir .. "/Game",
+            "{COPY} ../GameEngine/library/jsoncpp/.Build/bin/Debug/jsoncpp.dll ../bin/" .. outputdir .. "/Game"
+
         }
 
     filter "configurations:Debug"
