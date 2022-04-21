@@ -159,7 +159,8 @@ namespace GameEngine
         //-------------------------------------------//
         GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
 
-        m_EntityManager->CreateNewEntity(); 
+        m_EntityManager->CreateNewEntity("Unit", "Peasant");
+        m_EntityManager->PrintList();
 
         GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
         //--------------------LOOP---------------------//

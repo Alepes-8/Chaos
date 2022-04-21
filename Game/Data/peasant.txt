@@ -1,0 +1,10 @@
+create entity inside entity manager 
+add components: 
+- Transform.h
+- DynamicBody.h
+- BoxColider.h
+- Sound.h
+- UnitHealth.h
+- UnitDamage.h
+- UnitMovment.h
+- PathFinder.h
