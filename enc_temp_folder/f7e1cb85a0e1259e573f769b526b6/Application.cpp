@@ -157,11 +157,11 @@ namespace GameEngine
         Renderable cube2 = CubeRenderable();
         cube2.createBuffers();
         //-------------------------------------------//
-        GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
+        GameEngine::Log::GetCoreLogger()->info("----Test creation of entity------");
 
         m_EntityManager->CreateNewEntity(); 
 
-        GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
+        GameEngine::Log::GetCoreLogger()->info("----Test creation of entity------");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
 

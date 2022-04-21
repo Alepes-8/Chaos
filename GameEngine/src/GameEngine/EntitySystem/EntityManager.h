@@ -11,7 +11,7 @@ namespace GameEngine {
 		void TerminateEnity(int ID);
 		void CreateNewEntity();
 		static EntityManager* CreateInstance();
-
+		static void Terminate();
 	private:
 		int GetNewID();
 		EntityManager();
