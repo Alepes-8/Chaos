@@ -57,6 +57,11 @@ project "GameEngine"
         "example-14-shadowvolumesDebug",
         "example-commonDebug",
         "example-glueDebug",
+        "fcppDebug",
+        "glslangDebug",
+        "glsl-optimizerDebug",
+        "spirv-optDebug",
+        "fcppDebug"
 
     }
 
@@ -65,7 +70,8 @@ project "GameEngine"
 
         defines
         {
-			"BX_CONFIG_DEBUG"
+			"BX_CONFIG_DEBUG",
+            "ENTRY_CONFIG_IMPLEMENT_MAIN"
 
         }
 
@@ -120,7 +126,7 @@ project "Game"
 
     links
     {
-        "GameEngine",
+        "GameEngine"
     }
 
     filter "system:windows"
@@ -129,7 +135,8 @@ project "Game"
         defines
         {
             --"HZ_PLATFORM_WINDOWS"
-			"BX_CONFIG_DEBUG"
+			"BX_CONFIG_DEBUG",
+            "ENTRY_CONFIG_IMPLEMENT_MAIN"
         }
 
         postbuildcommands 

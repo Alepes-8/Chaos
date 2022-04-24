@@ -17,6 +17,10 @@
 #include <common.h>
 #include <bx/math.h>
 #include <bx/bx.h>
+#include <bx/file.h>
+#include <bx/sort.h>
+#include <bx/spscqueue.h>
+#include <bx/filepath.h>
 
 namespace GameEngine
 {

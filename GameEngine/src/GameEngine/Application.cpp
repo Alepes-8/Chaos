@@ -1,7 +1,5 @@
 #include "Application.h" 
 
-
-
 namespace GameEngine
 {
     GameEngine::Application* GameEngine::Application::sInstance = NULL;
@@ -74,7 +72,7 @@ namespace GameEngine
     }
 
     SDL_Window* window = NULL;
-  
+
 
     void GameEngine::Application::Run() {
 
@@ -113,6 +111,7 @@ namespace GameEngine
         bgfx::Init init;
         init.type = bgfx::RendererType::OpenGL;
         bgfx::init(init);
+        bgfx::setDebug(BGFX_DEBUG_NONE);
 
         // Reset window
         bgfx::reset(m_Graphics->Screen_Width, m_Graphics->Screen_Hight, BGFX_RESET_VSYNC);
@@ -156,7 +155,7 @@ namespace GameEngine
         //-------------------------------------------//
 
         //------------------MESH---------------------//
-        Mesh* vampire /*= meshLoad("3DModels/BIN format/vampire.bin")*/;
+        Mesh* vampire = meshLoad("./src/3DModels/BIN format/vampire.bin");
         //--------------------------------------------//
 
         
@@ -233,7 +232,7 @@ namespace GameEngine
                 //-----------VAMPIRE----------------//
                 float mtx_vampire[16];
                 bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
-                /*meshSubmit(vampire, 0, m_program, mtx_vampire);*/
+                //meshSubmit(vampire, 0, m_program, mtx_vampire);
 
 
                 bgfx::frame();
