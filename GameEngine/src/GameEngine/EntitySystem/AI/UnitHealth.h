@@ -6,10 +6,11 @@ namespace GameEngine {
 	private:
 		float health;
 	public:	
-		UnitHealth();
+		UnitHealth(float initHealth);
 		~UnitHealth();
 		float GetHealth();
 		void EditHealth(float change);
+		void Update() override;
 		
 
 	};

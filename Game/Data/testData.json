@@ -4,23 +4,22 @@
         "Components" : {
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
+            "Component3": "UnitMovement"
         },
-        "Type" : {
+        "Template" : {
             "Peasant" : {
                 "Health" : 4.8,
                 "Damage" : 0.96,
-                "MoveSpeed" : 2
+                "Speed" : 2
             },
             "Leader" : {
                 "Health" : 8,
                 "Damage" : 1.6,
-                "MoveSpeed" : 2
+                "Speed" : 2
             }
         }
     },
-    "Objects" : 
+    "Tree" : 
     { 
         "Components" : {
             "Component1": "UnitHealth",
@@ -28,28 +27,24 @@
             "Component3": "UnitMovement",
             "Component4": "PathFinding"
         },
-        "Type":
+        "Template": 
         {
-            "Tree" : 
-            {
-                "Shader" : "tree.bin",
-                "Mesh" : "tree.obj"
-            },
-            "Rock" : 
-            {
-                "Shader" : "Rock.bin",
-                "Mesh" : "Rock.obj"
-            },
-            "Lantern" : 
-            {
-                "Shader" : "lantern.bin",
-                "Mesh" : "lantern.obj",
-                "ExtraComponents" : 
-                {
-                    "Component1" : "Light"                    
-                }
-            }
+            "Health" : 10
+        }
+    },
+    "Rock" : 
+    { 
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Template": 
+        {
+            "Health" : 20
         }
     }
+
 
 }

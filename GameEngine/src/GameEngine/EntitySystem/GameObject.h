@@ -2,21 +2,19 @@
 #include "BaseComponent.h"
 #include <vector>
 #include "../Log.h"
+#include <map>
 
 
 namespace GameEngine {
 	class GameObject {
 	public:
 		int ID;
-		std::vector<BaseComponent*> componentsList;
-		GameObject* entity;
+		std::map<std::string, BaseComponent**> components;
 
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
-
-	private:
-		GameObject();
-		~GameObject();
+		GameObject(int inputID);
+		~GameObject();		
 	};
 }

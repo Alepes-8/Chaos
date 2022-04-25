@@ -5,20 +5,21 @@ void GameEngine::GameObject::EarlyUpdate() {
 }
 
 void GameEngine::GameObject::Update() {
-	for (auto component : componentsList) {
+	/*for (auto component : componentsList) {
 		component->Update();
-	}
+	}*/
 }
 
 void GameEngine::GameObject::LateUpdate() {
 
 }
 
-GameEngine::GameObject::GameObject() {
-	GameEngine::Log::GetCoreLogger()->info("create the GameObject Class");
+GameEngine::GameObject::GameObject(int inputID) {
+	GameEngine::Log::GetCoreLogger()->warn("Create the GameObject Class");
+	ID = inputID;
 }
 
 GameEngine::GameObject::~GameObject() {
-	GameEngine::Log::GetCoreLogger()->info("Destroy the GameObject Class");
+	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
 }
 

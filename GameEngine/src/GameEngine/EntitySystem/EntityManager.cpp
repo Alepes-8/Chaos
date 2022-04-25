@@ -1,5 +1,7 @@
 #include "EntityManager.h"
 
+
+
 GameEngine::EntityManager* GameEngine::EntityManager::m_Instance = NULL;
 
  GameEngine::EntityManager* GameEngine::EntityManager::CreateInstance() {
@@ -13,8 +15,15 @@ GameEngine::EntityManager* GameEngine::EntityManager::m_Instance = NULL;
  }
 
 GameEngine::EntityManager::EntityManager(){
-	
-	//create a entitylist
+
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitDamage", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitHealth", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitMovement", std::vector<BaseComponent*>()));
+
+    componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
+
+    UnitDamage* child = dynamic_cast<UnitDamage*>(componentLists.at("UnitDamage")[0]);
+    std::cout << "Damage value:" << child->GetDamage() << std::endl;
 }
 
 GameEngine::EntityManager::~EntityManager() {
@@ -24,32 +33,41 @@ GameEngine::EntityManager::~EntityManager() {
 }
 void GameEngine::EntityManager::PrintList() {
     std::cout << "The length of the current EntityList is " 
-        << EntityList.size() << " long" << std::endl;
+     << EntityList.size() << " long" << std::endl;
 }
 
 void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
 	std::cout << "create new entity " << std::endl;
 
+    GameObject* entity = new GameObject(5);
+    EntityList.push_back(entity);
+    
+    /*--------Load the json file---------*/
     std::ifstream testData("Data/testData.json");
     Json::Value actualJson;
     Json::Reader reader;
 
-
     // using the reader we parse the json 
     reader.parse(testData, actualJson);
 
-    //now the acualJson will have json data
-    //std::cout <<  actualJson << std::endl;
-    char* types = "Leader";
-    //acceesssing the specific data parts
-    std::cout << "The " << types << " entity has the following components:" << std::endl;
+    /*------Take out the the info regarding which components to add.--------*/
+    for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
+        BaseComponent* comp;
 
-    for (Json::Value::const_iterator itr = actualJson["Unit"]["Components"].begin(); itr != actualJson["Unit"]["Components"].end(); itr++) {
-        std::cout << "  -" << itr->asCString() << std::endl;
-    }
-    std::cout << "\n Then the following stats:" << std::endl;
+        if (itr->asCString() == (std::string) "UnitDamage") {
+            comp = new UnitDamage(actualJson[form]["Template"][type]["Damage"].asFloat());
+        }
 
-    for (Json::Value::const_iterator itr = actualJson["Unit"]["Type"]["Peasant"].begin(); itr != actualJson["Unit"]["Type"]["Peasant"].end(); itr++) {
-        std::cout << "  -" << itr.key() << ": " << itr->asInt() << std::endl;
+        if (itr->asCString() == (std::string)"UnitHealth") {
+            comp = new UnitHealth(actualJson[form]["Template"][type]["Health"].asFloat());
+        }
+
+        if (itr->asCString() == (std::string)"UnitMovement") {
+            comp = new UnitMovement(actualJson[form]["Template"][type]["Speed"].asFloat());
+        }
+
+        BaseComponent** ptr = &comp;
+        componentLists[itr->asCString()].push_back(comp);
+        entity->components.insert({ itr->asCString(), ptr, });
     }
 }

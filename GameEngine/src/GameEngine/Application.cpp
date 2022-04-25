@@ -55,6 +55,15 @@ namespace GameEngine
         if (m_InputManager->KeyReleased(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Released");
         }
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_C)) {
+            GameEngine::Log::GetCoreLogger()->info("C Create");
+            m_EntityManager->CreateNewEntity("Unit", "Peasant");
+        }
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
+            GameEngine::Log::GetCoreLogger()->info("P print");
+            m_EntityManager->PrintList();
+
+        }
         if (m_InputManager->MouseButtonDown(GameEngine::InputManager::left)) {
             GameEngine::Log::GetCoreLogger()->info("left Mouse down");
         }
@@ -167,8 +176,7 @@ namespace GameEngine
 
         GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
 
-        m_EntityManager->CreateNewEntity("Unit", "Peasant");
-        m_EntityManager->PrintList();
+   
 
         GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
         //--------------------LOOP---------------------//
