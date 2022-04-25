@@ -29,6 +29,5 @@ namespace GameEngine {
 		int GetNewID();
 		EntityManager();
 		~EntityManager();
-
 	};
 }
