@@ -182,69 +182,65 @@ namespace GameEngine
                 }*/
             }
 
-            float frameStart = SDL_GetTicks();
+            if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
+                counter++;
 
-            EarlyUpdate();
-            Update();
+                EarlyUpdate();
+                Update();
 
-            const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-            const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+                const bx::Vec3 at = { 0.0f, 0.0f, 0.0f };
+                const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
 
-            // Set view and projection matrix for view 0.
-            float view[16];
-            bx::mtxLookAt(view, eye, at);
+                // Set view and projection matrix for view 0.
+                float view[16];
+                bx::mtxLookAt(view, eye, at);
 
-            float proj[16];
-            bx::mtxProj(proj,
-                60.0f,
-                float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
-                0.1f, 100.0f,
-                bgfx::getCaps()->homogeneousDepth);
+                float proj[16];
+                bx::mtxProj(proj,
+                    60.0f,
+                    float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
+                    0.1f, 100.0f,
+                    bgfx::getCaps()->homogeneousDepth);
 
-            bgfx::setViewTransform(0, view, proj);
+                bgfx::setViewTransform(0, view, proj);
 
-            // Set view 0 default viewport.
-            bgfx::setViewRect(0, 0, 0,
-                m_Graphics->Screen_Width,
-                m_Graphics->Screen_Hight);
+                // Set view 0 default viewport.
+                bgfx::setViewRect(0, 0, 0,
+                    m_Graphics->Screen_Width,
+                    m_Graphics->Screen_Hight);
 
-            bgfx::touch(0);
+                bgfx::touch(0);
 
-            //-----------CUBE 1--------------------//
-            float mtx[16];
-            bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-            counter++;
+                //-----------CUBE 1--------------------//
+                float mtx[16];
+                bx::mtxIdentity(mtx);
+                //bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+               
 
-            // Set model matrix for rendering.
-            cube.setMtx(mtx);
+                // Set model matrix for rendering.
+                cube.setMtx(mtx);
 
-            //submit cube values to the program
-            cube.submit(0, m_program);
-            //--------------------------------------//
+                //submit cube values to the program
+                cube.submit(0, m_program);
+                //--------------------------------------//
 
-            //----------------CUBE 2-----------------//
-            float mtx2[16];
-            bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
-            mtx2[12] = counter * 0.01f;
-            cube2.setMtx(mtx2);
-            cube2.submit(0, m_program);
-            //--------------------------------------//
+                //----------------CUBE 2-----------------//
+                float mtx2[16];
+                bx::mtxTranslate(mtx2, 4.0f, 0.0f, 0.0f);
+                //bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
 
-            //-----------VAMPIRE----------------//
-            float mtx_vampire[16];
-            bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
-            //meshSubmit(vampire, 0, m_program, mtx_vampire);
+                cube2.setMtx(mtx2);
+                cube2.submit(0, m_program);
+                //--------------------------------------//
 
-            LateUpdate();
-            Render();
+                //-----------VAMPIRE----------------//
+                float mtx_vampire[16];
+                bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
+                //meshSubmit(vampire, 0, m_program, mtx_vampire);
 
-            float frameTime = SDL_GetTicks() - frameStart;
-            
-            if (frameRate > frameTime) {
-                SDL_Delay(frameRate - frameTime);
+                LateUpdate();
+                Render();
             }
-
-            
         }
 
         bgfx::shutdown();
