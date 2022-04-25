@@ -63,6 +63,12 @@ void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 		std::cout << "z negative" << std::endl;
 		this->translate(0.0f, 0.0f, -camera_speed);
 	}
+	else if (im->Keydown(SDL_SCANCODE_KP_8)) {
+		_up.y += camera_speed;
+	}
+	else if (im->Keydown(SDL_SCANCODE_KP_2)) {
+		_up.y -= camera_speed;
+	}
 	else if (im->KeyPressed(SDL_SCANCODE_KP_0)) {
 		std::cout << "cam reset" << std::endl;
 		this->reset();

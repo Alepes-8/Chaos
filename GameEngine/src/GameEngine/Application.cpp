@@ -156,6 +156,9 @@ namespace GameEngine
 
         Renderable cube2 = CubeRenderable();
         cube2.createBuffers();
+        
+        Renderable floor = CubeRenderable();
+        floor.createBuffers();
         //----------------------------------------//
 
         //-----------------CAMERA-----------------//
@@ -221,6 +224,10 @@ namespace GameEngine
                     cube2.submit(0, m_program);
                     //--------------------------------------//
 
+                    float mtxfloor[16];
+                    bx::mtxScale(mtxfloor, 10, 10, 0.01);
+                    floor.setMtx(mtxfloor);
+                    floor.submit(0, m_program);
 
                     bgfx::frame();
 
