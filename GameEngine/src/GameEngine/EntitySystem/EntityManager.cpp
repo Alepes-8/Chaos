@@ -36,7 +36,7 @@ void GameEngine::EntityManager::PrintList() {
 void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
 	std::cout << "New entity created " << std::endl;
 
-    GameObject* entity = new GameObject(5);
+    GameObject* entity = new GameObject(GetNewID());
     EntityList.push_back(entity);
     
     /*--------Load the json file---------*/
@@ -74,5 +74,6 @@ void GameEngine::EntityManager::PrintFirstEntity() {
 }
 
 int GameEngine::EntityManager::GetNewID() {
-
+    currentID += 1;
+    return currentID;
 }

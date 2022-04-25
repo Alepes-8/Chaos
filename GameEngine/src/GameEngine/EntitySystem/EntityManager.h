@@ -14,6 +14,7 @@
 namespace GameEngine {
 	class EntityManager {
 	private: 
+		int currentID = 0;
 		std::vector<GameObject*> EntityList;
 		std::map<std::string, std::vector<BaseComponent*>> componentLists;
 		static EntityManager* m_Instance;
