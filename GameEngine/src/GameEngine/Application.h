@@ -11,12 +11,7 @@
 
 
 #include <vector>
-#include <SDL.h>
-#include <SDL_syswm.h>
-#include <bgfx/bgfx.h>
-#include <bgfx/platform.h>
-#include <bx/math.h>
-#include <bx/bx.h>
+
 
 namespace GameEngine
 {
