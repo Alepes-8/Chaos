@@ -37,43 +37,150 @@ void GameEngine::Camera::reset()
 
 void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 {
-	//moves the camera with the arrows
+	//moves the camera with the keyboard
+
+	//translation riht - right arrow
 	if (im->Keydown(SDL_SCANCODE_RIGHT)) {
 		std::cout << "x positve" << std::endl;
-		//std::cout << _at.x << _at.y << _at.z << std::endl;
 		this->translate(-camera_speed, 0.0f, 0.0f);
 	}
+
+	//translation left - left arrow
 	else if (im->Keydown(SDL_SCANCODE_LEFT)) {
 		std::cout << "x positve" << std::endl;
 		this->translate(camera_speed, 0.0f, 0.0f);
 	}
+
+	//translation up - up arrow
 	else if (im->Keydown(SDL_SCANCODE_UP)) {
 		std::cout << "y positive" << std::endl;
 		this->translate(0.0f, camera_speed, 0.0f);
 	}
+
+	//translation down - down arrow
 	else if (im->Keydown(SDL_SCANCODE_DOWN)) {
 		std::cout << "y negative" << std::endl;
 		this->translate(0.0f, -camera_speed, 0.0f);
 	}
+
+	//translation backward - keypad 1
 	else if (im->Keydown(SDL_SCANCODE_KP_1)) {
 		std::cout << "z positive" << std::endl;
 		this->translate(0.0f, 0.0f, +camera_speed);
 	}
+
+	//translation forward - keypad 7
 	else if (im->Keydown(SDL_SCANCODE_KP_7)) {
 		std::cout << "z negative" << std::endl;
 		this->translate(0.0f, 0.0f, -camera_speed);
 	}
+
+	//rotates left - keypad 4
+	else if (im->Keydown(SDL_SCANCODE_KP_4)) {
+		float teta;
+		float r = sqrt(pow((_eye.x - _at.x), 2) + pow((_eye.z - _at.z), 2));
+		if (_eye.z - _at.z > 0) {
+			teta = acos((_eye.x - _at.x) / r);
+		}
+		else {
+			teta = -acos((_eye.x - _at.x) / r);
+		}
+
+		teta += (camera_speed / 10);
+
+		_eye.x = r * cos(teta) + _at.x;
+		_eye.z = r * sin(teta) + _at.z;	
+	}
+
+	//rotates right - keypad 6
+	else if (im->Keydown(SDL_SCANCODE_KP_6)) {
+		float teta;
+		float r = sqrt(pow((_eye.x - _at.x), 2) + pow((_eye.z - _at.z), 2));
+		if (_eye.z - _at.z > 0) {
+			teta = acos((_eye.x - _at.x) / r);
+		}
+		else {
+			teta = -acos((_eye.x - _at.x) / r);
+		}
+
+		teta -= (camera_speed / 10);
+
+		_eye.x = r * cos(teta) + _at.x;
+		_eye.z = r * sin(teta) + _at.z;
+	}
+
+	//rotates forward - keypad 8
+	else if (im->Keydown(SDL_SCANCODE_KP_8)) {
+		float teta;
+		float r = sqrt(pow((_eye.y - _at.y), 2) + pow((_eye.z - _at.z), 2));
+		if (_eye.z - _at.z > 0) {
+			teta = acos((_eye.y - _at.y) / r);
+		}
+		else {
+			teta = -acos((_eye.y - _at.y) / r);
+		}
+
+		teta -= (camera_speed / 10);
+
+		_eye.y = r * cos(teta) + _at.y;
+		_eye.z = r * sin(teta) + _at.z;
+
+	
+		if (_eye.z - _at.z > 0) {
+			_up.y = 1;
+		}
+		else {
+			teta = -acos((_eye.y - _at.y) / r);
+			_up.y = -1;
+		}
+	}
+
+	//rotates backward - keypad 2
+	else if (im->Keydown(SDL_SCANCODE_KP_2)) {
+		float teta;
+		float r = sqrt(pow((_eye.y - _at.y), 2) + pow((_eye.z - _at.z), 2));
+		if (_eye.z - _at.z > 0) {
+			teta = acos((_eye.y - _at.y) / r);
+		}
+		else {
+			teta = -acos((_eye.y - _at.y) / r);
+		}
+
+		teta += (camera_speed / 10);
+
+		_eye.y = r * cos(teta) + _at.y;
+		_eye.z = r * sin(teta) + _at.z;
+
+		if (_eye.z - _at.z > 0) {
+			_up.y = 1;
+		}
+		else {
+			teta = -acos((_eye.y - _at.y) / r);
+			_up.y = -1;
+		}
+
+	}
+
+	//reset camera - keypad 0
 	else if (im->KeyPressed(SDL_SCANCODE_KP_0)) {
 		std::cout << "cam reset" << std::endl;
 		this->reset();
 	}
+
+	//increase camera speed - keypad 9
 	else if (im->KeyPressed(SDL_SCANCODE_KP_9)) {
 		std::cout << "speed : " << camera_speed << std::endl;
 		camera_speed += 0.1f;
 	}
+
+	//decrease camera speed - keypad 3
 	else if (im->KeyPressed(SDL_SCANCODE_KP_3)) {
 		std::cout << "speed : " << camera_speed << std::endl;
 		camera_speed -= 0.1f;
+	}
+	else if (im->KeyPressed(SDL_SCANCODE_KP_0)) {
+		std::cout << "cam reset" << std::endl;
+		this->reset();
 	}
 }
 
