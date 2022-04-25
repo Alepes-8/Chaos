@@ -14,6 +14,7 @@ namespace GameEngine {
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
+		void PrintList();
 		GameObject(int inputID);
 		~GameObject();		
 	};

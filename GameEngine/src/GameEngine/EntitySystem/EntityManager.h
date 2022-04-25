@@ -23,6 +23,7 @@ namespace GameEngine {
 		static EntityManager* CreateInstance();
 		static void Terminate();
 		void PrintList();
+		void PrintFirstEntity();
 	private:
 		int GetNewID();
 		EntityManager();

@@ -23,3 +23,10 @@ GameEngine::GameObject::~GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
 }
 
+void GameEngine::GameObject::PrintList() {
+
+	for (auto comps : components)
+	{
+		std::cout << comps.first << " " << comps.second << "\n";
+	}
+}

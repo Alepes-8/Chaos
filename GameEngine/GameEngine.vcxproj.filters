@@ -4,6 +4,9 @@
     <Filter Include="GameEngine">
       <UniqueIdentifier>{D54F7917-C107-BB64-2A0F-94C016E65555}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Camera">
+      <UniqueIdentifier>{AD22247E-1939-2214-62B0-AD35CE05F39B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameEngine\EntitySystem">
       <UniqueIdentifier>{E6828CBA-52BA-D451-5BC4-3875C77AFB4A}</UniqueIdentifier>
     </Filter>
@@ -36,6 +39,9 @@
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h">
       <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\Camera\Camera.h">
+      <Filter>GameEngine\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h">
       <Filter>GameEngine\EntitySystem\AI</Filter>
@@ -122,6 +128,9 @@
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
       <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\Camera\Camera.cpp">
+      <Filter>GameEngine\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>

@@ -26,24 +26,21 @@ GameEngine::EntityManager::EntityManager(){
     std::cout << "Damage value:" << child->GetDamage() << std::endl;
 }
 
-GameEngine::EntityManager::~EntityManager() {
-	//delete the entitylist
-	//set the entitylist ass NULL
-	
-}
+GameEngine::EntityManager::~EntityManager() {}
+
 void GameEngine::EntityManager::PrintList() {
     std::cout << "The length of the current EntityList is " 
      << EntityList.size() << " long" << std::endl;
 }
 
 void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
-	std::cout << "create new entity " << std::endl;
+	std::cout << "New entity created " << std::endl;
 
     GameObject* entity = new GameObject(5);
     EntityList.push_back(entity);
     
     /*--------Load the json file---------*/
-    std::ifstream testData("Data/testData.json");
+    std::ifstream testData("Data/EntityData.json");
     Json::Value actualJson;
     Json::Reader reader;
 
@@ -70,4 +67,12 @@ void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
         componentLists[itr->asCString()].push_back(comp);
         entity->components.insert({ itr->asCString(), ptr, });
     }
+}
+
+void GameEngine::EntityManager::PrintFirstEntity() {
+    EntityList[0]->PrintList();
+}
+
+int GameEngine::EntityManager::GetNewID() {
+
 }

@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
+    <ClInclude Include="src\GameEngine\Camera\Camera.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitDamage.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
+    <ClCompile Include="src\GameEngine\Camera\Camera.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
