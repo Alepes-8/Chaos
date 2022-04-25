@@ -1,6 +1,5 @@
 #include "GameEngine.h"
 
-
 class Game : public GameEngine::Application
 {
 public:

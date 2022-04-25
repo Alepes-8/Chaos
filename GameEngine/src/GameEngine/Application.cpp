@@ -62,8 +62,9 @@ namespace GameEngine
     }
 
     void Application::Render() {
+        //m_Graphics->Render();
         bgfx::frame(); //Advance to next frame. When using multithreaded renderer,
-        m_Graphics->Render();
+        
     }
 
     void Application::LateUpdate() {
@@ -155,7 +156,7 @@ namespace GameEngine
         //-------------------------------------------//
 
         //------------------MESH---------------------//
-        Mesh* vampire = meshLoad("./src/3DModels/BIN format/vampire.bin");
+        Mesh* vampire /*= meshLoad("./src/3DModels/BIN format/vampire.bin")*/;
         //--------------------------------------------//
 
         
@@ -181,65 +182,69 @@ namespace GameEngine
                 }*/
             }
 
-            if (m_Timer->getDeltaTime() >= 1.0f / frameRate){
-                EarlyUpdate();
-                Update();
+            float frameStart = SDL_GetTicks();
 
-                const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-                const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
+            EarlyUpdate();
+            Update();
 
-                // Set view and projection matrix for view 0.
-                float view[16];
-                bx::mtxLookAt(view, eye, at);
+            const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
+            const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
 
-                float proj[16];
-                bx::mtxProj(proj,
-                    60.0f,
-                    float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
-                    0.1f, 100.0f,
-                    bgfx::getCaps()->homogeneousDepth);
+            // Set view and projection matrix for view 0.
+            float view[16];
+            bx::mtxLookAt(view, eye, at);
 
-                bgfx::setViewTransform(0, view, proj);
+            float proj[16];
+            bx::mtxProj(proj,
+                60.0f,
+                float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
+                0.1f, 100.0f,
+                bgfx::getCaps()->homogeneousDepth);
 
-                // Set view 0 default viewport.
-                bgfx::setViewRect(0, 0, 0,
-                    m_Graphics->Screen_Width,
-                    m_Graphics->Screen_Hight);
+            bgfx::setViewTransform(0, view, proj);
 
-                bgfx::touch(0);
+            // Set view 0 default viewport.
+            bgfx::setViewRect(0, 0, 0,
+                m_Graphics->Screen_Width,
+                m_Graphics->Screen_Hight);
 
-                
-                //-----------CUBE 1--------------------//
-                float mtx[16];
-                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-                counter++;
+            bgfx::touch(0);
 
-                // Set model matrix for rendering.
-                cube.setMtx(mtx);
+            //-----------CUBE 1--------------------//
+            float mtx[16];
+            bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
+            counter++;
 
-                //submit cube values to the program
-                cube.submit(0, m_program);
-                //--------------------------------------//
+            // Set model matrix for rendering.
+            cube.setMtx(mtx);
 
-                 //----------------CUBE 2-----------------//
-                float mtx2[16];
-                bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
-                mtx2[12] = counter * 0.01f;
-                cube2.setMtx(mtx2);
-                cube2.submit(0, m_program);
-                //--------------------------------------//
+            //submit cube values to the program
+            cube.submit(0, m_program);
+            //--------------------------------------//
 
-                //-----------VAMPIRE----------------//
-                float mtx_vampire[16];
-                bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
-                //meshSubmit(vampire, 0, m_program, mtx_vampire);
+            //----------------CUBE 2-----------------//
+            float mtx2[16];
+            bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
+            mtx2[12] = counter * 0.01f;
+            cube2.setMtx(mtx2);
+            cube2.submit(0, m_program);
+            //--------------------------------------//
 
+            //-----------VAMPIRE----------------//
+            float mtx_vampire[16];
+            bx::mtxRotateXY(mtx_vampire, counter * 0.01f, counter * 0.01f);
+            //meshSubmit(vampire, 0, m_program, mtx_vampire);
 
-                bgfx::frame();
+            LateUpdate();
+            Render();
 
-                LateUpdate();
-                Render();
+            float frameTime = SDL_GetTicks() - frameStart;
+            
+            if (frameRate > frameTime) {
+                SDL_Delay(frameRate - frameTime);
             }
+
+            
         }
 
         bgfx::shutdown();

@@ -57,12 +57,7 @@ project "GameEngine"
         "example-14-shadowvolumesDebug",
         "example-commonDebug",
         "example-glueDebug",
-        "fcppDebug",
-        "glslangDebug",
-        "glsl-optimizerDebug",
-        "spirv-optDebug",
         "fcppDebug"
-
     }
 
     filter "system:windows"
