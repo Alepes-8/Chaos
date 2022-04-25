@@ -68,7 +68,7 @@ namespace GameEngine
 
     void Application::Render() {
         bgfx::frame(); //Advance to next frame. When using multithreaded renderer,
-        m_Graphics->Render();
+        //m_Graphics->Render();
     }
 
     void Application::LateUpdate() {
@@ -156,7 +156,12 @@ namespace GameEngine
 
         Renderable cube2 = CubeRenderable();
         cube2.createBuffers();
-        //-------------------------------------------//
+        //----------------------------------------//
+
+        //-----------------CAMERA-----------------//
+        Camera cam = Camera();
+        //----------------------------------------//
+
         GameEngine::Log::GetCoreLogger()->warn("----Test creation of entity------");
 
         m_EntityManager->CreateNewEntity("Unit", "Peasant");
@@ -195,29 +200,7 @@ namespace GameEngine
                     EarlyUpdate();
                     Update();
 
-                    const bx::Vec3 at = { 0.0f, 0.0f,   0.0f };
-                    const bx::Vec3 eye = { 0.0f, 0.0f, 10.0f };
-
-                    // Set view and projection matrix for view 0.
-                    float view[16];
-                    bx::mtxLookAt(view, eye, at);
-
-                    float proj[16];
-                    bx::mtxProj(proj,
-                        60.0f,
-                        float(m_Graphics->Screen_Width) / float(m_Graphics->Screen_Hight),
-                        0.1f, 100.0f,
-                        bgfx::getCaps()->homogeneousDepth);
-
-                    bgfx::setViewTransform(0, view, proj);
-
-                    // Set view 0 default viewport.
-                    bgfx::setViewRect(0, 0, 0,
-                        m_Graphics->Screen_Width,
-                        m_Graphics->Screen_Hight);
-
-                    bgfx::touch(0);
-
+                    cam.update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
                     //-----------CUBE 1--------------------//
                     float mtx[16];
@@ -233,8 +216,7 @@ namespace GameEngine
 
                      //----------------CUBE 2-----------------//
                     float mtx2[16];
-                    bx::mtxRotateXY(mtx2, counter * 0.01f, counter * 0.01f);
-                    mtx2[12] = counter * 0.01f;
+                    bx::mtxTranslate(mtx2,5,0,0);
                     cube2.setMtx(mtx2);
                     cube2.submit(0, m_program);
                     //--------------------------------------//

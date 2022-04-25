@@ -7,6 +7,7 @@
 #include "GameEngine/Renderable/Renderable.h"
 #include "GameEngine/Renderable/CubeRenderable.h"
 #include "GameEngine/Shaders/Shader.h"
+#include "GameEngine/Camera/Camera.h"
 
 
 #include <vector>
