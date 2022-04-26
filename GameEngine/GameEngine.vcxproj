@@ -142,6 +142,22 @@
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitDamage.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitMovement.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\BaseComponent.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Animation.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Sound.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\EntityManager.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Light.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h" />
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
     <ClInclude Include="src\GameEngine\MathHelper.h" />
@@ -153,6 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
     <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp" />

@@ -4,7 +4,7 @@ bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
 void GameEngine::Renderable::init()
 {
-	PosColorVertex::init();
+	GameEngine::PosColorVertex::init();
 }
 
 void GameEngine::Renderable::createBuffers()
