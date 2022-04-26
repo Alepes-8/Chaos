@@ -87,7 +87,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -111,7 +111,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -135,7 +135,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
