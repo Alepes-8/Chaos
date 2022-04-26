@@ -19,11 +19,13 @@ GameEngine::EntityManager::EntityManager(){
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitDamage", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitHealth", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitMovement", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("PathFinding", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Sound", std::vector<BaseComponent*>()));
 
-    componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
+    /*componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
 
     UnitDamage* child = dynamic_cast<UnitDamage*>(componentLists.at("UnitDamage")[0]);
-    std::cout << "Damage value:" << child->GetDamage() << std::endl;
+    std::cout << "Damage value:" << child->GetDamage() << std::endl;*/
 }
 
 GameEngine::EntityManager::~EntityManager() {}
