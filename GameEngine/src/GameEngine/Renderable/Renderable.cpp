@@ -7,6 +7,7 @@ void GameEngine::Renderable::init()
 	PosColorVertex::init();
 }
 
+
 void GameEngine::Renderable::createBuffers()
 {
     this->m_vbh = bgfx::createVertexBuffer(

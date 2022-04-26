@@ -1,8 +1,12 @@
-/*#include "Sound.h"
-#include "soloud.h"
-#include "soloud_wav.h"
+#include "Sound.h"
 
+GameEngine::Sound::Sound(const char* dir) {
 
-static SoLoud::SoLoud* soloud;
+}
 
-*/
+GameEngine::Sound::~Sound() {
+
+}
+void GameEngine::Sound::Update() {
+
+}

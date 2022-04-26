@@ -1,12 +1,12 @@
 #include "UnitDamage.h"
 
 GameEngine::UnitDamage::UnitDamage(float dmgValue) {
-
+	std::cout << "damage create " << dmgValue << std::endl;
 	damage = dmgValue;
-	std::cout << "damaga create" << std::endl;
 }
 
 GameEngine::UnitDamage::~UnitDamage() {
+	std::cout << "damage delete" << std::endl;
 	damage = NULL;
 }
 
