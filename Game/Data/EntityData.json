@@ -55,8 +55,16 @@
             "Component3": "UnitMovement",
             "Component4": "PathFinding"
         }
-    }
-        
+    },
 
+    "BackgroundMusic": 
+    {
+        "Components": {
+            "Component1": "Sound"
+        },
+        "Template": {
+            "Sound": "Audio/testSound.wav"
+        }
+    }
 
 }
