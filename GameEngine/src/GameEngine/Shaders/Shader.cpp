@@ -20,17 +20,22 @@ bgfx::ShaderHandle GameEngine::loadShader(const char* _name) {
         return handle;
     }
 }
-
+/*
 void GameEngine::Shader::loadVertexShader(char* path) 
 {
-	vsh = loadShader(path);
+	vsh = loadShader( path);
 }
 
 void GameEngine::Shader::loadFragmentShader(char* path)
 {
 	fsh = loadShader(path);
-}
+}*/
 
 bgfx::ProgramHandle GameEngine::Shader::createProgram() {
 	return bgfx::createProgram(vsh, fsh, true);
+}
+
+GameEngine::Shader::Shader(char* frag, char* vert) {
+    vsh = loadShader(frag);
+    fsh = loadShader(vert);
 }

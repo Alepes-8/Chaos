@@ -95,10 +95,8 @@ namespace GameEngine
 
        //-----------------SHADERS--------------------//
         //Create shader
-        Shader shader = Shader();
-        shader.loadFragmentShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/fs_cubes.bin");
-        shader.loadVertexShader("../../GameEngine/GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
-        //Create a program so we can pass value to the sahder
+        Shader shader = Shader("../GameEngine/src/GameEngine/Shaders/fs_cubes.bin",
+            "../GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
         bgfx::ProgramHandle m_program = shader.createProgram();
         //-------------------------------------------//
 
@@ -153,6 +151,7 @@ namespace GameEngine
 
                 //submit cube values to the program
                 cube.submit(0, m_program);
+
                 //--------------------------------------//
 
                     //----------------CUBE 2-----------------//
