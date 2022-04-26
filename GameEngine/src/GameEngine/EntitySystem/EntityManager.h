@@ -22,7 +22,7 @@ namespace GameEngine {
 		static EntityManager* m_Instance;
 	public:
 		void TerminateEnity(int entityID);
-		void CreateNewEntity(char* form, char* type);
+		void CreateNewEntity(char* form);
 		static EntityManager* CreateInstance();
 		static void Terminate();
 		void PrintList();

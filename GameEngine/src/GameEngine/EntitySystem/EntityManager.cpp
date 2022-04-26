@@ -35,7 +35,7 @@ void GameEngine::EntityManager::PrintList() {
      << EntityList.size() << " long" << std::endl;
 }
 
-void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
+void GameEngine::EntityManager::CreateNewEntity(char* form) {
 	std::cout << "New entity created " << std::endl;
 
     GameObject* entity = new GameObject(GetNewID());
@@ -54,15 +54,15 @@ void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
         BaseComponent* comp;
 
         if (itr->asCString() == (std::string) "UnitDamage") {
-            comp = new UnitDamage(actualJson[form]["Template"][type]["Damage"].asFloat());
+            comp = new UnitDamage(actualJson[form]["Template"]["Damage"].asFloat());
         }
 
         else if (itr->asCString() == (std::string)"UnitHealth") {
-            comp = new UnitHealth(actualJson[form]["Template"][type]["Health"].asFloat());
+            comp = new UnitHealth(actualJson[form]["Template"]["Health"].asFloat());
         }
 
         else if (itr->asCString() == (std::string)"UnitMovement") {
-            comp = new UnitMovement(actualJson[form]["Template"][type]["Speed"].asFloat());
+            comp = new UnitMovement(actualJson[form]["Template"]["Speed"].asFloat());
         }
 
         if (itr->asCString() == (std::string)"PathFinding") {
@@ -70,7 +70,7 @@ void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
         }
 
         if (itr->asCString() == (std::string)"Sound") {
-            std::string data = actualJson[form]["Template"][type]["Sound"].asCString();
+            std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
             comp = new Sound(directory);
         }
