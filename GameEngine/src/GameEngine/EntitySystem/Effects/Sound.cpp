@@ -13,19 +13,23 @@ void GameEngine::Sound::Update() {
 
 }
 
-void GameEngine::Sound::playSound() {
+void GameEngine::Sound::playSound(const char* name) {
 
 }
 
-void GameEngine::Sound::stopChannel() {
+void GameEngine::Sound::stopChannel(int channel) {
 
 }
 
-void GameEngine::Sound::setSoundVolume() {
+void GameEngine::Sound::loadSound(const char* directory) {
 
 }
 
-void GameEngine::Sound::playMusic() {
+void GameEngine::Sound::setSoundVolume(unsigned int volume) {
+
+}
+
+void GameEngine::Sound::playMusic(const char* directory) {
 
 }
 
@@ -33,7 +37,7 @@ void GameEngine::Sound::stopMusic() {
 
 }
 
-void GameEngine::Sound::setMusicVolume() {
+void GameEngine::Sound::setMusicVolume(unsigned int volume) {
 
 }
 
