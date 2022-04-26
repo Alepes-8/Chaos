@@ -1,5 +1,5 @@
 {
-    "Unit" :  
+    "Peasant" :  
     {
         "Components" : {
             "Component1": "UnitHealth",
@@ -7,18 +7,22 @@
             "Component3": "UnitMovement"
         },
         "Template" : {
-            "Peasant" : {
-                "Health" : 4.8,
-                "Damage" : 0.96,
-                "Speed" : 2,
-                "Sound" : "audio/testSound.wav"
-            },
-            "Leader" : {
-                "Health" : 8,
-                "Damage" : 1.6,
-                "Speed" : 2,
-                "Sound" : "audio/testSound.wav"
-            }
+            "Health" : 4.8,
+            "Damage" : 0.96,
+            "Speed" : 2
+        }
+    },
+    "Leader" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement"
+        },
+        "Template" : {
+            "Health" : 8,
+            "Damage" : 1.6,
+            "Speed" : 2
         }
     },
     "Tree" : 
@@ -59,10 +63,12 @@
 
     "BackgroundMusic": 
     {
-        "Components": {
+        "Components": 
+        {
             "Component1": "Sound"
         },
-        "Template": {
+        "Template": 
+        {
             "Sound": "Audio/testSound.wav"
         }
     }

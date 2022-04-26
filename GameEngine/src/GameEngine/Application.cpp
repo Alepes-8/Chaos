@@ -57,7 +57,7 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_C)) {
             GameEngine::Log::GetCoreLogger()->info("C Create");
-            m_EntityManager->CreateNewEntity("Unit", "Peasant");
+            m_EntityManager->CreateNewEntity("Peasant");
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
             GameEngine::Log::GetCoreLogger()->info("P print");
