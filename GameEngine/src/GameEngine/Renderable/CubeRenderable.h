@@ -1,7 +1,7 @@
 #pragma once
-#include "GameEngine/Renderable/Renderable.h"
+#include "GameEngine/Renderable/Renderer.h"
 namespace GameEngine {
-	class CubeRenderable : public Renderable {
+	class CubeRenderable : public Renderer {
 	public:
 		CubeRenderable();
 	};

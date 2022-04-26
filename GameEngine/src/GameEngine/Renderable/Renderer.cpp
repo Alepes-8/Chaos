@@ -1,14 +1,14 @@
-#include "Renderable.h"
+#include "Renderer.h"
 
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
-void GameEngine::Renderable::init()
+void GameEngine::Renderer::init()
 {
 	PosColorVertex::init();
 }
 
 
-void GameEngine::Renderable::createBuffers()
+void GameEngine::Renderer::createBuffers()
 {
     this->m_vbh = bgfx::createVertexBuffer(
         // Static data can be passed with bgfx::makeRef
@@ -25,14 +25,14 @@ void GameEngine::Renderable::createBuffers()
 }
 
 
-void GameEngine::Renderable::setMtx(float* m)
+void GameEngine::Renderer::setMtx(float* m)
 {
     for (int i = 0; i < 16; i++) {
         mtx[i] = m[i];
     }
 }
 
-void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog)
+void GameEngine::Renderer::submit(bgfx::ViewId view, bgfx::ProgramHandle prog)
 {
     bgfx::setTransform(mtx);
     bgfx::setVertexBuffer(0, m_vbh);
