@@ -53,11 +53,10 @@
     },
     "Cube" :
     {
-        "Comonents" : {
+        "Components" : {
             "Component1": "Transform",
             "Component2": "Renderable",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
+            "Component3": "ConstantBody"  
         }
     },
 
