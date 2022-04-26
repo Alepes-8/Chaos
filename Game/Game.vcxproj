@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;..\GameEngine\library\imgui\backends;..\GameEngine\library\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -100,7 +100,7 @@ IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;..\GameEngine\library\imgui\backends;..\GameEngine\library\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,7 +125,7 @@ IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;..\GameEngine\library\imgui\backends;..\GameEngine\library\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

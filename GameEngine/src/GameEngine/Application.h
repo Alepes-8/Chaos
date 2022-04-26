@@ -11,6 +11,10 @@
 
 
 #include <vector>
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_opengl3.h"
+#include <SDL_opengl.h>
 
 
 namespace GameEngine

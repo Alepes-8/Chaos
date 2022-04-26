@@ -11,6 +11,8 @@ GameEngine/library/glfw/
 GameEngine/library/bimg/
 GameEngine/library/soloud/
 GameEngine/library/jsoncpp/
+GameEngine/library/imgui/
+
 
 #Files
 *.user

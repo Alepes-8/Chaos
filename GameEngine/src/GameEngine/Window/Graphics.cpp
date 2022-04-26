@@ -34,8 +34,13 @@ bool GameEngine::Graphics::Init() {
 		return false;
 	}
 
-	m_BackBuffer = SDL_GetWindowSurface(window);
-	return true;
+    SDL_SetWindowMinimumSize(window, 500, 300);
+
+    // enable VSync
+    SDL_GL_SetSwapInterval(1);
+
+
+    return true;
 }
 
 GameEngine::Graphics* GameEngine::Graphics::CreateInstance()

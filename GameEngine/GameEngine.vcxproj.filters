@@ -132,6 +132,9 @@
     <ClCompile Include="src\GameEngine\Camera\Camera.cpp">
       <Filter>GameEngine\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp">
+      <Filter>GameEngine\EntitySystem\AI</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
     </ClCompile>
@@ -183,6 +186,5 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
   </ItemGroup>
 </Project>

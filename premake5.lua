@@ -23,8 +23,12 @@ project "GameEngine"
     {
         "%{prj.name}/library/bgfx/.build/win64_vs2017/bin",
         "%{prj.name}/library/SDL2/lib/x64",
-        "%{prj.name}/library/jsoncpp/.Build/lib/Debug"    
-}
+        "%{prj.name}/library/jsoncpp/.Build/lib/Debug",
+        "%{prj.name}/library/imgui/examples/libs/glfw/lib-vc2010-32",
+        "%{prj.name}/library/imgui/examples/libs/glfw/lib-vc2010-64"       
+
+        
+    }
 
     files
     {
@@ -43,7 +47,9 @@ project "GameEngine"
         "%{prj.name}/library/bgfx/3rdparty",
         "%{prj.name}/library/bx/include/compat/msvc",
         "%{prj.name}/library/sdl2/include",
-        "%{prj.name}/library/jsoncpp/include"
+        "%{prj.name}/library/jsoncpp/include",
+        "%{prj.name}/library/imgui/backends",
+        "%{prj.name}/library/imgui"
     }
 
     links
@@ -60,7 +66,8 @@ project "GameEngine"
         "example-commonDebug",
         "example-glueDebug",
         "jsoncpp",
-        "jsoncpp_static"
+        "jsoncpp_static",
+        "glfw3"
 
     }
 
@@ -120,7 +127,10 @@ project "Game"
         "GameEngine/library/bgfx/3rdparty",
         "GameEngine/library/bx/include/compat/msvc",
         "GameEngine/library/sdl2/include",
-        "GameEngine/library/jsoncpp/include"
+        "GameEngine/library/jsoncpp/include",
+        "GameEngine/library/imgui/backends",
+        "GameEngine/library/imgui"
+
 
     }
 
