@@ -123,7 +123,7 @@ namespace GameEngine
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
         //----------------------------------------//
-
+        m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
 
