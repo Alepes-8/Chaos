@@ -12,6 +12,10 @@
 #include "AI/UnitMovement.h"
 #include "AI/PathFinding.h"
 #include "Effects/Sound.h"
+#include "Effects/Renderable.h"
+#include "Physic/Transform.h"
+#include "Physic/ConstantBody.h"
+
 
 namespace GameEngine {
 	class EntityManager {

@@ -21,6 +21,9 @@ GameEngine::EntityManager::EntityManager(){
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitMovement", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("PathFinding", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Sound", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Renderable", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("StaticBody", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Transform", std::vector<BaseComponent*>()));
 
     /*componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
 
@@ -65,11 +68,23 @@ void GameEngine::EntityManager::CreateNewEntity(char* form) {
             comp = new UnitMovement(actualJson[form]["Template"]["Speed"].asFloat());
         }
 
-        if (itr->asCString() == (std::string)"PathFinding") {
+        else if (itr->asCString() == (std::string)"PathFinding") {
             comp = new PathFinding();
         }
 
-        if (itr->asCString() == (std::string)"Sound") {
+        else if (itr->asCString() == (std::string)"Transform") {
+            comp = new Transform();
+        }
+
+        else if (itr->asCString() == (std::string)"Renderable") {
+            comp = new Renderable();
+        }
+
+        else if (itr->asCString() == (std::string)"ConstantBody") {
+            comp = new ConstantBody();
+        }
+
+        else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
             comp = new Sound(directory);
