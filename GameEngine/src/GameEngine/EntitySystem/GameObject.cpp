@@ -30,3 +30,14 @@ void GameEngine::GameObject::PrintList() {
 		std::cout << comps.first << " " << comps.second << "\n";
 	}
 }
+
+void GameEngine::GameObject::Terminate() {
+
+	/*-delete componets parts-*/
+	
+	/*------------------------*/
+	/*--Delete the dictinary--*/
+
+	/*------------------------*/
+
+}

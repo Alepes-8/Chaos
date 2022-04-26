@@ -10,16 +10,18 @@
 #include "AI/UnitDamage.h"
 #include "AI/UnitHealth.h"
 #include "AI/UnitMovement.h"
+#include "AI/PathFinding.h"
+#include "Effects/Sound.h"
 
 namespace GameEngine {
 	class EntityManager {
 	private: 
 		int currentID = 0;
-		std::vector<GameObject*> EntityList;
+		std::map<int , GameObject*> EntityList;
 		std::map<std::string, std::vector<BaseComponent*>> componentLists;
 		static EntityManager* m_Instance;
 	public:
-		void TerminateEnity(int ID);
+		void TerminateEnity(int entityID);
 		void CreateNewEntity(char* form, char* type);
 		static EntityManager* CreateInstance();
 		static void Terminate();

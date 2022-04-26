@@ -6,6 +6,8 @@ GameEngine::UnitHealth::UnitHealth(float initHealth) {
 }
 
 GameEngine::UnitHealth::~UnitHealth() {
+	std::cout << "delete health"  << std::endl;
+
 	health = NULL;
 }
 

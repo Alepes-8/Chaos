@@ -1,10 +1,12 @@
 #include "UnitMovement.h"
 
 GameEngine::UnitMovement::UnitMovement(float initSpeed) {
-	movement = 2.0f;
+	std::cout << "Movement create " << initSpeed << std::endl;
+	movement = initSpeed;
 }
 
 GameEngine::UnitMovement::~UnitMovement() {
+	std::cout << "Movement delete "<< std::endl;
 	movement = NULL;
 }
 

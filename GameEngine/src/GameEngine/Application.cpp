@@ -67,7 +67,11 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("O print list");
             m_EntityManager->PrintFirstEntity();
         }
-
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_T)) {
+            GameEngine::Log::GetCoreLogger()->info("T terminate");
+            m_EntityManager->TerminateEnity(1);
+        }
+        
         if (m_InputManager->MouseButtonDown(GameEngine::InputManager::left)) {
             GameEngine::Log::GetCoreLogger()->info("left Mouse down");
         }

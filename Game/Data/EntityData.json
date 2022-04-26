@@ -10,12 +10,14 @@
             "Peasant" : {
                 "Health" : 4.8,
                 "Damage" : 0.96,
-                "Speed" : 2
+                "Speed" : 2,
+                "Sound" : "audio/testSound.wav"
             },
             "Leader" : {
                 "Health" : 8,
                 "Damage" : 1.6,
-                "Speed" : 2
+                "Speed" : 2,
+                "Sound" : "audio/testSound.wav"
             }
         }
     },
@@ -44,7 +46,17 @@
         {
             "Health" : 20
         }
+    },
+    "Cube" :
+    {
+        "Comonents" : {
+            "Component1": "Transform",
+            "Component2": "Renderable",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        }
     }
+        
 
 
 }

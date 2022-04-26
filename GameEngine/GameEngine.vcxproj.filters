@@ -183,5 +183,6 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
   </ItemGroup>
 </Project>

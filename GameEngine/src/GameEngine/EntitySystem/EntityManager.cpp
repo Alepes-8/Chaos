@@ -19,11 +19,13 @@ GameEngine::EntityManager::EntityManager(){
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitDamage", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitHealth", std::vector<BaseComponent*>()));
     componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitMovement", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("PathFinding", std::vector<BaseComponent*>()));
+    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Sound", std::vector<BaseComponent*>()));
 
-    componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
+    /*componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
 
     UnitDamage* child = dynamic_cast<UnitDamage*>(componentLists.at("UnitDamage")[0]);
-    std::cout << "Damage value:" << child->GetDamage() << std::endl;
+    std::cout << "Damage value:" << child->GetDamage() << std::endl;*/
 }
 
 GameEngine::EntityManager::~EntityManager() {}
@@ -37,7 +39,7 @@ void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
 	std::cout << "New entity created " << std::endl;
 
     GameObject* entity = new GameObject(GetNewID());
-    EntityList.push_back(entity);
+    EntityList.insert({ entity->ID, entity, });
     
     /*--------Load the json file---------*/
     std::ifstream testData("Data/EntityData.json");
@@ -55,19 +57,46 @@ void GameEngine::EntityManager::CreateNewEntity(char* form , char* type) {
             comp = new UnitDamage(actualJson[form]["Template"][type]["Damage"].asFloat());
         }
 
-        if (itr->asCString() == (std::string)"UnitHealth") {
+        else if (itr->asCString() == (std::string)"UnitHealth") {
             comp = new UnitHealth(actualJson[form]["Template"][type]["Health"].asFloat());
         }
 
-        if (itr->asCString() == (std::string)"UnitMovement") {
+        else if (itr->asCString() == (std::string)"UnitMovement") {
             comp = new UnitMovement(actualJson[form]["Template"][type]["Speed"].asFloat());
+        }
+
+        if (itr->asCString() == (std::string)"PathFinding") {
+            comp = new PathFinding();
+        }
+
+        if (itr->asCString() == (std::string)"Sound") {
+            std::string data = actualJson[form]["Template"][type]["Sound"].asCString();
+            const char* directory = data.c_str();
+            comp = new Sound(directory);
         }
 
         BaseComponent** ptr = &comp;
         componentLists[itr->asCString()].push_back(comp);
         entity->components.insert({ itr->asCString(), ptr, });
     }
+
 }
+
+void GameEngine::EntityManager::TerminateEnity(int entityID) {
+    /*--delete components--*/
+    EntityList.at(entityID)->Terminate();
+    /*---------------------*/
+    /*---Delete pointers---*/
+
+    /*---------------------*/
+    /*--Delete the entity--*/
+    delete EntityList.at(entityID);
+    EntityList.at(entityID) = NULL;
+    EntityList.erase(entityID);
+    /*---------------------*/
+    
+}
+
 
 void GameEngine::EntityManager::PrintFirstEntity() {
     EntityList[0]->PrintList();

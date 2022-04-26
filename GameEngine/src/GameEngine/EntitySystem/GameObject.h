@@ -3,14 +3,16 @@
 #include <vector>
 #include "../Log.h"
 #include <map>
-
+#include "AI/UnitDamage.h"
+#include "AI/UnitHealth.h"
+#include "AI/UnitMovement.h"
 
 namespace GameEngine {
 	class GameObject {
 	public:
 		int ID;
 		std::map<std::string, BaseComponent**> components;
-
+		void Terminate();
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
