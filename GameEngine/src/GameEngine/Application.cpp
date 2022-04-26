@@ -106,17 +106,17 @@ namespace GameEngine
 
         //-----------------RENDERABLES-----------------//
         //Init Renderables so bgfx knows the format of our renderable data
-        Renderable::init();
+        Renderer::init();
 
         //create a cube
-        Renderable cube = CubeRenderable();
+        Renderer cube = CubeRenderable();
         //init vertices and indices buffers
         cube.createBuffers();
 
-        Renderable cube2 = CubeRenderable();
+        Renderer cube2 = CubeRenderable();
         cube2.createBuffers();
         
-        Renderable floor = CubeRenderable();
+        Renderer floor = CubeRenderable();
         floor.createBuffers();
         //----------------------------------------//
 
@@ -126,6 +126,8 @@ namespace GameEngine
         m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
+
+        m_EntityManager->CreateNewEntity("Cube");
 
         SDL_Event currentEvent;
         unsigned int counter = 0;
