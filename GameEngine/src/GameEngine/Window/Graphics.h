@@ -2,6 +2,13 @@
 #include "GameEngine/Log.h"
 #include "SDL.h"
 #include <stdio.h>
+
+
+#include <SDL_syswm.h>
+#include <bgfx/bgfx.h>
+#include <bgfx/platform.h>
+#include <bx/math.h>
+#include <bx/bx.h>
 namespace GameEngine {
 	class Graphics
 	{
@@ -21,7 +28,7 @@ namespace GameEngine {
 		static void Terminate();
 		static bool GetInitialize();
 		void Render();
-
+		void Initbgfx();
 	private:
 		Graphics();
 		~Graphics();

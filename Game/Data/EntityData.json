@@ -1,0 +1,75 @@
+{
+    "Peasant" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement"
+        },
+        "Template" : {
+            "Health" : 4.8,
+            "Damage" : 0.96,
+            "Speed" : 2
+        }
+    },
+    "Leader" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement"
+        },
+        "Template" : {
+            "Health" : 8,
+            "Damage" : 1.6,
+            "Speed" : 2
+        }
+    },
+    "Tree" : 
+    { 
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Template": 
+        {
+            "Health" : 10
+        }
+    },
+    "Rock" : 
+    { 
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Template": 
+        {
+            "Health" : 20
+        }
+    },
+    "Cube" :
+    {
+        "Components" : {
+            "Component1": "Transform",
+            "Component2": "Renderable",
+            "Component3": "ConstantBody"  
+        }
+    },
+
+    "BackgroundMusic": 
+    {
+        "Components": 
+        {
+            "Component1": "Sound"
+        },
+        "Template": 
+        {
+            "Sound": "Audio/testSound.wav"
+        }
+    }
+
+}

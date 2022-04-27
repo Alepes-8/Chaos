@@ -51,6 +51,7 @@ project "GameEngine"
         "SDL2",
         "SDL2main",
         "SDL2test",
+        "SDL2_mixer",
         "bgfxDebug",
         "bimgDebug",
         "bimg_decodeDebug",

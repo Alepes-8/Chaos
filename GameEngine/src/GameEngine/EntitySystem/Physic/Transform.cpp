@@ -2,9 +2,14 @@
 
 
 GameEngine::Transform::Transform() {
+	std::cout << "Create Transform" << std::endl;
 	coordinates = Vector3(0, 0, 0);
 	rotation = Vector3(0, 0, 0);
 	scale = Vector3(1, 1, 1);
+}
+
+GameEngine::Transform::~Transform() {
+	std::cout << "Delete Transform" << std::endl;
 }
 
 GameEngine::Transform::Transform(

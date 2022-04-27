@@ -87,7 +87,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -111,7 +111,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -135,13 +135,14 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_mixer.lib;bgfxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;bxDebug.lib;example-14-shadowvolumesDebug.lib;example-commonDebug.lib;example-glueDebug.lib;jsoncpp.lib;jsoncpp_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>library\bgfx\.build\win64_vs2017\bin;library\SDL2\lib\x64;library\jsoncpp\.Build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
+    <ClInclude Include="src\GameEngine\Camera\Camera.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitDamage.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
@@ -155,37 +156,42 @@
     <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
     <ClInclude Include="src\GameEngine\MathHelper.h" />
     <ClInclude Include="src\GameEngine\ObjParser\ObjParser.h" />
     <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h" />
-    <ClInclude Include="src\GameEngine\Renderable\Renderable.h" />
+    <ClInclude Include="src\GameEngine\Renderable\Renderer.h" />
     <ClInclude Include="src\GameEngine\Shaders\Shader.h" />
     <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp" />
+    <ClCompile Include="src\GameEngine\Camera\Camera.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\Transform.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
     <ClCompile Include="src\GameEngine\ObjParser\ObjParser.cpp" />
     <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp" />
-    <ClCompile Include="src\GameEngine\Renderable\Renderable.cpp" />
+    <ClCompile Include="src\GameEngine\Renderable\Renderer.cpp" />
     <ClCompile Include="src\GameEngine\Shaders\Shader.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />

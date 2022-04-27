@@ -1,11 +1,12 @@
 #pragma once
+
 #include "../BaseComponent.h"
 
 namespace GameEngine {
-	class Renderable : public BaseComponent {
-	public: 
-		Renderable();
-		~Renderable();
+	class ConstantBody : public BaseComponent {
+	public:
+		ConstantBody();
+		~ConstantBody();
 		void Update() override;
 	};
 }

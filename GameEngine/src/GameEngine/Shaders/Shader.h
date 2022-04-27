@@ -1,6 +1,8 @@
 #pragma once
 #include <bgfx/bgfx.h>
 #include <fstream>
+#include <iostream>
+
 namespace GameEngine {
     bgfx::ShaderHandle loadShader(const char* _name);
 
@@ -9,10 +11,11 @@ namespace GameEngine {
         bgfx::ShaderHandle vsh;
         bgfx::ShaderHandle fsh;
 
-
+        /*void loadVertexShader(char* path);
+        void loadFragmentShader(char* path);*/
     public:
-        void loadVertexShader(char* path);
-        void loadFragmentShader(char* path);
         bgfx::ProgramHandle createProgram();
+        Shader(char* frag, char* vert);
+
     };
 }

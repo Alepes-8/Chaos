@@ -27,7 +27,7 @@ namespace GameEngine {
     };
 
 
-	class Renderable {
+	class Renderer {
 	protected:
 		PosColorVertex* vertices;
         unsigned int v_len;

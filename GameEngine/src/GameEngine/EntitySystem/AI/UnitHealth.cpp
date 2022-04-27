@@ -1,10 +1,13 @@
 #include "UnitHealth.h"
 
-GameEngine::UnitHealth::UnitHealth() {
-	health = 5.0f;
+GameEngine::UnitHealth::UnitHealth(float initHealth) {
+	std::cout << "create health" << initHealth << std::endl;
+	health = initHealth;
 }
 
 GameEngine::UnitHealth::~UnitHealth() {
+	std::cout << "delete health"  << std::endl;
+
 	health = NULL;
 }
 
@@ -14,4 +17,8 @@ float GameEngine::UnitHealth::GetHealth() {
 
 void GameEngine::UnitHealth::EditHealth(float change) {
 	health += change;
+}
+
+void GameEngine::UnitHealth::Update() {
+	std::cout << "Update UnitHealth" << std::endl;
 }

@@ -4,6 +4,9 @@
     <Filter Include="GameEngine">
       <UniqueIdentifier>{D54F7917-C107-BB64-2A0F-94C016E65555}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Camera">
+      <UniqueIdentifier>{AD22247E-1939-2214-62B0-AD35CE05F39B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameEngine\EntitySystem">
       <UniqueIdentifier>{E6828CBA-52BA-D451-5BC4-3875C77AFB4A}</UniqueIdentifier>
     </Filter>
@@ -36,6 +39,9 @@
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h">
       <Filter>GameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\Camera\Camera.h">
+      <Filter>GameEngine\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\AI\PathFinding.h">
       <Filter>GameEngine\EntitySystem\AI</Filter>
@@ -85,9 +91,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h">
-      <Filter>GameEngine\EntitySystem\Physic</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
@@ -106,7 +109,7 @@
     <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h">
       <Filter>GameEngine\Renderable</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Renderable\Renderable.h">
+    <ClInclude Include="src\GameEngine\Renderable\Renderer.h">
       <Filter>GameEngine\Renderable</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\Shaders\Shader.h">
@@ -118,10 +121,14 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
       <Filter>GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\Camera\Camera.cpp">
+      <Filter>GameEngine\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
@@ -162,7 +169,7 @@
     <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp">
       <Filter>GameEngine\Renderable</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\Renderable\Renderable.cpp">
+    <ClCompile Include="src\GameEngine\Renderable\Renderer.cpp">
       <Filter>GameEngine\Renderable</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Shaders\Shader.cpp">
@@ -174,5 +181,9 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
   </ItemGroup>
 </Project>
