@@ -1,8 +1,12 @@
 #pragma once
 #include "../BaseComponent.h"
-#include <SDL_mixer.h>
+#include "SDL_mixer.h"
+#include "SDL.h"
 
 namespace GameEngine {
+
+	class SoundData;
+
 	class Sound : public BaseComponent 
 	{
 	public:
