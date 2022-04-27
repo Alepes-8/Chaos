@@ -7,6 +7,8 @@ namespace GameEngine {
 		~BaseComponent() {
 			std::cout << "Delete component" << std::endl;
 		}
-		virtual void Update() = 0;
+		virtual void Update() {
+			std::cout << "update BaseComponent" << std::endl;
+		}
 	};
 }

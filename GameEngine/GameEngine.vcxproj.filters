@@ -106,9 +106,6 @@
     <ClInclude Include="src\GameEngine\MathHelper.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\Renderable\Renderer.h">
-      <Filter>GameEngine\Renderable</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\Window\Graphics.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
@@ -170,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\Renderable\Renderer.cpp">
-      <Filter>GameEngine\Renderable</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp">
       <Filter>GameEngine\Window</Filter>

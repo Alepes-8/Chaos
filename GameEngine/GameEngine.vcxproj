@@ -165,7 +165,6 @@
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
     <ClInclude Include="src\GameEngine\MathHelper.h" />
-    <ClInclude Include="src\GameEngine\Renderable\Renderer.h" />
     <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
@@ -188,7 +187,6 @@
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\Transform.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
-    <ClCompile Include="src\GameEngine\Renderable\Renderer.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>

@@ -29,6 +29,9 @@ namespace GameEngine {
 		int CreateNewEntity(char* form);
 		static EntityManager* CreateInstance();
 		static void Terminate();
+		void EarlyUpdate();
+		void Update();
+		void LateUpdate();
 		void PrintList();
 		void PrintFirstEntity();
 	private:

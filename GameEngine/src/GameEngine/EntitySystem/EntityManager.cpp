@@ -53,11 +53,13 @@ int GameEngine::EntityManager::CreateNewEntity(char* form) {
         int componentID = 0x00000000;
         if (itr->asCString() == (std::string) "UnitDamage") {
             comp = new UnitDamage(actualJson[form]["Template"]["Damage"].asFloat());
+
             componentID = 0x00000001;
         }
 
         else if (itr->asCString() == (std::string)"UnitHealth") {
             comp = new UnitHealth(actualJson[form]["Template"]["Health"].asFloat());
+
             componentID = 0x00000002;
 
         }
@@ -81,7 +83,14 @@ int GameEngine::EntityManager::CreateNewEntity(char* form) {
         }
 
         else if (itr->asCString() == (std::string)"Renderable") {
-            comp = new Renderable();
+            std::string meshData = actualJson[form]["Template"]["Mesh"].asCString();
+            const char* meshDir = meshData.c_str();
+            std::string fragData = actualJson[form]["Template"]["fs_Shader"].asCString();
+            const char* fragDir = fragData.c_str();
+            std::string vertData = actualJson[form]["Template"]["vs_Shader"].asCString();
+            const char* vertDir = vertData.c_str();
+
+            comp = new Renderable(meshDir, fragDir, vertDir);
             componentID = 0x00000006;
 
         }
@@ -117,6 +126,24 @@ void GameEngine::EntityManager::TerminateEnity(int entityID) {
     
 }
 
+
+void GameEngine::EntityManager::EarlyUpdate() {
+    for (auto entity : EntityList) {
+        entity.second->EarlyUpdate();
+    }
+}
+
+void GameEngine::EntityManager::Update() {
+    for (auto entity : EntityList) {
+        entity.second->Update();
+    }
+}
+
+void GameEngine::EntityManager::LateUpdate() {
+    for (auto entity : EntityList) {
+        entity.second->LateUpdate();
+    }
+}
 
 void GameEngine::EntityManager::PrintFirstEntity() {
     EntityList[0]->PrintList();

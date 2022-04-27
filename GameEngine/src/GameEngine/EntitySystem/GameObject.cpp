@@ -5,9 +5,11 @@ void GameEngine::GameObject::EarlyUpdate() {
 }
 
 void GameEngine::GameObject::Update() {
-	/*for (auto component : componentsList) {
-		component->Update();
-	}*/
+
+
+	for (auto comp : components) {
+		comp.second->Update();
+	}
 }
 
 void GameEngine::GameObject::LateUpdate() {

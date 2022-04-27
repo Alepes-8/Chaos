@@ -57,6 +57,8 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_C)) {
             GameEngine::Log::GetCoreLogger()->info("C Create");
+            std::cout << "positions x and y:" << -(m_InputManager->MousePos().x / 100) + 6 << ", " << -(m_InputManager->MousePos().y / 100) + 3 << std::endl;
+
             m_EntityManager->CreateNewEntity("Peasant");
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
@@ -100,19 +102,18 @@ namespace GameEngine
         //-----------------RENDERABLES-----------------//
         //Init Renderables so bgfx knows the format of our renderable data
 
-        Renderer mesh = Renderer("Data/3DModels/OBJ-format/skeleton.obj", "Data/Shaders/fs_cubes.bin",
-            "Data/Shaders/vs_cubes.bin");
+        //Renderer mesh = Renderer("Data/3DModels/OBJ-format/skeleton.obj", "Data/Shaders/fs_cubes.bin", "Data/Shaders/vs_cubes.bin");
 
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
         
 
         //-----------------Entity-----------------//
-
-        int backgroundMusic = m_EntityManager->CreateNewEntity("BackgroundMusic");
+        //int backgroundMusic = m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
-
+        int TestId = m_EntityManager->CreateNewEntity("Peasant");
+        m_EntityManager->Update();
 
         SDL_Event currentEvent;
         unsigned int counter = 0;
@@ -133,7 +134,8 @@ namespace GameEngine
                 cam.Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
 
-                mesh.Update();
+                //mesh.Update();
+                m_EntityManager->Update();
 
                 LateUpdate();
                 Render();
