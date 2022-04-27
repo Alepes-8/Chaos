@@ -5,8 +5,6 @@
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 #include "GameEngine/Renderable/Renderer.h"
-#include "GameEngine/Renderable/CubeRenderable.h"
-#include "GameEngine/Shaders/Shader.h"
 #include "GameEngine/Camera/Camera.h"
 
 

@@ -97,40 +97,22 @@ namespace GameEngine
         //------------------WINDOW------------------//
         m_Graphics->Initbgfx();
 
-       //-----------------SHADERS--------------------//
-        //Create shader
-        Shader shader = Shader("../GameEngine/src/GameEngine/Shaders/fs_cubes.bin",
-            "../GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
-        bgfx::ProgramHandle m_program = shader.createProgram();
-        //-------------------------------------------//
-
         //-----------------RENDERABLES-----------------//
         //Init Renderables so bgfx knows the format of our renderable data
-        Renderer::init();
 
-        //create a cube
-        Renderer cube = CubeRenderable();
-        //init vertices and indices buffers
-        cube.createBuffers();
-
-        Renderer cube2 = CubeRenderable();
-        cube2.createBuffers();
-
-        Renderer mesh = Renderer();
-        mesh.parseObj("./3DModels/OBJ format/vampire.obj");
-        mesh.createBuffers();
-        mesh.print();
-        //----------------------------------------//
+        Renderer mesh = Renderer("Data/3DModels/OBJ-format/skeleton.obj", "Data/Shaders/fs_cubes.bin",
+            "Data/Shaders/vs_cubes.bin");
 
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
-        //----------------------------------------//
-        //m_EntityManager->CreateNewEntity("Peasant");
+        
+
+        //-----------------Entity-----------------//
+
         int backgroundMusic = m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
 
-        //m_EntityManager->CreateNewEntity("Cube");
 
         SDL_Event currentEvent;
         unsigned int counter = 0;
@@ -145,37 +127,13 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                EarlyUpdate();
+                EarlyUpdate(); 
                 Update();
 
-                cam.update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
+                cam.Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
-                //-----------CUBE 1--------------------//
-                float mtx[16];
-                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-                counter++;
 
-                // Set model matrix for rendering.
-                cube.setMtx(mtx);
-
-                //submit cube values to the program
-                cube.submit(0, m_program, BGFX_STATE_CULL_CCW);
-
-                //--------------------------------------//
-
-                    //----------------CUBE 2-----------------//
-                float mtx2[16];
-                bx::mtxTranslate(mtx2,-5,0,0);
-                cube2.setMtx(mtx2);
-                cube2.submit(0, m_program ,BGFX_STATE_CULL_CW);
-                //--------------------------------------//
-
-                float mtx_mesh[16];
-                bx::mtxScale(mtx_mesh, 5);
-                mtx_mesh[12] = 5;
-                mtx_mesh[12] = 5;
-                mesh.setMtx(mtx_mesh);
-                mesh.submit(0, m_program, BGFX_STATE_CULL_CCW);
+                mesh.Update();
 
                 LateUpdate();
                 Render();

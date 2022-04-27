@@ -2,9 +2,16 @@
 
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
-void GameEngine::Renderer::init()
-{
-	PosColorVertex::init();
+GameEngine::Renderer::Renderer(char* dirMesh, char* dirFrag, char* dirVert) {
+    vsh = loadShader(dirFrag);
+    fsh = loadShader(dirVert);
+    m_program = createProgram();
+
+    PosColorVertex::init();
+
+    parseObj(dirMesh);
+    createBuffers();
+    print();
 }
 
 
@@ -198,3 +205,45 @@ void GameEngine::Renderer::print()
     std::cout << "v_len : " << v_len << " - i_len : " << i_len << std::endl;
 }   
 
+
+
+
+
+/*---------shader ----------*/
+bgfx::ShaderHandle GameEngine::loadShader(const char* _name) {
+    {
+        char* data = new char[2048];
+        std::ifstream file;
+        size_t fileSize;
+        file.open(_name);
+        if (file.is_open()) {
+            file.seekg(0, std::ios::end);
+            fileSize = file.tellg();
+            file.seekg(0, std::ios::beg);
+            file.read(data, fileSize);
+            file.close();
+        }
+        const bgfx::Memory* mem = bgfx::copy(data, fileSize + 1);
+        mem->data[mem->size - 1] = '\0';
+        bgfx::ShaderHandle handle = bgfx::createShader(mem);
+        bgfx::setName(handle, _name);
+        return handle;
+    }
+}
+bgfx::ProgramHandle GameEngine::Renderer::createProgram() {
+    return bgfx::createProgram(vsh, fsh, true);
+}
+
+
+
+
+void GameEngine::Renderer::Update() {
+    float mtx_mesh[16];
+    bx::mtxScale(mtx_mesh, 5);
+    mtx_mesh[12] = 0;   //left and right
+    mtx_mesh[13] = 0;   //up and down
+    mtx_mesh[14] = 0;   //Back and forward
+
+    setMtx(mtx_mesh);
+    submit(0, m_program, BGFX_STATE_CULL_CCW);
+}

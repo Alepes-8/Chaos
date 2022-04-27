@@ -22,9 +22,6 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\ObjParser">
-      <UniqueIdentifier>{8C7DABD7-780C-35A1-212B-499C0D994547}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\Renderable">
       <UniqueIdentifier>{98FE8EF4-046B-4AEF-CD5E-E24C398A6C57}</UniqueIdentifier>
     </Filter>
@@ -76,6 +73,9 @@
     <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\IdGenerationPool.h">
+      <Filter>GameEngine\EntitySystem</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
@@ -106,17 +106,8 @@
     <ClInclude Include="src\GameEngine\MathHelper.h">
       <Filter>GameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\ObjParser\ObjParser.h">
-      <Filter>GameEngine\ObjParser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h">
-      <Filter>GameEngine\Renderable</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\Renderable\Renderer.h">
       <Filter>GameEngine\Renderable</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\Shaders\Shader.h">
-      <Filter>GameEngine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\Window\Graphics.h">
       <Filter>GameEngine\Window</Filter>
@@ -124,7 +115,6 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\IdGenerationPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -160,6 +150,9 @@
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp">
+      <Filter>GameEngine\EntitySystem</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClCompile>
@@ -178,17 +171,8 @@
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\ObjParser\ObjParser.cpp">
-      <Filter>GameEngine\ObjParser</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp">
-      <Filter>GameEngine\Renderable</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameEngine\Renderable\Renderer.cpp">
       <Filter>GameEngine\Renderable</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\Shaders\Shader.cpp">
-      <Filter>GameEngine\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp">
       <Filter>GameEngine\Window</Filter>
@@ -196,6 +180,5 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp" />
   </ItemGroup>
 </Project>

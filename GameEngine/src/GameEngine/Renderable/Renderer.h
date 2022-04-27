@@ -10,6 +10,8 @@
 #include <regex>
 #include <GameEngine/Log.h>
 #include <stdio.h>
+#include <bx/math.h>
+
 
 namespace GameEngine {
     struct PosColorVertex {
@@ -34,6 +36,7 @@ namespace GameEngine {
         static bgfx::VertexLayout ms_decl;
     };
 
+    bgfx::ShaderHandle loadShader(const char* _name);
 
 	class Renderer {
 	protected:
@@ -42,19 +45,27 @@ namespace GameEngine {
 		uint16_t* indices;
         unsigned int i_len;
 
+
+        bgfx::ShaderHandle vsh;
+        bgfx::ShaderHandle fsh;
+
         //buffer to pass values to the shader 
         bgfx::VertexBufferHandle m_vbh;
         bgfx::IndexBufferHandle m_ibh;
 
         //matrix that define position of the renderable
         float mtx[16];
-		
+        bgfx::ProgramHandle m_program;
+
 	public:
-        static void init();
+        Renderer(char* dirMesh, char* dirFrag, char* dirVert);
         void createBuffers();
         void setMtx(float m[]);
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
         void parseObj(char* filename);
         void print();
+        void Update();
+
+        bgfx::ProgramHandle createProgram();
 	};
 }
