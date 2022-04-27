@@ -115,7 +115,11 @@ namespace GameEngine
 
         Renderer cube2 = CubeRenderable();
         cube2.createBuffers();
-        
+
+        Renderer mesh = Renderer();
+        mesh.parseObj("./3DModels/OBJ format/vampire.obj");
+        mesh.createBuffers();
+        mesh.print();
         //----------------------------------------//
 
         //-----------------CAMERA-----------------//
@@ -154,17 +158,23 @@ namespace GameEngine
                 cube.setMtx(mtx);
 
                 //submit cube values to the program
-                cube.submit(0, m_program);
+                cube.submit(0, m_program, BGFX_STATE_CULL_CCW);
 
                 //--------------------------------------//
 
                     //----------------CUBE 2-----------------//
                 float mtx2[16];
-                bx::mtxTranslate(mtx2,5,0,0);
+                bx::mtxTranslate(mtx2,-5,0,0);
                 cube2.setMtx(mtx2);
-                cube2.submit(0, m_program);
+                cube2.submit(0, m_program ,BGFX_STATE_CULL_CW);
                 //--------------------------------------//
 
+                float mtx_mesh[16];
+                bx::mtxScale(mtx_mesh, 5);
+                mtx_mesh[12] = 5;
+                mtx_mesh[12] = 5;
+                mesh.setMtx(mtx_mesh);
+                mesh.submit(0, m_program, BGFX_STATE_CULL_CCW);
 
                 LateUpdate();
                 Render();

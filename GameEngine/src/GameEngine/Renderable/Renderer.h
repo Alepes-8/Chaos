@@ -3,6 +3,14 @@
 #include <bgfx/bgfx.h>
 #include <vector>
 
+#include "GameEngine/MathHelper.h"
+#include <list>
+#include <fstream>
+#include <iostream>
+#include <regex>
+#include <GameEngine/Log.h>
+#include <stdio.h>
+
 namespace GameEngine {
     struct PosColorVertex {
         // 3d space position
@@ -45,6 +53,8 @@ namespace GameEngine {
         static void init();
         void createBuffers();
         void setMtx(float m[]);
-        void submit(bgfx::ViewId view, bgfx::ProgramHandle prog);
+        void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
+        void parseObj(char* filename);
+        void print();
 	};
 }

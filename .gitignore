@@ -12,6 +12,7 @@ GameEngine/library/bimg/
 GameEngine/library/soloud/
 GameEngine/library/jsoncpp/
 GameEngine/library/imgui/
+Game/3DModels
 
 #Files
 *.user
