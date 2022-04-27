@@ -223,7 +223,7 @@ void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 }
 
 
-void GameEngine::Camera::update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height)
+void GameEngine::Camera::Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height)
 {
 	
 	this->listenEvent(im);

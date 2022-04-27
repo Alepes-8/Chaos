@@ -27,7 +27,7 @@ namespace GameEngine {
 		void reset();
 		void listenEvent(GameEngine::InputManager* im);
 
-		void update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height);
+		void Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height);
 
 	};
 
