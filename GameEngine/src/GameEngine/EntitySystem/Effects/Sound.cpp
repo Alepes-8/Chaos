@@ -1,7 +1,7 @@
 #include "Sound.h"
 
-#define SOUND_REPLAY_PROTECTION_TIME 50
-
+//#define SOUND_REPLAY_PROTECTION_TIME 50
+/*
 class SoundData {
 private:
 	Mix_Chunk* chunk;
@@ -16,13 +16,13 @@ public:
 
 	Mix_Chunk* getData() const { return chunk; }
 };
-
+*/
 
 //-------------------------------------------------------------------
 GameEngine::Sound::Sound(const char* dir) {
 	std::cout << "Create sound" << std::endl;
 
-	if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+	/*if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
 		throw Exception("SDL_init audio error: %s", SDL_GetError());
 	}
 
@@ -31,19 +31,19 @@ GameEngine::Sound::Sound(const char* dir) {
 	}
 
 	loadSound("audio/");
-	Mix_AllocateChannels(32);
+	Mix_AllocateChannels(32);*/
 }
 
 //-------------------------------------------------------------------
 GameEngine::Sound::~Sound() {
 	std::cout << "Delete sound" << std::endl;
 
-	stopMusic();
+	/*stopMusic();
 	Mix_CloseAudio();
 
 	for () {
 
-	}
+	}*/
 }
 
 //-------------------------------------------------------------------

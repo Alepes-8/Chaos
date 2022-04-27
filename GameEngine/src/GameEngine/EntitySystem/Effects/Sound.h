@@ -5,7 +5,7 @@
 
 namespace GameEngine {
 
-	class SoundData;
+	//class SoundData;
 
 	class Sound : public BaseComponent 
 	{
