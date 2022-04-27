@@ -21,12 +21,11 @@ namespace GameEngine {
 	class EntityManager {
 	private: 
 		int currentID = 0;
-		std::map<int , GameObject*> EntityList;
-		std::map<std::string, std::vector<BaseComponent*>> componentLists;
+		std::map<int, GameObject*> EntityList;
 		static EntityManager* m_Instance;
 	public:
 		void TerminateEnity(int entityID);
-		void CreateNewEntity(char* form);
+		int CreateNewEntity(char* form);
 		static EntityManager* CreateInstance();
 		static void Terminate();
 		void PrintList();

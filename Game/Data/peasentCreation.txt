@@ -1,8 +1,0 @@
-Transform.h	create	10
-DynamicBody.h	create	10
-BoxColider.h	create	10
-Sound.h		create	10
-UnitHealth.h	create	10
-UnitDamage.h	create	3
-UnitMovment.h	create	2
-PathFinder.h	create	10

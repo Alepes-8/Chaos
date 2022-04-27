@@ -21,6 +21,10 @@ GameEngine::GameObject::GameObject(int inputID) {
 
 GameEngine::GameObject::~GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
+	for (auto comp : components) {
+		delete comp.second;
+	}
+
 }
 
 void GameEngine::GameObject::PrintList() {

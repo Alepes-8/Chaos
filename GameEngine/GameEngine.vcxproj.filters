@@ -82,6 +82,9 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h">
+      <Filter>GameEngine\EntitySystem\Physic</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
@@ -121,7 +124,6 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -129,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\Camera\Camera.cpp">
       <Filter>GameEngine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp">
+      <Filter>GameEngine\EntitySystem\AI</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
@@ -138,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp">
+      <Filter>GameEngine\EntitySystem\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp">
+      <Filter>GameEngine\EntitySystem\Effects</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp">
       <Filter>GameEngine\EntitySystem\Effects</Filter>
@@ -149,6 +160,9 @@
       <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp">
+      <Filter>GameEngine\EntitySystem\Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp">
@@ -181,9 +195,5 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
-    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
-    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
-    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
   </ItemGroup>
 </Project>
