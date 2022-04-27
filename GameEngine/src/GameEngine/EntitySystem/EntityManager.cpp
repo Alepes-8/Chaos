@@ -15,12 +15,7 @@ GameEngine::EntityManager* GameEngine::EntityManager::m_Instance = NULL;
  }
 
 GameEngine::EntityManager::EntityManager(){
-
-    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitDamage", std::vector<BaseComponent*>()));
-    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitHealth", std::vector<BaseComponent*>()));
-    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("UnitMovement", std::vector<BaseComponent*>()));
-    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("PathFinding", std::vector<BaseComponent*>()));
-    componentLists.insert(std::pair<std::string, std::vector<BaseComponent*> >("Sound", std::vector<BaseComponent*>()));
+    m_IdPool = GameEngine::IdGenerationPool::CreateInstance();
 
     /*componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
 
@@ -28,17 +23,20 @@ GameEngine::EntityManager::EntityManager(){
     std::cout << "Damage value:" << child->GetDamage() << std::endl;*/
 }
 
-GameEngine::EntityManager::~EntityManager() {}
+GameEngine::EntityManager::~EntityManager() {
+    delete m_IdPool;
+    m_IdPool = NULL;
+}
 
 void GameEngine::EntityManager::PrintList() {
     std::cout << "The length of the current EntityList is " 
      << EntityList.size() << " long" << std::endl;
 }
 
-void GameEngine::EntityManager::CreateNewEntity(char* form) {
+int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos ) {
 	std::cout << "New entity created " << std::endl;
-
-    GameObject* entity = new GameObject(GetNewID());
+    int ID = GetNewID();
+    GameObject* entity = new GameObject(ID);
     EntityList.insert({ entity->ID, entity, });
     
     /*--------Load the json file---------*/
@@ -52,51 +50,100 @@ void GameEngine::EntityManager::CreateNewEntity(char* form) {
     /*------Take out the the info regarding which components to add.--------*/
     for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
         BaseComponent* comp;
-
+        int componentID = 0x00000000;
         if (itr->asCString() == (std::string) "UnitDamage") {
             comp = new UnitDamage(actualJson[form]["Template"]["Damage"].asFloat());
+
+            componentID = 0x00000001;
         }
 
         else if (itr->asCString() == (std::string)"UnitHealth") {
             comp = new UnitHealth(actualJson[form]["Template"]["Health"].asFloat());
+
+            componentID = 0x00000002;
+
         }
 
         else if (itr->asCString() == (std::string)"UnitMovement") {
             comp = new UnitMovement(actualJson[form]["Template"]["Speed"].asFloat());
+            componentID = 0x00000003;
+
         }
 
-        if (itr->asCString() == (std::string)"PathFinding") {
+        else if (itr->asCString() == (std::string)"PathFinding") {
             comp = new PathFinding();
+            componentID = 0x00000004;
+
         }
 
-        if (itr->asCString() == (std::string)"Sound") {
+        else if (itr->asCString() == (std::string)"Transform") {
+            comp = new Transform();
+            componentID = 0x00000005;
+
+        }
+
+        else if (itr->asCString() == (std::string)"Renderable") {
+            std::string meshData = actualJson[form]["Template"]["Mesh"].asCString();
+            const char* meshDir = meshData.c_str();
+            std::string fragData = actualJson[form]["Template"]["fs_Shader"].asCString();
+            const char* fragDir = fragData.c_str();
+            std::string vertData = actualJson[form]["Template"]["vs_Shader"].asCString();
+            const char* vertDir = vertData.c_str();
+
+            comp = new Renderable(meshDir, fragDir, vertDir, x_pos, y_pos);
+            componentID = 0x00000006;
+
+        }
+
+        else if (itr->asCString() == (std::string)"ConstantBody") {
+            comp = new ConstantBody();
+            componentID = 0x00000007;
+
+        }
+
+        else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
             comp = new Sound(directory);
-        }
+            componentID = 0x00000008;
 
-        BaseComponent** ptr = &comp;
-        componentLists[itr->asCString()].push_back(comp);
-        entity->components.insert({ itr->asCString(), ptr, });
+        }
+        if (componentID != 0x00000000) {
+            entity->components.insert({ componentID, comp, });
+        }
+        
     }
+    return ID;
 
 }
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
-    /*--delete components--*/
-    EntityList.at(entityID)->Terminate();
-    /*---------------------*/
-    /*---Delete pointers---*/
-
-    /*---------------------*/
     /*--Delete the entity--*/
-    delete EntityList.at(entityID);
-    EntityList.at(entityID) = NULL;
-    EntityList.erase(entityID);
+    delete EntityList.begin()->second;
+    EntityList.begin()->second = NULL;
+    EntityList.erase(EntityList.begin());
     /*---------------------*/
     
 }
 
+
+void GameEngine::EntityManager::EarlyUpdate() {
+    for (auto entity : EntityList) {
+        entity.second->EarlyUpdate();
+    }
+}
+
+void GameEngine::EntityManager::Update() {
+    for (auto entity : EntityList) {
+        entity.second->Update();
+    }
+}
+
+void GameEngine::EntityManager::LateUpdate() {
+    for (auto entity : EntityList) {
+        entity.second->LateUpdate();
+    }
+}
 
 void GameEngine::EntityManager::PrintFirstEntity() {
     EntityList[0]->PrintList();

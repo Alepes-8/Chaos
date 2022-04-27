@@ -15,5 +15,4 @@ int GameEngine::UnitDamage::GetDamage() {
 }
 
 void GameEngine::UnitDamage::Update(){
-	std::cout << "Update UnitDamage" << std::endl;
 }

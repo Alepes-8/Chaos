@@ -9,5 +9,4 @@ GameEngine::PathFinding::~PathFinding() {
 }
 
 void GameEngine::PathFinding::Update() {
-	std::cout << "Update PathFinding" << std::endl;
 }

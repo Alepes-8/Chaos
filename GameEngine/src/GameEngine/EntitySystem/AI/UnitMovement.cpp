@@ -15,5 +15,4 @@ float GameEngine::UnitMovement::GetMovement() {
 }
 
 void GameEngine::UnitMovement::Update() {
-	std::cout << "Update UnitMovement" << std::endl;
 }

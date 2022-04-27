@@ -4,12 +4,16 @@
         "Components" : {
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
-            "Component3": "UnitMovement"
+            "Component3": "UnitMovement",
+            "Component4": "Renderable"
         },
         "Template" : {
             "Health" : 4.8,
             "Damage" : 0.96,
-            "Speed" : 2
+            "Speed" : 2,
+            "Mesh" : "Data/3DModels/OBJ-format/skeleton.obj",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
         }
     },
     "Leader" :  
@@ -17,12 +21,16 @@
         "Components" : {
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
-            "Component3": "UnitMovement"
+            "Component3": "UnitMovement",
+            "Component4": "Renderable"
         },
         "Template" : {
             "Health" : 8,
             "Damage" : 1.6,
-            "Speed" : 2
+            "Speed" : 2,
+            "Mesh" : "Data/3DModels/OBJ-format/vampire.obj",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
         }
     },
     "Tree" : 
@@ -53,11 +61,23 @@
     },
     "Cube" :
     {
-        "Comonents" : {
-            "Component1": "Transform",
-            "Component2": "Renderable",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody"  
+        }
+    },
+    "Triangle" :
+    {
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody",
+            "Component4": "UnitHealth"
+        },
+        "Template" : 
+        {
+            "Health": 2
         }
     },
 

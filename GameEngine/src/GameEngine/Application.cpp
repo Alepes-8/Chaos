@@ -51,13 +51,17 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Pressed");
+            m_EntityManager->CreateNewEntity("Leader", -(m_InputManager->MousePos().x / 100) + 6, -(m_InputManager->MousePos().y / 100) + 3);
+
         }
         if (m_InputManager->KeyReleased(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Released");
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_C)) {
             GameEngine::Log::GetCoreLogger()->info("C Create");
-            m_EntityManager->CreateNewEntity("Peasant");
+            std::cout << "positions x and y:" << -(m_InputManager->MousePos().x / 100) + 6 << ", " << -(m_InputManager->MousePos().y / 100) + 3 << std::endl;
+
+            m_EntityManager->CreateNewEntity("Peasant", -(m_InputManager->MousePos().x / 100) + 6, -(m_InputManager->MousePos().y / 100) + 3);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
             GameEngine::Log::GetCoreLogger()->info("P print");
@@ -97,35 +101,14 @@ namespace GameEngine
         //------------------WINDOW------------------//
         m_Graphics->Initbgfx();
 
-       //-----------------SHADERS--------------------//
-        //Create shader
-        Shader shader = Shader("../GameEngine/src/GameEngine/Shaders/fs_cubes.bin",
-            "../GameEngine/src/GameEngine/Shaders/vs_cubes.bin");
-        bgfx::ProgramHandle m_program = shader.createProgram();
-        //-------------------------------------------//
-
-        //-----------------RENDERABLES-----------------//
-        //Init Renderables so bgfx knows the format of our renderable data
-        Renderable::init();
-
-        //create a cube
-        Renderable cube = CubeRenderable();
-        //init vertices and indices buffers
-        cube.createBuffers();
-
-        Renderable cube2 = CubeRenderable();
-        cube2.createBuffers();
-        
-        Renderable floor = CubeRenderable();
-        floor.createBuffers();
-        //----------------------------------------//
-
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
-        //----------------------------------------//
-        m_EntityManager->CreateNewEntity("BackgroundMusic");
+    
+
+        //-----------------Entity-----------------//
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
+        
 
         SDL_Event currentEvent;
         unsigned int counter = 0;
@@ -140,35 +123,14 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                EarlyUpdate();
+                EarlyUpdate(); 
                 Update();
 
-                cam.update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
+                cam.Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
-                //-----------CUBE 1--------------------//
-                float mtx[16];
-                bx::mtxRotateXY(mtx, counter * 0.01f, counter * 0.01f);
-                counter++;
 
-                // Set model matrix for rendering.
-                cube.setMtx(mtx);
-
-                //submit cube values to the program
-                cube.submit(0, m_program);
-
-                //--------------------------------------//
-
-                    //----------------CUBE 2-----------------//
-                float mtx2[16];
-                bx::mtxTranslate(mtx2,5,0,0);
-                cube2.setMtx(mtx2);
-                cube2.submit(0, m_program);
-                //--------------------------------------//
-
-                float mtxfloor[16];
-                bx::mtxScale(mtxfloor, 10, 10, 0.01);
-                floor.setMtx(mtxfloor);
-                floor.submit(0, m_program);
+                //mesh.Update();
+                m_EntityManager->Update();
 
                 LateUpdate();
                 Render();

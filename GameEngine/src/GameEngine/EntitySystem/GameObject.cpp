@@ -5,9 +5,11 @@ void GameEngine::GameObject::EarlyUpdate() {
 }
 
 void GameEngine::GameObject::Update() {
-	/*for (auto component : componentsList) {
-		component->Update();
-	}*/
+
+
+	for (auto comp : components) {
+		comp.second->Update();
+	}
 }
 
 void GameEngine::GameObject::LateUpdate() {
@@ -21,6 +23,10 @@ GameEngine::GameObject::GameObject(int inputID) {
 
 GameEngine::GameObject::~GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
+	for (auto comp : components) {
+		delete comp.second;
+	}
+
 }
 
 void GameEngine::GameObject::PrintList() {

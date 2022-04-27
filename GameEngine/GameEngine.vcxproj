@@ -154,20 +154,17 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Sound.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\EntityManager.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\IdGenerationPool.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
     <ClInclude Include="src\GameEngine\Log.h" />
     <ClInclude Include="src\GameEngine\MathHelper.h" />
-    <ClInclude Include="src\GameEngine\ObjParser\ObjParser.h" />
-    <ClInclude Include="src\GameEngine\Renderable\CubeRenderable.h" />
-    <ClInclude Include="src\GameEngine\Renderable\Renderable.h" />
-    <ClInclude Include="src\GameEngine\Shaders\Shader.h" />
     <ClInclude Include="src\GameEngine\Window\Graphics.h" />
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
@@ -178,18 +175,18 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\Transform.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
-    <ClCompile Include="src\GameEngine\ObjParser\ObjParser.cpp" />
-    <ClCompile Include="src\GameEngine\Renderable\CubeRenderable.cpp" />
-    <ClCompile Include="src\GameEngine\Renderable\Renderable.cpp" />
-    <ClCompile Include="src\GameEngine\Shaders\Shader.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
   </ItemGroup>

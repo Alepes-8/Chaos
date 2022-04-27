@@ -20,5 +20,4 @@ void GameEngine::UnitHealth::EditHealth(float change) {
 }
 
 void GameEngine::UnitHealth::Update() {
-	std::cout << "Update UnitHealth" << std::endl;
 }

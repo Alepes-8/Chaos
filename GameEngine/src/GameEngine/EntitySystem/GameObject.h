@@ -11,7 +11,7 @@ namespace GameEngine {
 	class GameObject {
 	public:
 		int ID;
-		std::map<std::string, BaseComponent**> components;
+		std::map<int, BaseComponent*> components;
 		void Terminate();
 		void EarlyUpdate();
 		void Update();
