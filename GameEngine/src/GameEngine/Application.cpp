@@ -165,10 +165,6 @@ namespace GameEngine
                 cube2.submit(0, m_program);
                 //--------------------------------------//
 
-                float mtxfloor[16];
-                bx::mtxScale(mtxfloor, 10, 10, 0.01);
-                floor.setMtx(mtxfloor);
-                floor.submit(0, m_program);
 
                 LateUpdate();
                 Render();

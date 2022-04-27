@@ -6,10 +6,10 @@
 /// </summary>
 /// <param name="filename"> The path to the .obj file</param>
 /// <returns> A Renderable object corresponding to the .obj file</returns>
-GameEngine::Renderable parseObj(char* filename)
+GameEngine::Renderer parseObj(char* filename)
 {
     //Renderable to return
-    GameEngine::Renderable result = GameEngine::Renderable();
+    GameEngine::Renderer result = GameEngine::Renderer();
 
     //open the file
     std::ifstream in(filename, std::ios::in);
