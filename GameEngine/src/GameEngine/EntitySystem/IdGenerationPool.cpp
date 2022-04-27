@@ -7,7 +7,7 @@ GameEngine::IdGenerationPool::IdGenerationPool() {
 	/*Create a new pool of available ids*/
 	idPool = new uint32_t[1024];
 	generations = new uint32_t[1024];
-	uint64_t value = 0x00000000;
+	uint32_t value = 0x00000000;
 	for (int i = 0; i < 1024; i++) {
 		idPool[i] = value;
 		generations[i] = 0x01000000;
