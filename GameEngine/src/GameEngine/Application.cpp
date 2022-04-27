@@ -51,6 +51,8 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Pressed");
+            m_EntityManager->CreateNewEntity("Leader", -(m_InputManager->MousePos().x / 100) + 6, -(m_InputManager->MousePos().y / 100) + 3);
+
         }
         if (m_InputManager->KeyReleased(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Released");
@@ -59,7 +61,7 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("C Create");
             std::cout << "positions x and y:" << -(m_InputManager->MousePos().x / 100) + 6 << ", " << -(m_InputManager->MousePos().y / 100) + 3 << std::endl;
 
-            m_EntityManager->CreateNewEntity("Peasant");
+            m_EntityManager->CreateNewEntity("Peasant", -(m_InputManager->MousePos().x / 100) + 6, -(m_InputManager->MousePos().y / 100) + 3);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
             GameEngine::Log::GetCoreLogger()->info("P print");
@@ -99,21 +101,14 @@ namespace GameEngine
         //------------------WINDOW------------------//
         m_Graphics->Initbgfx();
 
-        //-----------------RENDERABLES-----------------//
-        //Init Renderables so bgfx knows the format of our renderable data
-
-        //Renderer mesh = Renderer("Data/3DModels/OBJ-format/skeleton.obj", "Data/Shaders/fs_cubes.bin", "Data/Shaders/vs_cubes.bin");
-
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
-        
+    
 
         //-----------------Entity-----------------//
-        //int backgroundMusic = m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
-        int TestId = m_EntityManager->CreateNewEntity("Peasant");
-        m_EntityManager->Update();
+        
 
         SDL_Event currentEvent;
         unsigned int counter = 0;

@@ -60,7 +60,7 @@ namespace GameEngine {
 
 
     public:
-        Renderable(const char* dirMesh, const char* dirFrag, const char* dirVert);
+        Renderable(const char* dirMesh, const char* dirFrag, const char* dirVert, float x_value, float y_value);
         void createBuffers();
         void setMtx(float m[]);
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);

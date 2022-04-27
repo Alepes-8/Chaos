@@ -9,7 +9,7 @@ GameEngine::Renderable::~Renderable() {
 
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
-GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, const char* dirVert) {
+GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, const char* dirVert, float x_value,float y_value) {
     vsh = loadShader(dirFrag);
     fsh = loadShader(dirVert);
     m_program = createProgram();
@@ -18,12 +18,11 @@ GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, cons
 
     parseObj(dirMesh);
     createBuffers();
-    print();
 
     float mtx_mesh[16];
     bx::mtxScale(mtx_mesh, 5);
-    mtx_mesh[12] = 0;   //left and right
-    mtx_mesh[13] = 0;   //up and down
+    mtx_mesh[12] = x_value;   //left and right
+    mtx_mesh[13] = y_value;   //up and down
     mtx_mesh[14] = 0;   //Back and forward
     setMtx(mtx_mesh);
 }
@@ -253,6 +252,5 @@ bgfx::ProgramHandle GameEngine::Renderable::createProgram() {
 
 void GameEngine::Renderable::Update() {
 
-    std::cout << "Update Renderable" << std::endl;
     submit(0, m_program, BGFX_STATE_CULL_CCW);
 }

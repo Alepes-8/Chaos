@@ -33,7 +33,7 @@ void GameEngine::EntityManager::PrintList() {
      << EntityList.size() << " long" << std::endl;
 }
 
-int GameEngine::EntityManager::CreateNewEntity(char* form) {
+int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos ) {
 	std::cout << "New entity created " << std::endl;
     int ID = GetNewID();
     GameObject* entity = new GameObject(ID);
@@ -90,7 +90,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form) {
             std::string vertData = actualJson[form]["Template"]["vs_Shader"].asCString();
             const char* vertDir = vertData.c_str();
 
-            comp = new Renderable(meshDir, fragDir, vertDir);
+            comp = new Renderable(meshDir, fragDir, vertDir, x_pos, y_pos);
             componentID = 0x00000006;
 
         }
@@ -119,9 +119,9 @@ int GameEngine::EntityManager::CreateNewEntity(char* form) {
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
     /*--Delete the entity--*/
-    delete EntityList.at(entityID);
-    EntityList.at(entityID) = NULL;
-    EntityList.erase(entityID);
+    delete EntityList.begin()->second;
+    EntityList.begin()->second = NULL;
+    EntityList.erase(EntityList.begin());
     /*---------------------*/
     
 }

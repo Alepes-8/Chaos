@@ -21,12 +21,16 @@
         "Components" : {
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
-            "Component3": "UnitMovement"
+            "Component3": "UnitMovement",
+            "Component4": "Renderable"
         },
         "Template" : {
             "Health" : 8,
             "Damage" : 1.6,
-            "Speed" : 2
+            "Speed" : 2,
+            "Mesh" : "Data/3DModels/OBJ-format/vampire.obj",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
         }
     },
     "Tree" : 
