@@ -15,7 +15,7 @@ GameEngine::EntityManager* GameEngine::EntityManager::m_Instance = NULL;
  }
 
 GameEngine::EntityManager::EntityManager(){
-
+    m_IdPool = GameEngine::IdGenerationPool::CreateInstance();
 
     /*componentLists["UnitDamage"].push_back(new UnitDamage(5.0f));
 
@@ -23,7 +23,10 @@ GameEngine::EntityManager::EntityManager(){
     std::cout << "Damage value:" << child->GetDamage() << std::endl;*/
 }
 
-GameEngine::EntityManager::~EntityManager() {}
+GameEngine::EntityManager::~EntityManager() {
+    delete m_IdPool;
+    m_IdPool = NULL;
+}
 
 void GameEngine::EntityManager::PrintList() {
     std::cout << "The length of the current EntityList is " 

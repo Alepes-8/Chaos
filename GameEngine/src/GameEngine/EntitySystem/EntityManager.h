@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include <vector>
 #include <map>
-
+#include "IdGenerationPool.h"
 
 #include <fstream>	//can probably be deleted. Ask Alex(test txt files)
 #include "json/json.h"	//can probably be deleted. Ask Alex(test txt files)
@@ -23,6 +23,7 @@ namespace GameEngine {
 		int currentID = 0;
 		std::map<int, GameObject*> EntityList;
 		static EntityManager* m_Instance;
+		GameEngine::IdGenerationPool* m_IdPool;
 	public:
 		void TerminateEnity(int entityID);
 		int CreateNewEntity(char* form);
