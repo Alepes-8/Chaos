@@ -121,11 +121,12 @@ namespace GameEngine
         //-----------------CAMERA-----------------//
         Camera cam = Camera();
         //----------------------------------------//
-        m_EntityManager->CreateNewEntity("BackgroundMusic");
+        //m_EntityManager->CreateNewEntity("Peasant");
+        int backgroundMusic = m_EntityManager->CreateNewEntity("BackgroundMusic");
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
 
-        m_EntityManager->CreateNewEntity("Cube");
+        //m_EntityManager->CreateNewEntity("Cube");
 
         SDL_Event currentEvent;
         unsigned int counter = 0;

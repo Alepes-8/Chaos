@@ -54,9 +54,22 @@
     "Cube" :
     {
         "Components" : {
-            "Component1": "Transform",
-            "Component2": "Renderable",
+            "Component1": "Renderable",
+            "Component2": "Transform",
             "Component3": "ConstantBody"  
+        }
+    },
+    "Triangle" :
+    {
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody",
+            "Component4": "UnitHealth"
+        },
+        "Template" : 
+        {
+            "Health": 2
         }
     },
 
