@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <bgfx/bgfx.h>
 #include <vector>
+#include <map>
 
 #include "GameEngine/MathHelper.h"
 #include <list>
@@ -64,7 +65,8 @@ namespace GameEngine {
         void createBuffers();
         void setMtx(float m[]);
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
-        void parseObj(const char* filename);
+        void parseObj(const std::string filename);
+        std::map<std::string, float> parseMtl(const std::string filename);
         void print();
         ~Renderable();
         void Update() override;
