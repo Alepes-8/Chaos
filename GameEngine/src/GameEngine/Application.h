@@ -4,18 +4,11 @@
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
-#include "GameEngine/Renderable/Renderable.h"
-#include "GameEngine/Renderable/CubeRenderable.h"
-#include "GameEngine/Shaders/Shader.h"
+#include "GameEngine/Camera/Camera.h"
 
 
 #include <vector>
-#include <SDL.h>
-#include <SDL_syswm.h>
-#include <bgfx/bgfx.h>
-#include <bgfx/platform.h>
-#include <bx/math.h>
-#include <bx/bx.h>
+
 
 namespace GameEngine
 {

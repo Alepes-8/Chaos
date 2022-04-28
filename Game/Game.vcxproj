@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -91,7 +91,9 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Debug-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Debug-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +101,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -115,7 +117,9 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Release-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Release-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Release-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Release-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -123,7 +127,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>BX_CONFIG_DEBUG;GE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GameEngine\src;..\GameEngine\library\spdlog\include;..\GameEngine\library\bgfx\include;..\GameEngine\library\bx\include;..\GameEngine\library\bgfx\examples\common;..\GameEngine\library\bimg\include;..\GameEngine\library\bgfx\3rdparty;..\GameEngine\library\bx\include\compat\msvc;..\GameEngine\library\sdl2\include;..\GameEngine\library\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -139,7 +143,9 @@
       <AdditionalLibraryDirectories>..\bin\Debug-windows-x86_64\GameEngine;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)</Command>
+      <Command>IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\sdl2\lib\x64\SDL2_mixer.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)
+IF EXIST ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll\ (xcopy /Q /E /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Dist-windows-x86_64\Game &gt; nul) ELSE (xcopy /Q /Y /I ..\GameEngine\library\jsoncpp\.Build\bin\Debug\jsoncpp.dll ..\bin\Dist-windows-x86_64\Game &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

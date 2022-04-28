@@ -13,6 +13,7 @@ namespace GameEngine {
 
 	public:
 		Transform();
+		~Transform();
 
 		Transform(Vector3 coordinates, Vector3 rotation, Vector3 scale);
 

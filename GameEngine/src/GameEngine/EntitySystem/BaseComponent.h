@@ -4,6 +4,11 @@
 namespace GameEngine {
 	class BaseComponent{
 	public:
-		virtual void Update() = 0;
+		~BaseComponent() {
+			std::cout << "Delete component" << std::endl;
+		}
+		virtual void Update() {
+			std::cout << "update BaseComponent" << std::endl;
+		}
 	};
 }

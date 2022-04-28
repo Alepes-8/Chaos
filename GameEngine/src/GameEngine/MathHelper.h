@@ -53,6 +53,14 @@ namespace GameEngine {
 			float mag = Magnitude();
 			return Vector3(x / mag, y / mag, z / mag);
 		}
+
+		Vector3 Vectorial_product(Vector3 v) {
+			return Vector3{
+				(y * v.z - z * v.y),
+				(z * v.x - x * v.z),
+				(x * v.y - y * v.x)
+			};
+		}
 	};
 
 	inline Vector3 operator +(const Vector3& lhs, const Vector3& rhs) {
