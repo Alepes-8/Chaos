@@ -136,10 +136,6 @@ namespace GameEngine
                 Render();
             }
         }
-        bgfx::shutdown();
-        // Free up window
-        SDL_DestroyWindow(window);
-        // Shutdown SDL
-        SDL_Quit();
+
     }
 }
