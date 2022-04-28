@@ -10,7 +10,9 @@ In the end the Game Engine is the goal, however to ease up and specialice the ga
 Needs to be windows.
  
 ## Starting up
-Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the librarys used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, bx, bgfx and bimg into the same libary,"GameEngine\library". References to the repositorys can be seen in "Used projects".
+Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the librarys used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, jsoncpp bx, bgfx and bimg into the same libary,"GameEngine\library". References to the repositorys can be seen in "Used projects".
+
+You will need to run the Jsoncpp. Here you should run the cmake file within the folder or follow https://github.com/open-source-parsers/jsoncpp/wiki/Building to build the jsoncpp library.
 
 However, due to how bgfx is built upp we will need to fix some things within the folder. So open bgfx, then open a command prompt within the main directory of bgfx. Here run "..\bx\tools\bin\windows\genie --with-examples --with-tools vs2017".
 
@@ -30,6 +32,8 @@ https://github.com/bkaradzic/bx.git
 https://github.com/bkaradzic/bimg.git
 
 https://github.com/bkaradzic/bgfx.git
+
+https://github.com/open-source-parsers/jsoncpp
 
 ## Compile shaders
 
