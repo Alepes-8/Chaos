@@ -24,7 +24,7 @@ GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, cons
     mtx_mesh[12] = x_value;   //left and right
     mtx_mesh[13] = y_value;   //up and down
     mtx_mesh[14] = 0;   //Back and forward
-    setMtx(mtx_mesh);
+    setTransform(Transform(mtx_mesh));
 }
 
 
@@ -45,11 +45,9 @@ void GameEngine::Renderable::createBuffers()
 }
 
 
-void GameEngine::Renderable::setMtx(float* m)
+void GameEngine::Renderable::setTransform(Transform t)
 {
-    for (int i = 0; i < 16; i++) {
-        mtx[i] = m[i];
-    }
+    this->t = t;
 }
 
 /// <summary>
@@ -63,7 +61,7 @@ void GameEngine::Renderable::setMtx(float* m)
 /// </param>
 void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE)
 {
-    bgfx::setTransform(mtx);
+    bgfx::setTransform(t.mtx);
     bgfx::setVertexBuffer(0, m_vbh);
     bgfx::setIndexBuffer(m_ibh);
 

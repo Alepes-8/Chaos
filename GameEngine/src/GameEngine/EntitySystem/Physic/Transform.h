@@ -1,35 +1,45 @@
-#pragma
+#pragma once
 #include <GameEngine/EntitySystem/BaseComponent.h>
 #include <GameEngine/MathHelper.h>
 #include <GameEngine/Log.h>
+#include <bx/math.h>
 
 namespace GameEngine {
-	
+
 	class Transform : public GameEngine::BaseComponent {
-	private:
-		//coordinates
-		Vector3 coordinates, rotation, scale;
-
-
+	
 	public:
-		Transform();
-		~Transform();
 
-		Transform(Vector3 coordinates, Vector3 rotation, Vector3 scale);
+		float mtx[16] = {
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+		};
+
+		Transform() {}
+
+		Transform(float m[16]);
+
+		~Transform();
 
 		void translate(Vector3 translation);
 
-		void setRotation(Vector3 rotation);
-		
-		void rotate(Vector3 axis, float value);
+		void setTranslation(Vector3 translation);
 
-		void setScale(Vector3 scale);
+		void rescale(Vector3 scale);
 
-		void rescale(float coef);
+		void rotates(Vector3 axis, float value);
 
-		bool isScaleValid(Vector3 scale);
+		void rotates(float x, float y, float z);
+
+		Transform operator*(Transform t);
+
+		void print();
 
 		virtual void Update() override;
 	};
 
 }
+
+//https://www.brainvoyager.com/bv/doc/UsersGuide/CoordsAndTransforms/SpatialTransformationMatrices.html
