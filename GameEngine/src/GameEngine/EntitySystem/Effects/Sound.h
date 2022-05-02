@@ -10,7 +10,7 @@ namespace GameEngine {
 	class Sound : public BaseComponent 
 	{
 	public:
-		Sound(const char* dir);
+		Sound(GameObject* parent, const char* dir);
 		~Sound();
 		void Update() override;
 		

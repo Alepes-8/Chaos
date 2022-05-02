@@ -169,12 +169,14 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\Camera\Camera.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />

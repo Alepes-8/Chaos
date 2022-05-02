@@ -1,6 +1,6 @@
 #include "Light.h"
 
-GameEngine::Light::Light() {
+GameEngine::Light::Light(GameObject* parent) : BaseComponent(parent) {
 	std::cout << "Create health" << std::endl;
 
 }

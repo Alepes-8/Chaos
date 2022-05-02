@@ -1,23 +1,28 @@
 #pragma once
-#include "BaseComponent.h"
-#include <vector>
-#include "../Log.h"
 #include <map>
-#include "AI/UnitDamage.h"
-#include "AI/UnitHealth.h"
-#include "AI/UnitMovement.h"
 
 namespace GameEngine {
+
+	//forward declaration
+	class Transform;
+	class BaseComponent;
+
 	class GameObject {
+	private:
+		static unsigned int gameObjCounter;
+		Transform* transform;
+
 	public:
 		int ID;
 		std::map<int, BaseComponent*> components;
+		
+		Transform* getTransform();
 		void Terminate();
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
 		void PrintList();
-		GameObject(int inputID);
+		GameObject();
 		~GameObject();		
 	};
 }

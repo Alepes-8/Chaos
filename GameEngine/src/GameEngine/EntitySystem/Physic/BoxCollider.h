@@ -11,7 +11,7 @@ namespace GameEngine {
 		Vector3 scale;
 
 	public:
-		BoxCollider(Vector3 origine, Vector3 scale);
+		BoxCollider(GameObject* parent, Vector3 origine, Vector3 scale);
 		bool areColliding(Collider& c) override;
 		void Update() override;
 

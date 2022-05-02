@@ -5,7 +5,7 @@
 namespace GameEngine {
 	class ConstantBody : public BaseComponent {
 	public:
-		ConstantBody();
+		ConstantBody(GameObject* parent);
 		~ConstantBody();
 		void Update() override;
 	};

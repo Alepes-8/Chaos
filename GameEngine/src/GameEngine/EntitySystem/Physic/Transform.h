@@ -1,12 +1,12 @@
 #pragma once
-#include <GameEngine/EntitySystem/BaseComponent.h>
 #include <GameEngine/MathHelper.h>
 #include <GameEngine/Log.h>
 #include <bx/math.h>
+#include <iostream>
 
 namespace GameEngine {
 
-	class Transform : public GameEngine::BaseComponent {
+	class Transform {
 	
 	public:
 
@@ -37,7 +37,7 @@ namespace GameEngine {
 
 		void print();
 
-		virtual void Update() override;
+		void Update();
 	};
 
 }

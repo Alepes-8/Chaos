@@ -3,7 +3,7 @@
 
 namespace GameEngine {
 	class Light : public BaseComponent {
-		Light();
+		Light(GameObject* parent);
 		~Light();
 		void Update() override;
 	};

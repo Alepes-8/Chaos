@@ -12,7 +12,7 @@ namespace GameEngine {
 		float radius;
 
 	public:
-		SphereCollider(Vector3 origine, float radius);
+		SphereCollider(GameObject* parent, Vector3 origine, float radius);
 		bool areColliding(Collider& c) override;
 
 		//getters

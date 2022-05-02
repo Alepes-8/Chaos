@@ -57,12 +57,11 @@ namespace GameEngine {
         bgfx::IndexBufferHandle m_ibh;
 
         //matrix that define position of the renderable
-        GameEngine::Transform t;
         bgfx::ProgramHandle m_program;
 
 
     public:
-        Renderable(const char* dirMesh, const char* dirFrag, const char* dirVert, float x_value, float y_value);
+        Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert, float x_value, float y_value);
         void createBuffers();
         void setTransform(Transform t);
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);

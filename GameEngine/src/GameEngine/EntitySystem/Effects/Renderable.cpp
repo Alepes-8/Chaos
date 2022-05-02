@@ -9,7 +9,16 @@ GameEngine::Renderable::~Renderable() {
 
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
-GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, const char* dirVert, float x_value,float y_value) {
+GameEngine::Renderable::Renderable
+(
+    GameObject* parent,
+    const char* dirMesh,
+    const char* dirFrag,
+    const char* dirVert,
+    float x_value,
+    float y_value
+) : BaseComponent(parent)
+{
     vsh = loadShader(dirFrag);
     fsh = loadShader(dirVert);
     m_program = createProgram();
@@ -24,6 +33,7 @@ GameEngine::Renderable::Renderable(const char* dirMesh,const char* dirFrag, cons
     mtx_mesh[12] = x_value;   //left and right
     mtx_mesh[13] = y_value;   //up and down
     mtx_mesh[14] = 0;   //Back and forward
+    
     setTransform(Transform(mtx_mesh));
 }
 
@@ -47,7 +57,8 @@ void GameEngine::Renderable::createBuffers()
 
 void GameEngine::Renderable::setTransform(Transform t)
 {
-    this->t = t;
+    Transform* parentTransform = this->getParentTransform();
+    *parentTransform = t;
 }
 
 /// <summary>
@@ -61,7 +72,8 @@ void GameEngine::Renderable::setTransform(Transform t)
 /// </param>
 void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE)
 {
-    bgfx::setTransform(t.mtx);
+    Transform* parentTransform = this->getParentTransform();
+    bgfx::setTransform(parentTransform->mtx);
     bgfx::setVertexBuffer(0, m_vbh);
     bgfx::setIndexBuffer(m_ibh);
 

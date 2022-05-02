@@ -1,5 +1,6 @@
 #pragma once
-
+#include "GameEngine/EntitySystem/BaseComponent.h"
+#include "GameEngine/EntitySystem/GameObject.h"
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"

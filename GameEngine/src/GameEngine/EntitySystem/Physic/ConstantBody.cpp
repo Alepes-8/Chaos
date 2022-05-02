@@ -1,6 +1,6 @@
 #include "ConstantBody.h"
 
-GameEngine::ConstantBody::ConstantBody() {
+GameEngine::ConstantBody::ConstantBody(GameObject* parent) : BaseComponent(parent) {
 	std::cout << "Create ConstantBody" << std::endl;
 
 }

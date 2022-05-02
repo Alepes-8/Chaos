@@ -19,7 +19,7 @@ public:
 */
 
 //-------------------------------------------------------------------
-GameEngine::Sound::Sound(const char* dir) {
+GameEngine::Sound::Sound(GameObject* parent, const char* dir) : BaseComponent(parent) {
 	std::cout << "Create sound" << std::endl;
 
 	/*if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {

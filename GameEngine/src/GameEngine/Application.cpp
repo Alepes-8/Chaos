@@ -106,6 +106,9 @@ namespace GameEngine
     
 
         //-----------------Entity-----------------//
+        GameObject* vampire = new GameObject();
+        BaseComponent* test = new Renderable(vampire, "Data/3DModels/OBJ-format/vampire", "src/Shaders/BIN/f_simple.bin", "src/Shaders/BIN/v_simple.bin", 0, 0);
+        vampire->components.insert({ 1,test });
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
         
@@ -123,12 +126,19 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                EarlyUpdate(); 
+                counter++;
+                EarlyUpdate();
                 Update();
 
                 cam.Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
-
+                Transform* t = vampire->getTransform();
+                t->rescale({ 0.9, 0.9, 0.9 });
+                t->translate({ (float) counter/100,0,0});
+                t->rotates(0,0, (float)counter/100);
+                
+                vampire->components.at(1)->Update();
+               
                 //mesh.Update();
                 m_EntityManager->Update();
 

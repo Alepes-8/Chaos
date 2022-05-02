@@ -5,7 +5,7 @@ namespace GameEngine {
 	class PathFinding : public BaseComponent 
 	{
 	public:
-		PathFinding();
+		PathFinding(GameObject* parent);
 		~PathFinding();
 		void Update() override;
 	};

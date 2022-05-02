@@ -6,7 +6,7 @@ namespace GameEngine {
 	private:
 		float movement;
 	public:
-		UnitMovement(float initSpeed);
+		UnitMovement(GameObject* parent, float initSpeed);
 		~UnitMovement();
 		float GetMovement();
 		void Update() override;

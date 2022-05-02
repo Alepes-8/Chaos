@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "GameEngine/EntitySystem/GameObject.h"
 #include <vector>
 #include <map>
 #include "IdGenerationPool.h"

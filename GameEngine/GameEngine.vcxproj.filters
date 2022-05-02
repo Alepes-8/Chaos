@@ -168,5 +168,9 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp" />
+    <ClCompile Include="BaseComponent.cpp">
+      <Filter>GameEngine\EntitySystem</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
