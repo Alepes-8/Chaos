@@ -24,6 +24,7 @@ namespace GameEngine
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;
+		GameEngine::Camera* m_Camera;
 
 	public:
 		static Application* sInstance;

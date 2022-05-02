@@ -24,6 +24,7 @@ namespace GameEngine
         if (!GameEngine::Graphics::GetInitialize()) { mQuit = true; }
 
         m_EntityManager = GameEngine::EntityManager::CreateInstance();
+        m_Camera = GameEngine::Camera::CreateInstance();
     }
 
 
@@ -32,10 +33,13 @@ namespace GameEngine
         GameEngine::Timer::Terminate();
         GameEngine::Graphics::Terminate();
         GameEngine::EntityManager::Terminate();
+        GameEngine::Camera::Terminate();
+
         m_InputManager = NULL;
         m_Timer = NULL;
         m_Graphics = NULL;
         m_EntityManager = NULL;
+        m_Camera = NULL;
     }
 
     void Application::EarlyUpdate() {
@@ -60,7 +64,14 @@ namespace GameEngine
         if (m_InputManager->KeyPressed(SDL_SCANCODE_C)) {
             GameEngine::Log::GetCoreLogger()->info("C Create");
             std::cout << "positions x and y:" << -(m_InputManager->MousePos().x / 100) + 6 << ", " << -(m_InputManager->MousePos().y / 100) + 3 << std::endl;
+            float y = (m_InputManager->MousePos().y / (float)m_Graphics->Screen_Hight) * 2 - 1;
+            float x = (m_InputManager->MousePos().x / (float)m_Graphics->Screen_Width) * 2 - 1;
 
+            float start[3];
+            start[0] = x;
+            start[1] = y;
+            start[2] = 0;
+            std::cout << start << std::endl;
             m_EntityManager->CreateNewEntity("Peasant", -(m_InputManager->MousePos().x / 100) + 6, -(m_InputManager->MousePos().y / 100) + 3);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
@@ -102,7 +113,7 @@ namespace GameEngine
         m_Graphics->Initbgfx();
 
         //-----------------CAMERA-----------------//
-        Camera cam = Camera();
+        
     
 
         //-----------------Entity-----------------//
@@ -130,7 +141,7 @@ namespace GameEngine
                 EarlyUpdate();
                 Update();
 
-                cam.Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
+                m_Camera->Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
 
                 Transform* t = vampire->getTransform();
                 t->rescale({ 0.9, 0.9, 0.9 });
