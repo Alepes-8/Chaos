@@ -169,7 +169,6 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\Camera\Camera.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />

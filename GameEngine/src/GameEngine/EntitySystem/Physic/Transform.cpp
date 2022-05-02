@@ -106,6 +106,6 @@ void GameEngine::Transform::print() {
 
 
 void GameEngine::Transform::Update(){
-	std::cout << "transform test" << std::endl;
+	//std::cout << "transform test" << std::endl;
 }
 

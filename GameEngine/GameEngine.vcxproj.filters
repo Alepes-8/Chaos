@@ -126,6 +126,9 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp">
+      <Filter>GameEngine\EntitySystem</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp">
       <Filter>GameEngine\EntitySystem\Effects</Filter>
     </ClCompile>
@@ -167,10 +170,6 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp" />
-    <ClCompile Include="BaseComponent.cpp">
-      <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
