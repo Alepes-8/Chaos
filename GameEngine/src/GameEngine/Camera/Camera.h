@@ -30,8 +30,8 @@ namespace GameEngine {
 		void listenEvent(GameEngine::InputManager* im);
 		
 		void Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height);
-		float* _view = new float[16];
-		float* _proj = new float[16];
+		float _view[16];
+		float _proj[16];
 	};
 
 }
