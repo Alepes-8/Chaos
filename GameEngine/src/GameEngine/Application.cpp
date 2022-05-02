@@ -66,6 +66,16 @@ namespace GameEngine
             std::cout << "positions x and y:" << -(m_InputManager->MousePos().x / 100) + 6 << ", " << -(m_InputManager->MousePos().y / 100) + 3 << std::endl;
             float y = (m_InputManager->MousePos().y / (float)m_Graphics->Screen_Hight) * 2 - 1;
             float x = (m_InputManager->MousePos().x / (float)m_Graphics->Screen_Width) * 2 - 1;
+            
+            float tempview[4][4];
+            float tempproj[4][4];
+
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    tempview[i][j] = m_Camera->_view[i * 4 + j];
+                    tempproj[i][j] = m_Camera->_proj[i * 4 + j];
+                }
+            }
 
             float start[3];
             start[0] = x;
