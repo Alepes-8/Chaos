@@ -4,10 +4,11 @@
 namespace GameEngine {
 	class UnitDamage : public BaseComponent{
 	private:
-		unsigned int damage;
+		float damage;
 	public:
 		int GetDamage();
-		UnitDamage();
+		UnitDamage(float dmgValue);
 		~UnitDamage();
+		void Update() override;
 	};
 }

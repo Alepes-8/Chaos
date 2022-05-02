@@ -1,0 +1,96 @@
+{
+    "Peasant" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "Renderable"
+        },
+        "Template" : {
+            "Health" : 4.8,
+            "Damage" : 0.96,
+            "Speed" : 2,
+            "Mesh" : "Data/3DModels/OBJ-format/skeleton",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+        }
+    },
+    "Leader" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "Renderable"
+        },
+        "Template" : {
+            "Health" : 8,
+            "Damage" : 1.6,
+            "Speed" : 2,
+            "Mesh" : "Data/3DModels/OBJ-format/vampire",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+        }
+    },
+    "Tree" : 
+    { 
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Template": 
+        {
+            "Health" : 10
+        }
+    },
+    "Rock" : 
+    { 
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "PathFinding"
+        },
+        "Template": 
+        {
+            "Health" : 20
+        }
+    },
+    "Cube" :
+    {
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody"  
+        }
+    },
+    "Triangle" :
+    {
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody",
+            "Component4": "UnitHealth"
+        },
+        "Template" : 
+        {
+            "Health": 2
+        }
+    },
+
+    "BackgroundMusic": 
+    {
+        "Components": 
+        {
+            "Component1": "Sound"
+        },
+        "Template": 
+        {
+            "Sound": "Audio/testSound.wav"
+        }
+    }
+
+}

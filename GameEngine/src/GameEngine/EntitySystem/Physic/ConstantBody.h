@@ -1,10 +1,12 @@
 #pragma once
+
 #include "../BaseComponent.h"
 
 namespace GameEngine {
-	class Light : public BaseComponent {
-		Light();
-		~Light();
+	class ConstantBody : public BaseComponent {
+	public:
+		ConstantBody();
+		~ConstantBody();
 		void Update() override;
 	};
 }
