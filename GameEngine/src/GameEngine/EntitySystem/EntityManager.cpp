@@ -97,7 +97,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
-            comp = new Sound(entity, directory);
+            comp = new Sound(entity);
             componentID = 0x00000008;
         }
         if (componentID != 0x00000000) {
