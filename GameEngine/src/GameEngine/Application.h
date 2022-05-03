@@ -26,6 +26,8 @@ namespace GameEngine
 		GameEngine::InputManager* m_InputManager;
 		GameEngine::Camera* m_Camera;
 
+		void CallCreation(char*);
+
 	public:
 		static Application* sInstance;
 		static void Terminate();
@@ -38,6 +40,7 @@ namespace GameEngine
 		void LateUpdate();
 		void Render();
 		void Run();
+
 	};
 
 	/*--A function defined in the client*/
