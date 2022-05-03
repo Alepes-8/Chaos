@@ -16,7 +16,8 @@ GameEngine::Renderable::Renderable
     const char* dirFrag,
     const char* dirVert,
     float x_value,
-    float y_value
+    float y_value,
+    float z_value
 ) : BaseComponent(parent)
 {
     vsh = loadShader(dirFrag);
@@ -32,7 +33,7 @@ GameEngine::Renderable::Renderable
     bx::mtxScale(mtx_mesh, 5);
     mtx_mesh[12] = x_value;   //left and right
     mtx_mesh[13] = y_value;   //up and down
-    mtx_mesh[14] = 0;   //Back and forward
+    mtx_mesh[14] = z_value;   //Back and forward
     
     setTransform(Transform(mtx_mesh));
 }

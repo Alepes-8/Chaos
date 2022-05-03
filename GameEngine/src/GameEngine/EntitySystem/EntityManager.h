@@ -26,7 +26,7 @@ namespace GameEngine {
 		GameEngine::IdGenerationPool* m_IdPool;
 	public:
 		void TerminateEnity(int entityID);
-		int CreateNewEntity(char* form, float x_pos , float y_pos );
+		int CreateNewEntity(char* form, float x_pos , float y_pos , float z_pos);
 		static EntityManager* CreateInstance();
 		static void Terminate();
 		void EarlyUpdate();
