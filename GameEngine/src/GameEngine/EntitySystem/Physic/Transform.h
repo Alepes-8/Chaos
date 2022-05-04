@@ -23,6 +23,8 @@ namespace GameEngine {
 
 		~Transform();
 
+		void SetTransform(float x_pos, float y_pos, float z_pos);
+
 		void translate(Vector3 translation);
 
 		void setTranslation(Vector3 translation);

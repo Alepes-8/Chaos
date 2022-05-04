@@ -46,6 +46,8 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
     // using the reader we parse the json 
     reader.parse(testData, actualJson);
 
+    entity->getTransform()->SetTransform(x_pos, y_pos, z_pos);
+
     /*------Take out the the info regarding which components to add.--------*/
     for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
         BaseComponent* comp;

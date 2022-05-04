@@ -14,10 +14,7 @@ GameEngine::Renderable::Renderable
     GameObject* parent,
     const char* dirMesh,
     const char* dirFrag,
-    const char* dirVert,
-    float x_value,
-    float y_value,
-    float z_value
+    const char* dirVert
 ) : BaseComponent(parent)
 {
     vsh = loadShader(dirFrag);
@@ -28,14 +25,7 @@ GameEngine::Renderable::Renderable
 
     parseObj(dirMesh);
     createBuffers();
-
-    float mtx_mesh[16];
-    bx::mtxScale(mtx_mesh, 5);
-    mtx_mesh[12] = x_value;   //left and right
-    mtx_mesh[13] = y_value;   //up and down
-    mtx_mesh[14] = z_value;   //Back and forward
-    
-    setTransform(Transform(mtx_mesh));
+ 
 }
 
 
@@ -55,12 +45,6 @@ void GameEngine::Renderable::createBuffers()
     );
 }
 
-
-void GameEngine::Renderable::setTransform(Transform t)
-{
-    Transform* parentTransform = this->getParentTransform();
-    *parentTransform = t;
-}
 
 /// <summary>
 ///  This function send the renderer to the shader program
