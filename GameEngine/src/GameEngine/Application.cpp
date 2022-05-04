@@ -13,6 +13,8 @@ namespace GameEngine
     }
 
     Application::Application() {
+        std::cout << "start application" << std::endl;
+
         GameEngine::Log::Init();
 
         m_InputManager = GameEngine::InputManager::CreateInstance();
