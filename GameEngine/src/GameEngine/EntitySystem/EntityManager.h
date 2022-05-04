@@ -32,8 +32,7 @@ namespace GameEngine {
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
-		void PrintList();
-		void PrintFirstEntity();
+		GameObject* GetEntity(int id);
 	private:
 		int GetNewID();
 		EntityManager();

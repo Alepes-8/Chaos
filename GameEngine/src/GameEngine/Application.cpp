@@ -27,6 +27,8 @@ namespace GameEngine
 
         m_EntityManager = GameEngine::EntityManager::CreateInstance();
         m_Camera = GameEngine::Camera::CreateInstance();
+        m_Messenger = GameEngine::Messenger::CreateInstance();
+
     }
 
 
@@ -36,12 +38,14 @@ namespace GameEngine
         GameEngine::Graphics::Terminate();
         GameEngine::EntityManager::Terminate();
         GameEngine::Camera::Terminate();
+        GameEngine::Messenger::Terminate();
 
         m_InputManager = NULL;
         m_Timer = NULL;
         m_Graphics = NULL;
         m_EntityManager = NULL;
         m_Camera = NULL;
+        m_Messenger = NULL;
     }
 
     bool gluInvertMatrix(const float m[16], float invOut[16])
@@ -217,15 +221,11 @@ namespace GameEngine
         float procent = tempview[3][2] / 10.0f;
         m_EntityManager->CreateNewEntity(name, out[0][0] * 10 * procent, -out[0][1] * 10, 0);
         //m_EntityManager->CreateNewEntity("Peasant", out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 10-tempview[3][2]+ out[0][0]*10 * ( 1- procent));
-
     }
-
 
     void Application::EarlyUpdate() {
         m_InputManager->Update();
     }
-
-
 
     void Application::Update() {
         if (m_InputManager->Keydown(SDL_SCANCODE_ESCAPE)) {
@@ -237,7 +237,6 @@ namespace GameEngine
         if (m_InputManager->KeyPressed(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Pressed");
             CallCreation("Leader");
-
         }
         if (m_InputManager->KeyReleased(SDL_SCANCODE_W)) {
             GameEngine::Log::GetCoreLogger()->info("W Released");
@@ -246,13 +245,12 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("C Create");
             CallCreation("Peasant");
         }
-        if (m_InputManager->KeyPressed(SDL_SCANCODE_P)) {
-            GameEngine::Log::GetCoreLogger()->info("P print");
-            m_EntityManager->PrintList();
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_D)) {
+            GameEngine::Log::GetCoreLogger()->info("D print");
+            m_Messenger->DamageUnit();
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_O)) {
             GameEngine::Log::GetCoreLogger()->info("O print list");
-            m_EntityManager->PrintFirstEntity();
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_T)) {
             GameEngine::Log::GetCoreLogger()->info("T terminate");
@@ -282,9 +280,6 @@ namespace GameEngine
 
         //------------------WINDOW------------------//
         m_Graphics->Initbgfx();
-
-        //-----------------CAMERA-----------------//
-
 
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window

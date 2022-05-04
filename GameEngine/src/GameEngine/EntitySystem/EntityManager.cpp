@@ -28,10 +28,6 @@ GameEngine::EntityManager::~EntityManager() {
     m_IdPool = NULL;
 }
 
-void GameEngine::EntityManager::PrintList() {
-    std::cout << "The length of the current EntityList is " 
-     << EntityList.size() << " long" << std::endl;
-}
 
 int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos , float z_pos) {
 	std::cout << "New entity created " << std::endl;
@@ -139,11 +135,12 @@ void GameEngine::EntityManager::LateUpdate() {
     }
 }
 
-void GameEngine::EntityManager::PrintFirstEntity() {
-    EntityList[0]->PrintList();
-}
-
 int GameEngine::EntityManager::GetNewID() {
     currentID += 1;
     return currentID;
+}
+
+GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
+    return EntityList.at(id);
+
 }

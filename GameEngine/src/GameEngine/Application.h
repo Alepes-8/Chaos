@@ -6,7 +6,7 @@
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 #include "GameEngine/Camera/Camera.h"
-
+#include "GameEngine/EntitySystem/Messenger.h"
 
 #include <vector>
 
@@ -25,6 +25,7 @@ namespace GameEngine
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;
 		GameEngine::Camera* m_Camera;
+		GameEngine::Messenger* m_Messenger;
 
 		void CallCreation(char*);
 
