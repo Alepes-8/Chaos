@@ -121,13 +121,12 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("D print");
             m_Messenger->DamageUnit(1, 2);
         }
-        if (m_InputManager->KeyPressed(SDL_SCANCODE_O)) {
-            GameEngine::Log::GetCoreLogger()->info("O print list");
-        }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_T)) {
             GameEngine::Log::GetCoreLogger()->info("T terminate");
             m_EntityManager->TerminateEnity(1);
         }
+
+        /*-------- left mouse ----------*/
         if (m_InputManager->MouseButtonDown(GameEngine::InputManager::left)) {
             GameEngine::Log::GetCoreLogger()->info("left Mouse down");
         }
@@ -136,6 +135,25 @@ namespace GameEngine
         }
         if (m_InputManager->MouseButtonReleased(GameEngine::InputManager::left)) {
             GameEngine::Log::GetCoreLogger()->info("left Mouse released");
+        }
+
+        /*-----------arrow pad-----------*/
+
+        if (m_InputManager->Keydown(SDL_SCANCODE_J)) {
+            GameEngine::Log::GetCoreLogger()->info("Move Left");
+            m_Messenger->MoveUnit(1, Vector3(-1, 0, 0));
+        }
+        if (m_InputManager->Keydown(SDL_SCANCODE_L)) {
+            GameEngine::Log::GetCoreLogger()->info("Move Right");
+            m_Messenger->MoveUnit(1, Vector3(1, 0, 0));
+        }
+        if (m_InputManager->Keydown(SDL_SCANCODE_I)) {
+            GameEngine::Log::GetCoreLogger()->info("Move Forward");
+            m_Messenger->MoveUnit(1, Vector3(0, 0, 1));
+        }
+        if (m_InputManager->Keydown(SDL_SCANCODE_K)) {
+            GameEngine::Log::GetCoreLogger()->info("Move Back");
+            m_Messenger->MoveUnit(1, Vector3(0, 0, -1));
         }
     }
 
@@ -155,7 +173,8 @@ namespace GameEngine
 
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
-        
+        m_EntityManager->CreateNewEntity("Leader", 0,-5, 0);
+
 
         SDL_Event currentEvent;
         unsigned int counter = 0;

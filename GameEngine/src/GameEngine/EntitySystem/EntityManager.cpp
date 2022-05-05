@@ -69,11 +69,6 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000004;
         }
 
-        /*else if (itr->asCString() == (std::string)"Transform") {
-            comp = new Transform();
-            componentID = 0x00000005;
-
-        }*/
 
         else if (itr->asCString() == (std::string)"Renderable") {
             std::string meshData = actualJson[form]["Template"]["Mesh"].asCString();

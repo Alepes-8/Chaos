@@ -18,6 +18,24 @@ GameEngine::Messenger::~Messenger() {
 	std::cout << "delete messenger" << std::endl;
 }
 
+
+bool GameEngine::Messenger::CheckStatus( int entityID, int compID) {
+	GameObject* entity = m_manager->GetEntity(entityID);
+	if (entity == nullptr) {
+		std::cout << "The entity ID does not exist" << std::endl;
+		return 0;
+	}
+	
+	BaseComponent* comp = entity->GetComponent(compID);
+
+	//does the comp exist
+	if (comp == nullptr) {
+		std::cout << "The Component does not exist in entity" << std::endl;
+		return 0;
+	}
+	return 1;
+}
+
 /*--------------Class methords --------------*/
 
 void GameEngine::Messenger::Terminate() {
@@ -26,29 +44,39 @@ void GameEngine::Messenger::Terminate() {
 }
 
 void GameEngine::Messenger::DamageUnit(int id, float damage) {
+	int compID = 0x00000002;
+	if (CheckStatus( id, compID) == 0) {return;}
 	GameObject* entity = m_manager->GetEntity(id);
-	if (entity == nullptr) {
-		std::cout << "The entity ID does not exist" << std::endl;
-	}
-	else {
-		BaseComponent* comp = entity->GetComponent(0x00000002);
+	BaseComponent* comp = entity->GetComponent(compID);
 
-		//does the comp exist
-		if (comp == nullptr ) {	
-			std::cout << "The Component does not exist in entity" << std::endl;
-		}
-		else {
-			std::cout << "Did "<< damage << " points of damage to the unit" << std::endl;
-			UnitHealth* healthComp = dynamic_cast<UnitHealth*>(comp);
-			healthComp->DamageHealth(damage);
-			if (healthComp->GetHealth() <= 0) {	//Is the unit dead
-				std::cout << "The unit died" << std::endl;
-				m_manager->TerminateEnity(id);
-			}
-		}
+
+	std::cout << "Did "<< damage << " points of damage to the unit" << std::endl;
+	UnitHealth* healthComp = dynamic_cast<UnitHealth*>(comp);
+	healthComp->DamageHealth(damage);
+
+
+	if (healthComp->GetHealth() <= 0) {	//Is the unit dead
+		std::cout << "The unit died" << std::endl;
+		m_manager->TerminateEnity(id);
 	}
 }
 
-void GameEngine::Messenger::MoveUnit() {
+void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
+	int compID = 0x00000003;
+	if (CheckStatus(id, compID) == 0) { return; }
+	GameObject* entity = m_manager->GetEntity(id);
+	BaseComponent* comp = entity->GetComponent(compID);
+	
+
+	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(comp);
+	float speed = movementComp->GetMovement();
+
+	translation = translation * (speed / 10);
+	Transform* transform = entity->getTransform();
+	
+	transform->translate(translation);
 	std::cout << "move unit" << std::endl;
+	
+		
+	
 }
