@@ -37,7 +37,7 @@ GameEngine::GameObject::~GameObject() {
 	for (auto comp : components) {
 		delete comp.second;
 	}
-
+	delete transform;
 }
 
 
