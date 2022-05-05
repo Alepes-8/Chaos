@@ -15,7 +15,11 @@ float GameEngine::UnitHealth::GetHealth() {
 	return health;
 }
 
-void GameEngine::UnitHealth::EditHealth(float change) {
+void GameEngine::UnitHealth::DamageHealth(float change) {
+	health -= change;
+}
+
+void GameEngine::UnitHealth::HealHealth(float change){
 	health += change;
 }
 
