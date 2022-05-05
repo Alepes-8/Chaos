@@ -173,5 +173,6 @@
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp" />
+    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
   </ItemGroup>
 </Project>
