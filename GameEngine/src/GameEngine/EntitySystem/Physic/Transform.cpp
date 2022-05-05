@@ -8,6 +8,7 @@ GameEngine::Transform::~Transform() {
 
 void GameEngine::Transform::translate(Vector3 translation)
 {
+
 	mtx[12] += translation.x;
 	mtx[13] += translation.y;
 	mtx[14] += translation.z;
@@ -92,6 +93,10 @@ void GameEngine::Transform::rotates(Vector3 axis, float value) {
 void GameEngine::Transform::rotates(float x, float y, float z) {
 	float m[16];
 	bx::mtxRotateXYZ(m, x, y, z);
+	mtx[3] = 0;
+	mtx[7] = 0;
+	mtx[11] = 0;
+
 	*this = Transform(m) * *this;
 }
 
