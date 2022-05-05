@@ -247,7 +247,7 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_D)) {
             GameEngine::Log::GetCoreLogger()->info("D print");
-            m_Messenger->DamageUnit();
+            m_Messenger->DamageUnit(1, 2);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_O)) {
             GameEngine::Log::GetCoreLogger()->info("O print list");
