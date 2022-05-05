@@ -40,6 +40,9 @@ GameEngine::GameObject::~GameObject() {
 
 }
 
+
+
+
 void GameEngine::GameObject::PrintList() {
 
 	for (auto comps : components)
@@ -53,13 +56,13 @@ GameEngine::Transform* GameEngine::GameObject::getTransform()
 	return transform;
 }
 
-void GameEngine::GameObject::Terminate() {
+void GameEngine::GameObject::AddComponent(int id, BaseComponent* comp) {
+	components.insert({ id, comp });
+}
 
-	/*-delete componets parts-*/
-	
-	/*------------------------*/
-	/*--Delete the dictinary--*/
-
-	/*------------------------*/
-
+GameEngine::BaseComponent* GameEngine::GameObject::GetComponent(int id) {
+	if (components.count(id) == 0) {
+		return nullptr;
+	}
+	return components.at(id);
 }

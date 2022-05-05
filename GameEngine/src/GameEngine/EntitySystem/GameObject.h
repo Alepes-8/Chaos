@@ -11,13 +11,14 @@ namespace GameEngine {
 	private:
 		static unsigned int gameObjCounter;
 		Transform* transform;
+		std::map<int, BaseComponent*> components;
 
 	public:
+
 		int ID;
-		std::map<int, BaseComponent*> components;
-		
 		Transform* getTransform();
-		void Terminate();
+		void AddComponent(int, BaseComponent*);
+		BaseComponent* GetComponent(int); 
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();

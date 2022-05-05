@@ -99,7 +99,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000008;
         }
         if (componentID != 0x00000000) {
-            entity->components.insert({ componentID, comp });
+            entity->AddComponent(componentID, comp);
         }
         
     }
@@ -141,6 +141,9 @@ int GameEngine::EntityManager::GetNewID() {
 }
 
 GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
+    if (EntityList.count(id) == 0) {
+        return nullptr;
+    }
     return EntityList.at(id);
 
 }
