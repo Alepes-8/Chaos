@@ -137,7 +137,7 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("left Mouse released");
         }
 
-        /*-----------arrow pad-----------*/
+        /*-----------Movement j/k/l/i-----------*/
 
         if (m_InputManager->Keydown(SDL_SCANCODE_J)) {
             GameEngine::Log::GetCoreLogger()->info("Move Left");
@@ -155,6 +155,18 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("Move Back");
             m_Messenger->MoveUnit(1, Vector3(0, 0, -1));
         }
+
+        /*-----------Rotate u/o-----------*/
+        if (m_InputManager->Keydown(SDL_SCANCODE_U)) {
+            GameEngine::Log::GetCoreLogger()->info("Rotate Left");
+            m_Messenger->RotateUnit(1, Vector3(0, 1, 0));
+        }
+        if (m_InputManager->Keydown(SDL_SCANCODE_O)) {
+            GameEngine::Log::GetCoreLogger()->info("Rotate Right");
+            m_Messenger->RotateUnit(1, Vector3(0, -1, 0));
+        }
+
+
     }
 
     void Application::Render() {

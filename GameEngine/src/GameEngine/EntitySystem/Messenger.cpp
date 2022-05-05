@@ -77,6 +77,22 @@ void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	transform->translate(translation);
 	std::cout << "move unit" << std::endl;
 	
-		
-	
+}
+
+void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
+	int compID = 0x00000003;
+	if (CheckStatus(id, compID) == 0) { return; }
+	GameObject* entity = m_manager->GetEntity(id);
+	BaseComponent* comp = entity->GetComponent(compID);
+
+
+	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(comp);
+	float speed = movementComp->GetMovement();
+
+	translation = translation * (speed / 10);
+	Transform* transform = entity->getTransform();
+
+	transform->rotates(translation.x, translation.y, translation.z);
+	std::cout << "move unit" << std::endl;
+
 }
