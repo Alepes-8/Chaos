@@ -1,6 +1,16 @@
 #include "Camera.h"
 
+GameEngine::Camera* GameEngine::Camera::m_Instance = NULL;
 
+GameEngine::Camera* GameEngine::Camera::CreateInstance() {
+	if (m_Instance == NULL) { m_Instance = new Camera; }
+	return m_Instance;
+}
+
+void GameEngine::Camera::Terminate() {
+	delete m_Instance;
+	m_Instance == NULL;
+}
 
 void GameEngine::Camera::at(float x, float y, float z)
 {

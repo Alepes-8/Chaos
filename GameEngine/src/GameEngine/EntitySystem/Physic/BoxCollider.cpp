@@ -1,9 +1,10 @@
 #include <GameEngine/EntitySystem/Physic/BoxCollider.h>
 
 GameEngine::BoxCollider::BoxCollider(
+	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),
 	Vector3 scale = Vector3(1, 1, 1)
-){
+) : Collider(parent) {
 	this->origine = origine;
 	if (!isScaleValide(scale)) {
 		this->scale = Vector3(1, 1, 1);

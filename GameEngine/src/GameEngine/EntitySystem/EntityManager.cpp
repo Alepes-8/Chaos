@@ -28,16 +28,11 @@ GameEngine::EntityManager::~EntityManager() {
     m_IdPool = NULL;
 }
 
-void GameEngine::EntityManager::PrintList() {
-    std::cout << "The length of the current EntityList is " 
-     << EntityList.size() << " long" << std::endl;
-}
 
-int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos ) {
+int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos , float z_pos) {
 	std::cout << "New entity created " << std::endl;
-    int ID = GetNewID();
-    GameObject* entity = new GameObject(ID);
-    EntityList.insert({ entity->ID, entity, });
+    GameObject* entity = new GameObject();
+    EntityList.insert({ entity->ID, entity });
     
     /*--------Load the json file---------*/
     std::ifstream testData("Data/EntityData.json");
@@ -47,40 +42,33 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
     // using the reader we parse the json 
     reader.parse(testData, actualJson);
 
+    entity->getTransform()->SetTransform(x_pos, y_pos, z_pos);
+
     /*------Take out the the info regarding which components to add.--------*/
     for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
         BaseComponent* comp;
         int componentID = 0x00000000;
         if (itr->asCString() == (std::string) "UnitDamage") {
-            comp = new UnitDamage(actualJson[form]["Template"]["Damage"].asFloat());
-
+            comp = new UnitDamage(entity, actualJson[form]["Template"]["Damage"].asFloat());
             componentID = 0x00000001;
         }
 
         else if (itr->asCString() == (std::string)"UnitHealth") {
-            comp = new UnitHealth(actualJson[form]["Template"]["Health"].asFloat());
-
+            comp = new UnitHealth(entity, actualJson[form]["Template"]["Health"].asFloat());
             componentID = 0x00000002;
 
         }
 
         else if (itr->asCString() == (std::string)"UnitMovement") {
-            comp = new UnitMovement(actualJson[form]["Template"]["Speed"].asFloat());
+            comp = new UnitMovement(entity, actualJson[form]["Template"]["Speed"].asFloat());
             componentID = 0x00000003;
-
         }
 
         else if (itr->asCString() == (std::string)"PathFinding") {
-            comp = new PathFinding();
+            comp = new PathFinding(entity);
             componentID = 0x00000004;
-
         }
 
-        else if (itr->asCString() == (std::string)"Transform") {
-            comp = new Transform();
-            componentID = 0x00000005;
-
-        }
 
         else if (itr->asCString() == (std::string)"Renderable") {
             std::string meshData = actualJson[form]["Template"]["Mesh"].asCString();
@@ -90,30 +78,27 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             std::string vertData = actualJson[form]["Template"]["vs_Shader"].asCString();
             const char* vertDir = vertData.c_str();
 
-            comp = new Renderable(meshDir, fragDir, vertDir, x_pos, y_pos);
+            comp = new Renderable(entity, meshDir, fragDir, vertDir);
             componentID = 0x00000006;
-
         }
 
         else if (itr->asCString() == (std::string)"ConstantBody") {
-            comp = new ConstantBody();
+            comp = new ConstantBody(entity);
             componentID = 0x00000007;
-
         }
 
         else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
-            comp = new Sound(directory);
+            comp = new Sound(entity);
             componentID = 0x00000008;
-
         }
         if (componentID != 0x00000000) {
-            entity->components.insert({ componentID, comp, });
+            entity->AddComponent(componentID, comp);
         }
         
     }
-    return ID;
+    return entity->ID;
 
 }
 
@@ -145,11 +130,15 @@ void GameEngine::EntityManager::LateUpdate() {
     }
 }
 
-void GameEngine::EntityManager::PrintFirstEntity() {
-    EntityList[0]->PrintList();
-}
-
 int GameEngine::EntityManager::GetNewID() {
     currentID += 1;
     return currentID;
+}
+
+GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
+    if (EntityList.count(id) == 0) {
+        return nullptr;
+    }
+    return EntityList.at(id);
+
 }

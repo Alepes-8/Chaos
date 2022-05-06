@@ -155,6 +155,7 @@
     <ClInclude Include="src\GameEngine\EntitySystem\EntityManager.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\GameObject.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\IdGenerationPool.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
@@ -175,12 +176,14 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitDamage.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\GameObject.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp" />
@@ -189,6 +192,7 @@
     <ClCompile Include="src\GameEngine\Log.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
+    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

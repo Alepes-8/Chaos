@@ -1,6 +1,6 @@
 #include "UnitMovement.h"
 
-GameEngine::UnitMovement::UnitMovement(float initSpeed) {
+GameEngine::UnitMovement::UnitMovement(GameObject* parent, float initSpeed) : BaseComponent(parent) {
 	std::cout << "Movement create " << initSpeed << std::endl;
 	movement = initSpeed;
 }
