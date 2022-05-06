@@ -1,6 +1,6 @@
 #include "UnitHealth.h"
 
-GameEngine::UnitHealth::UnitHealth(float initHealth) {
+GameEngine::UnitHealth::UnitHealth(GameObject* parent, float initHealth) : BaseComponent(parent) {
 	std::cout << "create health" << initHealth << std::endl;
 	health = initHealth;
 }
@@ -15,7 +15,11 @@ float GameEngine::UnitHealth::GetHealth() {
 	return health;
 }
 
-void GameEngine::UnitHealth::EditHealth(float change) {
+void GameEngine::UnitHealth::DamageHealth(float change) {
+	health -= change;
+}
+
+void GameEngine::UnitHealth::HealHealth(float change){
 	health += change;
 }
 

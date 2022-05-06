@@ -1,6 +1,6 @@
 #include "UnitDamage.h"
 
-GameEngine::UnitDamage::UnitDamage(float dmgValue) {
+GameEngine::UnitDamage::UnitDamage(GameObject* parent, float dmgValue) : BaseComponent(parent) {
 	std::cout << "damage create " << dmgValue << std::endl;
 	damage = dmgValue;
 }

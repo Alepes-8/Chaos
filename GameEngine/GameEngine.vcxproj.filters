@@ -109,6 +109,7 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -128,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp">
       <Filter>GameEngine\EntitySystem\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp">
+      <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp">
       <Filter>GameEngine\EntitySystem\Effects</Filter>
@@ -171,5 +175,7 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp" />
+    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
   </ItemGroup>
 </Project>

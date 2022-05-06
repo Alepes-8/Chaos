@@ -1,28 +1,46 @@
 #pragma once
 #include "../BaseComponent.h"
-#include "SDL_mixer.h"
-#include "SDL.h"
+#include <SDL_mixer.h>
+#include <SDL.h>
+#include <string>
 
 namespace GameEngine {
 
-	//class SoundData;
+	
 
 	class Sound : public BaseComponent 
 	{
 	public:
-		Sound(const char* dir);
+		enum VolumePreset{MIN = 26, LOW = 52, MEDIUM = 78, HIGH = 104, MAX = 128};
+
+		Sound(GameObject* parent);
 		~Sound();
 		void Update() override;
 		
-		void playSound(const char* name);
-		void stopChannel(int channel);
-		void setSoundVolume(unsigned int volume);
-
-		void playMusic(const char* directory);
+		Mix_Music* loadMusic(std::string path);
+		void playMusic(Mix_Music* m, int volume = LOW, int repeats = -1);
+		// For SDL_Mixer, -1 means "repeat endlessly"
+		void pauseMusic();
+		void unpauseMusic();
 		void stopMusic();
-		void setMusicVolume(unsigned int volume);
+		void fadeMusic(int fadeTime = 1000);
+		void changeMusicVolume(int volume);
+
+		Mix_Chunk* loadChunk(std::string path);
+		void playChunk(Mix_Chunk* c, int volume = HIGH, int repeats = 0);
+		void pauseChunk(Mix_Chunk* c);
+		void unpauseChunk(Mix_Chunk* c);
+		void stopChunk(Mix_Chunk* c);
+
+		bool isMusicPlaying();
+		bool isMusicPaused();
+		bool isChunkPlaying(Mix_Chunk* c);
+		bool isChunkPaused(Mix_Chunk* c);
 
 	private:
-		void loadSound(const char* directory);
+		const int HARDWARE_CHANNELS_ = 2;
+		const int FREQUENCY_ = 44100;
+		const int CHUNK_SIZE_ = 2048;
+		const int MAX_CHUNKS_PLAYING_ = 5;
 	};
 }

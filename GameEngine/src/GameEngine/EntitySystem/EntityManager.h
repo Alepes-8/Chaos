@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "GameEngine/EntitySystem/GameObject.h"
 #include <vector>
 #include <map>
 #include "IdGenerationPool.h"
@@ -26,14 +26,13 @@ namespace GameEngine {
 		GameEngine::IdGenerationPool* m_IdPool;
 	public:
 		void TerminateEnity(int entityID);
-		int CreateNewEntity(char* form, float x_pos , float y_pos );
+		int CreateNewEntity(char* form, float x_pos , float y_pos , float z_pos);
 		static EntityManager* CreateInstance();
 		static void Terminate();
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
-		void PrintList();
-		void PrintFirstEntity();
+		GameObject* GetEntity(int id);
 	private:
 		int GetNewID();
 		EntityManager();

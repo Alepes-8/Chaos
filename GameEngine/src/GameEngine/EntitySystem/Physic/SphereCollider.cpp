@@ -1,9 +1,11 @@
 #include <GameEngine/EntitySystem/Physic/SphereCollider.h>
 
 GameEngine::SphereCollider::SphereCollider(
+	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),
 	float radius = 0
-) {
+) : Collider(parent)
+{
 	this->origine = origine;
 	if (radius < 0) {
 		this->radius = 1;

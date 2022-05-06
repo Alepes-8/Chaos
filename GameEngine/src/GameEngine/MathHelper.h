@@ -4,6 +4,7 @@
 #define DEG_TO_RAD PI /180.0f
 namespace GameEngine {
 
+
 	struct Vector2 {
 		float x;
 		float y;
@@ -83,39 +84,11 @@ namespace GameEngine {
 		return lhs * coef;
 	}
 
-	struct rotationMatrix {
-		float x00, x01, x02;
-		float x10, x11, x12;
-		float x20, x21, x22;
 
-		rotationMatrix(Vector3 axis, float value) {
-			float c = cos(value);
-			float s = sin(value);
-
-			Vector3 unit_axis = axis.Normalized();
-
-			float x = unit_axis.x;
-			float y = unit_axis.y;
-			float z = unit_axis.z;
-
-			//formula -> https://en.wikipedia.org/wiki/Rotation_matrix
-			x00 = x * x * (1 - c) + c;
-			x01 = x * y * (1 - c) - z * s;
-			x02 = x * z * (1 - c) + y * s;
-			x10 = x * y * (1 - c) + z * s;
-			x11 = y * y * (1 - c) + c;
-			x12 = y * z * (1 - c) - x * s;
-			x20 = x * z * (1 - c) - y * s;
-			x21 = y * z * (1 - c) + x * s;
-			x22 = z * z * (1 - c) + c;
-		}
-
-		inline Vector3 rotate(const rotationMatrix& rm, const Vector3& v) {
-			return Vector3(
-				x00 * v.x + x01 * v.y + x02 * v.z,
-				x10 * v.x + x11 * v.y + x12 * v.z,
-				x20 * v.x + x21 * v.y + x22 * v.z
-			);
-		}
+	class MathHelper {
+	public: 
+		MathHelper();
+		~MathHelper();
+		bool InvMatrix(const float m[16], float invOut[16]);
 	};
 }

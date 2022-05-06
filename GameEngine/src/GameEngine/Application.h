@@ -1,11 +1,12 @@
 #pragma once
-
+#include "GameEngine/EntitySystem/BaseComponent.h"
+#include "GameEngine/EntitySystem/GameObject.h"
 #include "Window/Timer.h"
 #include "Window/Graphics.h"
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 #include "GameEngine/Camera/Camera.h"
-
+#include "GameEngine/EntitySystem/Messenger.h"
 
 #include <vector>
 
@@ -23,6 +24,10 @@ namespace GameEngine
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;
+		GameEngine::Camera* m_Camera;
+		GameEngine::Messenger* m_Messenger;
+
+		void CallCreation(char*);
 
 	public:
 		static Application* sInstance;
@@ -36,6 +41,7 @@ namespace GameEngine
 		void LateUpdate();
 		void Render();
 		void Run();
+
 	};
 
 	/*--A function defined in the client*/
