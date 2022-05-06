@@ -12,9 +12,7 @@ namespace GameEngine
         sInstance = NULL;
     }
 
-    Application::Application() {
-        std::cout << "start application" << std::endl;
-
+    GameEngine::Application::Application() {
         GameEngine::Log::Init();
 
         m_InputManager = GameEngine::InputManager::CreateInstance();
@@ -32,7 +30,7 @@ namespace GameEngine
     }
 
 
-    Application::~Application() {
+    GameEngine::Application::~Application() {
         GameEngine::InputManager::Terminate();
         GameEngine::Timer::Terminate();
         GameEngine::Graphics::Terminate();
@@ -99,7 +97,7 @@ namespace GameEngine
         m_InputManager->Update();
     }
 
-    void Application::Update() {
+    void GameEngine::Application::Update() {
         if (m_InputManager->Keydown(SDL_SCANCODE_ESCAPE)) {
             mQuit = true;
         }
@@ -173,7 +171,7 @@ namespace GameEngine
         m_Graphics->Render();
     }
 
-    void Application::LateUpdate() {
+    void GameEngine::Application::LateUpdate() {
         m_InputManager->UpdatePrevInput();
         m_Timer->Reset();
     }
@@ -214,5 +212,6 @@ namespace GameEngine
                 Render();
             }
         }
+
     }
 }

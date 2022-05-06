@@ -22,6 +22,9 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Renderable">
+      <UniqueIdentifier>{98FE8EF4-046B-4AEF-CD5E-E24C398A6C57}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameEngine\Window">
       <UniqueIdentifier>{1C9B5CAD-88B1-5A43-D128-E6643D7E2BCB}</UniqueIdentifier>
     </Filter>
