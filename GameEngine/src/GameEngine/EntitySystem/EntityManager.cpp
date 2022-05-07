@@ -142,3 +142,8 @@ GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
     return EntityList.at(id);
 
 }
+
+
+std::map<int, GameEngine::GameObject*>* GameEngine::EntityManager::GetList() {
+    return &EntityList;
+}

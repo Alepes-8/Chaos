@@ -33,6 +33,7 @@ namespace GameEngine {
 		void Update();
 		void LateUpdate();
 		GameObject* GetEntity(int id);
+		std::map<int, GameObject*>* GetList();
 	private:
 		int GetNewID();
 		EntityManager();
