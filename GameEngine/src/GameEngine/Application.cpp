@@ -130,9 +130,9 @@ namespace GameEngine
                 out[0][i] += mid[0][j] * tempproj[j][i];
             }
         }
-        float z = 5;
-        float screenWidth = (tempview[3][2] - z) * tan(3.14/4);
-        m_EntityManager->CreateNewEntity(name, out[0][0] * screenWidth + tempview[3][0], -out[0][1] * screenWidth + tempview[3][1], z);
+        float z = 0;
+        float width = (tempview[3][2] - z) * tan(3.14/4);
+        m_EntityManager->CreateNewEntity(name, out[0][0] * width + tempview[3][0], -out[0][1] * width + tempview[3][1], z);
         //m_EntityManager->CreateNewEntity("Peasant", out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 10-tempview[3][2]+ out[0][0]*10 * ( 1- procent));
     }
 
@@ -173,7 +173,7 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("left Mouse pressed");
 
             //std::cout << "modi pos "<< -GetRealCords().x << "  " << -GetRealCords().y << std::endl;
-            int id = m_Messenger->GetID(-GetRealCords().x * 10, -GetRealCords().y * 10);
+            int id = m_Messenger->GetID(-GetRealCords().x * 10 , -GetRealCords().y  * 10);
             if (id != 0) {
                 selectedID = id;
             }

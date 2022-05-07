@@ -103,7 +103,8 @@ int GameEngine::Messenger::GetID(float mouseX, float mouseY) {
 
 
 	std::map<int, GameObject* >* tempList = m_manager->GetList(); 
-	std::vector<int> rightArea;
+	int rightAreaID = 0;
+	float  rightAreaZ = 0;
 
 	for (auto entity : *tempList) {
 		std::cout << entity.first << std::endl;
@@ -116,24 +117,35 @@ int GameEngine::Messenger::GetID(float mouseX, float mouseY) {
 		Vector3 boundingboxMax;
 		renderableComp->GetBoundingBox(&boundingboxMin, &boundingboxMax);
 
-		if (!(boundingboxMin.x * 5 + -entity.second->getTransform()->mtx[12] < mouseX)) {
-			continue;
-		}
-		if (!(boundingboxMax.x * 5 + -entity.second->getTransform()->mtx[12] > mouseX)) {
+		
+
+		if (!(boundingboxMin.x + -entity.second->getTransform()->mtx[12] < mouseX)) {
 			continue;
 		}
 
-		if (!(boundingboxMin.y * 5 + entity.second->getTransform()->mtx[13] < mouseY)) {
+		if (!(boundingboxMax.x + -entity.second->getTransform()->mtx[12] > mouseX)) {
 			continue;
 		}
 
-		if (!(boundingboxMax.y * 5 + entity.second->getTransform()->mtx[13] > mouseY)) {
+		if (!(boundingboxMin.y + entity.second->getTransform()->mtx[13] < mouseY)) {
 			continue;
 		}
 
-		rightArea.push_back(entity.first);
-		return entity.first;
+		if (!(boundingboxMax.y + entity.second->getTransform()->mtx[13] > mouseY)) {
+			continue;
+		}
+
+
+		if (rightAreaID == 0) {
+			rightAreaID = entity.first;
+			rightAreaZ = boundingboxMax.z + entity.second->getTransform()->mtx[14];
+		}
+		else if (rightAreaZ < boundingboxMax.z + entity.second->getTransform()->mtx[14]) {
+			rightAreaID = entity.first;
+			rightAreaZ = boundingboxMax.z + entity.second->getTransform()->mtx[14];
+		}
 	}
 
-	return 0;
+	return rightAreaID;
 }
+
