@@ -17,7 +17,7 @@ void GameEngine::Transform::translate(Vector3 translation)
 
 void GameEngine::Transform::SetTransform(float x_pos, float y_pos, float z_pos) {
 	float mtx_mesh[16];
-	bx::mtxScale(mtx_mesh, 5);
+	bx::mtxScale(mtx_mesh, 1);
 	mtx_mesh[12] = x_pos;   //left and right
 	mtx_mesh[13] = y_pos;   //up and down
 	mtx_mesh[14] = z_pos;   //Back and forward

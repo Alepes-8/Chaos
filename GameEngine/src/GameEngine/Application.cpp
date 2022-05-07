@@ -130,9 +130,9 @@ namespace GameEngine
                 out[0][i] += mid[0][j] * tempproj[j][i];
             }
         }
-
-        float procent = tempview[3][2] / 10.0f;
-        m_EntityManager->CreateNewEntity(name, out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 0);
+        float z = 5;
+        float screenWidth = (tempview[3][2] - z) * tan(3.14/4);
+        m_EntityManager->CreateNewEntity(name, out[0][0] * screenWidth + tempview[3][0], -out[0][1] * screenWidth + tempview[3][1], z);
         //m_EntityManager->CreateNewEntity("Peasant", out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 10-tempview[3][2]+ out[0][0]*10 * ( 1- procent));
     }
 
