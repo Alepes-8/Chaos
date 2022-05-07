@@ -19,16 +19,16 @@ namespace GameEngine
 		const int frameRate = 600;
 		bool mQuit;
 		SDL_Event m_Events;
-
+		int selectedID;
 		GameEngine::EntityManager* m_EntityManager;
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;
 		GameEngine::Camera* m_Camera;
 		GameEngine::Messenger* m_Messenger;
-
 		void CallCreation(char*);
-
+		struct Vector2  GetRealCords();
+		
 	public:
 		static Application* sInstance;
 		static void Terminate();

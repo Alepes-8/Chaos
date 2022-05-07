@@ -76,7 +76,6 @@ void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	
 	transform->translate(translation);
 	std::cout << "move unit" << std::endl;
-	
 }
 
 void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
@@ -94,5 +93,47 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 
 	transform->rotates(translation.x, translation.y, translation.z);
 	std::cout << "move unit" << std::endl;
+}
 
+
+
+
+int GameEngine::Messenger::GetID(float mouseX, float mouseY) {
+	std::cout << "x,y mouse; = " << mouseX << " , " << mouseY << std::endl;
+
+
+	std::map<int, GameObject* >* tempList = m_manager->GetList(); 
+	std::vector<int> rightArea;
+
+	for (auto entity : *tempList) {
+		std::cout << entity.first << std::endl;
+		if (CheckStatus(entity.first, 0x00000006) == 0) {
+			continue;
+		}
+		BaseComponent* comp = entity.second->GetComponent(0x00000006);
+		Renderable* renderableComp = dynamic_cast<Renderable*>(comp);
+		Vector3 boundingboxMin;
+		Vector3 boundingboxMax;
+		renderableComp->GetBoundingBox(&boundingboxMin, &boundingboxMax);
+
+		if (!(boundingboxMin.x * 5 + -entity.second->getTransform()->mtx[12] < mouseX)) {
+			continue;
+		}
+		if (!(boundingboxMax.x * 5 + -entity.second->getTransform()->mtx[12] > mouseX)) {
+			continue;
+		}
+
+		if (!(boundingboxMin.y * 5 + entity.second->getTransform()->mtx[13] < mouseY)) {
+			continue;
+		}
+
+		if (!(boundingboxMax.y * 5 + entity.second->getTransform()->mtx[13] > mouseY)) {
+			continue;
+		}
+
+		rightArea.push_back(entity.first);
+		return entity.first;
+	}
+
+	return 0;
 }
