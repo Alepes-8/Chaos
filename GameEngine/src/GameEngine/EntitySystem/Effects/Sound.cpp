@@ -1,7 +1,9 @@
 #include "Sound.h"
 
+namespace fs = std::filesystem;
+
 //-------------------------------------------------------------------
-GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
+GameEngine::Sound::Sound(GameObject* parent/*, const char* dir*/) : BaseComponent(parent) {
 	std::cout << "Create audio" << std::endl;
 
 	if (SDL_Init((SDL_INIT_AUDIO) == 0)) {
@@ -15,11 +17,15 @@ GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
 	}
 
 	Mix_AllocateChannels(MAX_CHUNKS_PLAYING_);
+
+
 }
 
 //-------------------------------------------------------------------
 GameEngine::Sound::~Sound() {
 	std::cout << "Stop audio" << std::endl;
+
+	m_effectMap.clear();
 
 	Mix_CloseAudio();
 	Mix_Quit();
@@ -27,14 +33,9 @@ GameEngine::Sound::~Sound() {
 
 //-------------------------------------------------------------------
 void GameEngine::Sound::Update() {
-	std::cout << "Update audio" << std::endl;
+	//std::cout << "Update audio" << std::endl;
 
 }
-
-
-//-------------------------------------------------------------------
-//	Music part
-//-------------------------------------------------------------------
 
 //-------------------------------------------------------------------
 /*
@@ -42,16 +43,71 @@ void GameEngine::Sound::Update() {
 	@param path to audio file
 	Returns: A pointer to a Mix_Music. NULL is returned on errors.
 */
-Mix_Music* loadMusic(std::string path) {
+Mix_Music* GameEngine::Sound::loadMusic(std::string path) {
 	Mix_Music* m = Mix_LoadMUS(path.c_str());
 	if(!m) {
 		printf("Error: Mix_Music could not be loaded for '%s'!\n", path.c_str());
 		printf("SDL error: %s\n", Mix_GetError());
+		return nullptr;
 	}
 	else {
 		return m;
 	}
 }
+
+//-------------------------------------------------------------------
+/*
+	Load file for use as a sample.
+	@param path to audio file
+	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
+*/
+std::map<std::string, Mix_Chunk*> GameEngine::Sound::loadChunk(std::string path) {
+	
+	
+	//auto it = m_effectMap.find(path);
+	
+	std::string ext(".wav");
+	for (auto& p : fs::recursive_directory_iterator(path)) {
+		if (p.path().extension() == ext) {
+			std::string str = p.path().string();
+			const char* file = str.c_str();
+
+			Mix_Chunk* c = Mix_LoadWAV(file);
+			
+			m_effectMap.insert(std::pair<std::string, Mix_Chunk*>( p.path().stem().string(), c));
+			
+		}
+	}
+	/*
+	if (it == m_effectMap.end()) {
+		Mix_Chunk* c = Mix_LoadWAV(path.c_str());
+		if (c == nullptr) {
+			printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n", path.c_str());
+			printf("SDL error: %s\n", Mix_GetError());
+		}
+		m_effectMap[path] = c;
+	}
+	
+	// printing map gquiz1
+	std::map<std::string, Mix_Chunk*>::iterator itr;
+	std::cout << "\nThe map m_effectMap is : \n";
+	std::cout << "\tKEY\tELEMENT\n";
+	for (itr = m_effectMap.begin(); itr != m_effectMap.end(); ++itr) {
+		std::cout << '\t' << itr->first << '\t' << itr->second
+			<< '\n';
+	}
+	std::cout << std::endl;
+	*/
+	std::cout << m_effectMap.size() << std::endl;
+	return m_effectMap;
+	
+}
+
+
+
+//-------------------------------------------------------------------
+//	Music part
+//-------------------------------------------------------------------
 
 //-----------------------------------------------------------------
 /**
@@ -115,24 +171,6 @@ void GameEngine::Sound::changeMusicVolume(int volume) {
 //-------------------------------------------------------------------
 //	Chunk part
 //-------------------------------------------------------------------
-
-//-------------------------------------------------------------------
-/*
-	Load file for use as a sample.
-	@param path to audio file
-	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
-*/
-Mix_Chunk* loadChunk(std::string path) {
-	Mix_Chunk* c = Mix_LoadWAV(path.c_str());
-	if (!c) {
-		printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n",
-			path.c_str());
-		printf("SDL error: %s\n", Mix_GetError());
-	}
-	else {
-		return c;
-	}
-}
 
 //-------------------------------------------------------------------
 /*
