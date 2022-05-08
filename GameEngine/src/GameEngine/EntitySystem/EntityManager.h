@@ -34,6 +34,8 @@ namespace GameEngine {
 		void LateUpdate();
 		void PrintList();
 		void PrintFirstEntity();
+
+		void playMusicTest(int id);
 	private:
 		int GetNewID();
 		EntityManager();

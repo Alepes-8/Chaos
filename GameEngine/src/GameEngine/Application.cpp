@@ -283,7 +283,10 @@ namespace GameEngine
 
         //-----------------CAMERA-----------------//
 
-
+        //-----------------AUDIO-----------------//
+        //int audio = m_EntityManager->CreateNewEntity("BackgroundMusic", 0, 0, 0);
+        //m_EntityManager->playMusicTest(audio);
+      
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
         

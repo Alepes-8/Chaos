@@ -97,7 +97,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
-            comp = new Sound(entity);
+            comp = new Sound(entity/*, directory*/);
             componentID = 0x00000008;
         }
         if (componentID != 0x00000000) {
@@ -107,6 +107,16 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
     }
     return entity->ID;
 
+}
+
+void GameEngine::EntityManager::playMusicTest(int id) {
+    //Sound* child = dynamic_cast<Sound*>(EntityList.at(id));
+    //Mix_Music* music = child->Sound::loadMusic("Audio/Music/test_Seq06.wav");
+    //std::map<std::string, Mix_Chunk*> audio = child->Sound::loadChunk("Audio/SoundEffect/");
+    //child->Sound::playMusic(music, 52, -1);
+    //child->Sound::playChunk(audio.at("test_Seq08"), 52, 0);
+    
+    //std::cout << "Sound:" << child->loadMusic("Audio/Music/") << std::endl;
 }
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {

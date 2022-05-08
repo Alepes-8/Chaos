@@ -23,6 +23,6 @@ namespace GameEngine {
 		void LateUpdate();
 		void PrintList();
 		GameObject();
-		~GameObject();		
+		virtual ~GameObject();
 	};
 }
