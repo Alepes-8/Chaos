@@ -32,55 +32,7 @@
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin"
         }
-    },
-    "Tree" : 
-    { 
-        "Components" : {
-            "Component1": "UnitHealth",
-            "Component2": "UnitDamage",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
-        },
-        "Template": 
-        {
-            "Health" : 10
-        }
-    },
-    "Rock" : 
-    { 
-        "Components" : {
-            "Component1": "UnitHealth",
-            "Component2": "UnitDamage",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
-        },
-        "Template": 
-        {
-            "Health" : 20
-        }
-    },
-    "Cube" :
-    {
-        "Components" : {
-            "Component1": "Renderable",
-            "Component2": "Transform",
-            "Component3": "ConstantBody"  
-        }
-    },
-    "Triangle" :
-    {
-        "Components" : {
-            "Component1": "Renderable",
-            "Component2": "Transform",
-            "Component3": "ConstantBody",
-            "Component4": "UnitHealth"
-        },
-        "Template" : 
-        {
-            "Health": 2
-        }
-    },
-
+    },    
     "BackgroundMusic": 
     {
         "Components": 

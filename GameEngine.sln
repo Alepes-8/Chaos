@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32319.34
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Version 16
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{7FA9857C-6BE0-860D-14CD-6C1000E3020F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{D54F7917-C107-BB64-2A0F-94C016E65555}"
@@ -29,8 +27,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DBADE753-EE13-4ED5-BB00-E870A0F009E1}
 	EndGlobalSection
 EndGlobal

@@ -14,7 +14,6 @@
 #include "Effects/Sound.h"
 #include "Effects/Renderable.h"
 #include "Physic/Transform.h"
-#include "Physic/ConstantBody.h"
 
 
 namespace GameEngine {
@@ -25,14 +24,17 @@ namespace GameEngine {
 		static EntityManager* m_Instance;
 		GameEngine::IdGenerationPool* m_IdPool;
 	public:
-		void TerminateEnity(int entityID);
-		int CreateNewEntity(char* form, float x_pos , float y_pos , float z_pos);
 		static EntityManager* CreateInstance();
 		static void Terminate();
+
+		int CreateNewEntity(char* form, float x_pos , float y_pos , float z_pos);
+		void TerminateEnity(int entityID);
+
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
 		GameObject* GetEntity(int id);
+		std::map<int, GameObject*>* GetList();
 	private:
 		int GetNewID();
 		EntityManager();

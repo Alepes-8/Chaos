@@ -13,7 +13,7 @@ GameEngine/library/soloud/
 GameEngine/library/jsoncpp/
 GameEngine/library/imgui/
 Game/3DModels
-
+GameEngine/library/bullet3-3.24/
 #Files
 *.user
 GameEngine/library/filament/LICENSE

@@ -59,17 +59,24 @@ namespace GameEngine {
         //matrix that define position of the renderable
         bgfx::ProgramHandle m_program;
 
+        //bounding box to find object
+        Vector3 boundingBox[2];
 
-    public:
-        Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);
+    private:
+        void SetBoundingBox();
+        bgfx::ProgramHandle createProgram();
         void createBuffers();
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
         void parseObj(const std::string filename);
         std::map<std::string, float> parseMtl(const std::string filename);
-        void print();
+    public:
+        Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);
         ~Renderable();
-        void Update() override;
 
-        bgfx::ProgramHandle createProgram();
+        void print();
+        
+        void Update() override;
+        void GetBoundingBox(Vector3* min, Vector3* max);
+       
     };
 }

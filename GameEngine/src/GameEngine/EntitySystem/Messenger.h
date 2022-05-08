@@ -17,5 +17,7 @@ namespace GameEngine {
 		void DamageUnit(int id, float damage);
 		void MoveUnit(int id, Vector3 translation);
 		void RotateUnit(int id, Vector3 translation);
+
+		int GetID(float mouseX, float mouseY);
 	};
 }

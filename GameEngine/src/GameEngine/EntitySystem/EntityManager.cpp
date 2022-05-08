@@ -32,7 +32,7 @@ GameEngine::EntityManager::~EntityManager() {
 int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos , float z_pos) {
 	std::cout << "New entity created " << std::endl;
     GameObject* entity = new GameObject();
-    EntityList.insert({ entity->ID, entity });
+    EntityList.insert({ entity->GetID(), entity});
     
     /*--------Load the json file---------*/
     std::ifstream testData("Data/EntityData.json");
@@ -42,7 +42,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
     // using the reader we parse the json 
     reader.parse(testData, actualJson);
 
-    entity->getTransform()->SetTransform(x_pos, y_pos, z_pos);
+    entity->GetTransform()->SetTransform(x_pos, y_pos, z_pos);
 
     /*------Take out the the info regarding which components to add.--------*/
     for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
@@ -82,23 +82,19 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000006;
         }
 
-        else if (itr->asCString() == (std::string)"ConstantBody") {
-            comp = new ConstantBody(entity);
-            componentID = 0x00000007;
-        }
 
         else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
             comp = new Sound(entity);
-            componentID = 0x00000008;
+            componentID = 0x00000007;
         }
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
         }
         
     }
-    return entity->ID;
+    return entity->GetID();
 
 }
 
@@ -141,4 +137,9 @@ GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
     }
     return EntityList.at(id);
 
+}
+
+
+std::map<int, GameEngine::GameObject*>* GameEngine::EntityManager::GetList() {
+    return &EntityList;
 }

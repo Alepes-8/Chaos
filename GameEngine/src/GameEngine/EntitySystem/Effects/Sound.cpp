@@ -61,7 +61,7 @@ Mix_Music* loadMusic(std::string path) {
 	@param volume of the music.
 	@param repeats, number of times to play through the music.
  */
-void GameEngine::Sound::playMusic(Mix_Music* m, int volume, int repeats) {
+void GameEngine::Sound::PlayMusic(Mix_Music* m, int volume, int repeats) {
 	Mix_VolumeMusic((int)volume);
 	if (Mix_PlayMusic(m, repeats) == -1) { // -1 plays the music forever
 		printf("Error: Music file could not be played!\n");
@@ -73,7 +73,7 @@ void GameEngine::Sound::playMusic(Mix_Music* m, int volume, int repeats) {
 /*
 	Pause music
 */
-void GameEngine::Sound::pauseMusic(){
+void GameEngine::Sound::PauseMusic(){
 	Mix_PauseMusic();
 }
 
@@ -81,7 +81,7 @@ void GameEngine::Sound::pauseMusic(){
 /*
 	 Resume paused music
 */
-void GameEngine::Sound::unpauseMusic() {
+void GameEngine::Sound::UnpauseMusic() {
 	Mix_ResumeMusic();
 }
 
@@ -89,7 +89,7 @@ void GameEngine::Sound::unpauseMusic() {
 /*
 	Stop music playback
 */
-void GameEngine::Sound::stopMusic() {
+void GameEngine::Sound::StopMusic() {
 	Mix_HaltMusic();
 }
 
@@ -98,7 +98,7 @@ void GameEngine::Sound::stopMusic() {
 	Stop music, with fade out
 	@param fadeTime milliseconds of time that the fade-out effect should take to go to silence, starting now.
 */
-void GameEngine::Sound::fadeMusic(int fadeTime) {
+void GameEngine::Sound::DadeMusic(int fadeTime) {
 	Mix_FadeOutMusic(fadeTime);
 }
 
@@ -107,7 +107,7 @@ void GameEngine::Sound::fadeMusic(int fadeTime) {
 	Change music volume
 	@param volume an int value between 0-128
 */
-void GameEngine::Sound::changeMusicVolume(int volume) {
+void GameEngine::Sound::ChangeMusicVolume(int volume) {
 	Mix_VolumeMusic((int)volume);
 }
 
@@ -142,7 +142,7 @@ Mix_Chunk* loadChunk(std::string path) {
 	@params volume of the sample.
 	@params repeats number of loops, -1 is infinite loops. Passing one here plays the sample twice (1 loop).
 */
-void GameEngine::Sound::playChunk(Mix_Chunk* c, int volume, int repeats) {
+void GameEngine::Sound::PlayChunk(Mix_Chunk* c, int volume, int repeats) {
 	Mix_VolumeChunk(c, (int)volume);
 	if (Mix_PlayChannel(-1, c, repeats) == -1) {
 		if (Mix_GetError() == "No free channels available") {
@@ -162,7 +162,7 @@ void GameEngine::Sound::playChunk(Mix_Chunk* c, int volume, int repeats) {
 
 	@params c sample to pause.
 */
-void GameEngine::Sound::pauseChunk(Mix_Chunk* c) {
+void GameEngine::Sound::PauseChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -178,7 +178,7 @@ void GameEngine::Sound::pauseChunk(Mix_Chunk* c) {
 
 	@params c sample to resume.
 */
-void GameEngine::Sound::unpauseChunk(Mix_Chunk* c) {
+void GameEngine::Sound::UnpauseChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -194,7 +194,7 @@ void GameEngine::Sound::unpauseChunk(Mix_Chunk* c) {
 
 	@params c sample to stop.
 */
-void GameEngine::Sound::stopChunk(Mix_Chunk* c) {
+void GameEngine::Sound::StopChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -213,7 +213,7 @@ void GameEngine::Sound::stopChunk(Mix_Chunk* c) {
 /*
 	Test whether music is playing
 */
-bool GameEngine::Sound::isMusicPlaying() {
+bool GameEngine::Sound::IsMusicPlaying() {
 	if (Mix_PlayingMusic()) {
 		return true;
 	}
@@ -226,7 +226,7 @@ bool GameEngine::Sound::isMusicPlaying() {
 /*
 	Test whether music is paused
 */
-bool GameEngine::Sound::isMusicPaused() {
+bool GameEngine::Sound::IsMusicPaused() {
 	if (Mix_PausedMusic()) {
 		return true;
 	}
@@ -241,7 +241,7 @@ bool GameEngine::Sound::isMusicPaused() {
 
 	@params c sample playing on the channel.
 */
-bool GameEngine::Sound::isChunkPlaying(Mix_Chunk* c) {
+bool GameEngine::Sound::IsChunkPlaying(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -261,7 +261,7 @@ bool GameEngine::Sound::isChunkPlaying(Mix_Chunk* c) {
 
 	@params c sample paused on the channel.
 */
-bool GameEngine::Sound::isChunkPaused(Mix_Chunk* c) {
+bool GameEngine::Sound::IsChunkPaused(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 	for (int i = 0; i < numChannels; i++) {
 		if (Mix_GetChunk(i) == c && Mix_Playing(i) && Mix_Paused(i)) {
