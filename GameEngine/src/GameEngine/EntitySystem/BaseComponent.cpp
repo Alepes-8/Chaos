@@ -10,7 +10,7 @@ GameEngine::BaseComponent::BaseComponent(GameObject* parent)
 
 GameEngine::Transform* GameEngine::BaseComponent::getParentTransform()
 {
-	return this->parent->getTransform();
+	return this->parent->GetTransform();
 }
 
 GameEngine::BaseComponent::~BaseComponent()

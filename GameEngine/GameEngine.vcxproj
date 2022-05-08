@@ -148,8 +148,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitHealth.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\AI\UnitMovement.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\BaseComponent.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Animation.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Light.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Sound.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\EntityManager.h" />
@@ -158,8 +156,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
@@ -177,7 +173,6 @@
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitHealth.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\UnitMovement.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp" />
-    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Sound.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\EntityManager.cpp" />
@@ -185,14 +180,13 @@
     <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp" />
-    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\Transform.cpp" />
     <ClCompile Include="src\GameEngine\InputEvents\InputManager.cpp" />
     <ClCompile Include="src\GameEngine\Log.cpp" />
+    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp" />
     <ClCompile Include="src\GameEngine\Window\Timer.cpp" />
-    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

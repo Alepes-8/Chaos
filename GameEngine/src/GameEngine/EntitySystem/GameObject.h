@@ -12,18 +12,23 @@ namespace GameEngine {
 		static unsigned int gameObjCounter;
 		Transform* transform;
 		std::map<int, BaseComponent*> components;
+		int ID;
 
 	public:
-
-		int ID;
-		Transform* getTransform();
+		GameObject();
+		~GameObject();
+		
+		
 		void AddComponent(int, BaseComponent*);
+
+		Transform* GetTransform();
 		BaseComponent* GetComponent(int); 
+		int GetID();
+
 		void EarlyUpdate();
 		void Update();
 		void LateUpdate();
-		void PrintList();
-		GameObject();
-		~GameObject();		
+
+			
 	};
 }

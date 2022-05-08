@@ -41,17 +41,13 @@ GameEngine::GameObject::~GameObject() {
 }
 
 
-
-
-void GameEngine::GameObject::PrintList() {
-
-	for (auto comps : components)
-	{
-		std::cout << comps.first << " " << comps.second << "\n";
-	}
+int GameEngine::GameObject::GetID() {
+	return ID;
 }
 
-GameEngine::Transform* GameEngine::GameObject::getTransform()
+
+
+GameEngine::Transform* GameEngine::GameObject::GetTransform()
 {
 	return transform;
 }

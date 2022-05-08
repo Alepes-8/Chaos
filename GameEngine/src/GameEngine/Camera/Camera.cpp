@@ -12,22 +12,22 @@ void GameEngine::Camera::Terminate() {
 	m_Instance == NULL;
 }
 
-void GameEngine::Camera::at(float x, float y, float z)
+void GameEngine::Camera::At(float x, float y, float z)
 {
 	_at = { x ,y ,z };
 }
 
-void GameEngine::Camera::eye(float x, float y, float z)
+void GameEngine::Camera::Eye(float x, float y, float z)
 {
 	_eye = { x, y, z };
 }
 
-void GameEngine::Camera::up(float x, float y, float z)
+void GameEngine::Camera::Up(float x, float y, float z)
 {
 	_up = { x, y, z };
 }
 
-void GameEngine::Camera::translate(float x, float y, float z)
+void GameEngine::Camera::Translate(float x, float y, float z)
 {
 	_at.x += x;
 	_at.y += y;
@@ -37,7 +37,7 @@ void GameEngine::Camera::translate(float x, float y, float z)
 	_eye.z += z;
 }
 
-void GameEngine::Camera::translate_direction(GameEngine::Direction direction, float speed)
+void GameEngine::Camera::Translate_Direction(GameEngine::Direction direction, float speed)
 {
 	Vector3 dir = { 0, 0, 0 };
 	Vector3 gaze_dir = Vector3 (_eye.x - _at.x, _eye.y - _at.y, _eye.z - _at.z ).Normalized();
@@ -75,52 +75,52 @@ void GameEngine::Camera::translate_direction(GameEngine::Direction direction, fl
 
 
 
-void GameEngine::Camera::reset()
+void GameEngine::Camera::Reset()
 {
-	at(0, 0, 0);
-	eye(0, 0, 10);
-	up(0, 1, 0);
+	At(0, 0, 0);
+	Eye(0, 0, 10);
+	Up(0, 1, 0);
 	camera_speed = 0.5f;
 }
 
-void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
+void GameEngine::Camera::ListenEvent(GameEngine::InputManager* im)
 {
 	//moves the camera with the keyboard
 
 	//translation riht - right arrow
 	if (im->Keydown(SDL_SCANCODE_RIGHT)) {
 		std::cout << "x positve" << std::endl;
-		this->translate_direction(RIGHT, camera_speed);
+		this->Translate_Direction(RIGHT, camera_speed);
 	}
 
 	//translation left - left arrow
 	else if (im->Keydown(SDL_SCANCODE_LEFT)) {
 		std::cout << "x positve" << std::endl;
-		this->translate_direction(LEFT, camera_speed);
+		this->Translate_Direction(LEFT, camera_speed);
 	}
 
 	//translation up - up arrow
 	else if (im->Keydown(SDL_SCANCODE_UP)) {
 		std::cout << "y positive" << std::endl;
-		this->translate_direction(UP, camera_speed);
+		this->Translate_Direction(UP, camera_speed);
 	}
 
 	//translation down - down arrow
 	else if (im->Keydown(SDL_SCANCODE_DOWN)) {
 		std::cout << "y negative" << std::endl;
-		this->translate_direction(DOWN, camera_speed);
+		this->Translate_Direction(DOWN, camera_speed);
 	}
 
 	//translation backward - keypad 1
 	else if (im->Keydown(SDL_SCANCODE_KP_1)) {
 		std::cout << "z positive" << std::endl;
-		this->translate_direction(FORWARD, camera_speed);
+		this->Translate_Direction(FORWARD, camera_speed);
 	}
 
 	//translation forward - keypad 7
 	else if (im->Keydown(SDL_SCANCODE_KP_7)) {
 		std::cout << "z negative" << std::endl;
-		this->translate_direction(Direction::BACKWARD, camera_speed);
+		this->Translate_Direction(Direction::BACKWARD, camera_speed);
 	}
 
 	//rotates left - keypad 4
@@ -212,7 +212,7 @@ void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 	//reset camera - keypad 0
 	else if (im->KeyPressed(SDL_SCANCODE_KP_0)) {
 		std::cout << "cam reset" << std::endl;
-		this->reset();
+		this->Reset();
 	}
 
 	//increase camera speed - keypad 9
@@ -228,7 +228,7 @@ void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 	}
 	else if (im->KeyPressed(SDL_SCANCODE_KP_0)) {
 		std::cout << "cam reset" << std::endl;
-		this->reset();
+		this->Reset();
 	}
 }
 
@@ -236,7 +236,7 @@ void GameEngine::Camera::listenEvent(GameEngine::InputManager* im)
 void GameEngine::Camera::Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height)
 {
 	
-	this->listenEvent(im);
+	this->ListenEvent(im);
 
 	bx::mtxLookAt(_view, _eye, _at, _up);
 

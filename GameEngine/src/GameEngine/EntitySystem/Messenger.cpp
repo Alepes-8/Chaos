@@ -72,9 +72,9 @@ void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	float speed = movementComp->GetMovement();
 
 	translation = translation * (speed / 10);
-	Transform* transform = entity->getTransform();
+	Transform* transform = entity->GetTransform();
 	
-	transform->translate(translation);
+	transform->Translate(translation);
 	std::cout << "move unit" << std::endl;
 }
 
@@ -89,9 +89,9 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 	float speed = movementComp->GetMovement();
 
 	translation = translation * (speed / 10);
-	Transform* transform = entity->getTransform();
+	Transform* transform = entity->GetTransform();
 
-	transform->rotates(translation.x, translation.y, translation.z);
+	transform->Rotates(translation.x, translation.y, translation.z);
 	std::cout << "move unit" << std::endl;
 }
 
@@ -119,30 +119,30 @@ int GameEngine::Messenger::GetID(float mouseX, float mouseY) {
 
 		
 
-		if (!(boundingboxMin.x + -entity.second->getTransform()->mtx[12] < mouseX)) {
+		if (!(boundingboxMin.x + -entity.second->GetTransform()->mtx[12] < mouseX)) {
 			continue;
 		}
 
-		if (!(boundingboxMax.x + -entity.second->getTransform()->mtx[12] > mouseX)) {
+		if (!(boundingboxMax.x + -entity.second->GetTransform()->mtx[12] > mouseX)) {
 			continue;
 		}
 
-		if (!(boundingboxMin.y + entity.second->getTransform()->mtx[13] < mouseY)) {
+		if (!(boundingboxMin.y + entity.second->GetTransform()->mtx[13] < mouseY)) {
 			continue;
 		}
 
-		if (!(boundingboxMax.y + entity.second->getTransform()->mtx[13] > mouseY)) {
+		if (!(boundingboxMax.y + entity.second->GetTransform()->mtx[13] > mouseY)) {
 			continue;
 		}
 
 
 		if (rightAreaID == 0) {
 			rightAreaID = entity.first;
-			rightAreaZ = boundingboxMax.z + entity.second->getTransform()->mtx[14];
+			rightAreaZ = boundingboxMax.z + entity.second->GetTransform()->mtx[14];
 		}
-		else if (rightAreaZ < boundingboxMax.z + entity.second->getTransform()->mtx[14]) {
+		else if (rightAreaZ < boundingboxMax.z + entity.second->GetTransform()->mtx[14]) {
 			rightAreaID = entity.first;
-			rightAreaZ = boundingboxMax.z + entity.second->getTransform()->mtx[14];
+			rightAreaZ = boundingboxMax.z + entity.second->GetTransform()->mtx[14];
 		}
 	}
 

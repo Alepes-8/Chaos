@@ -4,7 +4,7 @@ namespace GameEngine {
 	class Collider : public BaseComponent {
 	public:
 		Collider(GameObject* parent) : BaseComponent(parent) {};
-		virtual bool areColliding(Collider& c);
+		virtual bool AreColliding(Collider& c);
 		virtual void Update() override = 0;
 	};
 

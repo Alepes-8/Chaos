@@ -25,19 +25,19 @@ namespace GameEngine {
 
 		void SetTransform(float x_pos, float y_pos, float z_pos);
 
-		void translate(Vector3 translation);
+		void Translate(Vector3 translation);
 
-		void setTranslation(Vector3 translation);
+		void SetTranslation(Vector3 translation);
 
-		void rescale(Vector3 scale);
+		void Rescale(Vector3 scale);
 
-		void rotates(Vector3 axis, float value);
+		void Rotates(Vector3 axis, float value);
 
-		void rotates(float x, float y, float z);
+		void Rotates(float x, float y, float z);
 
 		Transform operator*(Transform t);
 
-		void print();
+		void Print();
 
 		void Update();
 	};
