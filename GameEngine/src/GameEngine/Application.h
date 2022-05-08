@@ -6,7 +6,7 @@
 #include "InputEvents/InputManager.h"
 #include "EntitySystem/EntityManager.h"
 #include "GameEngine/Camera/Camera.h"
-
+#include "GameEngine/EntitySystem/Messenger.h"
 
 #include <vector>
 
@@ -16,18 +16,26 @@ namespace GameEngine
 	class Application
 	{
 	private:
-		const int frameRate = 60;
+		const int frameRate = 600;
 		bool mQuit;
 		SDL_Event m_Events;
+		int selectedID;
 
 		GameEngine::EntityManager* m_EntityManager;
 		GameEngine::Graphics* m_Graphics;
 		GameEngine::Timer* m_Timer;
 		GameEngine::InputManager* m_InputManager;
 		GameEngine::Camera* m_Camera;
+		GameEngine::Messenger* m_Messenger;
 
 		void CallCreation(char*);
+		struct Vector2  GetRealCords();
+		
 
+		void EarlyUpdate();
+		void Update();
+		void LateUpdate();
+		void Render();
 	public:
 		static Application* sInstance;
 		static void Terminate();
@@ -35,10 +43,7 @@ namespace GameEngine
 		Application();
 		virtual ~Application();
 
-		void EarlyUpdate();
-		void Update();
-		void LateUpdate();
-		void Render();
+		
 		void Run();
 
 	};

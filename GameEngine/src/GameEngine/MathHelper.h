@@ -4,6 +4,7 @@
 #define DEG_TO_RAD PI /180.0f
 namespace GameEngine {
 
+
 	struct Vector2 {
 		float x;
 		float y;
@@ -82,4 +83,12 @@ namespace GameEngine {
 	inline Vector3 operator*=(const Vector3& lhs, const float coef) {
 		return lhs * coef;
 	}
+
+
+	class MathHelper {
+	public: 
+		MathHelper();
+		~MathHelper();
+		bool InvMatrix(const float m[16], float invOut[16]);
+	};
 }

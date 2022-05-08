@@ -37,29 +37,28 @@ GameEngine::GameObject::~GameObject() {
 	for (auto comp : components) {
 		delete comp.second;
 	}
-
+	delete transform;
 }
 
-void GameEngine::GameObject::PrintList() {
 
-	for (auto comps : components)
-	{
-		std::cout << comps.first << " " << comps.second << "\n";
-	}
+int GameEngine::GameObject::GetID() {
+	return ID;
 }
 
-GameEngine::Transform* GameEngine::GameObject::getTransform()
+
+
+GameEngine::Transform* GameEngine::GameObject::GetTransform()
 {
 	return transform;
 }
 
-void GameEngine::GameObject::Terminate() {
+void GameEngine::GameObject::AddComponent(int id, BaseComponent* comp) {
+	components.insert({ id, comp });
+}
 
-	/*-delete componets parts-*/
-	
-	/*------------------------*/
-	/*--Delete the dictinary--*/
-
-	/*------------------------*/
-
+GameEngine::BaseComponent* GameEngine::GameObject::GetComponent(int id) {
+	if (components.count(id) == 0) {
+		return nullptr;
+	}
+	return components.at(id);
 }

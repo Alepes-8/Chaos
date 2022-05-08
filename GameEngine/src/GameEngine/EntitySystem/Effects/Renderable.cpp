@@ -14,10 +14,7 @@ GameEngine::Renderable::Renderable
     GameObject* parent,
     const char* dirMesh,
     const char* dirFrag,
-    const char* dirVert,
-    float x_value,
-    float y_value,
-    float z_value
+    const char* dirVert
 ) : BaseComponent(parent)
 {
     vsh = loadShader(dirFrag);
@@ -29,13 +26,7 @@ GameEngine::Renderable::Renderable
     parseObj(dirMesh);
     createBuffers();
 
-    float mtx_mesh[16];
-    bx::mtxScale(mtx_mesh, 5);
-    mtx_mesh[12] = x_value;   //left and right
-    mtx_mesh[13] = y_value;   //up and down
-    mtx_mesh[14] = z_value;   //Back and forward
-    
-    setTransform(Transform(mtx_mesh));
+    SetBoundingBox();
 }
 
 
@@ -55,12 +46,6 @@ void GameEngine::Renderable::createBuffers()
     );
 }
 
-
-void GameEngine::Renderable::setTransform(Transform t)
-{
-    Transform* parentTransform = this->getParentTransform();
-    *parentTransform = t;
-}
 
 /// <summary>
 ///  This function send the renderer to the shader program
@@ -329,6 +314,41 @@ bgfx::ProgramHandle GameEngine::Renderable::createProgram() {
 
 
 
+
+
+
+
+void GameEngine::Renderable::SetBoundingBox() {
+    float minX = 0;
+    float minY = 0;
+    float minZ = 0;
+    float maxX = 0;
+    float maxY = 0;
+    float maxZ = 0;
+
+    /*-----------to create the bounding box--------------*/
+
+    for (int i = 0; i < v_len; i++) {
+        if (vertices[i].m_x < minX) { minX = vertices[i].m_x; } //Smaller then the currently smallest x value
+        else if (vertices[i].m_x > maxX) { maxX = vertices[i].m_x; } //Larger then the currently largest x value
+
+        if (vertices[i].m_y < minY) { minY = vertices[i].m_y; } //Smaller then the currently smallest y value
+        else if (vertices[i].m_y > maxY) { maxY = vertices[i].m_y; } //Larger then the currently largest y value
+
+        if (vertices[i].m_z < minZ) { minZ = vertices[i].m_z; } //Smaller then the currently smallest x value
+        else if (vertices[i].m_z > maxZ) { maxZ = vertices[i].m_z; } //Larger then the currently largest x value
+    }
+
+
+    boundingBox[0] = Vector3((float)minX, (float)minY, (float)minZ);
+    boundingBox[1] = Vector3((float)maxX, (float)maxY, (float)maxZ);
+
+}
+
+void GameEngine::Renderable::GetBoundingBox(Vector3* min, Vector3* max) {
+    *min = boundingBox[0];
+    *max = boundingBox[1];
+}
 
 void GameEngine::Renderable::Update() {
 

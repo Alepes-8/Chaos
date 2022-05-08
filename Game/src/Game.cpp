@@ -6,7 +6,7 @@ class Game : public GameEngine::Application
 public:
 	Game()
 	{
-
+		std::cout << "start game" << std::endl;
 	}
 	~Game()
 	{

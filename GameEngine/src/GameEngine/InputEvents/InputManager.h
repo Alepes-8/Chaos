@@ -22,6 +22,7 @@ namespace GameEngine {
 		int m_MouseXPos;
 		int m_MouseYPos;
 
+
 	public:
 		static InputManager* CreateInstance();
 		static void Terminate();

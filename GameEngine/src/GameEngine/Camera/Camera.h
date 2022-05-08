@@ -18,16 +18,20 @@ namespace GameEngine {
 		float camera_speed = 0.5f;
 		static Camera* m_Instance;
 
+		void At(float x, float y, float z);
+		void Eye(float x, float y, float z);
+		void Up(float x, float y, float z);
+		void Reset();
+		void ListenEvent(GameEngine::InputManager* im);
+
+		void Translate(float x, float y, float z);
+		void Translate_Direction(GameEngine::Direction direction, float speed);
 	public:
 		static Camera* CreateInstance();
 		static void Terminate();
-		void at(float x, float y, float z);
-		void eye(float x, float y, float z);
-		void up(float x, float y, float z);
-		void translate(float x, float y, float z);
-		void translate_direction(GameEngine::Direction direction, float speed);
-		void reset();
-		void listenEvent(GameEngine::InputManager* im);
+
+		
+		
 		
 		void Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height);
 		float _view[16];
