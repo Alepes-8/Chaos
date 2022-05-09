@@ -6,7 +6,7 @@
 /// </summary>
 GameEngine::Transform::~Transform() {
 	std::cout << "Delete Transform" << std::endl;
-	delete(this);
+	
 }
 
 /// <summary>

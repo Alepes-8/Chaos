@@ -49,6 +49,7 @@ GameEngine::GameObject::GameObject() {
 /// </summary>
 GameEngine::GameObject::~GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
+	std::cout << components.size() << std::endl;
 	for (auto comp : components) {
 		delete comp.second;
 	}

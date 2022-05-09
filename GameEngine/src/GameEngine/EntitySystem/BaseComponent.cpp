@@ -27,7 +27,6 @@ GameEngine::Transform* GameEngine::BaseComponent::getParentTransform()
 GameEngine::BaseComponent::~BaseComponent()
 {
 	std::cout << "Delete component" << std::endl;
-	delete(this);
 }
 
 /// <summary>
