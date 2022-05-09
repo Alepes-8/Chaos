@@ -19,7 +19,7 @@ namespace GameEngine
 		const int frameRate = 600;
 		bool mQuit;
 		SDL_Event m_Events;
-		int selectedID;
+		int selectedID = 0;
 
 		GameEngine::EntityManager* m_EntityManager;
 		GameEngine::Graphics* m_Graphics;

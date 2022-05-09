@@ -110,9 +110,10 @@ void GameEngine::EntityManager::playMusicTest(int id) {
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
     /*--Delete the entity--*/
-    delete EntityList.begin()->second;
-    EntityList.begin()->second = NULL;
-    EntityList.erase(EntityList.begin());
+    delete EntityList.at(entityID);
+    EntityList.at(entityID) = NULL;
+    EntityList.erase(EntityList.find(entityID));
+    
     /*---------------------*/
     
 }
@@ -152,4 +153,61 @@ GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
 
 std::map<int, GameEngine::GameObject*>* GameEngine::EntityManager::GetList() {
     return &EntityList;
+}
+
+int GameEngine::EntityManager::GetID(int id, int direction) {
+
+    int position = std::distance(EntityList.begin(), EntityList.find(id));
+    int length = std::distance(EntityList.begin(), EntityList.end());
+    //float value = EntityList.find(1);
+    if (id == 0) {
+        if (EntityList.size() == 0) {
+            return 0;
+        }
+
+        return EntityList.begin()->first;
+    }
+    if (EntityList.size() == 1) {
+        return EntityList.rbegin()->first;
+         
+    }
+
+    if (GetEntity(id) == nullptr) {
+        return  EntityList.begin()->first;
+    }
+    if (direction == 0) {//goes downwards
+
+        if (position == 0) {
+            return EntityList.rbegin()->first;
+        }
+        std::map<int, GameObject*>::iterator it;
+        int next = 0;
+        for (it = EntityList.find(id); it != EntityList.begin(); it--)
+        {
+            if (next == 0) {
+                next = 1;
+                continue;
+            }
+            return it->first;
+        }
+        return EntityList.begin()->first;
+    }
+    else if (direction == 1) {
+        if (position == length-1) {
+            return EntityList.begin() -> first;
+        }
+
+        std::map<int, GameObject*>::iterator it;
+        int next = 0;
+        for (it = EntityList.find(id); it != EntityList.end(); it++)
+        {
+            if (next == 0) {
+                next = 1;
+                continue;
+            }
+            return it->first;
+        }
+    }
+
+    return id;
 }
