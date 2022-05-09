@@ -8,10 +8,16 @@
 
 unsigned int GameEngine::GameObject::gameObjCounter = 0;
 
+/// <summary>
+/// Update before rendering the frame
+/// </summary>
 void GameEngine::GameObject::EarlyUpdate() {
 
 }
 
+/// <summary>
+/// Update all components of the GameObject
+/// </summary>
 void GameEngine::GameObject::Update() {
 
 
@@ -21,10 +27,16 @@ void GameEngine::GameObject::Update() {
 	transform->Update();
 }
 
+/// <summary>
+/// Update after the rendering frame
+/// </summary>
 void GameEngine::GameObject::LateUpdate() {
 
 }
 
+/// <summary>
+/// Create a GameObject
+/// </summary>
 GameEngine::GameObject::GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Create the GameObject Class");
 	gameObjCounter++;
@@ -32,6 +44,9 @@ GameEngine::GameObject::GameObject() {
 	transform = new Transform();
 }
 
+/// <summary>
+/// Delete a GameObject
+/// </summary>
 GameEngine::GameObject::~GameObject() {
 	GameEngine::Log::GetCoreLogger()->warn("Destroy the GameObject Class");
 	for (auto comp : components) {
@@ -42,7 +57,9 @@ GameEngine::GameObject::~GameObject() {
 
 
 
-
+/// <summary>
+/// Print the list of Components of GameObject
+/// </summary>
 void GameEngine::GameObject::PrintList() {
 
 	for (auto comps : components)
@@ -51,15 +68,29 @@ void GameEngine::GameObject::PrintList() {
 	}
 }
 
+/// <summary>
+/// Get the Transform of the GameObject
+/// </summary>
+/// <returns> GameObject's Transform </returns>
 GameEngine::Transform* GameEngine::GameObject::getTransform()
 {
 	return transform;
 }
 
+/// <summary>
+/// Add a new BaseComponent to the GameObject
+/// </summary>
+/// <param name="id"> - id of the BaseComponent</param>
+/// <param name="comp"> - Pointer to the BaseComponent to add</param>
 void GameEngine::GameObject::AddComponent(int id, BaseComponent* comp) {
 	components.insert({ id, comp });
 }
 
+/// <summary>
+/// Get the BaseComponent corresponding to the given id
+/// </summary>
+/// <param name="id"> - id of the BaseComponent </param>
+/// <returns> Pointer to the BaseComponent </returns>
 GameEngine::BaseComponent* GameEngine::GameObject::GetComponent(int id) {
 	if (components.count(id) == 0) {
 		return nullptr;

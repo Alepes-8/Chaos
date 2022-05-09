@@ -1,14 +1,24 @@
 #include "Renderable.h"
 
 
-GameEngine::Renderable::~Renderable() {
-	std::cout << "Delete Renderable" << std::endl;
-}
-
-#include "Renderable.h"
-
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
+/// <summary>
+/// Destructor of the class
+/// </summary>
+GameEngine::Renderable::~Renderable() {
+	std::cout << "Delete Renderable" << std::endl;
+    delete(this);
+}
+
+
+/// <summary>
+/// Build a Renderable object using a .obj and .mtl file
+/// </summary>
+/// <param name="parent"> - Parent GameObject</param>
+/// <param name="dirMesh"> - Path to the .obj and .mtl file. Format : dir/name without .obj or .mtl</param>
+/// <param name="dirFrag"> - Path to the fragment shader</param>
+/// <param name="dirVert"> - Path to the vertex shader</param>
 GameEngine::Renderable::Renderable
 (
     GameObject* parent,
@@ -28,7 +38,9 @@ GameEngine::Renderable::Renderable
  
 }
 
-
+/// <summary>
+/// Create the buffers needed to pass values of vertices and indices to the shader program
+/// </summary>
 void GameEngine::Renderable::createBuffers()
 {
     this->m_vbh = bgfx::createVertexBuffer(
@@ -47,13 +59,13 @@ void GameEngine::Renderable::createBuffers()
 
 
 /// <summary>
-///  This function send the renderer to the shader program
+///  Send the renderer to the shader program
 /// </summary>
-/// <param name="view"></param>
-/// <param name="prog"></param>
+/// <param name="view"> - id of the view </param>
+/// <param name="prog"> - shader program </param>
 /// <param name="STATE">
-/// BGFX_STATE_CULL_CCW for conter clockwise faces orientation
-/// BGFX_STATE_CULL_CW for clockwise faces orientation
+/// <para> - BGFX_STATE_CULL_CCW for conter clockwise faces orientation </para> 
+/// <para> - BGFX_STATE_CULL_CW for clockwise faces orientation </para>
 /// </param>
 void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE)
 {
@@ -69,6 +81,11 @@ void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog,
     bgfx::submit(view, prog);
 }
 
+/// <summary>
+/// Parse .obj file to create a Renderable. 
+/// Note : this functino also needs .mtl file to works
+/// </summary>
+/// <param name="filename"> - Path to the .obj and .mtl file. Format : dir/name without .obj or .mtl</param>
 void GameEngine::Renderable::parseObj(const std::string filename)
 {
     std::list<GameEngine::Vector3> vertices;
@@ -223,6 +240,12 @@ void GameEngine::Renderable::parseObj(const std::string filename)
     }
 }
 
+
+/// <summary>
+/// Parse a .mtl file
+/// </summary>
+/// <param name="filename"> - Path to the .mtl file</param>
+/// <returns> Map of key the name of the material and value the RGB components</returns>
 std::map<std::string, float> GameEngine::Renderable::parseMtl(const std::string filename)
 {
     //output
@@ -267,6 +290,9 @@ std::map<std::string, float> GameEngine::Renderable::parseMtl(const std::string 
     return res;
 }
 
+/// <summary>
+/// Print in the console the information of the current Renderable
+/// </summary>
 void GameEngine::Renderable::print()
 {
     for (int i = 0; i < v_len; i++) {
@@ -283,10 +309,13 @@ void GameEngine::Renderable::print()
 }
 
 
+//util functions
 
-
-
-/*---------shader ----------*/
+/// <summary>
+/// Load a shader
+/// </summary>
+/// <param name="_name">Path to the shader</param>
+/// <returns>ShaderHandle</returns>
 bgfx::ShaderHandle GameEngine::loadShader(const char* _name) {
     {
         char* data = new char[2048];
@@ -313,7 +342,9 @@ bgfx::ProgramHandle GameEngine::Renderable::createProgram() {
 
 
 
-
+/// <summary>
+/// Update the Renderable value and send it to the shader program
+/// </summary>
 void GameEngine::Renderable::Update() {
 
     submit(0, m_program, BGFX_STATE_CULL_CCW);

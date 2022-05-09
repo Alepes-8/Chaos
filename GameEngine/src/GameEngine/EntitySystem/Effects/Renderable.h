@@ -62,13 +62,20 @@ namespace GameEngine {
 
     public:
         Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);
+
         void createBuffers();
+
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
+
         void parseObj(const std::string filename);
+
         std::map<std::string, float> parseMtl(const std::string filename);
+
         void print();
-        ~Renderable();
+
         void Update() override;
+
+        ~Renderable();
 
         bgfx::ProgramHandle createProgram();
     };
