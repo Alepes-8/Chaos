@@ -27,6 +27,7 @@ namespace GameEngine
         m_Camera = GameEngine::Camera::CreateInstance();
         m_Messenger = GameEngine::Messenger::CreateInstance();
 
+        audio = m_EntityManager->CreateNewEntity("BackgroundMusic", 0, 0, 0);
     }
 
 
@@ -167,6 +168,10 @@ namespace GameEngine
             m_EntityManager->TerminateEnity(selectedID);
         }
 
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_Z)) {
+            GameEngine::Log::GetCoreLogger()->info("Z Change music state");
+            m_Messenger->ChangeAudioState(audio);
+        }
 
         if (m_InputManager->KeyPressed(SDL_SCANCODE_PAGEUP)) {
             GameEngine::Log::GetCoreLogger()->info("Page Up");
@@ -256,7 +261,7 @@ namespace GameEngine
         //-----------------CAMERA-----------------//
 
         //-----------------AUDIO-----------------//
-        int audio = m_EntityManager->CreateNewEntity("BackgroundMusic", 0, 0, 0);
+        
         m_EntityManager->PlayAudio(audio);
       
         //--------------------LOOP---------------------//

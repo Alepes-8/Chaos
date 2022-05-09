@@ -44,6 +44,8 @@ namespace GameEngine {
 		const int FREQUENCY_ = 44100;
 		const int CHUNK_SIZE_ = 2048;
 		const int MAX_CHUNKS_PLAYING_ = 5;
+
+		bool playing;
 		
 		std::map<std::string, Mix_Chunk*> m_effectMap;
 	};
