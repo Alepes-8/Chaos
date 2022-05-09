@@ -110,6 +110,9 @@ void GameEngine::EntityManager::playMusicTest(int id) {
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
     /*--Delete the entity--*/
+    if (GetEntity(entityID) == nullptr) {
+        return;
+    }
     delete EntityList.at(entityID);
     EntityList.at(entityID) = NULL;
     EntityList.erase(EntityList.find(entityID));
