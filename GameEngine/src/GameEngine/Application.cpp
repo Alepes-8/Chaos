@@ -160,11 +160,21 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_D)) {
             GameEngine::Log::GetCoreLogger()->info("D print");
-            m_Messenger->DamageUnit(1, 2);
+            m_Messenger->DamageUnit(selectedID, 2);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_T)) {
             GameEngine::Log::GetCoreLogger()->info("T terminate");
-            m_EntityManager->TerminateEnity(1);
+            m_EntityManager->TerminateEnity(selectedID);
+        }
+
+
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_PAGEUP)) {
+            GameEngine::Log::GetCoreLogger()->info("Page Up");
+            selectedID = m_EntityManager->GetID(selectedID, 1);
+        }   
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_PAGEDOWN)) {
+            GameEngine::Log::GetCoreLogger()->info("Page Up");
+            selectedID = m_EntityManager->GetID(selectedID, 0);
         }
 
         /*-------- left mouse ----------*/
@@ -173,7 +183,7 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("left Mouse pressed");
 
             //std::cout << "modi pos "<< -GetRealCords().x << "  " << -GetRealCords().y << std::endl;
-            int id = m_Messenger->GetID(-GetRealCords().x * 10 , -GetRealCords().y  * 10);
+            int id = m_Messenger->GetMouseID(-GetRealCords().x * 10 , -GetRealCords().y  * 10);
             if (id != 0) {
                 selectedID = id;
             }

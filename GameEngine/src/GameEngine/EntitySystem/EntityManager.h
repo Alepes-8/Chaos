@@ -35,6 +35,7 @@ namespace GameEngine {
 		void LateUpdate();
 		GameObject* GetEntity(int id);
 		std::map<int, GameObject*>* GetList();
+		int GetID(int id, int direction);
 
 		void PlayMusicTest(int id);
 	private:

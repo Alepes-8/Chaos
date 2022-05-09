@@ -98,7 +98,7 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 
 
 
-int GameEngine::Messenger::GetID(float mouseX, float mouseY) {
+int GameEngine::Messenger::GetMouseID(float mouseX, float mouseY) {
 	std::cout << "x,y mouse; = " << mouseX << " , " << mouseY << std::endl;
 
 

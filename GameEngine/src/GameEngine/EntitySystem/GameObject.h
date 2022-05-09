@@ -16,7 +16,7 @@ namespace GameEngine {
 
 	public:
 		GameObject();
-		virtual ~GameObject();
+		~GameObject();
 		
 		
 		void AddComponent(int, BaseComponent*);
