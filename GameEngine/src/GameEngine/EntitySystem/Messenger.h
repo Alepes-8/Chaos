@@ -18,6 +18,6 @@ namespace GameEngine {
 		void MoveUnit(int id, Vector3 translation);
 		void RotateUnit(int id, Vector3 translation);
 
-		int GetID(float mouseX, float mouseY);
+		int GetMouseID(float mouseX, float mouseY);
 	};
 }

@@ -1,5 +1,7 @@
 #include <GameEngine/EntitySystem/Physic/BoxCollider.h>
 
+//WORK IN PROGRESS
+
 GameEngine::BoxCollider::BoxCollider(
 	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),

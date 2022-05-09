@@ -131,7 +131,7 @@ namespace GameEngine
             }
         }
         float z = 0;
-        float width = (tempview[3][2] - z) * tan(3.14/4);
+        float width = (tempview[3][2] - z) * tan(3.14f/4.0f);
         m_EntityManager->CreateNewEntity(name, out[0][0] * width + tempview[3][0], -out[0][1] * width + tempview[3][1], z);
         //m_EntityManager->CreateNewEntity("Peasant", out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 10-tempview[3][2]+ out[0][0]*10 * ( 1- procent));
     }
@@ -160,11 +160,21 @@ namespace GameEngine
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_D)) {
             GameEngine::Log::GetCoreLogger()->info("D print");
-            m_Messenger->DamageUnit(1, 2);
+            m_Messenger->DamageUnit(selectedID, 2);
         }
         if (m_InputManager->KeyPressed(SDL_SCANCODE_T)) {
             GameEngine::Log::GetCoreLogger()->info("T terminate");
-            m_EntityManager->TerminateEnity(1);
+            m_EntityManager->TerminateEnity(selectedID);
+        }
+
+
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_PAGEUP)) {
+            GameEngine::Log::GetCoreLogger()->info("Page Up");
+            selectedID = m_EntityManager->GetID(selectedID, 1);
+        }   
+        if (m_InputManager->KeyPressed(SDL_SCANCODE_PAGEDOWN)) {
+            GameEngine::Log::GetCoreLogger()->info("Page Up");
+            selectedID = m_EntityManager->GetID(selectedID, 0);
         }
 
         /*-------- left mouse ----------*/
@@ -173,7 +183,7 @@ namespace GameEngine
             GameEngine::Log::GetCoreLogger()->info("left Mouse pressed");
 
             //std::cout << "modi pos "<< -GetRealCords().x << "  " << -GetRealCords().y << std::endl;
-            int id = m_Messenger->GetID(-GetRealCords().x * 10 , -GetRealCords().y  * 10);
+            int id = m_Messenger->GetMouseID(-GetRealCords().x * 10 , -GetRealCords().y  * 10);
             if (id != 0) {
                 selectedID = id;
             }
@@ -243,6 +253,12 @@ namespace GameEngine
         //------------------WINDOW------------------//
         m_Graphics->Initbgfx();
 
+        //-----------------CAMERA-----------------//
+
+        //-----------------AUDIO-----------------//
+        int audio = m_EntityManager->CreateNewEntity("BackgroundMusic", 0, 0, 0);
+        m_EntityManager->PlayAudio(audio);
+      
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
         m_EntityManager->CreateNewEntity("Leader", 0,0, 0);

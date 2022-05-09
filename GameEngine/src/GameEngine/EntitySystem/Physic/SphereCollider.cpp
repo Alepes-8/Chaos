@@ -1,5 +1,7 @@
 #include <GameEngine/EntitySystem/Physic/SphereCollider.h>
 
+//WORK IN PROGRESS
+
 GameEngine::SphereCollider::SphereCollider(
 	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),

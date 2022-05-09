@@ -66,8 +66,11 @@ namespace GameEngine {
         void SetBoundingBox();
         bgfx::ProgramHandle createProgram();
         void createBuffers();
+
         void submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE);
+
         void parseObj(const std::string filename);
+
         std::map<std::string, float> parseMtl(const std::string filename);
     public:
         Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);

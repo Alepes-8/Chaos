@@ -1,12 +1,14 @@
 #include "Sound.h"
 
+namespace fs = std::filesystem;
+
 //-------------------------------------------------------------------
 GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
-	std::cout << "Create audio" << std::endl;
+	std::cout << "Start audio" << std::endl;
 
-	if (SDL_Init((SDL_INIT_AUDIO) == 0)) {
+	if (Mix_Init((SDL_INIT_AUDIO) == 0)) {
 		printf("ERROR: SDL_INIT_AUDIO has failed!\n");
-		printf("SDL error: %s\n", SDL_GetError());
+		printf("SDL error: %s\n", Mix_GetError());
 	}
 
 	if (Mix_OpenAudio(FREQUENCY_, MIX_DEFAULT_FORMAT, HARDWARE_CHANNELS_, CHUNK_SIZE_) == -1) {
@@ -15,11 +17,15 @@ GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
 	}
 
 	Mix_AllocateChannels(MAX_CHUNKS_PLAYING_);
+
+
 }
 
 //-------------------------------------------------------------------
 GameEngine::Sound::~Sound() {
 	std::cout << "Stop audio" << std::endl;
+
+	m_effectMap.clear();
 
 	Mix_CloseAudio();
 	Mix_Quit();
@@ -27,14 +33,9 @@ GameEngine::Sound::~Sound() {
 
 //-------------------------------------------------------------------
 void GameEngine::Sound::Update() {
-	std::cout << "Update audio" << std::endl;
+	//std::cout << "Update audio" << std::endl;
 
 }
-
-
-//-------------------------------------------------------------------
-//	Music part
-//-------------------------------------------------------------------
 
 //-------------------------------------------------------------------
 /*
@@ -42,16 +43,58 @@ void GameEngine::Sound::Update() {
 	@param path to audio file
 	Returns: A pointer to a Mix_Music. NULL is returned on errors.
 */
-Mix_Music* loadMusic(std::string path) {
+Mix_Music* GameEngine::Sound::LoadMusic(std::string path) {
 	Mix_Music* m = Mix_LoadMUS(path.c_str());
 	if(!m) {
 		printf("Error: Mix_Music could not be loaded for '%s'!\n", path.c_str());
 		printf("SDL error: %s\n", Mix_GetError());
+		
 	}
 	else {
 		return m;
 	}
 }
+
+//-------------------------------------------------------------------
+/*
+	Load file for use as a sample.
+	@param path to audio file
+	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
+*/
+std::map<std::string, Mix_Chunk*> GameEngine::Sound::LoadChunk(std::string path) {
+	
+	std::string ext(".wav");
+	for (auto& p : fs::recursive_directory_iterator(path)) {
+		if (p.path().extension() == ext) {
+			std::string str = p.path().string();
+			const char* file = str.c_str();
+
+			Mix_Chunk* c = Mix_LoadWAV(file);
+			
+			m_effectMap.insert(std::pair<std::string, Mix_Chunk*>( p.path().stem().string(), c));
+			
+		}
+	}
+	
+	/*Mix_Chunk* c = Mix_LoadWAV(path.c_str());
+	if (!c) {
+		printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n", 
+			path.c_str());
+		printf("SDL error: %s\n", Mix_GetError());
+	} else {
+		return c;
+	}
+	}*/
+	
+	
+	return m_effectMap;
+}
+
+
+
+//-------------------------------------------------------------------
+//	Music part
+//-------------------------------------------------------------------
 
 //-----------------------------------------------------------------
 /**
@@ -98,7 +141,7 @@ void GameEngine::Sound::StopMusic() {
 	Stop music, with fade out
 	@param fadeTime milliseconds of time that the fade-out effect should take to go to silence, starting now.
 */
-void GameEngine::Sound::DadeMusic(int fadeTime) {
+void GameEngine::Sound::FadeMusic(int fadeTime) {
 	Mix_FadeOutMusic(fadeTime);
 }
 
@@ -115,24 +158,6 @@ void GameEngine::Sound::ChangeMusicVolume(int volume) {
 //-------------------------------------------------------------------
 //	Chunk part
 //-------------------------------------------------------------------
-
-//-------------------------------------------------------------------
-/*
-	Load file for use as a sample.
-	@param path to audio file
-	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
-*/
-Mix_Chunk* loadChunk(std::string path) {
-	Mix_Chunk* c = Mix_LoadWAV(path.c_str());
-	if (!c) {
-		printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n",
-			path.c_str());
-		printf("SDL error: %s\n", Mix_GetError());
-	}
-	else {
-		return c;
-	}
-}
 
 //-------------------------------------------------------------------
 /*

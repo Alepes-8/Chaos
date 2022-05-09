@@ -33,7 +33,7 @@ namespace GameEngine {
 		
 		
 		
-		void Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height);
+		void Update(GameEngine::InputManager* im, int view_port_id, uint16_t screen_width, uint16_t screen_height);
 		float _view[16];
 		float _proj[16];
 	};
