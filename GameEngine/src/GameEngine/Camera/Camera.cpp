@@ -9,7 +9,7 @@ GameEngine::Camera* GameEngine::Camera::CreateInstance() {
 
 void GameEngine::Camera::Terminate() {
 	delete m_Instance;
-	m_Instance == NULL;
+	m_Instance = NULL;
 }
 
 void GameEngine::Camera::At(float x, float y, float z)
@@ -233,7 +233,7 @@ void GameEngine::Camera::ListenEvent(GameEngine::InputManager* im)
 }
 
 
-void GameEngine::Camera::Update(GameEngine::InputManager* im, int view_port_id, float screen_width, float screen_height)
+void GameEngine::Camera::Update(GameEngine::InputManager* im, int view_port_id, uint16_t screen_width, uint16_t screen_height)
 {
 	
 	this->ListenEvent(im);
@@ -252,6 +252,5 @@ void GameEngine::Camera::Update(GameEngine::InputManager* im, int view_port_id, 
 		screen_width,
 		screen_height);
 
-	
 	bgfx::touch(0);
 }

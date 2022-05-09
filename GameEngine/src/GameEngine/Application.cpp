@@ -132,7 +132,7 @@ namespace GameEngine
             }
         }
         float z = 0;
-        float width = (tempview[3][2] - z) * tan(3.14/4);
+        float width = (tempview[3][2] - z) * tan(3.14f/4.0f);
         m_EntityManager->CreateNewEntity(name, out[0][0] * width + tempview[3][0], -out[0][1] * width + tempview[3][1], z);
         //m_EntityManager->CreateNewEntity("Peasant", out[0][0] * 10 * procent + tempview[3][0], -out[0][1] * 10 + tempview[3][1], 10-tempview[3][2]+ out[0][0]*10 * ( 1- procent));
     }

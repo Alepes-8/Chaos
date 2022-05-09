@@ -160,8 +160,8 @@ std::map<int, GameEngine::GameObject*>* GameEngine::EntityManager::GetList() {
 
 int GameEngine::EntityManager::GetID(int id, int direction) {
 
-    int position = std::distance(EntityList.begin(), EntityList.find(id));
-    int length = std::distance(EntityList.begin(), EntityList.end());
+    __int64 position = std::distance(EntityList.begin(), EntityList.find(id));
+    __int64 length = std::distance(EntityList.begin(), EntityList.end());
     //float value = EntityList.find(1);
     if (id == 0) {
         if (EntityList.size() == 0) {
@@ -176,7 +176,7 @@ int GameEngine::EntityManager::GetID(int id, int direction) {
     }
 
     if (GetEntity(id) == nullptr) {
-        return  EntityList.begin()->first;
+        return  EntityList.rbegin()->first;
     }
     if (direction == 0) {//goes downwards
 
