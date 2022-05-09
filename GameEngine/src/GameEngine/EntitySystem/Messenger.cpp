@@ -20,16 +20,14 @@ GameEngine::Messenger::~Messenger() {
 
 
 bool GameEngine::Messenger::CheckStatus( int entityID, int compID) {
-	GameObject* entity = m_manager->GetEntity(entityID);
-	if (entity == nullptr) {
+	
+	if (m_manager->GetEntity(entityID) == nullptr) {
 		std::cout << "The entity ID does not exist" << std::endl;
 		return 0;
 	}
-	
-	BaseComponent* comp = entity->GetComponent(compID);
 
 	//does the comp exist
-	if (comp == nullptr) {
+	if (m_manager->GetEntity(entityID)->GetComponent(compID) == nullptr) {
 		std::cout << "The Component does not exist in entity" << std::endl;
 		return 0;
 	}
@@ -46,12 +44,9 @@ void GameEngine::Messenger::Terminate() {
 void GameEngine::Messenger::DamageUnit(int id, float damage) {
 	int compID = 0x00000002;
 	if (CheckStatus( id, compID) == 0) {return;}
-	GameObject* entity = m_manager->GetEntity(id);
-	BaseComponent* comp = entity->GetComponent(compID);
-
 
 	std::cout << "Did "<< damage << " points of damage to the unit" << std::endl;
-	UnitHealth* healthComp = dynamic_cast<UnitHealth*>(comp);
+	UnitHealth* healthComp = dynamic_cast<UnitHealth*>(m_manager->GetEntity(id)->GetComponent(compID));
 	healthComp->DamageHealth(damage);
 
 
@@ -64,14 +59,12 @@ void GameEngine::Messenger::DamageUnit(int id, float damage) {
 void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	int compID = 0x00000003;
 	if (CheckStatus(id, compID) == 0) { return; }
-	GameObject* entity = m_manager->GetEntity(id);
-	BaseComponent* comp = entity->GetComponent(compID);
-	
+	GameObject* entity = m_manager->GetEntity(id);	
 
-	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(comp);
+	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(entity->GetComponent(compID));
 	float speed = movementComp->GetMovement();
 
-	translation = translation * (speed / 10);
+	translation = translation * (speed / 100);
 	Transform* transform = entity->GetTransform();
 	
 	transform->Translate(translation);
@@ -82,10 +75,8 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 	int compID = 0x00000003;
 	if (CheckStatus(id, compID) == 0) { return; }
 	GameObject* entity = m_manager->GetEntity(id);
-	BaseComponent* comp = entity->GetComponent(compID);
 
-
-	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(comp);
+	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(entity->GetComponent(compID));
 	float speed = movementComp->GetMovement();
 
 	translation = translation * (speed / 10);
@@ -111,8 +102,7 @@ int GameEngine::Messenger::GetMouseID(float mouseX, float mouseY) {
 		if (CheckStatus(entity.first, 0x00000006) == 0) {
 			continue;
 		}
-		BaseComponent* comp = entity.second->GetComponent(0x00000006);
-		Renderable* renderableComp = dynamic_cast<Renderable*>(comp);
+		Renderable* renderableComp = dynamic_cast<Renderable*>(entity.second->GetComponent(0x00000006));
 		Vector3 boundingboxMin;
 		Vector3 boundingboxMax;
 		renderableComp->GetBoundingBox(&boundingboxMin, &boundingboxMax);

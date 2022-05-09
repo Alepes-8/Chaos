@@ -50,7 +50,7 @@ project "GameEngine"
     {
         "SDL2",
         "SDL2main",
-        "SDL2test",
+        --"SDL2test",
         "SDL2_mixer",
         "bgfxDebug",
         "bimgDebug",
@@ -58,9 +58,9 @@ project "GameEngine"
         "bxDebug",
         "example-14-shadowvolumesDebug",
         "example-commonDebug",
-        "example-glueDebug",
+        --"example-glueDebug",
         "jsoncpp",
-        "jsoncpp_static"
+        --"jsoncpp_static"
 
     }
 

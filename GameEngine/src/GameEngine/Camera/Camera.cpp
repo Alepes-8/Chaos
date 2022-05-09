@@ -9,7 +9,7 @@ GameEngine::Camera* GameEngine::Camera::CreateInstance() {
 
 void GameEngine::Camera::Terminate() {
 	delete m_Instance;
-	m_Instance == NULL;
+	m_Instance = NULL;
 }
 
 void GameEngine::Camera::At(float x, float y, float z)
