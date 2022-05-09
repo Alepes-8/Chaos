@@ -90,7 +90,6 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 
 
 int GameEngine::Messenger::GetMouseID(float mouseX, float mouseY) {
-	std::cout << "x,y mouse; = " << mouseX << " , " << mouseY << std::endl;
 
 
 	std::map<int, GameObject* >* tempList = m_manager->GetList(); 
@@ -98,7 +97,6 @@ int GameEngine::Messenger::GetMouseID(float mouseX, float mouseY) {
 	float  rightAreaZ = 0;
 
 	for (auto entity : *tempList) {
-		std::cout << entity.first << std::endl;
 		if (CheckStatus(entity.first, 0x00000006) == 0) {
 			continue;
 		}
