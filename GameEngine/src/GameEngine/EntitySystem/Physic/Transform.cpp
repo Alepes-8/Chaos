@@ -13,7 +13,7 @@ GameEngine::Transform::~Transform() {
 /// Apply a translation to the Transform
 /// </summary>
 /// <param name="translation"> - Translation to apply</param>
-void GameEngine::Transform::translate(Vector3 translation)
+void GameEngine::Transform::Translate(Vector3 translation)
 {
 
 	mtx[12] += translation.x;
@@ -30,7 +30,7 @@ void GameEngine::Transform::translate(Vector3 translation)
 /// <param name="z_pos"> - z coordinate</param>
 void GameEngine::Transform::SetTransform(float x_pos, float y_pos, float z_pos) {
 	float mtx_mesh[16];
-	bx::mtxScale(mtx_mesh, 5);
+	bx::mtxScale(mtx_mesh, 1);
 	mtx_mesh[12] = x_pos;   //left and right
 	mtx_mesh[13] = y_pos;   //up and down
 	mtx_mesh[14] = z_pos;   //Back and forward
@@ -44,7 +44,7 @@ void GameEngine::Transform::SetTransform(float x_pos, float y_pos, float z_pos) 
 /// Set the Transform to the given coordinates
 /// </summary>
 /// <param name="translation"> - Translation from origine</param>
-void GameEngine::Transform::setTranslation(Vector3 translation)
+void GameEngine::Transform::SetTranslation(Vector3 translation)
 {
 	mtx[12] = translation.x;
 	mtx[13] = translation.y;
@@ -66,7 +66,7 @@ GameEngine::Transform::Transform(float m[16]) {
 /// Set the scale of the Transform
 /// </summary>
 /// <param name="scale"> - New scale</param>
-void GameEngine::Transform::rescale(Vector3 scale) {
+void GameEngine::Transform::Rescale(Vector3 scale) {
 	float m[16] = {
 		scale.x, 0, 0, 0,
 		0, scale.y, 0, 0,
@@ -83,7 +83,7 @@ void GameEngine::Transform::rescale(Vector3 scale) {
 /// </summary>
 /// <param name="axis"> - Rotation axis </param>
 /// <param name="value"> - Angle value </param>
-void GameEngine::Transform::rotates(Vector3 axis, float value) {
+void GameEngine::Transform::Rotates(Vector3 axis, float value) {
 	//float m[16];
 	//float c = cos(value);
 	//float s = sin(value);
@@ -125,7 +125,7 @@ void GameEngine::Transform::rotates(Vector3 axis, float value) {
 /// <param name="x"> - rotation angle around x axis</param>
 /// <param name="y"> - rotation angle around y axis</param>
 /// <param name="z"> - rotation angle around z axis</param>
-void GameEngine::Transform::rotates(float x, float y, float z) {
+void GameEngine::Transform::Rotates(float x, float y, float z) {
 	float m[16];
 	bx::mtxRotateXYZ(m, x, y, z);
 	mtx[3] = 0;
@@ -159,7 +159,7 @@ GameEngine::Transform GameEngine::Transform::operator*(GameEngine::Transform t)
 /// <summary>
 /// Print Transform's spatial transformation matrix in the standart output
 /// </summary>
-void GameEngine::Transform::print() {
+void GameEngine::Transform::Print() {
 	for (int i = 0; i < 16; i++) {
 		std::cout << mtx[i] << " ";
 		if (i % 4 == 3) std::cout << std::endl;

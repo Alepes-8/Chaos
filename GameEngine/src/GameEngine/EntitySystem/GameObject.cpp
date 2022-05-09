@@ -55,8 +55,6 @@ GameEngine::GameObject::~GameObject() {
 	delete transform;
 }
 
-
-
 /// <summary>
 /// Print the list of Components of GameObject
 /// </summary>
@@ -69,10 +67,18 @@ void GameEngine::GameObject::PrintList() {
 }
 
 /// <summary>
+/// get the id of the GameObject
+/// </summary>
+/// <returns> the GameObject's id </returns>
+int GameEngine::GameObject::GetID() {
+	return ID;
+}
+
+/// <summary>
 /// Get the Transform of the GameObject
 /// </summary>
 /// <returns> GameObject's Transform </returns>
-GameEngine::Transform* GameEngine::GameObject::getTransform()
+GameEngine::Transform* GameEngine::GameObject::GetTransform()
 {
 	return transform;
 }

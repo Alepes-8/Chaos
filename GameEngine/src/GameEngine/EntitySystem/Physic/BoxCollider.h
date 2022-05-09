@@ -12,7 +12,7 @@ namespace GameEngine {
 
 	public:
 		BoxCollider(GameObject* parent, Vector3 origine, Vector3 scale);
-		bool areColliding(Collider& c) override;
+		bool AreColliding(Collider& c) override;
 		void Update() override;
 
 		//getters

@@ -13,11 +13,11 @@ namespace GameEngine {
 
 	public:
 		SphereCollider(GameObject* parent, Vector3 origine, float radius);
-		bool areColliding(Collider& c) override;
+		bool AreColliding(Collider& c) override;
 
 		//getters
-		Vector3 getOrigine() { return origine; }
-		float getRadius() { return radius; }
+		Vector3 GetOrigine() { return origine; }
+		float GetRadius() { return radius; }
 
 
 		void Update() override;

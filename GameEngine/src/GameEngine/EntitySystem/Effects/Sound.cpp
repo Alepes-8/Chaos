@@ -1,7 +1,9 @@
 #include "Sound.h"
 
+namespace fs = std::filesystem;
+
 //-------------------------------------------------------------------
-GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
+GameEngine::Sound::Sound(GameObject* parent/*, const char* dir*/) : BaseComponent(parent) {
 	std::cout << "Create audio" << std::endl;
 
 	if (SDL_Init((SDL_INIT_AUDIO) == 0)) {
@@ -15,11 +17,15 @@ GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
 	}
 
 	Mix_AllocateChannels(MAX_CHUNKS_PLAYING_);
+
+
 }
 
 //-------------------------------------------------------------------
 GameEngine::Sound::~Sound() {
 	std::cout << "Stop audio" << std::endl;
+
+	m_effectMap.clear();
 
 	Mix_CloseAudio();
 	Mix_Quit();
@@ -27,14 +33,9 @@ GameEngine::Sound::~Sound() {
 
 //-------------------------------------------------------------------
 void GameEngine::Sound::Update() {
-	std::cout << "Update audio" << std::endl;
+	//std::cout << "Update audio" << std::endl;
 
 }
-
-
-//-------------------------------------------------------------------
-//	Music part
-//-------------------------------------------------------------------
 
 //-------------------------------------------------------------------
 /*
@@ -42,16 +43,71 @@ void GameEngine::Sound::Update() {
 	@param path to audio file
 	Returns: A pointer to a Mix_Music. NULL is returned on errors.
 */
-Mix_Music* loadMusic(std::string path) {
+Mix_Music* GameEngine::Sound::LoadMusic(std::string path) {
 	Mix_Music* m = Mix_LoadMUS(path.c_str());
 	if(!m) {
 		printf("Error: Mix_Music could not be loaded for '%s'!\n", path.c_str());
 		printf("SDL error: %s\n", Mix_GetError());
+		return nullptr;
 	}
 	else {
 		return m;
 	}
 }
+
+//-------------------------------------------------------------------
+/*
+	Load file for use as a sample.
+	@param path to audio file
+	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
+*/
+std::map<std::string, Mix_Chunk*> GameEngine::Sound::LoadChunk(std::string path) {
+	
+	
+	//auto it = m_effectMap.find(path);
+	
+	std::string ext(".wav");
+	for (auto& p : fs::recursive_directory_iterator(path)) {
+		if (p.path().extension() == ext) {
+			std::string str = p.path().string();
+			const char* file = str.c_str();
+
+			Mix_Chunk* c = Mix_LoadWAV(file);
+			
+			m_effectMap.insert(std::pair<std::string, Mix_Chunk*>( p.path().stem().string(), c));
+			
+		}
+	}
+	/*
+	if (it == m_effectMap.end()) {
+		Mix_Chunk* c = Mix_LoadWAV(path.c_str());
+		if (c == nullptr) {
+			printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n", path.c_str());
+			printf("SDL error: %s\n", Mix_GetError());
+		}
+		m_effectMap[path] = c;
+	}
+	
+	// printing map gquiz1
+	std::map<std::string, Mix_Chunk*>::iterator itr;
+	std::cout << "\nThe map m_effectMap is : \n";
+	std::cout << "\tKEY\tELEMENT\n";
+	for (itr = m_effectMap.begin(); itr != m_effectMap.end(); ++itr) {
+		std::cout << '\t' << itr->first << '\t' << itr->second
+			<< '\n';
+	}
+	std::cout << std::endl;
+	*/
+	std::cout << m_effectMap.size() << std::endl;
+	return m_effectMap;
+	
+}
+
+
+
+//-------------------------------------------------------------------
+//	Music part
+//-------------------------------------------------------------------
 
 //-----------------------------------------------------------------
 /**
@@ -61,7 +117,7 @@ Mix_Music* loadMusic(std::string path) {
 	@param volume of the music.
 	@param repeats, number of times to play through the music.
  */
-void GameEngine::Sound::playMusic(Mix_Music* m, int volume, int repeats) {
+void GameEngine::Sound::PlayMusic(Mix_Music* m, int volume, int repeats) {
 	Mix_VolumeMusic((int)volume);
 	if (Mix_PlayMusic(m, repeats) == -1) { // -1 plays the music forever
 		printf("Error: Music file could not be played!\n");
@@ -73,7 +129,7 @@ void GameEngine::Sound::playMusic(Mix_Music* m, int volume, int repeats) {
 /*
 	Pause music
 */
-void GameEngine::Sound::pauseMusic(){
+void GameEngine::Sound::PauseMusic(){
 	Mix_PauseMusic();
 }
 
@@ -81,7 +137,7 @@ void GameEngine::Sound::pauseMusic(){
 /*
 	 Resume paused music
 */
-void GameEngine::Sound::unpauseMusic() {
+void GameEngine::Sound::UnpauseMusic() {
 	Mix_ResumeMusic();
 }
 
@@ -89,7 +145,7 @@ void GameEngine::Sound::unpauseMusic() {
 /*
 	Stop music playback
 */
-void GameEngine::Sound::stopMusic() {
+void GameEngine::Sound::StopMusic() {
 	Mix_HaltMusic();
 }
 
@@ -98,7 +154,7 @@ void GameEngine::Sound::stopMusic() {
 	Stop music, with fade out
 	@param fadeTime milliseconds of time that the fade-out effect should take to go to silence, starting now.
 */
-void GameEngine::Sound::fadeMusic(int fadeTime) {
+void GameEngine::Sound::FadeMusic(int fadeTime) {
 	Mix_FadeOutMusic(fadeTime);
 }
 
@@ -107,7 +163,7 @@ void GameEngine::Sound::fadeMusic(int fadeTime) {
 	Change music volume
 	@param volume an int value between 0-128
 */
-void GameEngine::Sound::changeMusicVolume(int volume) {
+void GameEngine::Sound::ChangeMusicVolume(int volume) {
 	Mix_VolumeMusic((int)volume);
 }
 
@@ -118,31 +174,13 @@ void GameEngine::Sound::changeMusicVolume(int volume) {
 
 //-------------------------------------------------------------------
 /*
-	Load file for use as a sample.
-	@param path to audio file
-	Returns: A pointer to the sample as a Mix_Chunk. NULL is returned on errors.
-*/
-Mix_Chunk* loadChunk(std::string path) {
-	Mix_Chunk* c = Mix_LoadWAV(path.c_str());
-	if (!c) {
-		printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n",
-			path.c_str());
-		printf("SDL error: %s\n", Mix_GetError());
-	}
-	else {
-		return c;
-	}
-}
-
-//-------------------------------------------------------------------
-/*
 	Play chunk on the first free unreserved channel.
 
 	@params c sample to play.
 	@params volume of the sample.
 	@params repeats number of loops, -1 is infinite loops. Passing one here plays the sample twice (1 loop).
 */
-void GameEngine::Sound::playChunk(Mix_Chunk* c, int volume, int repeats) {
+void GameEngine::Sound::PlayChunk(Mix_Chunk* c, int volume, int repeats) {
 	Mix_VolumeChunk(c, (int)volume);
 	if (Mix_PlayChannel(-1, c, repeats) == -1) {
 		if (Mix_GetError() == "No free channels available") {
@@ -162,7 +200,7 @@ void GameEngine::Sound::playChunk(Mix_Chunk* c, int volume, int repeats) {
 
 	@params c sample to pause.
 */
-void GameEngine::Sound::pauseChunk(Mix_Chunk* c) {
+void GameEngine::Sound::PauseChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -178,7 +216,7 @@ void GameEngine::Sound::pauseChunk(Mix_Chunk* c) {
 
 	@params c sample to resume.
 */
-void GameEngine::Sound::unpauseChunk(Mix_Chunk* c) {
+void GameEngine::Sound::UnpauseChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -194,7 +232,7 @@ void GameEngine::Sound::unpauseChunk(Mix_Chunk* c) {
 
 	@params c sample to stop.
 */
-void GameEngine::Sound::stopChunk(Mix_Chunk* c) {
+void GameEngine::Sound::StopChunk(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -213,7 +251,7 @@ void GameEngine::Sound::stopChunk(Mix_Chunk* c) {
 /*
 	Test whether music is playing
 */
-bool GameEngine::Sound::isMusicPlaying() {
+bool GameEngine::Sound::IsMusicPlaying() {
 	if (Mix_PlayingMusic()) {
 		return true;
 	}
@@ -226,7 +264,7 @@ bool GameEngine::Sound::isMusicPlaying() {
 /*
 	Test whether music is paused
 */
-bool GameEngine::Sound::isMusicPaused() {
+bool GameEngine::Sound::IsMusicPaused() {
 	if (Mix_PausedMusic()) {
 		return true;
 	}
@@ -241,7 +279,7 @@ bool GameEngine::Sound::isMusicPaused() {
 
 	@params c sample playing on the channel.
 */
-bool GameEngine::Sound::isChunkPlaying(Mix_Chunk* c) {
+bool GameEngine::Sound::IsChunkPlaying(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 
 	for (int i = 0; i < numChannels; i++) {
@@ -261,7 +299,7 @@ bool GameEngine::Sound::isChunkPlaying(Mix_Chunk* c) {
 
 	@params c sample paused on the channel.
 */
-bool GameEngine::Sound::isChunkPaused(Mix_Chunk* c) {
+bool GameEngine::Sound::IsChunkPaused(Mix_Chunk* c) {
 	int numChannels = Mix_AllocateChannels(-1);
 	for (int i = 0; i < numChannels; i++) {
 		if (Mix_GetChunk(i) == c && Mix_Playing(i) && Mix_Paused(i)) {

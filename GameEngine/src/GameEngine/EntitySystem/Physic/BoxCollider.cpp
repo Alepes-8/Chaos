@@ -18,7 +18,7 @@ GameEngine::BoxCollider::BoxCollider(
 
 }
 
-bool GameEngine::BoxCollider::areColliding(Collider& c){
+bool GameEngine::BoxCollider::AreColliding(Collider& c){
 	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
 		
 	}
