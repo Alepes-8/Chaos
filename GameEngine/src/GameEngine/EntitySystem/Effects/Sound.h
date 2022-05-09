@@ -15,7 +15,7 @@ namespace GameEngine {
 	public:
 		enum VolumePreset{MIN = 26, LOW = 52, MEDIUM = 78, HIGH = 104, MAX = 128};
 
-		Sound(GameObject* parent/*, const char* dir*/);
+		Sound(GameObject* parent);
 		~Sound();
 		void Update() override;
 		

@@ -3,12 +3,12 @@
 namespace fs = std::filesystem;
 
 //-------------------------------------------------------------------
-GameEngine::Sound::Sound(GameObject* parent/*, const char* dir*/) : BaseComponent(parent) {
-	std::cout << "Create audio" << std::endl;
+GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
+	std::cout << "Start audio" << std::endl;
 
-	if (SDL_Init((SDL_INIT_AUDIO) == 0)) {
+	if (Mix_Init((SDL_INIT_AUDIO) == 0)) {
 		printf("ERROR: SDL_INIT_AUDIO has failed!\n");
-		printf("SDL error: %s\n", SDL_GetError());
+		printf("SDL error: %s\n", Mix_GetError());
 	}
 
 	if (Mix_OpenAudio(FREQUENCY_, MIX_DEFAULT_FORMAT, HARDWARE_CHANNELS_, CHUNK_SIZE_) == -1) {
@@ -48,7 +48,7 @@ Mix_Music* GameEngine::Sound::LoadMusic(std::string path) {
 	if(!m) {
 		printf("Error: Mix_Music could not be loaded for '%s'!\n", path.c_str());
 		printf("SDL error: %s\n", Mix_GetError());
-		return nullptr;
+		
 	}
 	else {
 		return m;
@@ -63,9 +63,6 @@ Mix_Music* GameEngine::Sound::LoadMusic(std::string path) {
 */
 std::map<std::string, Mix_Chunk*> GameEngine::Sound::LoadChunk(std::string path) {
 	
-	
-	//auto it = m_effectMap.find(path);
-	
 	std::string ext(".wav");
 	for (auto& p : fs::recursive_directory_iterator(path)) {
 		if (p.path().extension() == ext) {
@@ -78,29 +75,19 @@ std::map<std::string, Mix_Chunk*> GameEngine::Sound::LoadChunk(std::string path)
 			
 		}
 	}
-	/*
-	if (it == m_effectMap.end()) {
-		Mix_Chunk* c = Mix_LoadWAV(path.c_str());
-		if (c == nullptr) {
-			printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n", path.c_str());
-			printf("SDL error: %s\n", Mix_GetError());
-		}
-		m_effectMap[path] = c;
-	}
 	
-	// printing map gquiz1
-	std::map<std::string, Mix_Chunk*>::iterator itr;
-	std::cout << "\nThe map m_effectMap is : \n";
-	std::cout << "\tKEY\tELEMENT\n";
-	for (itr = m_effectMap.begin(); itr != m_effectMap.end(); ++itr) {
-		std::cout << '\t' << itr->first << '\t' << itr->second
-			<< '\n';
+	/*Mix_Chunk* c = Mix_LoadWAV(path.c_str());
+	if (!c) {
+		printf("ERROR: A Mix_Chunk could not be loaded for '%s'!\n", 
+			path.c_str());
+		printf("SDL error: %s\n", Mix_GetError());
+	} else {
+		return c;
 	}
-	std::cout << std::endl;
-	*/
-	std::cout << m_effectMap.size() << std::endl;
+	}*/
+	
+	
 	return m_effectMap;
-	
 }
 
 

@@ -36,7 +36,7 @@ namespace GameEngine {
 		GameObject* GetEntity(int id);
 		std::map<int, GameObject*>* GetList();
 
-		void playMusicTest(int id);
+		void PlayMusicTest(int id);
 	private:
 		int GetNewID();
 		EntityManager();

@@ -98,14 +98,14 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
 
 }
 
-void GameEngine::EntityManager::playMusicTest(int id) {
-    //Sound* child = dynamic_cast<Sound*>(EntityList.at(id));
-    //Mix_Music* music = child->Sound::loadMusic("Audio/Music/test_Seq06.wav");
-    //std::map<std::string, Mix_Chunk*> audio = child->Sound::loadChunk("Audio/SoundEffect/");
-    //child->Sound::playMusic(music, 52, -1);
-    //child->Sound::playChunk(audio.at("test_Seq08"), 52, 0);
+void GameEngine::EntityManager::PlayAudio(int id) {
+    Sound* child = dynamic_cast<Sound*>(EntityList.at(id));
     
-    //std::cout << "Sound:" << child->loadMusic("Audio/Music/") << std::endl;
+    Mix_Music* music = child->Sound::LoadMusic("Audio/Music/Glorious_morning.wav");
+    //std::map<std::string, Mix_Chunk*> audio = child->Sound::LoadChunk("Audio/SoundEffect/");
+    
+    child->Sound::PlayMusic(music, 26, -1);
+    //child->Sound::PlayChunk(audio.at("test_Seq08"), 52, 0);
 }
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
