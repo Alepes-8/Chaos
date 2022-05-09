@@ -35,7 +35,7 @@ https://github.com/bkaradzic/bgfx.git
 
 This section explain how to create new shaders and to compile them using bfx library. If you only want to use default shaders you can skip this section.
 
-The existing shaders are located in \textit{/Game/Data/Shaders}. The fragment shader and vertex shader use in Choas to render basic 3D model are shader from the bgfx repository shader folder (https://github.com/bkaradzic/bgfx/tree/master/examples/runtime/shaders). If you want to create your own shader you can find some example of .sc shader source files in this website https://blog.actorsfit.com/a?ID=00001-ecd59bca-4e4f-4861-a8ab-4ba3e246fa8f. Then you have to use the tool shaderc to compile the shader source files into binary shaders files that can be read by bgfx. Shaderc tool is located in "GameEngine/library/bgfx/.build/win64_vs2017/bin/shadercDebug.exe" and you can compile shaders as followed :
+The existing shaders are located in "/Game/Data/Shaders". The fragment shader and vertex shader use in Choas to render basic 3D model are shader from the bgfx repository shader folder (https://github.com/bkaradzic/bgfx/tree/master/examples/runtime/shaders). If you want to create your own shader you can find some example of .sc shader source files in this website https://blog.actorsfit.com/a?ID=00001-ecd59bca-4e4f-4861-a8ab-4ba3e246fa8f. Then you have to use the tool shaderc to compile the shader source files into binary shaders files that can be read by bgfx. Shaderc tool is located in "GameEngine/library/bgfx/.build/win64_vs2017/bin/shadercDebug.exe" and you can compile shaders as followed :
 shadercDebug.exe -f intputShader.sc -o output.bin --platform windows --type shaderType 
 --varyingdef varying.def.sc
 
