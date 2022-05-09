@@ -17,7 +17,7 @@ GameEngine::Sound::Sound(GameObject* parent) : BaseComponent(parent) {
 	}
 
 	Mix_AllocateChannels(MAX_CHUNKS_PLAYING_);
-
+	playing = 1;
 
 }
 
@@ -110,6 +110,7 @@ void GameEngine::Sound::PlayMusic(Mix_Music* m, int volume, int repeats) {
 		printf("Error: Music file could not be played!\n");
 		printf("SDL error: %s\n", Mix_GetError());
 	}
+	
 }
 
 //-------------------------------------------------------------------
@@ -118,6 +119,7 @@ void GameEngine::Sound::PlayMusic(Mix_Music* m, int volume, int repeats) {
 */
 void GameEngine::Sound::PauseMusic(){
 	Mix_PauseMusic();
+	playing = false;
 }
 
 //-------------------------------------------------------------------
@@ -126,6 +128,7 @@ void GameEngine::Sound::PauseMusic(){
 */
 void GameEngine::Sound::UnpauseMusic() {
 	Mix_ResumeMusic();
+	playing = true;
 }
 
 //-------------------------------------------------------------------
@@ -239,7 +242,7 @@ void GameEngine::Sound::StopChunk(Mix_Chunk* c) {
 	Test whether music is playing
 */
 bool GameEngine::Sound::IsMusicPlaying() {
-	if (Mix_PlayingMusic()) {
+	if (playing) {
 		return true;
 	}
 	else {
@@ -252,7 +255,7 @@ bool GameEngine::Sound::IsMusicPlaying() {
 	Test whether music is paused
 */
 bool GameEngine::Sound::IsMusicPaused() {
-	if (Mix_PausedMusic()) {
+	if (!playing) {
 		return true;
 	}
 	else {

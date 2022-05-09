@@ -17,6 +17,8 @@ namespace GameEngine
 	{
 	private:
 		const int frameRate = 600;
+		
+		int audio;
 		bool mQuit;
 		SDL_Event m_Events;
 		int selectedID;

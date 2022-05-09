@@ -95,7 +95,20 @@ void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
 	std::cout << "move unit" << std::endl;
 }
 
+void GameEngine::Messenger::ChangeAudioState(int id) {
+	int compID = 0x00000007;
+	if (CheckStatus(id, compID) == 0) { return; }
 
+	Sound* child = dynamic_cast<Sound*>(m_manager->GetEntity(id)->GetComponent(compID));
+
+	if (child->Sound::IsMusicPlaying()) {
+		child->Sound::PauseMusic();
+	}
+	else if (child->Sound::IsMusicPaused()) {
+		child->Sound::UnpauseMusic();
+	}
+	
+}
 
 
 int GameEngine::Messenger::GetMouseID(float mouseX, float mouseY) {
