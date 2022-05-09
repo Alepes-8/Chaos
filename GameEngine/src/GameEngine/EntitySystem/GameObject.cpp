@@ -56,17 +56,6 @@ GameEngine::GameObject::~GameObject() {
 }
 
 /// <summary>
-/// Print the list of Components of GameObject
-/// </summary>
-void GameEngine::GameObject::PrintList() {
-
-	for (auto comps : components)
-	{
-		std::cout << comps.first << " " << comps.second << "\n";
-	}
-}
-
-/// <summary>
 /// get the id of the GameObject
 /// </summary>
 /// <returns> the GameObject's id </returns>

@@ -18,3 +18,4 @@ GameEngine/library/bullet3-3.24/
 *.user
 GameEngine/library/filament/LICENSE
 GameEngine/library/filament/README.md
+GameEngine/library/Nuklear/
