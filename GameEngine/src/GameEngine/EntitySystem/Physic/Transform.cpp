@@ -128,11 +128,32 @@ void GameEngine::Transform::Rotates(Vector3 axis, float value) {
 void GameEngine::Transform::Rotates(float x, float y, float z) {
 	float m[16];
 	bx::mtxRotateXYZ(m, x, y, z);
-	mtx[3] = 0;
-	mtx[7] = 0;
-	mtx[11] = 0;
+	
 
-	*this = Transform(m) * *this;
+
+	float temp[16] = {
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		mtx[12], mtx[13], mtx[14], 0
+	};
+
+	mtx[12] = 0;
+	mtx[13] = 0;
+	mtx[14] = 0;
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			for (int k = 0; k < 4; k++)
+				temp[i * 4 + j] += mtx[i * 4 + k] * m[k * 4 + j];
+		}
+	}
+	
+
+	for (int i = 0; i < 16; i++) {
+		mtx[i] = temp[i];
+	}
+
 }
 
 
@@ -143,13 +164,13 @@ void GameEngine::Transform::Rotates(float x, float y, float z) {
 /// <returns> The resulting Transform </returns>
 GameEngine::Transform GameEngine::Transform::operator*(GameEngine::Transform t)
 {
+
 	GameEngine::Transform res;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			float sum = 0.0;
 			for (int k = 0; k < 4; k++)
-				sum = sum + this->mtx[i * 4 + k] * t.mtx[k * 4 + j];
-			res.mtx[i * 4 + j] = sum;
+				res.mtx[i * 4 + j] += this->mtx[i * 4 + k] * t.mtx[k * 4 + j];
+			 
 		}
 	}
 
