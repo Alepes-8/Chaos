@@ -10,13 +10,13 @@ In the end the Game Engine is the goal, however to ease up and specialize the ga
 Needs to be windows.
  
 ## Starting up
-Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the libraries used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, bx, bgfx and bimg into the same libary,"GameEngine\library". References to the repositorys can be seen in "Used projects".
+Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the libraries used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, bx, bgfx and bimg into the same libary,"GameEngine\library". When SDL2 has been succesfully downloaded make sure to also download SDL_mixer and place its header and lib files together with the ones from SDL2. References to the repositorys can be seen in "Used projects".
 
 However, due to how bgfx is built up we will need to fix some things within the folder. So open bgfx, then open a command prompt within the main directory of bgfx. Here run "..\bx\tools\bin\windows\genie --with-examples --with-tools vs2017".
 
 You should now have a ./Build folder, if not it may be hidden so put on the possibilites to se hidden files/folders in the view settings. Then you wanna go to .build\projects\vs2017\bgfx.sln and start it up. When starting it for the first time you may get asked to update the project, do it. Then when it is updatade build the project. If you wanna make sure it works as intended run exemple 14 by setting it as the "startup project" you can also try to run shaderc if you want to compile new shaders later on (see section _Compile shaders_ below). If it works you should have preparedthe bgfx correctly.(for the instructions from bgfx them self go to https://bkaradzic.github.io/bgfx/build.html)
 
-When the download has been done it is time to run "GenerateProject.bat" in the main directory. This will make the necisary connections and links within the solution.
+When the download has been done it is time to run "GenerateProject.bat" in the main directory. This will make the necessary connections and links within the solution.
 
 Then Start up the project with the sln file and you should be good to go.
  
