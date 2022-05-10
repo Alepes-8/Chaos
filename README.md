@@ -25,6 +25,8 @@ https://github.com/gabime/spdlog.git
 
 https://www.libsdl.org/download-2.0.php (development library, SDL2-Devel-2 0.20-VC.zip)
 
+https://www.libsdl.org/projects/SDL_mixer/ (Development library, SDL2_mixer-devel-2.0.4-VC.zip)
+
 https://github.com/bkaradzic/bx.git
 
 https://github.com/bkaradzic/bimg.git
