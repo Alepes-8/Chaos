@@ -65,7 +65,9 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         }
 
         else if (itr->asCString() == (std::string)"PathFinding") {
-            comp = new PathFinding(entity);
+            std::string NavData = actualJson[form]["Template"]["Navmesh"].asCString();
+            const char* NavDir = NavData.c_str();
+            comp = new PathFinding(entity, NavDir);
             componentID = 0x00000004;
         }
 

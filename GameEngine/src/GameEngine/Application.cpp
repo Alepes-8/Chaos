@@ -253,6 +253,15 @@ namespace GameEngine
         m_Timer->Reset();
     }
 
+    void GameEngine::Application::initUnit(int unitID, PathFinding* pathfindingComponent,EntityManager* m_EntityManager) {
+        GameObject* unit = m_EntityManager->GetEntity(unitID);
+        BaseComponent* pathfindingUnit = unit->GetComponent(0x00000004);
+        PathFinding* pathfindingComponentUnit = dynamic_cast<PathFinding*>(pathfindingUnit);
+        pathfindingComponentUnit->setNavMesh(pathfindingComponent->getNavMesh());
+        pathfindingComponentUnit->Init();
+
+    }
+
     void GameEngine::Application::Run() {
 
         //------------------WINDOW------------------//
@@ -260,14 +269,26 @@ namespace GameEngine
 
         //-----------------CAMERA-----------------//
 
-        //-----------------AUDIO-----------------//
+
+        //-----------------Entity-----------------//
         
-        m_EntityManager->PlayAudio(audio);
-      
+        int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
+        GameObject* worldMap = m_EntityManager->GetEntity(worldID);
+        BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
+        PathFinding* pathfindingComponent = dynamic_cast<PathFinding*>(pathfinding);
+
+        for (int i = 0; i < 2; i++) {
+            int unitID = m_EntityManager->CreateNewEntity("Leader", 0, 0, 0);
+            initUnit(unitID, pathfindingComponent, m_EntityManager);
+        }
+
+        //m_EntityManager->CreateNewEntity("Peasant", 20, 0, 20);
+
+
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window
-        m_EntityManager->CreateNewEntity("Leader", 0,0, 0);
-
+        //m_EntityManager->CreateNewEntity("Leader", 0,0, 0);
+        m_EntityManager->PlayAudio(audio);
 
         SDL_Event currentEvent;
         unsigned int counter = 0;

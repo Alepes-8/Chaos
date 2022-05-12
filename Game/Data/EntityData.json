@@ -5,7 +5,8 @@
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
-            "Component4": "Renderable"
+            "Component4": "Renderable",
+            "Component5": "PathFinding"
         },
         "Template" : {
             "Health" : 4.8,
@@ -13,7 +14,9 @@
             "Speed" : 2,
             "Mesh" : "Data/3DModels/OBJ-format/skeleton",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
-            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "no"
+
         }
     },
     "Leader" :  
@@ -22,7 +25,9 @@
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
-            "Component4": "Renderable"
+            "Component4": "Renderable",
+            "Component5": "PathFinding"
+
         },
         "Template" : {
             "Health" : 8,
@@ -30,7 +35,27 @@
             "Speed" : 2,
             "Mesh" : "Data/3DModels/OBJ-format/vampire",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
-            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "no"
+
+        }
+    },
+    "Worldmap" :
+    {
+        "Components" : {
+            "Component1": "Renderable",
+            "Component2": "Transform",
+            "Component3": "ConstantBody",
+            "Component5": "PathFinding"
+
+        },
+        "Template" : 
+        {
+            "Mesh" : "Data/3DModels/OBJ-format/untitled",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "D:/VSprojects/GameEngine/Game/Data/3DModels/Navmesh/untitled.bin"
+
         }
     },    
     "BackgroundMusic": 

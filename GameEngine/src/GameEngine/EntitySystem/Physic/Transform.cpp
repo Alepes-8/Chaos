@@ -52,6 +52,17 @@ void GameEngine::Transform::SetTranslation(Vector3 translation)
 }
 
 /// <summary>
+/// Get the Transform to the given object
+/// </summary>
+GameEngine::Position GameEngine::Transform::getPosition() {
+	Position pos;
+	pos.pos[0] = mtx[12]; //X
+	pos.pos[1] = mtx[13]; //Y
+	pos.pos[2] = mtx[14]; //Z
+	return pos;
+}
+
+/// <summary>
 /// Create a Transform from the given spatial transformation matrix
 /// </summary>
 /// <param name="m"> - spatial transformation matrix</param>

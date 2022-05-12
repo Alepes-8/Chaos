@@ -5,7 +5,9 @@
 #include <iostream>
 
 namespace GameEngine {
-
+	typedef struct Position {
+		float pos[3];
+	};
 	class Transform {
 	
 	public:
@@ -16,6 +18,8 @@ namespace GameEngine {
 		0, 0, 1, 0,
 		0, 0, 0, 1
 		};
+
+
 
 		Transform() {}
 
@@ -29,6 +33,8 @@ namespace GameEngine {
 
 		void SetTranslation(Vector3 translation);
 
+		Position getPosition();
+
 		void Rescale(Vector3 scale);
 
 		void Rotates(Vector3 axis, float value);
@@ -40,6 +46,8 @@ namespace GameEngine {
 		void Print();
 
 		void Update();
+
+
 	};
 
 }
