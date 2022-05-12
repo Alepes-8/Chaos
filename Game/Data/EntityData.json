@@ -27,7 +27,8 @@
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
             "Component4": "Renderable",
-            "Component5": "PathFinding"
+            "Component5": "PathFinding",
+            "Component6": "DynamicBody"
 
         },
         "Template" : {
@@ -46,7 +47,7 @@
         "Components" : {
             "Component1": "Renderable",
             "Component2": "Transform",
-            "Component3": "ConstantBody",
+            "Component3": "StaticBody",
             "Component5": "PathFinding"
 
         },
