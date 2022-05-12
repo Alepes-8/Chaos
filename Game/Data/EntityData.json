@@ -54,7 +54,7 @@
             "Mesh" : "Data/3DModels/OBJ-format/untitled",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin",
-            "Navmesh" : "D:/VSprojects/GameEngine/Game/Data/3DModels/Navmesh/untitled.bin"
+            "Navmesh" : "Data/3DModels/Navmesh/untitled.bin"
 
         }
     },    
