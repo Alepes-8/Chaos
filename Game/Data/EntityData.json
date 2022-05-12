@@ -6,12 +6,13 @@
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
             "Component4": "Renderable",
-            "Component5": "PathFinding"
+            "Component5": "PathFinding",
+            "Component6": "DynamicBody"
         },
         "Template" : {
             "Health" : 4.8,
             "Damage" : 0.96,
-            "Speed" : 2,
+            "Speed" : 0.02,
             "Mesh" : "Data/3DModels/OBJ-format/skeleton",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin",
@@ -32,7 +33,7 @@
         "Template" : {
             "Health" : 8,
             "Damage" : 1.6,
-            "Speed" : 2,
+            "Speed" : 0.02,
             "Mesh" : "Data/3DModels/OBJ-format/vampire",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin",
