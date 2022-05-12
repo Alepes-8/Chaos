@@ -15,7 +15,8 @@ void GameEngine::DynamicBody::Update() {
 	}
 
 	getParentTransform()->Translate(CurrentMoveSpeed);
-	
+	Vector3 movement = dynamic_cast<Physics*>(getComponent(0x00000010))->CalculateSpeed(CurrentMoveSpeed, 
+		dynamic_cast<UnitMovement*>(getComponent(0x00000003))->GetMovement());
 
 	/*
 	Here we will have a function which call for the physics so that the unit will move 

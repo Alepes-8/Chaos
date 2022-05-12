@@ -7,7 +7,9 @@
             "Component3": "UnitMovement",
             "Component4": "Renderable",
             "Component5": "PathFinding",
-            "Component6": "DynamicBody"
+            "Component6": "DynamicBody",
+            "Component7": "Physics"
+
         },
         "Template" : {
             "Health" : 4.8,

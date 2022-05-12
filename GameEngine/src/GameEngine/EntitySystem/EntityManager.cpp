@@ -102,7 +102,10 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000009;
         }
 
-
+        else if (itr->asCString() == (std::string)"Physics") {
+            comp = new Physics(entity);
+            componentID = 0x00000010;
+        }
 
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
