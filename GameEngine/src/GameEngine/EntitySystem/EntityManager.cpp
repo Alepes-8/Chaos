@@ -91,6 +91,19 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             comp = new Sound(entity);
             componentID = 0x00000007;
         }
+
+        else if (itr->asCString() == (std::string)"StaticBody") {
+            comp = new StaticBody(entity);
+            componentID = 0x00000008;
+        }
+
+        else if (itr->asCString() == (std::string)"DynamicBody") {
+            comp = new DynamicBody(entity);
+            componentID = 0x00000009;
+        }
+
+
+
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
         }

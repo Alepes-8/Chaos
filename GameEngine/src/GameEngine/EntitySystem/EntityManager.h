@@ -14,6 +14,8 @@
 #include "Effects/Sound.h"
 #include "Effects/Renderable.h"
 #include "Physic/Transform.h"
+#include "Physic/StaticBody.h"
+#include "Physic/DynamicBody.h"
 
 
 namespace GameEngine {

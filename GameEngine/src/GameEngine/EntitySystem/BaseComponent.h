@@ -17,6 +17,7 @@ namespace GameEngine {
 
 		// Get the Transform of the GameObject that owns this Base Component
 		GameEngine::Transform* getParentTransform();
+		GameEngine::BaseComponent* getComponent(int id);
 
 		~BaseComponent();
 

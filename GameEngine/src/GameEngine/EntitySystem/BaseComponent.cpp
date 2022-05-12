@@ -20,6 +20,13 @@ GameEngine::Transform* GameEngine::BaseComponent::getParentTransform()
 	return this->parent->GetTransform();
 }
 
+/// <summary>
+/// Get a component in the same object
+/// </summary>
+/// <returns> - Asked for component in parent</returns>
+GameEngine::BaseComponent* GameEngine::BaseComponent::getComponent(int id) {
+	return this->parent->GetComponent(id);
+}
 
 /// <summary>
 /// Destructor
