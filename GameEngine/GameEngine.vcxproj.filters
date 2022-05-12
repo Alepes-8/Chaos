@@ -97,6 +97,8 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -162,5 +164,7 @@
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\StaticBody.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\DynamicBody.cpp" />
   </ItemGroup>
 </Project>

@@ -271,7 +271,7 @@ namespace GameEngine
 
 
         //-----------------Entity-----------------//
-        
+        /*
         int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
         GameObject* worldMap = m_EntityManager->GetEntity(worldID);
         BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
@@ -280,9 +280,9 @@ namespace GameEngine
         for (int i = 0; i < 2; i++) {
             int unitID = m_EntityManager->CreateNewEntity("Leader", 0, 0, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
-        }
+        }*/
 
-        //m_EntityManager->CreateNewEntity("Peasant", 20, 0, 20);
+        m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
 
 
         //--------------------LOOP---------------------//
