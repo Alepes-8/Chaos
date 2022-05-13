@@ -38,6 +38,7 @@ namespace GameEngine
 		void Update();
 		void LateUpdate();
 		void Render();
+		void initUnit(int unitID, PathFinding* pathfindingComponent, EntityManager* m_EntityManager);
 	public:
 		static Application* sInstance;
 		static void Terminate();
