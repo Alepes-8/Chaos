@@ -13,6 +13,8 @@ namespace GameEngine {
 		Vector3 CurrentMoveSpeed;
 		Vector3 CurrentRotationSpeed;
 
+		Physics* physicsComp = NULL;
+
 	public: 
 		DynamicBody(GameObject* parent);
 		~DynamicBody();
