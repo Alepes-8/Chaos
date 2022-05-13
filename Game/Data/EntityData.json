@@ -30,8 +30,8 @@
             "Component3": "UnitMovement",
             "Component4": "Renderable",
             "Component5": "PathFinding",
-            "Component6": "DynamicBody"
-
+            "Component6": "DynamicBody",
+            "Component7": "Physics"
         },
         "Template" : {
             "Health" : 8,
@@ -72,6 +72,19 @@
         {
             "Sound": "Audio/Music/Glorious_morning.wav"
         }
+    },
+    "House" : 
+    {
+        "Components":
+        {
+            "Component1": "Renderable",
+            "Component2": "Transform"
+        },
+        "Template": 
+        {
+            "Mesh" : "Data/3DModels/OBJ-format/house_type07",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+        }
     }
-
 }
