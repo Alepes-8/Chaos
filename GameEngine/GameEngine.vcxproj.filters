@@ -22,9 +22,6 @@
     <Filter Include="GameEngine\InputEvents">
       <UniqueIdentifier>{09AF12AF-F5A8-3B01-DE15-D211CAAEA16D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\Renderable">
-      <UniqueIdentifier>{98FE8EF4-046B-4AEF-CD5E-E24C398A6C57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\Window">
       <UniqueIdentifier>{1C9B5CAD-88B1-5A43-D128-E6643D7E2BCB}</UniqueIdentifier>
     </Filter>
@@ -52,12 +49,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\BaseComponent.h">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Animation.h">
-      <Filter>GameEngine\EntitySystem\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Effects\Light.h">
-      <Filter>GameEngine\EntitySystem\Effects</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Effects\Renderable.h">
       <Filter>GameEngine\EntitySystem\Effects</Filter>
     </ClInclude>
@@ -73,19 +64,13 @@
     <ClInclude Include="src\GameEngine\EntitySystem\IdGenerationPool.h">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h">
+      <Filter>GameEngine\EntitySystem</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h">
-      <Filter>GameEngine\EntitySystem\Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\ConstantBody.h">
-      <Filter>GameEngine\EntitySystem\Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h">
-      <Filter>GameEngine\EntitySystem\Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h">
@@ -109,7 +94,9 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h">
       <Filter>GameEngine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -133,9 +120,6 @@
     <ClCompile Include="src\GameEngine\EntitySystem\BaseComponent.cpp">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\Effects\Lightcpp.cpp">
-      <Filter>GameEngine\EntitySystem\Effects</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Effects\Renderable.cpp">
       <Filter>GameEngine\EntitySystem\Effects</Filter>
     </ClCompile>
@@ -151,10 +135,10 @@
     <ClCompile Include="src\GameEngine\EntitySystem\IdGenerationPool.cpp">
       <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp">
-      <Filter>GameEngine\EntitySystem\Physic</Filter>
+    <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp">
+      <Filter>GameEngine\EntitySystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\Physic\ConstantBody.cpp">
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\BoxCollider.cpp">
       <Filter>GameEngine\EntitySystem\Physic</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\SphereCollider.cpp">
@@ -169,13 +153,17 @@
     <ClCompile Include="src\GameEngine\Log.cpp">
       <Filter>GameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\MathHelper.cpp">
+      <Filter>GameEngine</Filter>
+    </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Graphics.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
     <ClCompile Include="src\GameEngine\Window\Timer.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameEngine\EntitySystem\Messenger.cpp" />
-    <ClCompile Include="src\GameEngine\MathHelper.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\StaticBody.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\DynamicBody.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\Physics.cpp" />
   </ItemGroup>
 </Project>

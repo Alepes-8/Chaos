@@ -1,5 +1,7 @@
 #include <GameEngine/EntitySystem/Physic/BoxCollider.h>
 
+//WORK IN PROGRESS
+
 GameEngine::BoxCollider::BoxCollider(
 	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),
@@ -16,7 +18,7 @@ GameEngine::BoxCollider::BoxCollider(
 
 }
 
-bool GameEngine::BoxCollider::areColliding(Collider& c){
+bool GameEngine::BoxCollider::AreColliding(Collider& c){
 	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
 		
 	}

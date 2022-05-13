@@ -5,7 +5,9 @@
 #include <iostream>
 
 namespace GameEngine {
-
+	typedef struct Position {
+		float pos[3];
+	};
 	class Transform {
 	
 	public:
@@ -17,6 +19,8 @@ namespace GameEngine {
 		0, 0, 0, 1
 		};
 
+
+
 		Transform() {}
 
 		Transform(float m[16]);
@@ -25,21 +29,25 @@ namespace GameEngine {
 
 		void SetTransform(float x_pos, float y_pos, float z_pos);
 
-		void translate(Vector3 translation);
+		void Translate(Vector3 translation);
 
-		void setTranslation(Vector3 translation);
+		void SetTranslation(Vector3 translation);
 
-		void rescale(Vector3 scale);
+		Position getPosition();
 
-		void rotates(Vector3 axis, float value);
+		void Rescale(Vector3 scale);
 
-		void rotates(float x, float y, float z);
+		void Rotates(Vector3 axis, float value);
+
+		void Rotates(float x, float y, float z);
 
 		Transform operator*(Transform t);
 
-		void print();
+		void Print();
 
 		void Update();
+
+
 	};
 
 }

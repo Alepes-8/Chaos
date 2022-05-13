@@ -1,14 +1,23 @@
 #include "Renderable.h"
 
 
-GameEngine::Renderable::~Renderable() {
-	std::cout << "Delete Renderable" << std::endl;
-}
-
-#include "Renderable.h"
-
 bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 
+/// <summary>
+/// Destructor of the class
+/// </summary>
+GameEngine::Renderable::~Renderable() {
+	std::cout << "Delete Renderable" << std::endl;
+    delete(this);
+}
+
+/// <summary>
+/// Build a Renderable object using a .obj and .mtl file
+/// </summary>
+/// <param name="parent"> - Parent GameObject</param>
+/// <param name="dirMesh"> - Path to the .obj and .mtl file. Format : dir/name without .obj or .mtl</param>
+/// <param name="dirFrag"> - Path to the fragment shader</param>
+/// <param name="dirVert"> - Path to the vertex shader</param>
 GameEngine::Renderable::Renderable
 (
     GameObject* parent,
@@ -23,12 +32,41 @@ GameEngine::Renderable::Renderable
 
     PosColorVertex::init();
 
-    parseObj(dirMesh);
+    //if the mesh is in the cache load directly the mesh from the cache
+    if (cache.find(dirMesh) != cache.cend())
+    {
+        initFromCache(parent, *cache.at(dirMesh));
+    }
+    //if not load the mesh from obj and mtl files and add it to the cache
+    else
+    {
+        parseObj(dirMesh);
+        cache[dirMesh] = this;
+    }
+
     createBuffers();
- 
+
+    SetBoundingBox();
 }
 
+void GameEngine::Renderable::initFromCache(const BaseComponent& parent, const Renderable& r)
+{
+    vertices = (PosColorVertex*)calloc(r.v_len, sizeof(PosColorVertex));
+    v_len = r.v_len;
+    for (int i = 0; i < v_len; i++) {
+        vertices[i] = r.vertices[i];
+    }
 
+    i_len = r.i_len;
+    indices = (uint16_t*)calloc(r.i_len, sizeof(uint16_t));
+    for (int i = 0; i < i_len; i++) {
+        indices[i] = r.indices[i];
+    }
+}
+
+/// <summary>
+/// Create the buffers needed to pass values of vertices and indices to the shader program
+/// </summary>
 void GameEngine::Renderable::createBuffers()
 {
     this->m_vbh = bgfx::createVertexBuffer(
@@ -47,13 +85,13 @@ void GameEngine::Renderable::createBuffers()
 
 
 /// <summary>
-///  This function send the renderer to the shader program
+///  Send the renderer to the shader program
 /// </summary>
-/// <param name="view"></param>
-/// <param name="prog"></param>
+/// <param name="view"> - id of the view </param>
+/// <param name="prog"> - shader program </param>
 /// <param name="STATE">
-/// BGFX_STATE_CULL_CCW for conter clockwise faces orientation
-/// BGFX_STATE_CULL_CW for clockwise faces orientation
+/// <para> - BGFX_STATE_CULL_CCW for conter clockwise faces orientation </para> 
+/// <para> - BGFX_STATE_CULL_CW for clockwise faces orientation </para>
 /// </param>
 void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog, uint64_t STATE)
 {
@@ -69,6 +107,11 @@ void GameEngine::Renderable::submit(bgfx::ViewId view, bgfx::ProgramHandle prog,
     bgfx::submit(view, prog);
 }
 
+/// <summary>
+/// Parse .obj file to create a Renderable. 
+/// Note : this functino also needs .mtl file to works
+/// </summary>
+/// <param name="filename"> - Path to the .obj and .mtl file. Format : dir/name without .obj or .mtl</param>
 void GameEngine::Renderable::parseObj(const std::string filename)
 {
     std::list<GameEngine::Vector3> vertices;
@@ -223,6 +266,12 @@ void GameEngine::Renderable::parseObj(const std::string filename)
     }
 }
 
+
+/// <summary>
+/// Parse a .mtl file
+/// </summary>
+/// <param name="filename"> - Path to the .mtl file</param>
+/// <returns> Map of key the name of the material and value the RGB components</returns>
 std::map<std::string, float> GameEngine::Renderable::parseMtl(const std::string filename)
 {
     //output
@@ -267,6 +316,9 @@ std::map<std::string, float> GameEngine::Renderable::parseMtl(const std::string 
     return res;
 }
 
+/// <summary>
+/// Print in the console the information of the current Renderable
+/// </summary>
 void GameEngine::Renderable::print()
 {
     for (int i = 0; i < v_len; i++) {
@@ -283,10 +335,13 @@ void GameEngine::Renderable::print()
 }
 
 
+//util functions
 
-
-
-/*---------shader ----------*/
+/// <summary>
+/// Load a shader
+/// </summary>
+/// <param name="_name">Path to the shader</param>
+/// <returns>ShaderHandle</returns>
 bgfx::ShaderHandle GameEngine::loadShader(const char* _name) {
     {
         char* data = new char[2048];
@@ -311,9 +366,41 @@ bgfx::ProgramHandle GameEngine::Renderable::createProgram() {
     return bgfx::createProgram(vsh, fsh, true);
 }
 
+void GameEngine::Renderable::SetBoundingBox() {
+    float minX = 0;
+    float minY = 0;
+    float minZ = 0;
+    float maxX = 0;
+    float maxY = 0;
+    float maxZ = 0;
+
+    /*-----------to create the bounding box--------------*/
+
+    for (int i = 0; i < v_len; i++) {
+        if (vertices[i].m_x < minX) { minX = vertices[i].m_x; } //Smaller then the currently smallest x value
+        else if (vertices[i].m_x > maxX) { maxX = vertices[i].m_x; } //Larger then the currently largest x value
+
+        if (vertices[i].m_y < minY) { minY = vertices[i].m_y; } //Smaller then the currently smallest y value
+        else if (vertices[i].m_y > maxY) { maxY = vertices[i].m_y; } //Larger then the currently largest y value
+
+        if (vertices[i].m_z < minZ) { minZ = vertices[i].m_z; } //Smaller then the currently smallest x value
+        else if (vertices[i].m_z > maxZ) { maxZ = vertices[i].m_z; } //Larger then the currently largest x value
+    }
 
 
+    boundingBox[0] = Vector3((float)minX, (float)minY, (float)minZ);
+    boundingBox[1] = Vector3((float)maxX, (float)maxY, (float)maxZ);
 
+}
+
+void GameEngine::Renderable::GetBoundingBox(Vector3* min, Vector3* max) {
+    *min = boundingBox[0];
+    *max = boundingBox[1];
+}
+
+/// <summary>
+/// Update the Renderable value and send it to the shader program
+/// </summary>
 void GameEngine::Renderable::Update() {
 
     submit(0, m_program, BGFX_STATE_CULL_CCW);

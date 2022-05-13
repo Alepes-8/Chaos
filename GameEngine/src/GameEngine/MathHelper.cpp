@@ -132,7 +132,7 @@ bool GameEngine::MathHelper::InvMatrix(const float m[16], float invOut[16])
     if (det == 0)
         return false;
 
-    det = 1.0 / det;
+    det = 1.0f / det;
 
     for (i = 0; i < 16; i++)
         invOut[i] = inv[i] * det;

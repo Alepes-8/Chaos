@@ -1,5 +1,7 @@
 #include <GameEngine/EntitySystem/Physic/SphereCollider.h>
 
+//WORK IN PROGRESS
+
 GameEngine::SphereCollider::SphereCollider(
 	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),
@@ -16,13 +18,13 @@ GameEngine::SphereCollider::SphereCollider(
 	}
 }
 
-bool GameEngine::SphereCollider::areColliding(Collider& c) {
+bool GameEngine::SphereCollider::AreColliding(Collider& c) {
 	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
-		float distance = (sc->getOrigine() - this->getOrigine()).MagnitudeSqr() - sc->getRadius() - this->getRadius();
+		float distance = (sc->GetOrigine() - this->GetOrigine()).MagnitudeSqr() - sc->GetRadius() - this->GetRadius();
 		if (distance < 0) return true;
 	}
 	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
-		
+
 	}
 	return false;
 }

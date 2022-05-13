@@ -5,15 +5,21 @@
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
-            "Component4": "Renderable"
+            "Component4": "Renderable",
+            "Component5": "PathFinding",
+            "Component6": "DynamicBody",
+            "Component7": "Physics"
+
         },
         "Template" : {
             "Health" : 4.8,
             "Damage" : 0.96,
-            "Speed" : 2,
+            "Speed" : 0.02,
             "Mesh" : "Data/3DModels/OBJ-format/skeleton",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
-            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "no"
+
         }
     },
     "Leader" :  
@@ -22,65 +28,40 @@
             "Component1": "UnitHealth",
             "Component2": "UnitDamage",
             "Component3": "UnitMovement",
-            "Component4": "Renderable"
+            "Component4": "Renderable",
+            "Component5": "PathFinding",
+            "Component6": "DynamicBody",
+            "Component7": "Physics"
         },
         "Template" : {
             "Health" : 8,
             "Damage" : 1.6,
-            "Speed" : 2,
+            "Speed" : 0.02,
             "Mesh" : "Data/3DModels/OBJ-format/vampire",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
-            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "no"
+
         }
     },
-    "Tree" : 
-    { 
-        "Components" : {
-            "Component1": "UnitHealth",
-            "Component2": "UnitDamage",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
-        },
-        "Template": 
-        {
-            "Health" : 10
-        }
-    },
-    "Rock" : 
-    { 
-        "Components" : {
-            "Component1": "UnitHealth",
-            "Component2": "UnitDamage",
-            "Component3": "UnitMovement",
-            "Component4": "PathFinding"
-        },
-        "Template": 
-        {
-            "Health" : 20
-        }
-    },
-    "Cube" :
+    "Worldmap" :
     {
         "Components" : {
             "Component1": "Renderable",
             "Component2": "Transform",
-            "Component3": "ConstantBody"  
-        }
-    },
-    "Triangle" :
-    {
-        "Components" : {
-            "Component1": "Renderable",
-            "Component2": "Transform",
-            "Component3": "ConstantBody",
-            "Component4": "UnitHealth"
+            "Component3": "StaticBody",
+            "Component5": "PathFinding"
+
         },
         "Template" : 
         {
-            "Health": 2
-        }
-    },
+            "Mesh" : "Data/3DModels/OBJ-format/untitled",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "Data/3DModels/Navmesh/untitled.bin"
 
+        }
+    },    
     "BackgroundMusic": 
     {
         "Components": 
@@ -89,8 +70,21 @@
         },
         "Template": 
         {
-            "Sound": "Audio/testSound.wav"
+            "Sound": "Audio/Music/Glorious_morning.wav"
+        }
+    },
+    "House" : 
+    {
+        "Components":
+        {
+            "Component1": "Renderable",
+            "Component2": "Transform"
+        },
+        "Template": 
+        {
+            "Mesh" : "Data/3DModels/OBJ-format/house_type07",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin"
         }
     }
-
 }

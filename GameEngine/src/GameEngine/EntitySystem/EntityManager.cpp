@@ -32,7 +32,7 @@ GameEngine::EntityManager::~EntityManager() {
 int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_pos , float z_pos) {
 	std::cout << "New entity created " << std::endl;
     GameObject* entity = new GameObject();
-    EntityList.insert({ entity->ID, entity });
+    EntityList.insert({ entity->GetID(), entity});
     
     /*--------Load the json file---------*/
     std::ifstream testData("Data/EntityData.json");
@@ -42,7 +42,7 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
     // using the reader we parse the json 
     reader.parse(testData, actualJson);
 
-    entity->getTransform()->SetTransform(x_pos, y_pos, z_pos);
+    entity->GetTransform()->SetTransform(x_pos, y_pos, z_pos);
 
     /*------Take out the the info regarding which components to add.--------*/
     for (Json::Value::const_iterator itr = actualJson[form]["Components"].begin(); itr != actualJson[form]["Components"].end(); itr++) {
@@ -65,7 +65,9 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         }
 
         else if (itr->asCString() == (std::string)"PathFinding") {
-            comp = new PathFinding(entity);
+            std::string NavData = actualJson[form]["Template"]["Navmesh"].asCString();
+            const char* NavDir = NavData.c_str();
+            comp = new PathFinding(entity, NavDir);
             componentID = 0x00000004;
         }
 
@@ -82,31 +84,57 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000006;
         }
 
-        else if (itr->asCString() == (std::string)"ConstantBody") {
-            comp = new ConstantBody(entity);
-            componentID = 0x00000007;
-        }
 
         else if (itr->asCString() == (std::string)"Sound") {
             std::string data = actualJson[form]["Template"]["Sound"].asCString();
             const char* directory = data.c_str();
             comp = new Sound(entity);
+            componentID = 0x00000007;
+        }
+
+        else if (itr->asCString() == (std::string)"StaticBody") {
+            comp = new StaticBody(entity);
             componentID = 0x00000008;
         }
+
+        else if (itr->asCString() == (std::string)"DynamicBody") {
+            comp = new DynamicBody(entity);
+            componentID = 0x00000009;
+        }
+
+        else if (itr->asCString() == (std::string)"Physics") {
+            comp = new Physics(entity);
+            componentID = 0x00000010;
+        }
+
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
         }
         
     }
-    return entity->ID;
+    return entity->GetID();
 
+}
+
+void GameEngine::EntityManager::PlayAudio(int id) {
+    Sound* child = dynamic_cast<Sound*>(EntityList.at(id));
+    
+    Mix_Music* music = child->Sound::LoadMusic("Audio/Music/Glorious_morning.wav");
+    //std::map<std::string, Mix_Chunk*> audio = child->Sound::LoadChunk("Audio/SoundEffect/");
+    
+    child->Sound::PlayMusic(music, 26, -1);
+    //child->Sound::PlayChunk(audio.at("test_Seq08"), 52, 0);
 }
 
 void GameEngine::EntityManager::TerminateEnity(int entityID) {
     /*--Delete the entity--*/
-    delete EntityList.begin()->second;
-    EntityList.begin()->second = NULL;
-    EntityList.erase(EntityList.begin());
+    if (GetEntity(entityID) == nullptr) {
+        return;
+    }
+    delete EntityList.at(entityID);
+    EntityList.at(entityID) = NULL;
+    EntityList.erase(EntityList.find(entityID));
+    
     /*---------------------*/
     
 }
@@ -141,4 +169,66 @@ GameEngine::GameObject* GameEngine::EntityManager::GetEntity(int id) {
     }
     return EntityList.at(id);
 
+}
+
+
+std::map<int, GameEngine::GameObject*>* GameEngine::EntityManager::GetList() {
+    return &EntityList;
+}
+
+int GameEngine::EntityManager::GetID(int id, int direction) {
+
+    __int64 position = std::distance(EntityList.begin(), EntityList.find(id));
+    __int64 length = std::distance(EntityList.begin(), EntityList.end());
+    //float value = EntityList.find(1);
+    if (id == 0) {
+        if (EntityList.size() == 0) {
+            return 0;
+        }
+
+        return EntityList.begin()->first;
+    }
+    if (EntityList.size() == 1) {
+        return EntityList.rbegin()->first;
+         
+    }
+
+    if (GetEntity(id) == nullptr) {
+        return  EntityList.rbegin()->first;
+    }
+    if (direction == 0) {//goes downwards
+
+        if (position == 0) {
+            return EntityList.rbegin()->first;
+        }
+        std::map<int, GameObject*>::iterator it;
+        int next = 0;
+        for (it = EntityList.find(id); it != EntityList.begin(); it--)
+        {
+            if (next == 0) {
+                next = 1;
+                continue;
+            }
+            return it->first;
+        }
+        return EntityList.begin()->first;
+    }
+    else if (direction == 1) {
+        if (position == length-1) {
+            return EntityList.begin() -> first;
+        }
+
+        std::map<int, GameObject*>::iterator it;
+        int next = 0;
+        for (it = EntityList.find(id); it != EntityList.end(); it++)
+        {
+            if (next == 0) {
+                next = 1;
+                continue;
+            }
+            return it->first;
+        }
+    }
+
+    return id;
 }

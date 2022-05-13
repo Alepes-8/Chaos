@@ -17,5 +17,9 @@ namespace GameEngine {
 		void DamageUnit(int id, float damage);
 		void MoveUnit(int id, Vector3 translation);
 		void RotateUnit(int id, Vector3 translation);
+		void ChangeAudioState(int id);
+		//void ResumeAudio(int id);
+
+		int GetMouseID(float mouseX, float mouseY);
 	};
 }

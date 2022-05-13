@@ -19,11 +19,16 @@ project "GameEngine"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    libdirs 
+    libdirs
     {
         "%{prj.name}/library/bgfx/.build/win64_vs2017/bin",
         "%{prj.name}/library/SDL2/lib/x64",
-        "%{prj.name}/library/jsoncpp/.Build/lib/Debug"    
+        "%{prj.name}/library/jsoncpp/.Build/lib/Debug",
+        "%{prj.name}/library/recastnavigation/Detour/Debug",
+        "%{prj.name}/library/recastnavigation/DetourCrowd/Debug",
+        "%{prj.name}/library/recastnavigation/Recast/Debug",
+        "%{prj.name}/library/recastnavigation/DebugUtils/Debug"
+
 }
 
     files
@@ -43,14 +48,18 @@ project "GameEngine"
         "%{prj.name}/library/bgfx/3rdparty",
         "%{prj.name}/library/bx/include/compat/msvc",
         "%{prj.name}/library/sdl2/include",
-        "%{prj.name}/library/jsoncpp/include"
+        "%{prj.name}/library/jsoncpp/include",
+        "%{prj.name}/library/recastnavigation/Detour/Include",
+        "%{prj.name}/library/recastnavigation/DetourCrowd/Include",
+        "%{prj.name}/library/recastnavigation/Recast/Include",
+        "%{prj.name}/library/recastnavigation/DebugUtils/Include"
     }
 
     links
     {
         "SDL2",
         "SDL2main",
-        "SDL2test",
+        --"SDL2test",
         "SDL2_mixer",
         "bgfxDebug",
         "bimgDebug",
@@ -58,10 +67,13 @@ project "GameEngine"
         "bxDebug",
         "example-14-shadowvolumesDebug",
         "example-commonDebug",
-        "example-glueDebug",
+        --"example-glueDebug",
         "jsoncpp",
-        "jsoncpp_static"
-
+        "jsoncpp_static",
+        "DebugUtils-d",
+        "Detour-d",
+        "DetourCrowd-d",
+        "Recast-d"
     }
 
     filter "system:windows"
@@ -120,8 +132,11 @@ project "Game"
         "GameEngine/library/bgfx/3rdparty",
         "GameEngine/library/bx/include/compat/msvc",
         "GameEngine/library/sdl2/include",
-        "GameEngine/library/jsoncpp/include"
-
+        "GameEngine/library/jsoncpp/include",
+        "GameEngine/library/recastnavigation/Detour/Include",
+        "GameEngine/library/recastnavigation/DetourCrowd/Include",
+        "GameEngine/library/recastnavigation/Recast/Include",
+        "GameEngine/library/recastnavigation/DebugUtils/Include"
     }
 
     links
@@ -138,7 +153,7 @@ project "Game"
 			"BX_CONFIG_DEBUG"
         }
 
-        postbuildcommands 
+        postbuildcommands
         {
             "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2.dll ../bin/" .. outputdir .. "/Game",
             "{COPY} ../GameEngine/library/sdl2/lib/x64/SDL2_mixer.dll ../bin/" .. outputdir .. "/Game",

@@ -17,8 +17,11 @@ namespace GameEngine
 	{
 	private:
 		const int frameRate = 600;
+		
+		int audio;
 		bool mQuit;
 		SDL_Event m_Events;
+		int selectedID;
 
 		GameEngine::EntityManager* m_EntityManager;
 		GameEngine::Graphics* m_Graphics;
@@ -28,7 +31,14 @@ namespace GameEngine
 		GameEngine::Messenger* m_Messenger;
 
 		void CallCreation(char*);
+		struct Vector2  GetRealCords();
+		
 
+		void EarlyUpdate();
+		void Update();
+		void LateUpdate();
+		void Render();
+		void initUnit(int unitID, PathFinding* pathfindingComponent, EntityManager* m_EntityManager);
 	public:
 		static Application* sInstance;
 		static void Terminate();
@@ -36,10 +46,7 @@ namespace GameEngine
 		Application();
 		virtual ~Application();
 
-		void EarlyUpdate();
-		void Update();
-		void LateUpdate();
-		void Render();
+		
 		void Run();
 
 	};
