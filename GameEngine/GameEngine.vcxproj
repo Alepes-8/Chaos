@@ -140,6 +140,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
     <ClInclude Include="src\GameEngine.h" />
     <ClInclude Include="src\GameEngine\Application.h" />
     <ClInclude Include="src\GameEngine\Camera\Camera.h" />
@@ -156,7 +159,6 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Messenger.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\BoxCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Colider.h" />
-    <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\SphereCollider.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Transform.h" />
     <ClInclude Include="src\GameEngine\InputEvents\InputManager.h" />
@@ -166,6 +168,9 @@
     <ClInclude Include="src\GameEngine\Window\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\DynamicBody.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\Physics.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\Physic\StaticBody.cpp" />
     <ClCompile Include="src\GameEngine\Application.cpp" />
     <ClCompile Include="src\GameEngine\Camera\Camera.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\AI\PathFinding.cpp" />

@@ -282,8 +282,9 @@ namespace GameEngine
             initUnit(unitID, pathfindingComponent, m_EntityManager);
         }
 
-        //m_EntityManager->CreateNewEntity("Peasant", 20, 0, 20);
+       // m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
 
+        //m_EntityManager->CreateNewEntity("House", 4 , 0, 0);
 
         //--------------------LOOP---------------------//
         // Poll for events and wait till user closes window

@@ -57,18 +57,11 @@ void GameEngine::Messenger::DamageUnit(int id, float damage) {
 }
 
 void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
-	int compID = 0x00000003;
+	int compID = 0x00000009;
 	if (CheckStatus(id, compID) == 0) { return; }
-	GameObject* entity = m_manager->GetEntity(id);	
 
-	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(entity->GetComponent(compID));
-	float speed = movementComp->GetMovement();
+	dynamic_cast<DynamicBody*>(m_manager->GetEntity(id)->GetComponent(0x00000009))->AddMovement(translation);
 
-	translation = translation * (speed / 100);
-	Transform* transform = entity->GetTransform();
-	
-	transform->Translate(translation);
-	std::cout << "move unit" << std::endl;
 }
 
 void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
