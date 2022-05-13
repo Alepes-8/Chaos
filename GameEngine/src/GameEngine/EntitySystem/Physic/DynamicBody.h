@@ -14,6 +14,8 @@ namespace GameEngine {
 		Vector3 CurrentRotationSpeed;
 
 		Physics* physicsComp = NULL;
+		UnitMovement* movementComp = NULL;
+
 
 	public: 
 		DynamicBody(GameObject* parent);
