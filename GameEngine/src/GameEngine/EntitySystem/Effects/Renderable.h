@@ -63,6 +63,8 @@ namespace GameEngine {
         Vector3 boundingBox[2];
 
     private:
+        void initFromCache(const BaseComponent& parent, const Renderable& r);
+
         void SetBoundingBox();
         bgfx::ProgramHandle createProgram();
         void createBuffers();
@@ -72,6 +74,7 @@ namespace GameEngine {
         void parseObj(const std::string filename);
 
         std::map<std::string, float> parseMtl(const std::string filename);
+
     public:
         Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);
         ~Renderable();
@@ -82,4 +85,6 @@ namespace GameEngine {
         void GetBoundingBox(Vector3* min, Vector3* max);
        
     };
+
+    static std::map<std::string, Renderable*> cache = std::map<std::string, Renderable*>();
 }

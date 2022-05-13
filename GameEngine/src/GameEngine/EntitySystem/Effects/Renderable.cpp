@@ -11,7 +11,6 @@ GameEngine::Renderable::~Renderable() {
     delete(this);
 }
 
-
 /// <summary>
 /// Build a Renderable object using a .obj and .mtl file
 /// </summary>
@@ -33,10 +32,36 @@ GameEngine::Renderable::Renderable
 
     PosColorVertex::init();
 
-    parseObj(dirMesh);
+    //if the mesh is in the cache load directly the mesh from the cache
+    if (cache.find(dirMesh) != cache.cend())
+    {
+        initFromCache(parent, *cache.at(dirMesh));
+    }
+    //if not load the mesh from obj and mtl files and add it to the cache
+    else
+    {
+        parseObj(dirMesh);
+        cache[dirMesh] = this;
+    }
+
     createBuffers();
 
     SetBoundingBox();
+}
+
+void GameEngine::Renderable::initFromCache(const BaseComponent& parent, const Renderable& r)
+{
+    vertices = (PosColorVertex*)calloc(r.v_len, sizeof(PosColorVertex));
+    v_len = r.v_len;
+    for (int i = 0; i < v_len; i++) {
+        vertices[i] = r.vertices[i];
+    }
+
+    i_len = r.i_len;
+    indices = (uint16_t*)calloc(r.i_len, sizeof(uint16_t));
+    for (int i = 0; i < i_len; i++) {
+        indices[i] = r.indices[i];
+    }
 }
 
 /// <summary>
