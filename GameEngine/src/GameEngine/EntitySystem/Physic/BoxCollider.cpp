@@ -19,11 +19,22 @@ GameEngine::BoxCollider::BoxCollider(
 }
 
 bool GameEngine::BoxCollider::AreColliding(Collider& c){
+	
 	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
+		Vector3 dist = (sc->GetOrigine() - this->origine).Magnitude();
+		float radius = sc->GetRadius();
+		return
+			dist.x < radius + this->scale.x &&
+			dist.y < radius + this->scale.y &&
+			dist.z < radius + this->scale.z;
 		
 	}
 	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
-
+		Vector3 dist = (bc->origine - this->origine).Normalized();
+		return
+			dist.x < bc->scale.x + this->scale.x &&
+			dist.y < bc->scale.y + this->scale.y &&
+			dist.z < bc->scale.z + this->scale.z;
 	}
 	return false;
 }

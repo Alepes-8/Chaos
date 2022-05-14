@@ -24,8 +24,14 @@ bool GameEngine::SphereCollider::AreColliding(Collider& c) {
 		if (distance < 0) return true;
 	}
 	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
-
+		Vector3 dist = (bc->getOrigine() - this->origine).Magnitude();
+		Vector3 bc_scale = bc->getScale();
+		return
+			dist.x < radius + bc_scale.x &&
+			dist.y < radius + bc_scale.y &&
+			dist.z < radius + bc_scale.z;
 	}
+
 	return false;
 }
 
