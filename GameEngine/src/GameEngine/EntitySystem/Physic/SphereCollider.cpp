@@ -27,9 +27,9 @@ bool GameEngine::SphereCollider::AreColliding(Collider& c) {
 		Vector3 dist = (bc->getOrigine() - this->origine).Magnitude();
 		Vector3 bc_scale = bc->getScale();
 		return
-			dist.x < radius + bc_scale.x &&
-			dist.y < radius + bc_scale.y &&
-			dist.z < radius + bc_scale.z;
+			dist.x < radius + bc_scale.x / 2 &&
+			dist.y < radius + bc_scale.y / 2 &&
+			dist.z < radius + bc_scale.z / 2;
 	}
 
 	return false;

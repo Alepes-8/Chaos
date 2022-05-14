@@ -24,17 +24,17 @@ bool GameEngine::BoxCollider::AreColliding(Collider& c){
 		Vector3 dist = (sc->GetOrigine() - this->origine).Magnitude();
 		float radius = sc->GetRadius();
 		return
-			dist.x < radius + this->scale.x &&
-			dist.y < radius + this->scale.y &&
-			dist.z < radius + this->scale.z;
+			dist.x < radius + this->scale.x / 2 &&
+			dist.y < radius + this->scale.y / 2 &&
+			dist.z < radius + this->scale.z / 2;
 		
 	}
 	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
 		Vector3 dist = (bc->origine - this->origine).Normalized();
 		return
-			dist.x < bc->scale.x + this->scale.x &&
-			dist.y < bc->scale.y + this->scale.y &&
-			dist.z < bc->scale.z + this->scale.z;
+			dist.x < (bc->scale.x + this->scale.x) / 2 &&
+			dist.y < (bc->scale.y + this->scale.y) / 2 &&
+			dist.z < (bc->scale.z + this->scale.z) / 2;
 	}
 	return false;
 }
