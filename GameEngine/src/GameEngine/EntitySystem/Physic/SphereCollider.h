@@ -19,6 +19,7 @@ namespace GameEngine {
 		bool AreColliding(SphereCollider* control);
 		float GetRadius();
 		Vector3 GetPosition();
+		Vector3 GetOverlap(SphereCollider* control);
 		void Update() override;
 	};
 

@@ -16,10 +16,10 @@ void GameEngine::DynamicBody::Update() {
 	}
 
 
-	getParentTransform()->Translate(CurrentMoveSpeed);
 
 
 	CurrentMoveSpeed = physicsComp->CalculateSpeed(CurrentMoveSpeed, movementComp->GetMovement());
+	getParentTransform()->Translate(CurrentMoveSpeed);
 
 }
 
@@ -67,4 +67,8 @@ void GameEngine::DynamicBody::AddRotation(Vector3 direction) {
 	direction = direction * (speed);
 	getParentTransform()->Rotates(direction.x, direction.y, direction.z);
 		
+}
+
+GameEngine::Vector3* GameEngine::DynamicBody::GetMovement() {
+	return &CurrentMoveSpeed;
 }

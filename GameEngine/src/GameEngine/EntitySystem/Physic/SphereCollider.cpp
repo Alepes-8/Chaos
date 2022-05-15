@@ -36,3 +36,12 @@ void GameEngine::SphereCollider::Update() {
 	origin.y = transform->getPosition().pos[1]+radius;
 	origin.z = transform->getPosition().pos[2];
 }
+
+GameEngine::Vector3 GameEngine::SphereCollider::GetOverlap(SphereCollider* control) {
+	return 
+		Vector3(
+		std::abs(origin.x - control->GetPosition().x), 
+		std::abs(origin.y - control->GetPosition().y), 
+		std::abs(origin.z - control->GetPosition().z)
+		);
+}

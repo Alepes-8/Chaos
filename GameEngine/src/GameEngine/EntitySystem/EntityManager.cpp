@@ -177,6 +177,36 @@ void GameEngine::EntityManager::Update() {
                 continue;
             }
             if (sphereCheck->AreColliding(sphereBase)) {
+                //--Find the amount that they are overlapping--
+                Vector3 overlap = sphereCheck->GetOverlap(sphereBase);
+
+                //--Take out the current movementspeed of the entitys--
+                Vector3* controlMovement = dynamic_cast<DynamicBody*>(control->second->GetComponent(0x00000009))->GetMovement();
+                Vector3* checkMovement = dynamic_cast<DynamicBody*>(check->second->GetComponent(0x00000009))->GetMovement();
+                /*
+                //--Take out the procentage of the colltion each entity contributed with--
+                float xtot = std::abs(controlMovement->x) + std::abs(checkMovement->x);
+                float controlProcentX = std::abs(controlMovement->x) / xtot;
+                float checkProcentX = std::abs(checkMovement->x) / xtot;
+
+                //--Move entitys away from one another--
+                if (controlMovement->x > 0) {
+                    control->second->GetTransform()->Translate(Vector3(-std::abs(controlProcentX * overlap.x), 0, 0));
+                    check->second->GetTransform()->Translate(Vector3(std::abs(checkProcentX * overlap.x), 0, 0));
+
+                }
+
+                */
+                if (controlMovement != nullptr) {
+                    controlMovement->x *= -1;
+                    controlMovement->y *= -1;
+                    controlMovement->z *= -1;
+                }
+                if(checkMovement != nullptr) {
+                    checkMovement->x *= -1;
+                    checkMovement->y *= -1;
+                    checkMovement->z *= -1;
+                }
                 GameEngine::Log::GetClientLogger()->warn("colition");
             }
 
