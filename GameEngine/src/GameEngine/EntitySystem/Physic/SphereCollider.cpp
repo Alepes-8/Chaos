@@ -11,6 +11,8 @@ GameEngine::SphereCollider::SphereCollider(GameObject* parent, Vector3 origin, f
 }
 
 bool GameEngine::SphereCollider::AreColliding(SphereCollider* control) {
+	std::cout << this->origin.x << " " << this->origin.y << " " << this->origin.z << std::endl;
+
 	return false;
 }
 
@@ -19,5 +21,4 @@ void GameEngine::SphereCollider::Update() {
 	origin.x = transform->getPosition().pos[0];
 	origin.y = transform->getPosition().pos[1];
 	origin.z = transform->getPosition().pos[2];
-	std::cout << origin.x << " " << origin.y << " " << origin.z << std::endl;
 }

@@ -160,10 +160,25 @@ void GameEngine::EntityManager::Update() {
 
     for (control = EntityList.begin(); control != EntityList.end(); control++)
     {
-        SphereCollider* sphere = dynamic_cast<SphereCollider*>(control->second);
+        
+        SphereCollider* sphereBase = dynamic_cast<SphereCollider*>(control->second->GetComponent(0x00000011));
+        if (sphereBase == nullptr) {
+            continue;
+        }
+        int turn = 0;
         for (check = EntityList.find(control->first); check != EntityList.end(); check++)
         {
-            dynamic_cast<SphereCollider*>(check->second)->AreColliding(sphere);
+            if (!turn) {
+                turn = 1;
+                continue;
+            }
+            SphereCollider* sphereCheck = dynamic_cast<SphereCollider*>(check->second->GetComponent(0x00000011));
+            if (sphereCheck == nullptr) {
+                continue;
+            }
+            if (sphereCheck->AreColliding(sphereBase)) {
+                GameEngine::Log::GetClientLogger()->warn("colition");
+            }
 
         }
     }
