@@ -18,6 +18,7 @@ void GameEngine::DynamicBody::Update() {
 
 	getParentTransform()->Translate(CurrentMoveSpeed);
 
+
 	CurrentMoveSpeed = physicsComp->CalculateSpeed(CurrentMoveSpeed, movementComp->GetMovement());
 
 }

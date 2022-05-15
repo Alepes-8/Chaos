@@ -59,8 +59,8 @@ void GameEngine::Messenger::DamageUnit(int id, float damage) {
 void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	int compID = 0x00000009;
 	if (CheckStatus(id, compID) == 0) { return; }
-
 	dynamic_cast<DynamicBody*>(m_manager->GetEntity(id)->GetComponent(0x00000009))->AddMovement(translation);
+
 }
 
 void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {

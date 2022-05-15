@@ -106,6 +106,11 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             comp = new Physics(entity);
             componentID = 0x00000010;
         }
+        
+        else if (itr->asCString() == (std::string)"SphereCollider") {
+            comp = new SphereCollider(entity, Vector3(x_pos, y_pos, z_pos), actualJson[form]["Template"]["Size"].asFloat());
+            componentID = 0x00000011;
+        }
 
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
@@ -149,6 +154,18 @@ void GameEngine::EntityManager::EarlyUpdate() {
 void GameEngine::EntityManager::Update() {
     for (auto entity : EntityList) {
         entity.second->Update();
+    }
+    std::map<int, GameObject*>::iterator control;
+    std::map<int, GameObject*>::iterator check;
+
+    for (control = EntityList.begin(); control != EntityList.end(); control++)
+    {
+        SphereCollider* sphere = dynamic_cast<SphereCollider*>(control->second);
+        for (check = EntityList.find(control->first); check != EntityList.end(); check++)
+        {
+            dynamic_cast<SphereCollider*>(check->second)->AreColliding(sphere);
+
+        }
     }
 }
 

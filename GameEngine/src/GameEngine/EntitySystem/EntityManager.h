@@ -18,6 +18,7 @@
 #include "Physic/DynamicBody.h"
 #include "Physic/Physics.h"
 
+#include "Physic/SphereCollider.h"
 
 namespace GameEngine {
 	class EntityManager {
