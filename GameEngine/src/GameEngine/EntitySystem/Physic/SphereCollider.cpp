@@ -6,19 +6,33 @@ GameEngine::SphereCollider::SphereCollider(GameObject* parent, Vector3 origin, f
 {
 	transform = getParentTransform();
 	this->origin = origin;
-	this->radius = radius;
+	this->radius = radius/2;
 	std::cout << "create sphere colider" << std::endl;
 }
 
 bool GameEngine::SphereCollider::AreColliding(SphereCollider* control) {
-	std::cout << this->origin.x << " " << this->origin.y << " " << this->origin.z << std::endl;
-
+	
+	if ( (std::sqrt(std::pow((origin.x - control->GetPosition().x),2 ) + 
+		std::pow((origin.y - control->GetPosition().y),2) +
+		std::pow((origin.z - control->GetPosition().z),2))) <
+		(std::pow((control->GetRadius() + this->radius),2)))
+	{
+		return true;
+	}
 	return false;
+}
+
+float GameEngine::SphereCollider::GetRadius() {
+	return this->radius;
+}
+
+GameEngine::Vector3 GameEngine::SphereCollider::GetPosition() {
+	return this->origin;
 }
 
 void GameEngine::SphereCollider::Update() {
 	//TODO
 	origin.x = transform->getPosition().pos[0];
-	origin.y = transform->getPosition().pos[1];
+	origin.y = transform->getPosition().pos[1]+radius;
 	origin.z = transform->getPosition().pos[2];
 }
