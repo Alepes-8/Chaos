@@ -49,7 +49,8 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         BaseComponent* comp;
         int componentID = 0x00000000;
         if (itr->asCString() == (std::string) "UnitDamage") {
-            comp = new UnitDamage(entity, actualJson[form]["Template"]["Damage"].asFloat());
+            comp = new UnitDamage(entity, actualJson[form]["Template"]["minDamage"].asFloat(), 
+                actualJson[form]["Template"]["maxDamage"].asFloat());
             componentID = 0x00000001;
         }
 
@@ -112,6 +113,11 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             componentID = 0x00000011;
         }
 
+        else if (itr->asCString() == (std::string)"Team") {
+            comp = new Team(entity, actualJson[form]["Template"]["Team"].asInt());
+            componentID = 0x00000012;
+        }
+
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
         }
@@ -157,7 +163,7 @@ void GameEngine::EntityManager::Update() {
     }
     std::map<int, GameObject*>::iterator control;
     std::map<int, GameObject*>::iterator check;
-
+    std::vector<int> terminateList;
     for (control = EntityList.begin(); control != EntityList.end(); control++)
     {
         
@@ -197,6 +203,25 @@ void GameEngine::EntityManager::Update() {
                 }
 
                 */
+
+                if (dynamic_cast<Team*>(control->second->GetComponent(0x00000012))->GetTeam() !=
+                    dynamic_cast<Team*>(check->second->GetComponent(0x00000012))->GetTeam()) {
+
+                   UnitHealth* checkHealth = dynamic_cast<UnitHealth*>(check->second->GetComponent(0x00000002));
+                   UnitHealth* controlHealth = dynamic_cast<UnitHealth*>(control->second->GetComponent(0x00000002));
+                   controlHealth->DamageHealth(dynamic_cast<UnitDamage*>(check->second->GetComponent(0x00000001))->GetDamage());
+                   checkHealth->DamageHealth(dynamic_cast<UnitDamage*>(control->second->GetComponent(0x00000001))->GetDamage());
+
+                   if (checkHealth->GetHealth() <= 0) {
+                       terminateList.push_back(check->first);
+                   }
+
+                   if (controlHealth->GetHealth() <= 0) {
+                       terminateList.push_back(control->first);
+                   }
+                   
+                    GameEngine::Log::GetClientLogger()->trace("enemy");
+                }
                 if (controlMovement != nullptr) {
                     controlMovement->x *= -1;
                     controlMovement->y *= -1;
@@ -211,6 +236,9 @@ void GameEngine::EntityManager::Update() {
             }
 
         }
+    }
+    for (int id : terminateList) {
+        TerminateEnity(id);
     }
 }
 

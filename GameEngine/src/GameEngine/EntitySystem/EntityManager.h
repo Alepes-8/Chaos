@@ -11,6 +11,8 @@
 #include "AI/UnitHealth.h"
 #include "AI/UnitMovement.h"
 #include "AI/PathFinding.h"
+#include "AI/Team.h"
+
 #include "Effects/Sound.h"
 #include "Effects/Renderable.h"
 #include "Physic/Transform.h"
