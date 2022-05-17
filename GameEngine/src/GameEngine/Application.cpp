@@ -271,26 +271,26 @@ namespace GameEngine
 
 
         //-----------------Entity-----------------//
-        /*
+        m_EntityManager->CreateNewEntity("Peasant", 20, 0, -20);
+        m_EntityManager->CreateNewEntity("Leader", -20, 0, -20);
+        
         int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
         GameObject* worldMap = m_EntityManager->GetEntity(worldID);
         BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
         PathFinding* pathfindingComponent = dynamic_cast<PathFinding*>(pathfinding);
 
         for (int i = 0; i < 2; i++) {
-            int unitID = m_EntityManager->CreateNewEntity("Leader", 0, 0, 0);
+            int unitID = m_EntityManager->CreateNewEntity("Leader", -30, 5, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
-        }*/
-        m_EntityManager->CreateNewEntity("Peasant", 10, 0, -20);
-        m_EntityManager->CreateNewEntity("Leader", -10, 0, -20);
-
-
-        m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
-
-
-
-        m_EntityManager->CreateNewEntity("Peasant", 4, 0, 0);
-        m_EntityManager->CreateNewEntity("Leader", -4, 0, 0);
+        }
+        for (int i = 0; i < 500; i++) {
+            int unitID = m_EntityManager->CreateNewEntity("Peasant", 30, 0, 0);
+            initUnit(unitID, pathfindingComponent, m_EntityManager);
+        }
+        /*m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
+        m_EntityManager->CreateNewEntity("Peasant", -4, 0, 0);
+        m_EntityManager->CreateNewEntity("Leader", 4, 0, 0);
+        */
 
         //m_EntityManager->CreateNewEntity("House", 4 , 0, 0);
 

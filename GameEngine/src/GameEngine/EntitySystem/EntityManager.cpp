@@ -158,8 +158,14 @@ void GameEngine::EntityManager::EarlyUpdate() {
 }
 
 void GameEngine::EntityManager::Update() {
+    if (start == NULL) {
+        start = SDL_GetTicks();
+    }
     for (auto entity : EntityList) {
         entity.second->Update();
+    }
+    if (SDL_GetTicks() - start < 20000) {
+        return;
     }
     std::map<int, GameObject*>::iterator control;
     std::map<int, GameObject*>::iterator check;
@@ -178,10 +184,15 @@ void GameEngine::EntityManager::Update() {
                 turn = 1;
                 continue;
             }
+
+
+
             SphereCollider* sphereCheck = dynamic_cast<SphereCollider*>(check->second->GetComponent(0x00000011));
             if (sphereCheck == nullptr) {
                 continue;
             }
+
+
             if (sphereCheck->AreColliding(sphereBase)) {
                 //--Find the amount that they are overlapping--
                 Vector3 overlap = sphereCheck->GetOverlap(sphereBase);
@@ -204,8 +215,8 @@ void GameEngine::EntityManager::Update() {
 
                 */
 
-                if (dynamic_cast<Team*>(control->second->GetComponent(0x00000012))->GetTeam() !=
-                    dynamic_cast<Team*>(check->second->GetComponent(0x00000012))->GetTeam()) {
+                if (*dynamic_cast<Team*>(control->second->GetComponent(0x00000012))->GetTeam() !=
+                    *dynamic_cast<Team*>(check->second->GetComponent(0x00000012))->GetTeam()) {
 
                    UnitHealth* checkHealth = dynamic_cast<UnitHealth*>(check->second->GetComponent(0x00000002));
                    UnitHealth* controlHealth = dynamic_cast<UnitHealth*>(control->second->GetComponent(0x00000002));

@@ -16,8 +16,8 @@
         },
         "Template" : {
             "Health" : 4.8,
-            "minDamage" : 0.5,
-            "maxDamage" : 0.96,
+            "minDamage" : 1.8,
+            "maxDamage" : 2.0,
             "Speed" : 0.02,
             "Size"  : 0.70,
             "Team"  : 1,
@@ -43,8 +43,8 @@
         },
         "Template" : {
             "Health" : 4.8,
-            "minDamage" : 0.5,
-            "maxDamage" : 0.96,
+            "minDamage" : 0.2,
+            "maxDamage" : 0.3,
             "Speed" : 0.02,
             "Size"  : 0.70,
             "Team"  : 2,

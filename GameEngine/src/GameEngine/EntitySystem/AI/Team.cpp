@@ -10,8 +10,8 @@ GameEngine::Team::~Team() {
 
 }
 
-int GameEngine::Team::GetTeam() {
-	return team;
+int* GameEngine::Team::GetTeam() {
+	return &team;
 }
 
 void GameEngine::Team::Update() {

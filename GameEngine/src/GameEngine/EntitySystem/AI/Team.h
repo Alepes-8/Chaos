@@ -9,7 +9,7 @@ namespace GameEngine {
 	public:
 		Team(GameObject*, int);
 		~Team();
-		int GetTeam();
+		int* GetTeam();
 		void Update() override;
 	};
 

@@ -29,6 +29,7 @@ namespace GameEngine {
 		std::map<int, GameObject*> EntityList;
 		static EntityManager* m_Instance;
 		GameEngine::IdGenerationPool* m_IdPool;
+		float start = NULL;
 	public:
 		static EntityManager* CreateInstance();
 		static void Terminate();
