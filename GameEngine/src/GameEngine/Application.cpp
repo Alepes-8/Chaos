@@ -281,11 +281,16 @@ namespace GameEngine
             int unitID = m_EntityManager->CreateNewEntity("Leader", 0, 0, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
         }*/
+        m_EntityManager->CreateNewEntity("Peasant", 10, 0, -20);
+        m_EntityManager->CreateNewEntity("Leader", -10, 0, -20);
+
 
         m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
 
+
+
         m_EntityManager->CreateNewEntity("Peasant", 4, 0, 0);
-        m_EntityManager->CreateNewEntity("Peasant", -4, 0, 0);
+        m_EntityManager->CreateNewEntity("Leader", -4, 0, 0);
 
         //m_EntityManager->CreateNewEntity("House", 4 , 0, 0);
 
