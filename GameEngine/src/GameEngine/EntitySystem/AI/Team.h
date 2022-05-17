@@ -7,7 +7,7 @@ namespace GameEngine {
 	private:
 		int team;
 	public:
-		Team(GameObject*, int );
+		Team(GameObject*, int);
 		~Team();
 		int GetTeam();
 		void Update() override;

@@ -9,14 +9,18 @@
             "Component5": "PathFinding",
             "Component6": "DynamicBody",
             "Component7": "Physics",
-            "Component8": "SphereCollider"
+            "Component8": "SphereCollider",
+            "Component9": "Team"
+
 
         },
         "Template" : {
             "Health" : 4.8,
-            "Damage" : 0.96,
+            "minDamage" : 0.5,
+            "maxDamage" : 0.96,
             "Speed" : 0.02,
-            "Size"  : 0.87,
+            "Size"  : 0.70,
+            "Team"  : 1,
             "Mesh" : "Data/3DModels/OBJ-format/skeleton",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin",
@@ -33,12 +37,17 @@
             "Component4": "Renderable",
             "Component5": "PathFinding",
             "Component6": "DynamicBody",
-            "Component7": "Physics"
+            "Component7": "Physics",
+            "Component8": "SphereCollider",
+            "Component9": "Team"
         },
         "Template" : {
-            "Health" : 8,
-            "Damage" : 1.6,
+            "Health" : 4.8,
+            "minDamage" : 0.5,
+            "maxDamage" : 0.96,
             "Speed" : 0.02,
+            "Size"  : 0.70,
+            "Team"  : 2,
             "Mesh" : "Data/3DModels/OBJ-format/vampire",
             "vs_Shader" : "Data/Shaders/vs_cubes.bin",
             "fs_Shader" : "Data/Shaders/fs_cubes.bin",
