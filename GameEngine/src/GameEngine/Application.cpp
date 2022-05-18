@@ -273,9 +273,9 @@ namespace GameEngine
 
 
         //-----------------Entity-----------------//
-        m_EntityManager->CreateNewEntity("Peasant", 20, 0, -20);
+       /* m_EntityManager->CreateNewEntity("Peasant", 20, 0, -20);
         m_EntityManager->CreateNewEntity("Leader", -20, 0, -20);
-       /* 
+       
         int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
         GameObject* worldMap = m_EntityManager->GetEntity(worldID);
         BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
