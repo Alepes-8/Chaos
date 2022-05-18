@@ -145,9 +145,7 @@ void GameEngine::EntityManager::TerminateEnity(int entityID) {
     delete EntityList.at(entityID);
     EntityList.at(entityID) = NULL;
     EntityList.erase(EntityList.find(entityID));
-    
-    /*---------------------*/
-    
+
 }
 
 
@@ -164,7 +162,7 @@ void GameEngine::EntityManager::Update() {
     for (auto entity : EntityList) {
         entity.second->Update();
     }
-    if (SDL_GetTicks() - start < 20000) {
+    if (SDL_GetTicks() - start < 5000) {
         return;
     }
     std::map<int, GameObject*>::iterator control;
@@ -195,7 +193,7 @@ void GameEngine::EntityManager::Update() {
 
             if (sphereCheck->AreColliding(sphereBase)) {
                 //--Find the amount that they are overlapping--
-                Vector3 overlap = sphereCheck->GetOverlap(sphereBase);
+                //Vector3 overlap = sphereCheck->GetOverlap(sphereBase);
 
                 //--Take out the current movementspeed of the entitys--
                 Vector3* controlMovement = dynamic_cast<DynamicBody*>(control->second->GetComponent(0x00000009))->GetMovement();

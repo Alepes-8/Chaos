@@ -16,8 +16,8 @@
         },
         "Template" : {
             "Health" : 4.8,
-            "minDamage" : 1.8,
-            "maxDamage" : 2.0,
+            "minDamage" : 0.5,
+            "maxDamage" : 0.96,
             "Speed" : 0.02,
             "Size"  : 0.70,
             "Team"  : 1,
@@ -43,8 +43,8 @@
         },
         "Template" : {
             "Health" : 4.8,
-            "minDamage" : 0.2,
-            "maxDamage" : 0.3,
+            "minDamage" : 0.5,
+            "maxDamage" : 0.96,
             "Speed" : 0.02,
             "Size"  : 0.70,
             "Team"  : 2,
@@ -55,6 +55,29 @@
 
         }
     },
+    "Zombie" :  
+    {
+        "Components" : {
+            "Component1": "UnitHealth",
+            "Component2": "UnitDamage",
+            "Component3": "UnitMovement",
+            "Component4": "Renderable",
+            "Component5": "PathFinding",
+            "Component6": "DynamicBody",
+            "Component7": "Physics"
+        },
+        "Template" : {
+            "Health" : 4.8,
+            "minDamage" : 0.5,
+            "maxDamage" : 0.96,
+            "Speed" : 0.02,
+            "Mesh" : "Data/3DModels/OBJ-format/zombie",
+            "vs_Shader" : "Data/Shaders/vs_cubes.bin",
+            "fs_Shader" : "Data/Shaders/fs_cubes.bin",
+            "Navmesh" : "no"
+        }
+    },
+
     "Worldmap" :
     {
         "Components" : {

@@ -249,6 +249,8 @@ namespace GameEngine
     }
 
     void GameEngine::Application::LateUpdate() {
+        m_Camera->Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
+        m_EntityManager->Update();
         m_InputManager->UpdatePrevInput();
         m_Timer->Reset();
     }
@@ -273,24 +275,30 @@ namespace GameEngine
         //-----------------Entity-----------------//
         m_EntityManager->CreateNewEntity("Peasant", 20, 0, -20);
         m_EntityManager->CreateNewEntity("Leader", -20, 0, -20);
-        
+       /* 
         int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
         GameObject* worldMap = m_EntityManager->GetEntity(worldID);
         BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
         PathFinding* pathfindingComponent = dynamic_cast<PathFinding*>(pathfinding);
-
-        for (int i = 0; i < 2; i++) {
+        
+       for (int i = 0; i < 30; i++) {
             int unitID = m_EntityManager->CreateNewEntity("Leader", -30, 5, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
         }
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 30; i++) {
             int unitID = m_EntityManager->CreateNewEntity("Peasant", 30, 0, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
-        }
-        /*m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
+        }*/
+
+        /*for (int i = 0; i < 1000; i++) {
+            int unitID = m_EntityManager->CreateNewEntity("Zombie", 0, 0, 0);
+            initUnit(unitID, pathfindingComponent, m_EntityManager);
+        }*/
+        
+        m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
         m_EntityManager->CreateNewEntity("Peasant", -4, 0, 0);
         m_EntityManager->CreateNewEntity("Leader", 4, 0, 0);
-        */
+        
 
         //m_EntityManager->CreateNewEntity("House", 4 , 0, 0);
 
@@ -300,7 +308,6 @@ namespace GameEngine
         m_EntityManager->PlayAudio(audio);
 
         SDL_Event currentEvent;
-        unsigned int counter = 0;
         while (!mQuit) {
 
             m_Timer->Update();
@@ -312,14 +319,10 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                counter++;
                 EarlyUpdate();
                 Update();
 
-                m_Camera->Update(m_InputManager, 0, m_Graphics->Screen_Width, m_Graphics->Screen_Hight);
                
-                //mesh.Update();
-                m_EntityManager->Update();
 
                 LateUpdate();
                 Render();
