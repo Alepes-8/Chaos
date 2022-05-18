@@ -5,14 +5,14 @@
 #include <GameEngine/Log.h>
 
 namespace GameEngine {
-	class BoxCollider : public Collider {
+	class BoxCollider : public Colider {
 	private:
 		Vector3 origine;
 		Vector3 scale;
 
 	public:
 		BoxCollider(GameObject* parent, Vector3 origine, Vector3 scale);
-		bool AreColliding(Collider& c) override;
+		bool AreColliding(Colider& c);
 		void Update() override;
 
 		//getters

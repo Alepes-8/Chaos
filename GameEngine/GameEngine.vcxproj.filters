@@ -97,6 +97,7 @@
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\StaticBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\DynamicBody.h" />
     <ClInclude Include="src\GameEngine\EntitySystem\Physic\Physics.h" />
+    <ClInclude Include="src\GameEngine\EntitySystem\AI\Team.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine\Application.cpp">
@@ -165,5 +166,6 @@
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\StaticBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\DynamicBody.cpp" />
     <ClCompile Include="src\GameEngine\EntitySystem\Physic\Physics.cpp" />
+    <ClCompile Include="src\GameEngine\EntitySystem\AI\Team.cpp" />
   </ItemGroup>
 </Project>

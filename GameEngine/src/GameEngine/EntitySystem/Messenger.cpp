@@ -59,24 +59,15 @@ void GameEngine::Messenger::DamageUnit(int id, float damage) {
 void GameEngine::Messenger::MoveUnit(int id, Vector3 translation) {
 	int compID = 0x00000009;
 	if (CheckStatus(id, compID) == 0) { return; }
-
 	dynamic_cast<DynamicBody*>(m_manager->GetEntity(id)->GetComponent(0x00000009))->AddMovement(translation);
 
 }
 
 void GameEngine::Messenger::RotateUnit(int id, Vector3 translation) {
-	int compID = 0x00000003;
+	int compID = 0x00000009;
 	if (CheckStatus(id, compID) == 0) { return; }
-	GameObject* entity = m_manager->GetEntity(id);
 
-	UnitMovement* movementComp = dynamic_cast<UnitMovement*>(entity->GetComponent(compID));
-	float speed = movementComp->GetMovement();
-
-	translation = translation * (speed / 10);
-	Transform* transform = entity->GetTransform();
-
-	transform->Rotates(translation.x, translation.y, translation.z);
-	std::cout << "move unit" << std::endl;
+	dynamic_cast<DynamicBody*>(m_manager->GetEntity(id)->GetComponent(0x00000009))->AddRotation(translation);
 }
 
 void GameEngine::Messenger::ChangeAudioState(int id) {

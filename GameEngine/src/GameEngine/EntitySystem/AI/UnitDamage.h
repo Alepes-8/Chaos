@@ -5,10 +5,11 @@
 namespace GameEngine {
 	class UnitDamage : public BaseComponent{
 	private:
-		float damage;
+		float minDamage;
+		float maxDamage;
 	public:
-		int GetDamage();
-		UnitDamage(GameObject* parent, float dmgValue);
+		float GetDamage();
+		UnitDamage(GameObject* parent, float minDamage, float maxDamage);
 		~UnitDamage();
 		void Update() override;
 	};

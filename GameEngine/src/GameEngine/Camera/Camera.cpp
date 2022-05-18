@@ -159,54 +159,12 @@ void GameEngine::Camera::ListenEvent(GameEngine::InputManager* im)
 
 	//rotates forward - keypad 8 -> NOT WORKING
 	else if (im->Keydown(SDL_SCANCODE_KP_8)) {
-		float teta;
-		float r = sqrt(pow((_eye.y - _at.y), 2) + pow((_eye.z - _at.z), 2));
-		if (_eye.z - _at.z > 0) {
-			teta = acos((_eye.y - _at.y) / r);
-		}
-		else {
-			teta = -acos((_eye.y - _at.y) / r);
-		}
-
-		teta -= (camera_speed / 10);
-
-		_eye.y = r * cos(teta) + _at.y;
-		_eye.z = r * sin(teta) + _at.z;
-
-	
-		if (_eye.z - _at.z > 0) {
-			_up.y = 1;
-		}
-		else {
-			teta = -acos((_eye.y - _at.y) / r);
-			_up.y = -1;
-		}
+		_eye.y += camera_speed;
 	}
 
 	//rotates backward - keypad 2 -> NOT WORKING
 	else if (im->Keydown(SDL_SCANCODE_KP_2)) {
-		float teta;
-		float r = sqrt(pow((_eye.y - _at.y), 2) + pow((_eye.z - _at.z), 2));
-		if (_eye.z - _at.z > 0) {
-			teta = acos((_eye.y - _at.y) / r);
-		}
-		else {
-			teta = -acos((_eye.y - _at.y) / r);
-		}
-
-		teta += (camera_speed / 10);
-
-		_eye.y = r * cos(teta) + _at.y;
-		_eye.z = r * sin(teta) + _at.z;
-
-		if (_eye.z - _at.z > 0) {
-			_up.y = 1;
-		}
-		else {
-			teta = -acos((_eye.y - _at.y) / r);
-			_up.y = -1;
-		}
-
+		_eye.y -= camera_speed;
 	}
 
 	//reset camera - keypad 0

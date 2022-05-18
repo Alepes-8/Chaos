@@ -9,7 +9,7 @@ GameEngine::Physics::~Physics() {
 }
 
 
-GameEngine::Vector3 GameEngine::Physics::CalculateSpeed(GameEngine::Vector3 movement, float speed) {
+GameEngine::Vector3 GameEngine::Physics::CalculateSpeed(Vector3 movement, float speed) {
 	m_ElipsedTime = SDL_GetTicks() - m_StartTicks;	//time between the last reset and time right now
 	m_DeltaTime = m_ElipsedTime * 0.001f;
 
@@ -27,7 +27,6 @@ GameEngine::Vector3 GameEngine::Physics::CalculateSpeed(GameEngine::Vector3 move
 		if (movement.x< 0 && movement.x>-0.01) {
 			movement.x = 0;
 		}
-
 	}
 
 	if (std::abs(movement.y) > 0) {

@@ -76,6 +76,7 @@ namespace GameEngine {
         std::map<std::string, float> parseMtl(const std::string filename);
 
     public:
+        Renderable();
         Renderable(GameObject* parent, const char* dirMesh, const char* dirFrag, const char* dirVert);
         ~Renderable();
 
@@ -86,5 +87,5 @@ namespace GameEngine {
        
     };
 
-    static std::map<std::string, Renderable*> cache = std::map<std::string, Renderable*>();
+    static std::map<std::string, Renderable> cache = std::map<std::string, Renderable>();
 }
