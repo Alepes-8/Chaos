@@ -18,7 +18,9 @@ bool GameEngine::SphereCollider::AreColliding(SphereCollider* control) {
 		(std::pow((control->GetRadius() + this->radius),2)))
 	{
 		return true;
+
 	}
+
 	return false;
 }
 
