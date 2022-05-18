@@ -8,9 +8,8 @@ bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 /// </summary>
 GameEngine::Renderable::~Renderable() {
 	std::cout << "Delete Renderable" << std::endl;
-    delete(this->vertices);
-    delete(this->indices);
-    delete(this);
+    delete(vertices);
+    delete(indices);
 }
 
 GameEngine::Renderable::Renderable() : BaseComponent(nullptr)
