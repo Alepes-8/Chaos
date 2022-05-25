@@ -208,9 +208,7 @@ namespace GameEngine
         if (m_InputManager->Keydown(SDL_SCANCODE_L)) {
             GameEngine::Log::GetCoreLogger()->info("Move Right");
             if (selectedID != 0) {
-
                 m_Messenger->MoveUnit(selectedID, Vector3(1, 0, 0));
-        
             }
         }
 
@@ -240,8 +238,6 @@ namespace GameEngine
                 m_Messenger->RotateUnit(selectedID, Vector3(0, -1, 0));
             }
         }
-
-
     }
 
     void Application::Render() {
@@ -265,22 +261,14 @@ namespace GameEngine
     }
 
     void GameEngine::Application::Run() {
-
-        //------------------WINDOW------------------//
-        m_Graphics->Initbgfx();
-
-        //-----------------CAMERA-----------------//
+        m_Graphics->Initbgfx();  //WINDOW
 
 
-        //-----------------Entity-----------------//
-       /* m_EntityManager->CreateNewEntity("Peasant", 20, 0, -20);
-        m_EntityManager->CreateNewEntity("Leader", -20, 0, -20);
-       
         int worldID = m_EntityManager->CreateNewEntity("Worldmap", 0, 0, 0);
         GameObject* worldMap = m_EntityManager->GetEntity(worldID);
         BaseComponent* pathfinding = worldMap->GetComponent(0x00000004);
         PathFinding* pathfindingComponent = dynamic_cast<PathFinding*>(pathfinding);
-        
+        /*
        for (int i = 0; i < 30; i++) {
             int unitID = m_EntityManager->CreateNewEntity("Leader", -30, 5, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
@@ -289,22 +277,18 @@ namespace GameEngine
             int unitID = m_EntityManager->CreateNewEntity("Peasant", 30, 0, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
         }*/
-
-        /*for (int i = 0; i < 1000; i++) {
+ 
+        for (int i = 0; i < 1000; i++) {
             int unitID = m_EntityManager->CreateNewEntity("Zombie", 0, 0, 0);
             initUnit(unitID, pathfindingComponent, m_EntityManager);
-        }*/
-        
+        }
+        /*
         m_EntityManager->CreateNewEntity("Peasant", 0, 0, 0);
         m_EntityManager->CreateNewEntity("Peasant", -4, 0, 0);
         m_EntityManager->CreateNewEntity("Leader", 4, 0, 0);
-        
+       */
 
-        //m_EntityManager->CreateNewEntity("House", 4 , 0, 0);
 
-        //--------------------LOOP---------------------//
-        // Poll for events and wait till user closes window
-        //m_EntityManager->CreateNewEntity("Leader", 0,0, 0);
         m_EntityManager->PlayAudio(audio);
 
         SDL_Event currentEvent;
@@ -319,11 +303,9 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
+                std::cout << (m_Timer->getDeltaTime() / frameRate) << std::endl;
                 EarlyUpdate();
                 Update();
-
-               
-
                 LateUpdate();
                 Render();
             }
