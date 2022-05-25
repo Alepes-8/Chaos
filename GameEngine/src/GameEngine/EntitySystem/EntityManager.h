@@ -11,6 +11,8 @@
 #include "AI/UnitHealth.h"
 #include "AI/UnitMovement.h"
 #include "AI/PathFinding.h"
+#include "AI/Team.h"
+
 #include "Effects/Sound.h"
 #include "Effects/Renderable.h"
 #include "Physic/Transform.h"
@@ -18,6 +20,7 @@
 #include "Physic/DynamicBody.h"
 #include "Physic/Physics.h"
 
+#include "Physic/SphereCollider.h"
 
 namespace GameEngine {
 	class EntityManager {
@@ -26,6 +29,7 @@ namespace GameEngine {
 		std::map<int, GameObject*> EntityList;
 		static EntityManager* m_Instance;
 		GameEngine::IdGenerationPool* m_IdPool;
+		float start = NULL;
 	public:
 		static EntityManager* CreateInstance();
 		static void Terminate();

@@ -49,7 +49,8 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
         BaseComponent* comp;
         int componentID = 0x00000000;
         if (itr->asCString() == (std::string) "UnitDamage") {
-            comp = new UnitDamage(entity, actualJson[form]["Template"]["Damage"].asFloat());
+            comp = new UnitDamage(entity, actualJson[form]["Template"]["minDamage"].asFloat(), 
+                actualJson[form]["Template"]["maxDamage"].asFloat());
             componentID = 0x00000001;
         }
 
@@ -106,6 +107,16 @@ int GameEngine::EntityManager::CreateNewEntity(char* form, float x_pos, float y_
             comp = new Physics(entity);
             componentID = 0x00000010;
         }
+        
+        else if (itr->asCString() == (std::string)"SphereCollider") {
+            comp = new SphereCollider(entity, Vector3(x_pos, y_pos, z_pos), actualJson[form]["Template"]["Size"].asFloat());
+            componentID = 0x00000011;
+        }
+
+        else if (itr->asCString() == (std::string)"Team") {
+            comp = new Team(entity, actualJson[form]["Template"]["Team"].asInt());
+            componentID = 0x00000012;
+        }
 
         if (componentID != 0x00000000) {
             entity->AddComponent(componentID, comp);
@@ -134,9 +145,7 @@ void GameEngine::EntityManager::TerminateEnity(int entityID) {
     delete EntityList.at(entityID);
     EntityList.at(entityID) = NULL;
     EntityList.erase(EntityList.find(entityID));
-    
-    /*---------------------*/
-    
+
 }
 
 
@@ -147,8 +156,98 @@ void GameEngine::EntityManager::EarlyUpdate() {
 }
 
 void GameEngine::EntityManager::Update() {
+    if (start == NULL) {
+        start = SDL_GetTicks();
+    }
     for (auto entity : EntityList) {
         entity.second->Update();
+    }
+    if (SDL_GetTicks() - start < 5000) {
+        return;
+    }
+    std::map<int, GameObject*>::iterator control;
+    std::map<int, GameObject*>::iterator check;
+    std::vector<int> terminateList;
+    for (control = EntityList.begin(); control != EntityList.end(); control++)
+    {
+        
+        SphereCollider* sphereBase = dynamic_cast<SphereCollider*>(control->second->GetComponent(0x00000011));
+        if (sphereBase == nullptr) {
+            continue;
+        }
+        int turn = 0;
+        for (check = EntityList.find(control->first); check != EntityList.end(); check++)
+        {
+            if (!turn) {
+                turn = 1;
+                continue;
+            }
+
+
+
+            SphereCollider* sphereCheck = dynamic_cast<SphereCollider*>(check->second->GetComponent(0x00000011));
+            if (sphereCheck == nullptr) {
+                continue;
+            }
+
+
+            if (sphereCheck->AreColliding(sphereBase)) {
+                //--Find the amount that they are overlapping--
+                //Vector3 overlap = sphereCheck->GetOverlap(sphereBase);
+
+                //--Take out the current movementspeed of the entitys--
+                Vector3* controlMovement = dynamic_cast<DynamicBody*>(control->second->GetComponent(0x00000009))->GetMovement();
+                Vector3* checkMovement = dynamic_cast<DynamicBody*>(check->second->GetComponent(0x00000009))->GetMovement();
+                /*
+                //--Take out the procentage of the colltion each entity contributed with--
+                float xtot = std::abs(controlMovement->x) + std::abs(checkMovement->x);
+                float controlProcentX = std::abs(controlMovement->x) / xtot;
+                float checkProcentX = std::abs(checkMovement->x) / xtot;
+
+                //--Move entitys away from one another--
+                if (controlMovement->x > 0) {
+                    control->second->GetTransform()->Translate(Vector3(-std::abs(controlProcentX * overlap.x), 0, 0));
+                    check->second->GetTransform()->Translate(Vector3(std::abs(checkProcentX * overlap.x), 0, 0));
+
+                }
+
+                */
+
+                if (*dynamic_cast<Team*>(control->second->GetComponent(0x00000012))->GetTeam() !=
+                    *dynamic_cast<Team*>(check->second->GetComponent(0x00000012))->GetTeam()) {
+
+                   UnitHealth* checkHealth = dynamic_cast<UnitHealth*>(check->second->GetComponent(0x00000002));
+                   UnitHealth* controlHealth = dynamic_cast<UnitHealth*>(control->second->GetComponent(0x00000002));
+                   controlHealth->DamageHealth(dynamic_cast<UnitDamage*>(check->second->GetComponent(0x00000001))->GetDamage());
+                   checkHealth->DamageHealth(dynamic_cast<UnitDamage*>(control->second->GetComponent(0x00000001))->GetDamage());
+
+                   if (checkHealth->GetHealth() <= 0) {
+                       terminateList.push_back(check->first);
+                   }
+
+                   if (controlHealth->GetHealth() <= 0) {
+                       terminateList.push_back(control->first);
+                   }
+                   
+                    GameEngine::Log::GetClientLogger()->trace("enemy");
+                }
+                if (controlMovement != nullptr) {
+                    controlMovement->x *= -1;
+                    controlMovement->y *= -1;
+                    controlMovement->z *= -1;
+                }
+                if(checkMovement != nullptr) {
+                    checkMovement->x *= -1;
+                    checkMovement->y *= -1;
+                    checkMovement->z *= -1;
+                }
+                GameEngine::Log::GetClientLogger()->warn("colition");
+            }
+
+        }
+    }
+    for (int id : terminateList) {
+        TerminateEnity(id);
     }
 }
 

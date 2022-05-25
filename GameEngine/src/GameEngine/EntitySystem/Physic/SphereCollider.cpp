@@ -1,35 +1,49 @@
-#include <GameEngine/EntitySystem/Physic/SphereCollider.h>
+#include "SphereCollider.h"
 
 //WORK IN PROGRESS
 
-GameEngine::SphereCollider::SphereCollider(
-	GameObject* parent,
-	Vector3 origine = Vector3(0, 0, 0),
-	float radius = 0
-) : Collider(parent)
+GameEngine::SphereCollider::SphereCollider(GameObject* parent, Vector3 origin, float radius) : BaseComponent(parent)
 {
-	this->origine = origine;
-	if (radius < 0) {
-		this->radius = 1;
-		GameEngine::Log::GetCoreLogger()->warn("Radius has to be postive or null, Radius set up to 1");
-	}
-	else {
-		this->radius = radius;
-	}
+	transform = getParentTransform();
+	this->origin = origin;
+	this->radius = radius/2;
+	std::cout << "create sphere colider" << std::endl;
 }
 
-bool GameEngine::SphereCollider::AreColliding(Collider& c) {
-	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
-		float distance = (sc->GetOrigine() - this->GetOrigine()).MagnitudeSqr() - sc->GetRadius() - this->GetRadius();
-		if (distance < 0) return true;
-	}
-	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
+bool GameEngine::SphereCollider::AreColliding(SphereCollider* control) {
+	
+	if ( (std::sqrt(std::pow((origin.x - control->GetPosition().x),2 ) + 
+		std::pow((origin.y - control->GetPosition().y),2) +
+		std::pow((origin.z - control->GetPosition().z),2))) <
+		(std::pow((control->GetRadius() + this->radius),2)))
+	{
+		return true;
 
 	}
+
 	return false;
 }
 
+float GameEngine::SphereCollider::GetRadius() {
+	return this->radius;
+}
+
+GameEngine::Vector3 GameEngine::SphereCollider::GetPosition() {
+	return this->origin;
+}
+
 void GameEngine::SphereCollider::Update() {
-	std::cout << "Sphere Collider test" << std::endl;
 	//TODO
+	origin.x = transform->getPosition().pos[0];
+	origin.y = transform->getPosition().pos[1]+radius;
+	origin.z = transform->getPosition().pos[2];
+}
+
+GameEngine::Vector3 GameEngine::SphereCollider::GetOverlap(SphereCollider* control) {
+	return 
+		Vector3(
+		std::abs(origin.x - control->GetPosition().x), 
+		std::abs(origin.y - control->GetPosition().y), 
+		std::abs(origin.z - control->GetPosition().z)
+		);
 }

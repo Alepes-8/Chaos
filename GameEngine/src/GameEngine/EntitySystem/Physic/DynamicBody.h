@@ -22,7 +22,7 @@ namespace GameEngine {
 		~DynamicBody();
 		void AddMovement(Vector3 direction);
 		void AddRotation(Vector3 direction);
-
+		Vector3* GetMovement();
 		void Update() override;
 	};
 }

@@ -15,9 +15,11 @@ void GameEngine::DynamicBody::Update() {
 		return;
 	}
 
-	getParentTransform()->Translate(CurrentMoveSpeed);
+
+
 
 	CurrentMoveSpeed = physicsComp->CalculateSpeed(CurrentMoveSpeed, movementComp->GetMovement());
+	getParentTransform()->Translate(CurrentMoveSpeed);
 
 }
 
@@ -46,6 +48,27 @@ void GameEngine::DynamicBody::AddMovement(Vector3 direction) {
 }
 
 void GameEngine::DynamicBody::AddRotation(Vector3 direction) {
-	UnitMovement* comp = dynamic_cast<UnitMovement*>(getComponent(0x00000003));
-	float speed = comp->GetMovement();
+	if (physicsComp == nullptr || movementComp == nullptr) {
+		physicsComp = dynamic_cast<Physics*>(getComponent(0x00000010));
+		movementComp = dynamic_cast<UnitMovement*>(getComponent(0x00000003));
+
+		if (physicsComp == nullptr) {
+			std::cout << "Error, No Physics engine" << std::endl;
+			return;
+		}
+		if (movementComp == nullptr) {
+			std::cout << "Error, No Movement speed" << std::endl;
+			return;
+		}
+	}
+	float speed = movementComp->GetMovement();
+
+
+	direction = direction * (speed);
+	getParentTransform()->Rotates(direction.x, direction.y, direction.z);
+		
+}
+
+GameEngine::Vector3* GameEngine::DynamicBody::GetMovement() {
+	return &CurrentMoveSpeed;
 }

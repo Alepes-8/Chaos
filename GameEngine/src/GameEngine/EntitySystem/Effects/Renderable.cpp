@@ -8,7 +8,16 @@ bgfx::VertexLayout GameEngine::PosColorVertex::ms_decl;
 /// </summary>
 GameEngine::Renderable::~Renderable() {
 	std::cout << "Delete Renderable" << std::endl;
-    delete(this);
+    delete(vertices);
+    delete(indices);
+}
+
+GameEngine::Renderable::Renderable() : BaseComponent(nullptr)
+{
+    vertices = nullptr;
+    indices = nullptr;
+    i_len = 0;
+    v_len = 0;
 }
 
 /// <summary>
@@ -35,13 +44,13 @@ GameEngine::Renderable::Renderable
     //if the mesh is in the cache load directly the mesh from the cache
     if (cache.find(dirMesh) != cache.cend())
     {
-        initFromCache(parent, *cache.at(dirMesh));
+        initFromCache(parent, cache.at(dirMesh));
     }
     //if not load the mesh from obj and mtl files and add it to the cache
     else
     {
         parseObj(dirMesh);
-        cache[dirMesh] = this;
+        cache[dirMesh] = *this;
     }
 
     createBuffers();

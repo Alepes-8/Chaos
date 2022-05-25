@@ -6,7 +6,7 @@ GameEngine::BoxCollider::BoxCollider(
 	GameObject* parent,
 	Vector3 origine = Vector3(0, 0, 0),
 	Vector3 scale = Vector3(1, 1, 1)
-) : Collider(parent) {
+) : Colider(parent) {
 	this->origine = origine;
 	if (!isScaleValide(scale)) {
 		this->scale = Vector3(1, 1, 1);
@@ -18,13 +18,9 @@ GameEngine::BoxCollider::BoxCollider(
 
 }
 
-bool GameEngine::BoxCollider::AreColliding(Collider& c){
-	if (SphereCollider* sc = dynamic_cast<SphereCollider*>(&c)) {
-		
-	}
-	else if (BoxCollider* bc = dynamic_cast<BoxCollider*>(&c)) {
 
-	}
+bool GameEngine::BoxCollider::AreColliding(Colider& c){
+
 	return false;
 }
 

@@ -11,7 +11,7 @@ Needs to be windows.
  
 ## Starting up
 
-Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the librarys used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, jsoncpp bx, bgfx and bimg into the same libary,"GameEngine\library". References to the repositorys can be seen in "Used projects".
+Start of with clone the git repository onto your computer. Then go into the chaos folder and open a terminal there. Here we wanna download the librarys used in the project. So to download the sub modules with ease in the right place use the following command "git submodule update --init --recursive" within the main direct. Then clone SDL2, jsoncpp bx, bgfx and bimg into the same libary,"GameEngine\library". When SDL mixer has been downloaded, place its header and lib files in the corresponding directories inside SDL2. References to the repositorys can be seen in "Used projects".
 
 You will need to run the Jsoncpp. Here you should run the cmake file within the folder or follow https://github.com/open-source-parsers/jsoncpp/wiki/Building to build the jsoncpp library.
 
