@@ -303,7 +303,7 @@ namespace GameEngine
             }
 
             if (m_Timer->getDeltaTime() >= 1.0f / frameRate) {
-                std::cout << (m_Timer->getDeltaTime() / frameRate) << std::endl;
+                //std::cout << (m_Timer->getDeltaTime() / frameRate) << std::endl;  //print the framerate
                 EarlyUpdate();
                 Update();
                 LateUpdate();
